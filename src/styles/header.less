@@ -1,0 +1,117 @@
+@header-height: 48px;
+@menu-item-border: 2px;
+
+header {
+  border-bottom: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.08);
+  background: #fff;
+  z-index: 10006;
+  .language {
+    font-size: 14px;
+    line-height: 23px;
+    height: 24px;
+    width: 24px;
+    text-align: center;
+    float: right;
+    position: relative;
+    top: 12px;
+    right: 8px;
+    border-radius: 3px;
+    border: 1px solid #e8506e;
+  }
+  .logo {
+    padding-left: 40px;
+    display: flex;
+    flex: 0 0 auto;
+    overflow: hidden;
+    div {
+      height: 32px;
+      width: 32px;
+      background: url("/assets/images/flink.svg");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      margin: 7px 7px 7px 0;
+      float: left;
+    }
+    h1 {
+      float: left;
+      font-size: 14px;
+      font-family: Avenir-Heavy;
+      height: 48px;
+      line-height: 48px;
+      margin: 0 0 0 16px;
+      position: relative;
+      top: 2px;
+      vertical-align: middle;
+    }
+  }
+
+  nav {
+    display: inline-block;
+    flex: 1 1 0;
+    float: left;
+    #nav {
+      border: 0;
+      font-size: 14px;
+      font-family: Lato, @font-family;
+      font-variant: tabular-nums;
+      &.ant-menu-horizontal {
+        border-bottom: none;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      & > .ant-menu-item {
+        text-align: center;
+        transition: none;
+      }
+    }
+
+  }
+
+  #search-box {
+    float: right;
+    display: inline-block;
+    flex: 0 0 auto;
+    background: #F2F4F5;
+    border-radius: 2px;
+    display: inline-block;
+    flex: 0 0 auto;
+    height: 36px;
+    margin: 6px 24px 6px 24px;
+    opacity: 1;
+    position: relative;
+    text-align: left;
+    vertical-align: top;
+    width: 170px;
+    transition: width ease 0.5s;
+    &.focus {
+      width: 250px;
+    }
+    .anticon-search {
+      left: 24px;
+      position: absolute;
+      font-size: 18px;
+      line-height: 24px;
+      top: 6px;
+    }
+    input {
+      background: 0;
+      border: 0;
+      color: rgba(0, 0, 0, .65);
+      height: 36px;
+      padding: 8px 8px 8px 72px;
+      width: 100%;
+      border: 0;
+      font-size: 16px;
+      box-shadow: none;
+      background: transparent;
+      &::placeholder {
+        color: #a3b1bf;
+      }
+    }
+  }
+}

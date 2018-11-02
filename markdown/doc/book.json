@@ -1,0 +1,23 @@
+{
+    "title": "Flink Doc",
+    "plugins": [
+        "-lunr", 
+        "-search", 
+        "search-plus",
+        "edit-link",
+        "expandable-chapters-small",
+        "anchor-navigation-ex", 
+        "toggle-chapters",
+        "-sharing"
+    ],
+    "pluginsConfig": {
+        "anchor-navigation-ex": {
+            "multipleH1": false,
+            "showLevel": false
+        },
+        "edit-link": {
+            "base": "http://gitlab.alibaba-inc.com/blink/blink-doc-opensource.git",
+            "label": "编辑此页"
+        }
+    }
+}

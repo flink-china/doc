@@ -1,0 +1,40 @@
+.toc-affix {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+}
+
+.toc {
+  font-size: 12px;
+  margin: 16px 0;
+  padding-left: 0;
+  border-left: 1px solid @border-color-split;
+  list-style: none;
+  & > li {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+    line-height: 1.5;
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
+    &:hover {
+      a {
+        color: @primary-color;
+      }
+    }
+  }
+  a {
+    padding-left: 16px;
+    font-weight: 500;
+    display: block;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #314659;
+    width: 170px;
+    border-left: 1px solid transparent;
+    margin-left: -1px;
+  }
+}

@@ -1,0 +1,124 @@
+.community {
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 80px 40px 60px;
+  h3 {
+    font-size: 36px;
+    color: #333;
+    text-align: center;
+    margin: 0 0 40px;
+  }
+  .events {
+    position: relative;
+    .navigator {
+      font-size: 36px;
+      position: absolute;
+      bottom: 260px;
+      opacity: 0.5;
+      &:hover {
+        opacity: 1;
+      }
+      &.prev {
+        left: -36px;
+      }
+      &.next {
+        right: -36px;
+      }
+    }
+    .list {
+      .item {
+        padding: 0 12px;
+        a {
+          display: block;
+          position: relative;
+          width: 100%;
+          > div {
+            width: 100%;
+            height: 240px;
+            background-position: center center;
+            background-size: cover;
+          }
+        }
+        .intro {
+          padding: 20px;
+          background: #F8F8F8;
+          i {
+            margin-right: 6px;
+          }
+          h4 {
+            font-size: 20px;
+            color: #333;
+            margin: 0 0 10px;
+          }
+          p {
+            font-size: 12px;
+            color: #999;
+            margin-top: 10px;
+          }
+
+        }
+      }
+    }
+  }
+  .contact {
+    padding-top: 120px;
+    .icon {
+      a {
+        margin-top: 24px;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        vertical-align: bottom;
+        img {
+          height: 40px;
+          transition: filter ease 0.5s;
+          &.csdn {
+            height: 35px;
+          }
+          &.segementfault {
+            height: 40px;
+          }
+          &.stackoverflow {
+            height: 45px;
+          }
+        }
+      }
+    }
+  }
+  .contributors {
+    padding-top: 120px;
+    .list {
+      display: flex;
+      flex-flow: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      div {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+  .guide {
+    padding-top: 120px;
+    .icon {
+      margin-top: 32px;
+      text-align: center;
+      i {
+        font-size: 42px;
+        color: #cccccc;
+      }
+      p {
+        font-size: 24px;
+        color: #999999;
+        margin-top: 12px;
+        text-align: center;
+      }
+    }
+  }
+}

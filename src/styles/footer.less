@@ -1,0 +1,26 @@
+@padding-space: 144px;
+
+footer {
+  margin-top: 100px;
+  clear: both;
+  font-size: 14px;
+  background-color: #000000;
+  position: relative;
+  z-index: 100;
+  color: rgba(255, 255, 255, 0.65);
+  .footer-wrap {
+    position: relative;
+    padding: 86px @padding-space 93px @padding-space;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    text-align: center;
+  }
+  a {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  h2 {
+    color: rgba(255, 255, 255, 1);
+    & > span {
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+}

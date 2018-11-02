@@ -1,0 +1,30 @@
+.aside-container {
+  padding-bottom: 50px;
+  padding-top: 3px;
+  font-family: Lato, @font-family;
+
+  &.ant-menu-inline .ant-menu-submenu-title h4,
+  &.ant-menu-inline > .ant-menu-item,
+  &.ant-menu-inline .ant-menu-item a {
+    font-size: 14px;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .ant-menu-item {
+    &:hover {
+      background-color: #fff0f3;
+    }
+  }
+  &.ant-menu-inline .ant-menu-item:not(:last-child) {
+    margin-bottom: 0;
+  }
+
+  &.ant-menu-inline .ant-menu-item-group-title {
+    padding-left: 56px;
+  }
+
+  a[disabled] {
+    color: #ccc;
+  }
+}
