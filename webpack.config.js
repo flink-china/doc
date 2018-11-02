@@ -102,6 +102,10 @@ const config = (mode) => {
       new CopyWebpackPlugin(
         [
           {
+            "to"  : "google854eb8b183564acb.html",
+            "from": "./src/google854eb8b183564acb.html"
+          },
+          {
             "to"  : "assets",
             "from": "./src/assets"
           },
