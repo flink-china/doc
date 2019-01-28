@@ -9,6 +9,7 @@ header {
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.08);
   background: #fff;
   z-index: 10006;
+
   .language {
     font-size: 14px;
     line-height: 23px;
@@ -22,11 +23,13 @@ header {
     border-radius: 3px;
     border: 1px solid #e8506e;
   }
+
   .logo {
     padding-left: 40px;
     display: flex;
     flex: 0 0 auto;
     overflow: hidden;
+
     div {
       height: 32px;
       width: 32px;
@@ -36,6 +39,7 @@ header {
       margin: 7px 7px 7px 0;
       float: left;
     }
+
     h1 {
       float: left;
       font-size: 14px;
@@ -53,11 +57,13 @@ header {
     display: inline-block;
     flex: 1 1 0;
     float: left;
+
     #nav {
       border: 0;
       font-size: 14px;
       font-family: Lato, @font-family;
       font-variant: tabular-nums;
+
       &.ant-menu-horizontal {
         border-bottom: none;
         font-size: 14px;
@@ -88,9 +94,11 @@ header {
     vertical-align: top;
     width: 170px;
     transition: width ease 0.5s;
+
     &.focus {
       width: 250px;
     }
+
     .anticon-search {
       left: 24px;
       position: absolute;
@@ -98,6 +106,7 @@ header {
       line-height: 24px;
       top: 6px;
     }
+
     input {
       background: 0;
       border: 0;
@@ -109,9 +118,35 @@ header {
       font-size: 16px;
       box-shadow: none;
       background: transparent;
+
       &::placeholder {
         color: #a3b1bf;
       }
     }
   }
+}
+
+.ant-alert-banner {
+  border-radius: 0;
+  border: 0;
+  margin-bottom: 0;
+}
+
+.ant-alert-warning {
+  border: 1px solid #ffe58f;
+  background-color: #fffbe6;
+}
+
+.ant-alert {
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.65);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  padding: 8px 15px 8px 37px;
 }
