@@ -1,0 +1,3889 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Apache Flink 1.5.1 Documentation: Event Time</title>
+    <link rel="shortcut icon" href="//flink-china.org/doc/blink/page/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="//flink-china.org/doc/blink/page/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/flink.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/syntax.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/codetabs.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/font-awesome/css/font-awesome.min.css">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    
+
+    <!-- Main content. -->
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-lg-3" id="sidenavcol">
+          
+
+
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="sidenav-logo">
+  <p><a href="//flink-china.org/doc/blink"><img class="bottom" alt="Apache Flink" src="//flink-china.org/doc/blink/page/img/navbar-brand-logo.jpg"></a> v1.5.1</p>
+</div>
+<ul id="sidenav">
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/"><i class="fa fa-home title" aria-hidden="true"></i> Home</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-2" data-toggle="collapse"><i class="fa fa-map-o title appetizer" aria-hidden="true"></i> Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-2"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/concepts/programming-model.html">Programming Model</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/concepts/runtime.html">Distributed Runtime</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-6" data-toggle="collapse"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-6"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-7" data-toggle="collapse">API Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-7"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/datastream_api.html">DataStream API</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-10" data-toggle="collapse">Setup Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-10"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/local_setup.html">Local Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/setup_quickstart.html"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-16" data-toggle="collapse"><i class="fa fa-file-code-o title appetizer" aria-hidden="true"></i> Examples <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-16"><ul>
+  <li><a href="//flink-china.org/doc/blink/examples/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/examples.html">DataStream Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/examples.html">DataSet Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/stream_sql_quickstart.html">Stream SQL Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/batch_sql_quickstart.html">Batch SQL Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/scala_shell_quickstart.html">Scala Shell Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/zeppelin_quickstart.html">Flink on Zeppelin Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/examples.html">Flink-Hive Examples</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-25" data-toggle="collapse"><i class="fa fa-cogs title maindish" aria-hidden="true"></i> Project Setup <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-25"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/java_api_quickstart.html">Project Template for Java</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/scala_api_quickstart.html">Project Template for Scala</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/dependencies.html">Configuring Dependencies, Connectors, Libraries</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/ide_setup.html">IDE Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/scala_shell.html">Scala Shell</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/building.html">Building Flink from Source</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-34" data-toggle="collapse" class="active"><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development</a><div class="collapse in" id="collapse-34"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-35" data-toggle="collapse">Basic API Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-35"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/api_concepts.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/scala_api_extensions.html">Scala API Extensions</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/java8.html">Java 8</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-39" data-toggle="collapse" class="active">Streaming (DataStream API)</a><div class="collapse in" id="collapse-39"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/datastream_api.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-40" data-toggle="collapse" class="active">Event Time</a><div class="collapse in" id="collapse-40"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/event_time.html" class="active">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/event_timestamps_watermarks.html">Generating Timestamps / Watermarks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/event_timestamp_extractors.html">Pre-defined Timestamp Extractors / Watermark Emitters</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-44" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-44"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/stream/state/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/state.html">Working with State</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/broadcast_state.html">The Broadcast State Pattern</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/checkpointing.html">Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/queryable_state.html">Queryable State</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/custom_serialization.html">Custom Serialization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-52" data-toggle="collapse">Operators <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-52"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/stream/operators/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/windows.html">Windows</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/process_function.html">Process Function</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/asyncio.html">Async I/O</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-57" data-toggle="collapse">Connectors <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-57"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/connectors/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/guarantees.html">Fault Tolerance Guarantees</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/kafka.html">Kafka</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/cassandra.html">Cassandra</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/kinesis.html">Kinesis</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/elasticsearch.html">Elasticsearch</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/filesystem_sink.html">Rolling File Sink</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/rabbitmq.html">RabbitMQ</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/nifi.html">NiFi</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/twitter.html">Twitter</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/side_output.html">Side Outputs</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/testing.html">Testing</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/experimental.html">Experimental Features</a></li>
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-73" data-toggle="collapse">Batch (DataSet API) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-73"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/batch/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/dataset_transformations.html">Transformations</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/fault_tolerance.html">Fault Tolerance</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/zip_elements_guide.html">Zipping Elements</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/iterations.html">Iterations</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/connectors.html">Connectors</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/hadoop_compatibility.html">Hadoop Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/local_execution.html">Local Execution</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/cluster_execution.html">Cluster Execution</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-84" data-toggle="collapse">Table API & SQL <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-84"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/table/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/common.html">Concepts & Common API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/hive_compatibility.html">Hive Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-87" data-toggle="collapse">Streaming Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-87"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/table/streaming/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/dynamic_tables.html">Dynamic Tables</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/time_attributes.html">Time Attributes</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/joins.html">Joins in Continuous Queries</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/temporal_tables.html">Temporal Tables</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/match_recognize.html">Detecting Patterns</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/query_configuration.html">Query Configuration</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/tableApi.html">Table API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sql.html">SQL</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/supported_ddl.html">SQL Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sourceSinks.html">Table Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/udfs.html">User-defined Functions</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sqlClient.html">SQL Client</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/resource.html">SQL Resource</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/catalog.html">Catalog</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming_optimization.html">Streaming Aggregation Optimization</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/multiple_tablesink_optimization.html">Multiple TableSink Optimization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-106" data-toggle="collapse">Data Types & Serialization <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-106"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/types_serialization.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/custom_serializers.html">Custom Serializers</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-109" data-toggle="collapse">Managing Execution <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-109"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/execution_configuration.html">Execution Configuration</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/packaging.html">Program Packaging</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/parallel.html">Parallel Execution</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/execution_plans.html">Execution Plans</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/restart_strategies.html">Restart Strategies</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-116" data-toggle="collapse">Libraries <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-116"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/cep.html">Event Processing (CEP)</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-118" data-toggle="collapse">Graphs: Gelly <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-118"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/libs/gelly/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_api.html">Graph API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/iterative_graph_processing.html">Iterative Graph Processing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/library_methods.html">Library Methods</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_algorithms.html">Graph Algorithms</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_generators.html">Graph Generators</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/bipartite_graph.html">Bipartite Graph</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-126" data-toggle="collapse">Machine Learning <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-126"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/libs/ml/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/quickstart.html">Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/contribution_guide.html">How to Contribute</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/cross_validation.html">Cross Validation</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/distance_metrics.html">Distance Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/knn.html">k-Nearest Neighbors Join</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/min_max_scaler.html">MinMax Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/multiple_linear_regression.html">Multiple Linear Regression</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/pipelines.html">Pipelines</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/polynomial_features.html">Polynomial Features</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/sos.html">Stochastic Outlier Selection</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/standard_scaler.html">Standard Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/als.html">ALS</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/svm.html">SVM using CoCoA</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/best_practices.html">Best Practices</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/migration.html">API Migration Guides</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-145" data-toggle="collapse"><i class="fa fa-sliders title maindish" aria-hidden="true"></i> Deployment & Operations <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-145"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-146" data-toggle="collapse">Clusters & Deployment <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-146"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/cluster_setup.html">Standalone Cluster</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/yarn_setup.html">YARN</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/mesos.html">Mesos</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/kubernetes.html">Kubernetes</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/docker.html">Docker</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/aws.html">AWS</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/gce_setup.html">Google Compute Engine</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/mapr_setup.html">MapR</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/hadoop.html">Hadoop Integration</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-157" data-toggle="collapse">High Availability (HA) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-157"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/ha/jobmanager_high_availability.html">JobManager High Availability (HA)</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/ha/jobmanager_failover.html">JobManager Failover</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-161" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-161"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/checkpoints.html">Checkpoints</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/savepoints.html">Savepoints</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/large_state_tuning.html">Tuning Checkpoints and Large State</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/ops/config.html">Configuration</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/production_ready.html">Production Readiness Checklist</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/cli.html">CLI</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/security-kerberos.html">Kerberos</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/security-ssl.html">SSL Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/zeppelin.html">Flink on Zeppelin</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/upgrading.html">Upgrading Applications and Flink Versions</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-176" data-toggle="collapse"><i class="fa fa-bug title maindish" aria-hidden="true"></i> Debugging & Monitoring <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-176"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/metrics.html">Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/logging.html">Logging</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/historyserver.html">History Server</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/checkpoint_monitoring.html">Monitoring Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/back_pressure.html">Monitoring Back Pressure</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/rest_api.html">Monitoring REST API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_event_time.html">Debugging Windows & Event Time</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_classloading.html">Debugging Classloading</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/application_profiling.html">Application Profiling</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_job_resources.html">Debugging Job Resources</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-188" data-toggle="collapse"><i class="fa fa-book title dessert" aria-hidden="true"></i> Internals <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-188"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/components.html">Component Stack</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/stream_checkpointing.html">Fault Tolerance for Data Streaming</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/job_scheduling.html">Jobs and Scheduling</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/task_lifecycle.html">Task Lifecycle</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/taskmanager_resource.html">TaskManager Resource</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+</ul>
+
+<div class="sidenav-search-box">
+  <form class="navbar-form" role="search" action="//flink-china.org/doc/blink/search-results.html">
+    <div class="form-group">
+      <input type="text" class="form-control" size="16px" name="q" placeholder="Search">
+    </div>
+    <button type="submit" class="btn btn-default">Go</button>
+  </form>
+</div>
+
+<div class="sidenav-versions">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Pick Docs Version
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.4">v1.4</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.3">v1.3</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.2">v1.2</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.1">v1.1</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.0">v1.0</a></li>
+      
+    </ul>
+  </div>
+</div>
+
+        </div>
+        <div class="col-lg-9 content" id="contentcol">
+          
+
+          
+
+
+
+
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+
+
+
+<ol class="breadcrumb">
+
+  
+  
+    <li><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development</li>
+  
+
+  
+  
+    <li><a href="//flink-china.org/doc/blink/dev/datastream_api.html">Streaming (DataStream API)</a></li>
+  
+
+  
+  
+    <li class="active">Event Time</li>
+  
+
+</ol>
+
+<h1>Event Time</h1>
+
+
+
+
+<ul id="markdown-toc">
+  <li><a href="#event-time--processing-time--ingestion-time" id="markdown-toc-event-time--processing-time--ingestion-time">Event Time / Processing Time / Ingestion Time</a>    <ul>
+      <li><a href="#setting-a-time-characteristic" id="markdown-toc-setting-a-time-characteristic">Setting a Time Characteristic</a></li>
+    </ul>
+  </li>
+  <li><a href="#event-time-and-watermarks" id="markdown-toc-event-time-and-watermarks">Event Time and Watermarks</a>    <ul>
+      <li><a href="#watermarks-in-parallel-streams" id="markdown-toc-watermarks-in-parallel-streams">Watermarks in Parallel Streams</a></li>
+      <li><a href="#late-elements" id="markdown-toc-late-elements">Late Elements</a></li>
+      <li><a href="#debugging-watermarks" id="markdown-toc-debugging-watermarks">Debugging Watermarks</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="event-time--processing-time--ingestion-time">Event Time / Processing Time / Ingestion Time</h1>
+
+<p>Flink supports different notions of <em>time</em> in streaming programs.</p>
+
+<ul>
+  <li>
+    <p><strong>Processing time:</strong> Processing time refers to the system time of the machine that is executing the
+  respective operation.</p>
+
+    <p>When a streaming program runs on processing time, all time-based operations (like time windows) will
+  use the system clock of the machines that run the respective operator. An hourly
+  processing time window will include all records that arrived at a specific operator between the
+  times when the system clock indicated the full hour. For example, if an application
+  begins running at 9:15am, the first hourly processing time window will include events
+  processed between 9:15am and 10:00am, the next window will include events processed between 10:00am and 11:00am, and so on.</p>
+
+    <p>Processing time is the simplest notion of time and requires no coordination between streams and machines.
+  It provides the best performance and the lowest latency. However, in distributed and asynchronous
+  environments processing time does not provide determinism, because it is susceptible to the speed at which
+  records arrive in the system (for example from the message queue), to the speed at which the
+  records flow between operators inside the system, and to outages (scheduled, or otherwise).</p>
+  </li>
+  <li>
+    <p><strong>Event time:</strong> Event time is the time that each individual event occurred on its producing device.
+  This time is typically embedded within the records before they enter Flink, and that <em>event timestamp</em>
+  can be extracted from each record. In event time, the progress of time depends on the data,
+  not on any wall clocks. Event time programs must specify how to generate <em>Event Time Watermarks</em>,
+  which is the mechanism that signals progress in event time. This watermarking mechanism is
+  described in a later section, <a href="#event-time-and-watermarks">below</a>.</p>
+
+    <p>In a perfect world, event time processing would yield completely consistent and deterministic results, regardless of when events arrive, or their ordering.
+  However, unless the events are known to arrive in-order (by timestamp), event time processing incurs some latency while waiting for out-of-order events. As it is only possible to wait for a finite period of time, this places a limit on how deterministic event time applications can be.</p>
+
+    <p>Assuming all of the data has arrived, event time operations will behave as expected, and produce correct and consistent results even when working with out-of-order or late events, or when reprocessing historic data. For example, an hourly event time window will contain all records
+  that carry an event timestamp that falls into that hour, regardless of the order in which they arrive, or when they are processed. (See the section on <a href="#late-elements">late events</a> for more information.)</p>
+
+    <p>Note that sometimes when event time programs are processing live data in real-time, they will use some <em>processing time</em> operations in order to guarantee that they are progressing in a timely fashion.</p>
+  </li>
+  <li>
+    <p><strong>Ingestion time:</strong> Ingestion time is the time that events enter Flink. At the source operator each
+  record gets the source’s current time as a timestamp, and time-based operations (like time windows)
+  refer to that timestamp.</p>
+
+    <p><em>Ingestion time</em> sits conceptually in between <em>event time</em> and <em>processing time</em>. Compared to
+  <em>processing time</em>, it is slightly more expensive, but gives more predictable results. Because
+  <em>ingestion time</em> uses stable timestamps (assigned once at the source), different window operations
+  over the records will refer to the same timestamp, whereas in <em>processing time</em> each window operator
+  may assign the record to a different window (based on the local system clock and any transport delay).</p>
+
+    <p>Compared to <em>event time</em>, <em>ingestion time</em> programs cannot handle any out-of-order events or late data,
+  but the programs don’t have to specify how to generate <em>watermarks</em>.</p>
+
+    <p>Internally, <em>ingestion time</em> is treated much like <em>event time</em>, but with automatic timestamp assignment and
+  automatic watermark generation.</p>
+  </li>
+</ul>
+
+<p><img src="//flink-china.org/doc/blink/fig/times_clocks.svg" class="center" width="80%" /></p>
+
+<h3 id="setting-a-time-characteristic">Setting a Time Characteristic</h3>
+
+<p>The first part of a Flink DataStream program usually sets the base <em>time characteristic</em>. That setting
+defines how data stream sources behave (for example, whether they will assign timestamps), and what notion of
+time should be used by window operations like <code class="highlighter-rouge">KeyedStream.timeWindow(Time.seconds(30))</code>.</p>
+
+<p>The following example shows a Flink program that aggregates events in hourly time windows. The behavior of the
+windows adapts with the time characteristic.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="n">StreamExecutionEnvironment</span> <span class="n">env</span> <span class="o">=</span> <span class="n">StreamExecutionEnvironment</span><span class="o">.</span><span class="na">getExecutionEnvironment</span><span class="o">();</span>
+
+<span class="n">env</span><span class="o">.</span><span class="na">setStreamTimeCharacteristic</span><span class="o">(</span><span class="n">TimeCharacteristic</span><span class="o">.</span><span class="na">ProcessingTime</span><span class="o">);</span>
+
+<span class="c1">// alternatively:</span>
+<span class="c1">// env.setStreamTimeCharacteristic(TimeCharacteristic.IngestionTime);</span>
+<span class="c1">// env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);</span>
+
+<span class="n">DataStream</span><span class="o">&lt;</span><span class="n">MyEvent</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="na">addSource</span><span class="o">(</span><span class="k">new</span> <span class="n">FlinkKafkaConsumer09</span><span class="o">&lt;</span><span class="n">MyEvent</span><span class="o">&gt;(</span><span class="n">topic</span><span class="o">,</span> <span class="n">schema</span><span class="o">,</span> <span class="n">props</span><span class="o">));</span>
+
+<span class="n">stream</span>
+    <span class="o">.</span><span class="na">keyBy</span><span class="o">(</span> <span class="o">(</span><span class="n">event</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">event</span><span class="o">.</span><span class="na">getUser</span><span class="o">()</span> <span class="o">)</span>
+    <span class="o">.</span><span class="na">timeWindow</span><span class="o">(</span><span class="n">Time</span><span class="o">.</span><span class="na">hours</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">reduce</span><span class="o">(</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">b</span><span class="o">)</span> <span class="o">)</span>
+    <span class="o">.</span><span class="na">addSink</span><span class="o">(...);</span></code></pre></figure>
+
+  </div>
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">env</span> <span class="k">=</span> <span class="nc">StreamExecutionEnvironment</span><span class="o">.</span><span class="n">getExecutionEnvironment</span>
+
+<span class="n">env</span><span class="o">.</span><span class="n">setStreamTimeCharacteristic</span><span class="o">(</span><span class="nc">TimeCharacteristic</span><span class="o">.</span><span class="nc">ProcessingTime</span><span class="o">)</span>
+
+<span class="c1">// alternatively:
+// env.setStreamTimeCharacteristic(TimeCharacteristic.IngestionTime)
+// env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
+</span>
+<span class="k">val</span> <span class="n">stream</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[</span><span class="kt">MyEvent</span><span class="o">]</span> <span class="k">=</span> <span class="n">env</span><span class="o">.</span><span class="n">addSource</span><span class="o">(</span><span class="k">new</span> <span class="nc">FlinkKafkaConsumer09</span><span class="o">[</span><span class="kt">MyEvent</span><span class="o">](</span><span class="n">topic</span><span class="o">,</span> <span class="n">schema</span><span class="o">,</span> <span class="n">props</span><span class="o">))</span>
+
+<span class="n">stream</span>
+    <span class="o">.</span><span class="n">keyBy</span><span class="o">(</span> <span class="k">_</span><span class="o">.</span><span class="n">getUser</span> <span class="o">)</span>
+    <span class="o">.</span><span class="n">timeWindow</span><span class="o">(</span><span class="nc">Time</span><span class="o">.</span><span class="n">hours</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+    <span class="o">.</span><span class="n">reduce</span><span class="o">(</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">add</span><span class="o">(</span><span class="n">b</span><span class="o">)</span> <span class="o">)</span>
+    <span class="o">.</span><span class="n">addSink</span><span class="o">(...)</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p>Note that in order to run this example in <em>event time</em>, the program needs to either use sources
+that directly define event time for the data and emit watermarks themselves, or the program must
+inject a <em>Timestamp Assigner &amp; Watermark Generator</em> after the sources. Those functions describe how to access
+the event timestamps, and what degree of out-of-orderness the event stream exhibits.</p>
+
+<p>The section below describes the general mechanism behind <em>timestamps</em> and <em>watermarks</em>. For a guide on how
+to use timestamp assignment and watermark generation in the Flink DataStream API, please refer to
+<a href="//flink-china.org/doc/blink/dev/event_timestamps_watermarks.html">Generating Timestamps / Watermarks</a>.</p>
+
+<h1 id="event-time-and-watermarks">Event Time and Watermarks</h1>
+
+<p><em>Note: Flink implements many techniques from the Dataflow Model. For a good introduction to event time and watermarks, have a look at the articles below.</em></p>
+
+<ul>
+  <li><a href="https://www.oreilly.com/ideas/the-world-beyond-batch-streaming-101">Streaming 101</a> by Tyler Akidau</li>
+  <li>The <a href="https://research.google.com/pubs/archive/43864.pdf">Dataflow Model paper</a></li>
+</ul>
+
+<p>A stream processor that supports <em>event time</em> needs a way to measure the progress of event time.
+For example, a window operator that builds hourly windows needs to be notified when event time has passed beyond the
+end of an hour, so that the operator can close the window in progress.</p>
+
+<p><em>Event time</em> can progress independently of <em>processing time</em> (measured by wall clocks).
+For example, in one program the current <em>event time</em> of an operator may trail slightly behind the <em>processing time</em>
+(accounting for a delay in receiving the events), while both proceed at the same speed.
+On the other hand, another streaming program might progress through weeks of event time with only a few seconds of processing,
+by fast-forwarding through some historic data already buffered in a Kafka topic (or another message queue).</p>
+
+<hr />
+
+<p>The mechanism in Flink to measure progress in event time is <strong>watermarks</strong>.
+Watermarks flow as part of the data stream and carry a timestamp <em>t</em>. A <em>Watermark(t)</em> declares that event time has reached time
+<em>t</em> in that stream, meaning that there should be no more elements from the stream with a timestamp <em>t’ &lt;= t</em> (i.e. events with timestamps
+older or equal to the watermark).</p>
+
+<p>The figure below shows a stream of events with (logical) timestamps, and watermarks flowing inline. In this example the events are in order
+(with respect to their timestamps), meaning that the watermarks are simply periodic markers in the stream.</p>
+
+<p><img src="//flink-china.org/doc/blink/fig/stream_watermark_in_order.svg" alt="A data stream with events (in order) and watermarks" class="center" width="65%" /></p>
+
+<p>Watermarks are crucial for <em>out-of-order</em> streams, as illustrated below, where the events are not ordered by their timestamps.
+In general a watermark is a declaration that by that point in the stream, all events up to a certain timestamp should have arrived.
+Once a watermark reaches an operator, the operator can advance its internal <em>event time clock</em> to the value of the watermark.</p>
+
+<p><img src="//flink-china.org/doc/blink/fig/stream_watermark_out_of_order.svg" alt="A data stream with events (out of order) and watermarks" class="center" width="65%" /></p>
+
+<h2 id="watermarks-in-parallel-streams">Watermarks in Parallel Streams</h2>
+
+<p>Watermarks are generated at, or directly after, source functions. Each parallel subtask of a source function usually
+generates its watermarks independently. These watermarks define the event time at that particular parallel source.</p>
+
+<p>As the watermarks flow through the streaming program, they advance the event time at the operators where they arrive. Whenever an
+operator advances its event time, it generates a new watermark downstream for its successor operators.</p>
+
+<p>Some operators consume multiple input streams; a union, for example, or operators following a <em>keyBy(…)</em> or <em>partition(…)</em> function.
+Such an operator’s current event time is the minimum of its input streams’ event times. As its input streams
+update their event times, so does the operator.</p>
+
+<p>The figure below shows an example of events and watermarks flowing through parallel streams, and operators tracking event time.</p>
+
+<p><img src="//flink-china.org/doc/blink/fig/parallel_streams_watermarks.svg" alt="Parallel data streams and operators with events and watermarks" class="center" width="80%" /></p>
+
+<p>Note that the Kafka source supports per-partition watermarking, which you can read more about <a href="//flink-china.org/doc/blink/dev/event_timestamps_watermarks.html#timestamps-per-kafka-partition">here</a>.</p>
+
+<h2 id="late-elements">Late Elements</h2>
+
+<p>It is possible that certain elements will violate the watermark condition, meaning that even after the <em>Watermark(t)</em> has occurred,
+more elements with timestamp <em>t’ &lt;= t</em> will occur. In fact, in many real world setups, certain elements can be arbitrarily
+delayed, making it impossible to specify a time by which all elements of a certain event timestamp will have occurred.
+Furthermore, even if the lateness can be bounded, delaying the watermarks by too much is often not desirable, because it
+causes too much delay in the evaluation of event time windows.</p>
+
+<p>For this reason, streaming programs may explicitly expect some <em>late</em> elements. Late elements are elements that
+arrive after the system’s event time clock (as signaled by the watermarks) has already passed the time of the late element’s
+timestamp. See <a href="//flink-china.org/doc/blink/dev/stream/operators/windows.html#allowed-lateness">Allowed Lateness</a> for more information on how to work
+with late elements in event time windows.</p>
+
+<h2 id="debugging-watermarks">Debugging Watermarks</h2>
+
+<p>Please refer to the <a href="//flink-china.org/doc/blink/monitoring/debugging_event_time.html">Debugging Windows &amp; Event Time</a> section for debugging
+watermarks at runtime.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+
+        </div>
+      </div>
+    </div><!-- /.container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//flink-china.org/doc/blink/page/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.0/anchor.min.js"></script>
+    <script src="//flink-china.org/doc/blink/page/js/flink.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-52545728-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- Disqus -->
+    
+  </body>
+</html>

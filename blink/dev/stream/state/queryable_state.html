@@ -1,0 +1,4011 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Apache Flink 1.5.1 Documentation: Queryable State</title>
+    <link rel="shortcut icon" href="//flink-china.org/doc/blink/page/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="//flink-china.org/doc/blink/page/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/flink.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/syntax.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/codetabs.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/font-awesome/css/font-awesome.min.css">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    
+
+    <!-- Main content. -->
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-lg-3" id="sidenavcol">
+          
+
+
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="sidenav-logo">
+  <p><a href="//flink-china.org/doc/blink"><img class="bottom" alt="Apache Flink" src="//flink-china.org/doc/blink/page/img/navbar-brand-logo.jpg"></a> v1.5.1</p>
+</div>
+<ul id="sidenav">
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/"><i class="fa fa-home title" aria-hidden="true"></i> Home</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-2" data-toggle="collapse"><i class="fa fa-map-o title appetizer" aria-hidden="true"></i> Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-2"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/concepts/programming-model.html">Programming Model</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/concepts/runtime.html">Distributed Runtime</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-6" data-toggle="collapse"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-6"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-7" data-toggle="collapse">API Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-7"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/datastream_api.html">DataStream API</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-10" data-toggle="collapse">Setup Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-10"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/local_setup.html">Local Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/setup_quickstart.html"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-16" data-toggle="collapse"><i class="fa fa-file-code-o title appetizer" aria-hidden="true"></i> Examples <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-16"><ul>
+  <li><a href="//flink-china.org/doc/blink/examples/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/examples.html">DataStream Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/examples.html">DataSet Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/stream_sql_quickstart.html">Stream SQL Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/batch_sql_quickstart.html">Batch SQL Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/scala_shell_quickstart.html">Scala Shell Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/zeppelin_quickstart.html">Flink on Zeppelin Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/examples.html">Flink-Hive Examples</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-25" data-toggle="collapse"><i class="fa fa-cogs title maindish" aria-hidden="true"></i> Project Setup <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-25"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/java_api_quickstart.html">Project Template for Java</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/scala_api_quickstart.html">Project Template for Scala</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/dependencies.html">Configuring Dependencies, Connectors, Libraries</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/ide_setup.html">IDE Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/scala_shell.html">Scala Shell</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/building.html">Building Flink from Source</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-34" data-toggle="collapse" class="active"><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development</a><div class="collapse in" id="collapse-34"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-35" data-toggle="collapse">Basic API Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-35"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/api_concepts.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/scala_api_extensions.html">Scala API Extensions</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/java8.html">Java 8</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-39" data-toggle="collapse" class="active">Streaming (DataStream API)</a><div class="collapse in" id="collapse-39"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/datastream_api.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-40" data-toggle="collapse">Event Time <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-40"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/event_time.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/event_timestamps_watermarks.html">Generating Timestamps / Watermarks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/event_timestamp_extractors.html">Pre-defined Timestamp Extractors / Watermark Emitters</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-44" data-toggle="collapse" class="active">State & Fault Tolerance</a><div class="collapse in" id="collapse-44"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/stream/state/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/state.html">Working with State</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/broadcast_state.html">The Broadcast State Pattern</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/checkpointing.html">Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/queryable_state.html" class="active">Queryable State</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/custom_serialization.html">Custom Serialization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-52" data-toggle="collapse">Operators <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-52"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/stream/operators/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/windows.html">Windows</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/process_function.html">Process Function</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/asyncio.html">Async I/O</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-57" data-toggle="collapse">Connectors <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-57"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/connectors/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/guarantees.html">Fault Tolerance Guarantees</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/kafka.html">Kafka</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/cassandra.html">Cassandra</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/kinesis.html">Kinesis</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/elasticsearch.html">Elasticsearch</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/filesystem_sink.html">Rolling File Sink</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/rabbitmq.html">RabbitMQ</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/nifi.html">NiFi</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/twitter.html">Twitter</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/side_output.html">Side Outputs</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/testing.html">Testing</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/experimental.html">Experimental Features</a></li>
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-73" data-toggle="collapse">Batch (DataSet API) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-73"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/batch/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/dataset_transformations.html">Transformations</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/fault_tolerance.html">Fault Tolerance</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/zip_elements_guide.html">Zipping Elements</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/iterations.html">Iterations</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/connectors.html">Connectors</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/hadoop_compatibility.html">Hadoop Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/local_execution.html">Local Execution</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/cluster_execution.html">Cluster Execution</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-84" data-toggle="collapse">Table API & SQL <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-84"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/table/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/common.html">Concepts & Common API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/hive_compatibility.html">Hive Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-87" data-toggle="collapse">Streaming Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-87"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/table/streaming/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/dynamic_tables.html">Dynamic Tables</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/time_attributes.html">Time Attributes</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/joins.html">Joins in Continuous Queries</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/temporal_tables.html">Temporal Tables</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/match_recognize.html">Detecting Patterns</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/query_configuration.html">Query Configuration</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/tableApi.html">Table API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sql.html">SQL</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/supported_ddl.html">SQL Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sourceSinks.html">Table Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/udfs.html">User-defined Functions</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sqlClient.html">SQL Client</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/resource.html">SQL Resource</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/catalog.html">Catalog</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming_optimization.html">Streaming Aggregation Optimization</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/multiple_tablesink_optimization.html">Multiple TableSink Optimization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-106" data-toggle="collapse">Data Types & Serialization <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-106"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/types_serialization.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/custom_serializers.html">Custom Serializers</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-109" data-toggle="collapse">Managing Execution <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-109"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/execution_configuration.html">Execution Configuration</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/packaging.html">Program Packaging</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/parallel.html">Parallel Execution</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/execution_plans.html">Execution Plans</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/restart_strategies.html">Restart Strategies</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-116" data-toggle="collapse">Libraries <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-116"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/cep.html">Event Processing (CEP)</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-118" data-toggle="collapse">Graphs: Gelly <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-118"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/libs/gelly/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_api.html">Graph API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/iterative_graph_processing.html">Iterative Graph Processing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/library_methods.html">Library Methods</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_algorithms.html">Graph Algorithms</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_generators.html">Graph Generators</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/bipartite_graph.html">Bipartite Graph</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-126" data-toggle="collapse">Machine Learning <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-126"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/libs/ml/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/quickstart.html">Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/contribution_guide.html">How to Contribute</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/cross_validation.html">Cross Validation</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/distance_metrics.html">Distance Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/knn.html">k-Nearest Neighbors Join</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/min_max_scaler.html">MinMax Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/multiple_linear_regression.html">Multiple Linear Regression</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/pipelines.html">Pipelines</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/polynomial_features.html">Polynomial Features</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/sos.html">Stochastic Outlier Selection</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/standard_scaler.html">Standard Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/als.html">ALS</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/svm.html">SVM using CoCoA</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/best_practices.html">Best Practices</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/migration.html">API Migration Guides</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-145" data-toggle="collapse"><i class="fa fa-sliders title maindish" aria-hidden="true"></i> Deployment & Operations <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-145"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-146" data-toggle="collapse">Clusters & Deployment <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-146"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/cluster_setup.html">Standalone Cluster</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/yarn_setup.html">YARN</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/mesos.html">Mesos</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/kubernetes.html">Kubernetes</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/docker.html">Docker</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/aws.html">AWS</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/gce_setup.html">Google Compute Engine</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/mapr_setup.html">MapR</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/hadoop.html">Hadoop Integration</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-157" data-toggle="collapse">High Availability (HA) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-157"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/ha/jobmanager_high_availability.html">JobManager High Availability (HA)</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/ha/jobmanager_failover.html">JobManager Failover</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-161" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-161"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/checkpoints.html">Checkpoints</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/savepoints.html">Savepoints</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/large_state_tuning.html">Tuning Checkpoints and Large State</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/ops/config.html">Configuration</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/production_ready.html">Production Readiness Checklist</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/cli.html">CLI</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/security-kerberos.html">Kerberos</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/security-ssl.html">SSL Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/zeppelin.html">Flink on Zeppelin</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/upgrading.html">Upgrading Applications and Flink Versions</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-176" data-toggle="collapse"><i class="fa fa-bug title maindish" aria-hidden="true"></i> Debugging & Monitoring <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-176"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/metrics.html">Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/logging.html">Logging</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/historyserver.html">History Server</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/checkpoint_monitoring.html">Monitoring Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/back_pressure.html">Monitoring Back Pressure</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/rest_api.html">Monitoring REST API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_event_time.html">Debugging Windows & Event Time</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_classloading.html">Debugging Classloading</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/application_profiling.html">Application Profiling</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_job_resources.html">Debugging Job Resources</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-188" data-toggle="collapse"><i class="fa fa-book title dessert" aria-hidden="true"></i> Internals <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-188"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/components.html">Component Stack</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/stream_checkpointing.html">Fault Tolerance for Data Streaming</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/job_scheduling.html">Jobs and Scheduling</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/task_lifecycle.html">Task Lifecycle</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/taskmanager_resource.html">TaskManager Resource</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+</ul>
+
+<div class="sidenav-search-box">
+  <form class="navbar-form" role="search" action="//flink-china.org/doc/blink/search-results.html">
+    <div class="form-group">
+      <input type="text" class="form-control" size="16px" name="q" placeholder="Search">
+    </div>
+    <button type="submit" class="btn btn-default">Go</button>
+  </form>
+</div>
+
+<div class="sidenav-versions">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Pick Docs Version
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.4">v1.4</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.3">v1.3</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.2">v1.2</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.1">v1.1</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.0">v1.0</a></li>
+      
+    </ul>
+  </div>
+</div>
+
+        </div>
+        <div class="col-lg-9 content" id="contentcol">
+          
+
+          
+
+
+
+
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+
+
+
+<ol class="breadcrumb">
+
+  
+  
+    <li><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development</li>
+  
+
+  
+  
+    <li><a href="//flink-china.org/doc/blink/dev/datastream_api.html">Streaming (DataStream API)</a></li>
+  
+
+  
+  
+    <li><a href="//flink-china.org/doc/blink/dev/stream/state/">State & Fault Tolerance</a></li>
+  
+
+  
+  
+    <li class="active">Queryable State</li>
+  
+
+</ol>
+
+<h1>Queryable State <span class="beta">Beta</span></h1>
+
+
+
+
+<ul id="markdown-toc">
+  <li><a href="#architecture" id="markdown-toc-architecture">Architecture</a></li>
+  <li><a href="#activating-queryable-state" id="markdown-toc-activating-queryable-state">Activating Queryable State</a></li>
+  <li><a href="#making-state-queryable" id="markdown-toc-making-state-queryable">Making State Queryable</a>    <ul>
+      <li><a href="#queryable-state-stream" id="markdown-toc-queryable-state-stream">Queryable State Stream</a></li>
+      <li><a href="#managed-keyed-state" id="markdown-toc-managed-keyed-state">Managed Keyed State</a></li>
+    </ul>
+  </li>
+  <li><a href="#querying-state" id="markdown-toc-querying-state">Querying State</a>    <ul>
+      <li><a href="#example" id="markdown-toc-example">Example</a></li>
+    </ul>
+  </li>
+  <li><a href="#configuration" id="markdown-toc-configuration">Configuration</a>    <ul>
+      <li><a href="#state-server" id="markdown-toc-state-server">State Server</a></li>
+      <li><a href="#proxy" id="markdown-toc-proxy">Proxy</a></li>
+    </ul>
+  </li>
+  <li><a href="#limitations" id="markdown-toc-limitations">Limitations</a></li>
+</ul>
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> The client APIs for queryable state are currently in an evolving state and
+  there are <strong>no guarantees</strong> made about stability of the provided interfaces. It is
+  likely that there will be breaking API changes on the client side in the upcoming Flink versions.
+</div>
+
+<p>In a nutshell, this feature exposes Flink’s managed keyed (partitioned) state
+(see <a href="//flink-china.org/doc/blink/dev/stream/state/state.html">Working with State</a>) to the outside world and 
+allows the user to query a job’s state from outside Flink. For some scenarios, queryable state 
+eliminates the need for distributed operations/transactions with external systems such as key-value 
+stores which are often the bottleneck in practice. In addition, this feature may be particularly 
+useful for debugging purposes.</p>
+
+<div class="alert alert-warning">
+  <strong>Attention:</strong> When querying a state object, that object is accessed from a concurrent 
+  thread without any synchronization or copying. This is a design choice, as any of the above would lead
+  to increased job latency, which we wanted to avoid. Since any state backend using Java heap space, 
+  <i>e.g.</i> <code>MemoryStateBackend</code> or <code>FsStateBackend</code>, does not work 
+  with copies when retrieving values but instead directly references the stored values, read-modify-write 
+  patterns are unsafe and may cause the queryable state server to fail due to concurrent modifications.
+  The <code>RocksDBStateBackend</code> is safe from these issues.
+</div>
+
+<h2 id="architecture">Architecture</h2>
+
+<p>Before showing how to use the Queryable State, it is useful to briefly describe the entities that compose it.
+The Queryable State feature consists of three main entities:</p>
+
+<ol>
+  <li>the <code class="highlighter-rouge">QueryableStateClient</code>, which (potentially) runs outside the Flink cluster and submits the user queries,</li>
+  <li>the <code class="highlighter-rouge">QueryableStateClientProxy</code>, which runs on each <code class="highlighter-rouge">TaskManager</code> (<em>i.e.</em> inside the Flink cluster) and is responsible 
+ for receiving the client’s queries, fetching the requested state from the responsible Task Manager on his behalf, and 
+ returning it to the client, and</li>
+  <li>the <code class="highlighter-rouge">QueryableStateServer</code> which runs on each <code class="highlighter-rouge">TaskManager</code> and is responsible for serving the locally stored state.</li>
+</ol>
+
+<p>The client connects to one of the proxies and sends a request for the state associated with a specific 
+key, <code class="highlighter-rouge">k</code>. As stated in <a href="//flink-china.org/doc/blink/dev/stream/state/state.html">Working with State</a>, keyed state is organized in 
+<em>Key Groups</em>, and each <code class="highlighter-rouge">TaskManager</code> is assigned a number of these key groups. To discover which <code class="highlighter-rouge">TaskManager</code> is 
+responsible for the key group holding <code class="highlighter-rouge">k</code>, the proxy will ask the <code class="highlighter-rouge">JobManager</code>. Based on the answer, the proxy will 
+then query the <code class="highlighter-rouge">QueryableStateServer</code> running on that <code class="highlighter-rouge">TaskManager</code> for the state associated with <code class="highlighter-rouge">k</code>, and forward the
+response back to the client.</p>
+
+<h2 id="activating-queryable-state">Activating Queryable State</h2>
+
+<p>To enable queryable state on your Flink cluster, you just have to copy the 
+<code class="highlighter-rouge">flink-queryable-state-runtime_2.11-1.5.1.jar</code> 
+from the <code class="highlighter-rouge">opt/</code> folder of your <a href="https://flink.apache.org/downloads.html" title="Apache Flink: Downloads">Flink distribution</a>, 
+to the <code class="highlighter-rouge">lib/</code> folder. Otherwise, the queryable state feature is not enabled.</p>
+
+<p>To verify that your cluster is running with queryable state enabled, check the logs of any 
+task manager for the line: <code class="highlighter-rouge">"Started the Queryable State Proxy Server @ ..."</code>.</p>
+
+<h2 id="making-state-queryable">Making State Queryable</h2>
+
+<p>Now that you have activated queryable state on your cluster, it is time to see how to use it. In order for a state to 
+be visible to the outside world, it needs to be explicitly made queryable by using:</p>
+
+<ul>
+  <li>either a <code class="highlighter-rouge">QueryableStateStream</code>, a convenience object which acts as a sink and offers its incoming values as queryable
+state, or</li>
+  <li>the <code class="highlighter-rouge">stateDescriptor.setQueryable(String queryableStateName)</code> method, which makes the keyed state represented by the
+ state descriptor, queryable.</li>
+</ul>
+
+<p>The following sections explain the use of these two approaches.</p>
+
+<h3 id="queryable-state-stream">Queryable State Stream</h3>
+
+<p>Calling <code class="highlighter-rouge">.asQueryableState(stateName, stateDescriptor)</code> on a <code class="highlighter-rouge">KeyedStream</code> returns a <code class="highlighter-rouge">QueryableStateStream</code> which offers
+its values as queryable state. Depending on the type of state, there are the following variants of the <code class="highlighter-rouge">asQueryableState()</code>
+method:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// ValueState</span>
+<span class="n">QueryableStateStream</span> <span class="nf">asQueryableState</span><span class="o">(</span>
+    <span class="n">String</span> <span class="n">queryableStateName</span><span class="o">,</span>
+    <span class="n">ValueStateDescriptor</span> <span class="n">stateDescriptor</span><span class="o">)</span>
+
+<span class="c1">// Shortcut for explicit ValueStateDescriptor variant</span>
+<span class="n">QueryableStateStream</span> <span class="nf">asQueryableState</span><span class="o">(</span><span class="n">String</span> <span class="n">queryableStateName</span><span class="o">)</span>
+
+<span class="c1">// FoldingState</span>
+<span class="n">QueryableStateStream</span> <span class="nf">asQueryableState</span><span class="o">(</span>
+    <span class="n">String</span> <span class="n">queryableStateName</span><span class="o">,</span>
+    <span class="n">FoldingStateDescriptor</span> <span class="n">stateDescriptor</span><span class="o">)</span>
+
+<span class="c1">// ReducingState</span>
+<span class="n">QueryableStateStream</span> <span class="nf">asQueryableState</span><span class="o">(</span>
+    <span class="n">String</span> <span class="n">queryableStateName</span><span class="o">,</span>
+    <span class="n">ReducingStateDescriptor</span> <span class="n">stateDescriptor</span><span class="o">)</span></code></pre></figure>
+
+<div class="alert alert-info">
+  <strong>Note:</strong> There is no queryable <code>ListState</code> sink as it would result in an ever-growing
+  list which may not be cleaned up and thus will eventually consume too much memory.
+</div>
+
+<p>The returned <code class="highlighter-rouge">QueryableStateStream</code> can be seen as a sink and <strong>cannot</strong> be further transformed. Internally, a 
+<code class="highlighter-rouge">QueryableStateStream</code> gets translated to an operator which uses all incoming records to update the queryable state 
+instance. The updating logic is implied by the type of the <code class="highlighter-rouge">StateDescriptor</code> provided in the <code class="highlighter-rouge">asQueryableState</code> call. 
+In a program like the following, all records of the keyed stream will be used to update the state instance via the 
+<code class="highlighter-rouge">ValueState.update(value)</code>:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">stream</span><span class="o">.</span><span class="na">keyBy</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">asQueryableState</span><span class="o">(</span><span class="s">"query-name"</span><span class="o">)</span></code></pre></figure>
+
+<p>This acts like the Scala API’s <code class="highlighter-rouge">flatMapWithState</code>.</p>
+
+<h3 id="managed-keyed-state">Managed Keyed State</h3>
+
+<p>Managed keyed state of an operator
+(see <a href="//flink-china.org/doc/blink/dev/stream/state/state.html#using-managed-keyed-state">Using Managed Keyed State</a>)
+can be made queryable by making the appropriate state descriptor queryable via
+<code class="highlighter-rouge">StateDescriptor.setQueryable(String queryableStateName)</code>, as in the example below:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ValueStateDescriptor</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">descriptor</span> <span class="o">=</span>
+        <span class="k">new</span> <span class="n">ValueStateDescriptor</span><span class="o">&lt;&gt;(</span>
+                <span class="s">"average"</span><span class="o">,</span> <span class="c1">// the state name</span>
+                <span class="n">TypeInformation</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="k">new</span> <span class="n">TypeHint</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;()</span> <span class="o">{}));</span> <span class="c1">// type information</span>
+<span class="n">descriptor</span><span class="o">.</span><span class="na">setQueryable</span><span class="o">(</span><span class="s">"query-name"</span><span class="o">);</span> <span class="c1">// queryable state name</span></code></pre></figure>
+
+<div class="alert alert-info">
+  <strong>Note:</strong> The <code>queryableStateName</code> parameter may be chosen arbitrarily and is only
+  used for queries. It does not have to be identical to the state's own name.
+</div>
+
+<p>This variant has no limitations as to which type of state can be made queryable. This means that this can be used for 
+any <code class="highlighter-rouge">ValueState</code>, <code class="highlighter-rouge">ReduceState</code>, <code class="highlighter-rouge">ListState</code>, <code class="highlighter-rouge">MapState</code>, <code class="highlighter-rouge">AggregatingState</code>, and the currently deprecated <code class="highlighter-rouge">FoldingState</code>.</p>
+
+<h2 id="querying-state">Querying State</h2>
+
+<p>So far, you have set up your cluster to run with queryable state and you have declared (some of) your state as
+queryable. Now it is time to see how to query this state.</p>
+
+<p>For this you can use the <code class="highlighter-rouge">QueryableStateClient</code> helper class. This is available in the <code class="highlighter-rouge">flink-queryable-state-client</code> 
+jar which must be explicitly included as a dependency in the <code class="highlighter-rouge">pom.xml</code> of your project along with <code class="highlighter-rouge">flink-core</code>, as shown below:</p>
+
+<div data-lang="java">
+
+  <figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.alibaba.blink<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>flink-core<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.5.1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.alibaba.blink<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>flink-queryable-state-client-java_2.11<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.5.1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
+
+</div>
+
+<p>For more on this, you can check how to <a href="//flink-china.org/doc/blink/dev/linking_with_flink.html">set up a Flink program</a>.</p>
+
+<p>The <code class="highlighter-rouge">QueryableStateClient</code> will submit your query to the internal proxy, which will then process your query and return 
+the final result. The only requirement to initialize the client is to provide a valid <code class="highlighter-rouge">TaskManager</code> hostname (remember 
+that there is a queryable state proxy running on each task manager) and the port where the proxy listens. More on how 
+to configure the proxy and state server port(s) in the <a href="#Configuration">Configuration Section</a>.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">QueryableStateClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QueryableStateClient</span><span class="o">(</span><span class="n">tmHostname</span><span class="o">,</span> <span class="n">proxyPort</span><span class="o">);</span></code></pre></figure>
+
+<p>With the client ready, to query a state of type <code class="highlighter-rouge">V</code>, associated with a key of type <code class="highlighter-rouge">K</code>, you can use the method:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">S</span><span class="o">&gt;</span> <span class="nf">getKvState</span><span class="o">(</span>
+    <span class="n">JobID</span> <span class="n">jobId</span><span class="o">,</span>
+    <span class="n">String</span> <span class="n">queryableStateName</span><span class="o">,</span>
+    <span class="n">K</span> <span class="n">key</span><span class="o">,</span>
+    <span class="n">TypeInformation</span><span class="o">&lt;</span><span class="n">K</span><span class="o">&gt;</span> <span class="n">keyTypeInfo</span><span class="o">,</span>
+    <span class="n">StateDescriptor</span><span class="o">&lt;</span><span class="n">S</span><span class="o">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">stateDescriptor</span><span class="o">)</span></code></pre></figure>
+
+<p>The above returns a <code class="highlighter-rouge">CompletableFuture</code> eventually holding the state value for the queryable state instance identified 
+by <code class="highlighter-rouge">queryableStateName</code> of the job with ID <code class="highlighter-rouge">jobID</code>. The <code class="highlighter-rouge">key</code> is the key whose state you are interested in and the 
+<code class="highlighter-rouge">keyTypeInfo</code> will tell Flink how to serialize/deserialize it. Finally, the <code class="highlighter-rouge">stateDescriptor</code> contains the necessary 
+information about the requested state, namely its type (<code class="highlighter-rouge">Value</code>, <code class="highlighter-rouge">Reduce</code>, etc) and the necessary information on how 
+to serialize/deserialize it.</p>
+
+<p>The careful reader will notice that the returned future contains a value of type <code class="highlighter-rouge">S</code>, <em>i.e.</em> a <code class="highlighter-rouge">State</code> object containing
+the actual value. This can be any of the state types supported by Flink: <code class="highlighter-rouge">ValueState</code>, <code class="highlighter-rouge">ReduceState</code>, <code class="highlighter-rouge">ListState</code>, <code class="highlighter-rouge">MapState</code>,
+<code class="highlighter-rouge">AggregatingState</code>, and the currently deprecated <code class="highlighter-rouge">FoldingState</code>.</p>
+
+<div class="alert alert-info">
+  <strong>Note:</strong> These state objects do not allow modifications to the contained state. You can use them to get 
+  the actual value of the state, <i>e.g.</i> using <code>valueState.get()</code>, or iterate over
+  the contained <code>&lt;K, V&gt;</code> entries, <i>e.g.</i> using the <code>mapState.entries()</code>, but you cannot 
+  modify them. As an example, calling the <code>add()</code> method on a returned list state will throw an 
+  <code>UnsupportedOperationException</code>.
+</div>
+
+<div class="alert alert-info">
+  <strong>Note:</strong> The client is asynchronous and can be shared by multiple threads. It needs
+  to be shutdown via <code>QueryableStateClient.shutdown()</code> when unused in order to free
+  resources.
+</div>
+
+<h3 id="example">Example</h3>
+
+<p>The following example extends the <code class="highlighter-rouge">CountWindowAverage</code> example
+(see <a href="//flink-china.org/doc/blink/dev/stream/state/state.html#using-managed-keyed-state">Using Managed Keyed State</a>)
+by making it queryable and shows how to query this value:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CountWindowAverage</span> <span class="kd">extends</span> <span class="n">RichFlatMapFunction</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;,</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">transient</span> <span class="n">ValueState</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">sum</span><span class="o">;</span> <span class="c1">// a tuple containing the count and the sum</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">flatMap</span><span class="o">(</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">input</span><span class="o">,</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">out</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">currentSum</span> <span class="o">=</span> <span class="n">sum</span><span class="o">.</span><span class="na">value</span><span class="o">();</span>
+        <span class="n">currentSum</span><span class="o">.</span><span class="na">f0</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="n">currentSum</span><span class="o">.</span><span class="na">f1</span> <span class="o">+=</span> <span class="n">input</span><span class="o">.</span><span class="na">f1</span><span class="o">;</span>
+        <span class="n">sum</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">currentSum</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">currentSum</span><span class="o">.</span><span class="na">f0</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">out</span><span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="k">new</span> <span class="n">Tuple2</span><span class="o">&lt;&gt;(</span><span class="n">input</span><span class="o">.</span><span class="na">f0</span><span class="o">,</span> <span class="n">currentSum</span><span class="o">.</span><span class="na">f1</span> <span class="o">/</span> <span class="n">currentSum</span><span class="o">.</span><span class="na">f0</span><span class="o">));</span>
+            <span class="n">sum</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">open</span><span class="o">(</span><span class="n">Configuration</span> <span class="n">config</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">ValueStateDescriptor</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">descriptor</span> <span class="o">=</span>
+                <span class="k">new</span> <span class="n">ValueStateDescriptor</span><span class="o">&lt;&gt;(</span>
+                        <span class="s">"average"</span><span class="o">,</span> <span class="c1">// the state name</span>
+                        <span class="n">TypeInformation</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="k">new</span> <span class="n">TypeHint</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;()</span> <span class="o">{}));</span> <span class="c1">// type information</span>
+        <span class="n">descriptor</span><span class="o">.</span><span class="na">setQueryable</span><span class="o">(</span><span class="s">"query-name"</span><span class="o">);</span>
+        <span class="n">sum</span> <span class="o">=</span> <span class="n">getRuntimeContext</span><span class="o">().</span><span class="na">getState</span><span class="o">(</span><span class="n">descriptor</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Once used in a job, you can retrieve the job ID and then query any key’s current state from this operator:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">QueryableStateClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QueryableStateClient</span><span class="o">(</span><span class="n">tmHostname</span><span class="o">,</span> <span class="n">proxyPort</span><span class="o">);</span>
+
+<span class="c1">// the state descriptor of the state to be fetched.</span>
+<span class="n">ValueStateDescriptor</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">descriptor</span> <span class="o">=</span>
+        <span class="k">new</span> <span class="n">ValueStateDescriptor</span><span class="o">&lt;&gt;(</span>
+          <span class="s">"average"</span><span class="o">,</span>
+          <span class="n">TypeInformation</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="k">new</span> <span class="n">TypeHint</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;()</span> <span class="o">{}));</span>
+
+<span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">ValueState</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;&gt;&gt;</span> <span class="n">resultFuture</span> <span class="o">=</span>
+        <span class="n">client</span><span class="o">.</span><span class="na">getKvState</span><span class="o">(</span><span class="n">jobId</span><span class="o">,</span> <span class="s">"query-name"</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="n">BasicTypeInfo</span><span class="o">.</span><span class="na">LONG_TYPE_INFO</span><span class="o">,</span> <span class="n">descriptor</span><span class="o">);</span>
+
+<span class="c1">// now handle the returned value</span>
+<span class="n">resultFuture</span><span class="o">.</span><span class="na">thenAccept</span><span class="o">(</span><span class="n">response</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+<span class="o">});</span></code></pre></figure>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>The following configuration parameters influence the behaviour of the queryable state server and client.
+They are defined in <code class="highlighter-rouge">QueryableStateOptions</code>.</p>
+
+<h3 id="state-server">State Server</h3>
+<ul>
+  <li><code class="highlighter-rouge">query.server.ports</code>: the server port range of the queryable state server. This is useful to avoid port clashes if more 
+ than 1 task managers run on the same machine. The specified range can be: a port: “9123”, a range of ports: “50100-50200”,
+ or a list of ranges and or points: “50100-50200,50300-50400,51234”. The default port is 9067.</li>
+  <li><code class="highlighter-rouge">query.server.network-threads</code>: number of network (event loop) threads receiving incoming requests for the state server (0 =&gt; #slots)</li>
+  <li><code class="highlighter-rouge">query.server.query-threads</code>: number of threads handling/serving incoming requests for the state server (0 =&gt; #slots).</li>
+</ul>
+
+<h3 id="proxy">Proxy</h3>
+<ul>
+  <li><code class="highlighter-rouge">query.proxy.ports</code>: the server port range of the queryable state proxy. This is useful to avoid port clashes if more 
+than 1 task managers run on the same machine. The specified range can be: a port: “9123”, a range of ports: “50100-50200”,
+or a list of ranges and or points: “50100-50200,50300-50400,51234”. The default port is 9069.</li>
+  <li><code class="highlighter-rouge">query.proxy.network-threads</code>: number of network (event loop) threads receiving incoming requests for the client proxy (0 =&gt; #slots)</li>
+  <li><code class="highlighter-rouge">query.proxy.query-threads</code>: number of threads handling/serving incoming requests for the client proxy (0 =&gt; #slots).</li>
+</ul>
+
+<h2 id="limitations">Limitations</h2>
+
+<ul>
+  <li>The queryable state life-cycle is bound to the life-cycle of the job, <em>e.g.</em> tasks register
+queryable state on startup and unregister it on disposal. In future versions, it is desirable to
+decouple this in order to allow queries after a task finishes, and to speed up recovery via state
+replication.</li>
+  <li>Notifications about available KvState happen via a simple tell. In the future this should be improved to be
+more robust with asks and acknowledgements.</li>
+  <li>The server and client keep track of statistics for queries. These are currently disabled by
+default as they would not be exposed anywhere. As soon as there is better support to publish these
+numbers via the Metrics system, we should enable the stats.</li>
+</ul>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+
+        </div>
+      </div>
+    </div><!-- /.container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//flink-china.org/doc/blink/page/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.0/anchor.min.js"></script>
+    <script src="//flink-china.org/doc/blink/page/js/flink.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-52545728-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- Disqus -->
+    
+  </body>
+</html>

@@ -112,6 +112,10 @@ const config = (mode) => {
           {
             "to"  : "assets",
             "from": "./markdown/doc/assets"
+          },
+          {
+            "to"  : "doc/blink",
+            "from": "./blink"
           }
         ]
       )

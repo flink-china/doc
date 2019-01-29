@@ -1,0 +1,4501 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Apache Flink 1.5.1 Documentation: Basic API Concepts</title>
+    <link rel="shortcut icon" href="//flink-china.org/doc/blink/page/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="//flink-china.org/doc/blink/page/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/flink.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/syntax.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/codetabs.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/font-awesome/css/font-awesome.min.css">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    
+
+    <!-- Main content. -->
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-lg-3" id="sidenavcol">
+          
+
+
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="sidenav-logo">
+  <p><a href="//flink-china.org/doc/blink"><img class="bottom" alt="Apache Flink" src="//flink-china.org/doc/blink/page/img/navbar-brand-logo.jpg"></a> v1.5.1</p>
+</div>
+<ul id="sidenav">
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/"><i class="fa fa-home title" aria-hidden="true"></i> Home</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-2" data-toggle="collapse"><i class="fa fa-map-o title appetizer" aria-hidden="true"></i> Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-2"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/concepts/programming-model.html">Programming Model</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/concepts/runtime.html">Distributed Runtime</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-6" data-toggle="collapse"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-6"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-7" data-toggle="collapse">API Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-7"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/datastream_api.html">DataStream API</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-10" data-toggle="collapse">Setup Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-10"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/local_setup.html">Local Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/setup_quickstart.html"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-16" data-toggle="collapse"><i class="fa fa-file-code-o title appetizer" aria-hidden="true"></i> Examples <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-16"><ul>
+  <li><a href="//flink-china.org/doc/blink/examples/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/examples.html">DataStream Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/examples.html">DataSet Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/stream_sql_quickstart.html">Stream SQL Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/batch_sql_quickstart.html">Batch SQL Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/scala_shell_quickstart.html">Scala Shell Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/zeppelin_quickstart.html">Flink on Zeppelin Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/examples.html">Flink-Hive Examples</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-25" data-toggle="collapse"><i class="fa fa-cogs title maindish" aria-hidden="true"></i> Project Setup <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-25"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/java_api_quickstart.html">Project Template for Java</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/scala_api_quickstart.html">Project Template for Scala</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/dependencies.html">Configuring Dependencies, Connectors, Libraries</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/ide_setup.html">IDE Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/scala_shell.html">Scala Shell</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/building.html">Building Flink from Source</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-34" data-toggle="collapse" class="active"><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development</a><div class="collapse in" id="collapse-34"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-35" data-toggle="collapse" class="active">Basic API Concepts</a><div class="collapse in" id="collapse-35"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/api_concepts.html" class="active">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/scala_api_extensions.html">Scala API Extensions</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/java8.html">Java 8</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-39" data-toggle="collapse">Streaming (DataStream API) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-39"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/datastream_api.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-40" data-toggle="collapse">Event Time <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-40"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/event_time.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/event_timestamps_watermarks.html">Generating Timestamps / Watermarks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/event_timestamp_extractors.html">Pre-defined Timestamp Extractors / Watermark Emitters</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-44" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-44"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/stream/state/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/state.html">Working with State</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/broadcast_state.html">The Broadcast State Pattern</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/checkpointing.html">Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/queryable_state.html">Queryable State</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/custom_serialization.html">Custom Serialization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-52" data-toggle="collapse">Operators <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-52"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/stream/operators/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/windows.html">Windows</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/process_function.html">Process Function</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/asyncio.html">Async I/O</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-57" data-toggle="collapse">Connectors <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-57"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/connectors/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/guarantees.html">Fault Tolerance Guarantees</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/kafka.html">Kafka</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/cassandra.html">Cassandra</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/kinesis.html">Kinesis</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/elasticsearch.html">Elasticsearch</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/filesystem_sink.html">Rolling File Sink</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/rabbitmq.html">RabbitMQ</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/nifi.html">NiFi</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/twitter.html">Twitter</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/side_output.html">Side Outputs</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/testing.html">Testing</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/experimental.html">Experimental Features</a></li>
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-73" data-toggle="collapse">Batch (DataSet API) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-73"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/batch/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/dataset_transformations.html">Transformations</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/fault_tolerance.html">Fault Tolerance</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/zip_elements_guide.html">Zipping Elements</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/iterations.html">Iterations</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/connectors.html">Connectors</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/hadoop_compatibility.html">Hadoop Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/local_execution.html">Local Execution</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/cluster_execution.html">Cluster Execution</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-84" data-toggle="collapse">Table API & SQL <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-84"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/table/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/common.html">Concepts & Common API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/hive_compatibility.html">Hive Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-87" data-toggle="collapse">Streaming Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-87"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/table/streaming/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/dynamic_tables.html">Dynamic Tables</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/time_attributes.html">Time Attributes</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/joins.html">Joins in Continuous Queries</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/temporal_tables.html">Temporal Tables</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/match_recognize.html">Detecting Patterns</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/query_configuration.html">Query Configuration</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/tableApi.html">Table API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sql.html">SQL</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/supported_ddl.html">SQL Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sourceSinks.html">Table Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/udfs.html">User-defined Functions</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sqlClient.html">SQL Client</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/resource.html">SQL Resource</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/catalog.html">Catalog</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming_optimization.html">Streaming Aggregation Optimization</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/multiple_tablesink_optimization.html">Multiple TableSink Optimization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-106" data-toggle="collapse">Data Types & Serialization <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-106"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/types_serialization.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/custom_serializers.html">Custom Serializers</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-109" data-toggle="collapse">Managing Execution <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-109"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/execution_configuration.html">Execution Configuration</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/packaging.html">Program Packaging</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/parallel.html">Parallel Execution</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/execution_plans.html">Execution Plans</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/restart_strategies.html">Restart Strategies</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-116" data-toggle="collapse">Libraries <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-116"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/cep.html">Event Processing (CEP)</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-118" data-toggle="collapse">Graphs: Gelly <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-118"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/libs/gelly/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_api.html">Graph API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/iterative_graph_processing.html">Iterative Graph Processing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/library_methods.html">Library Methods</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_algorithms.html">Graph Algorithms</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_generators.html">Graph Generators</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/bipartite_graph.html">Bipartite Graph</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-126" data-toggle="collapse">Machine Learning <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-126"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/libs/ml/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/quickstart.html">Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/contribution_guide.html">How to Contribute</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/cross_validation.html">Cross Validation</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/distance_metrics.html">Distance Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/knn.html">k-Nearest Neighbors Join</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/min_max_scaler.html">MinMax Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/multiple_linear_regression.html">Multiple Linear Regression</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/pipelines.html">Pipelines</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/polynomial_features.html">Polynomial Features</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/sos.html">Stochastic Outlier Selection</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/standard_scaler.html">Standard Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/als.html">ALS</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/svm.html">SVM using CoCoA</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/best_practices.html">Best Practices</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/migration.html">API Migration Guides</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-145" data-toggle="collapse"><i class="fa fa-sliders title maindish" aria-hidden="true"></i> Deployment & Operations <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-145"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-146" data-toggle="collapse">Clusters & Deployment <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-146"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/cluster_setup.html">Standalone Cluster</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/yarn_setup.html">YARN</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/mesos.html">Mesos</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/kubernetes.html">Kubernetes</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/docker.html">Docker</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/aws.html">AWS</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/gce_setup.html">Google Compute Engine</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/mapr_setup.html">MapR</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/hadoop.html">Hadoop Integration</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-157" data-toggle="collapse">High Availability (HA) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-157"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/ha/jobmanager_high_availability.html">JobManager High Availability (HA)</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/ha/jobmanager_failover.html">JobManager Failover</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-161" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-161"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/checkpoints.html">Checkpoints</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/savepoints.html">Savepoints</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/large_state_tuning.html">Tuning Checkpoints and Large State</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/ops/config.html">Configuration</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/production_ready.html">Production Readiness Checklist</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/cli.html">CLI</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/security-kerberos.html">Kerberos</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/security-ssl.html">SSL Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/zeppelin.html">Flink on Zeppelin</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/upgrading.html">Upgrading Applications and Flink Versions</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-176" data-toggle="collapse"><i class="fa fa-bug title maindish" aria-hidden="true"></i> Debugging & Monitoring <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-176"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/metrics.html">Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/logging.html">Logging</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/historyserver.html">History Server</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/checkpoint_monitoring.html">Monitoring Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/back_pressure.html">Monitoring Back Pressure</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/rest_api.html">Monitoring REST API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_event_time.html">Debugging Windows & Event Time</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_classloading.html">Debugging Classloading</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/application_profiling.html">Application Profiling</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_job_resources.html">Debugging Job Resources</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-188" data-toggle="collapse"><i class="fa fa-book title dessert" aria-hidden="true"></i> Internals <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-188"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/components.html">Component Stack</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/stream_checkpointing.html">Fault Tolerance for Data Streaming</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/job_scheduling.html">Jobs and Scheduling</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/task_lifecycle.html">Task Lifecycle</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/taskmanager_resource.html">TaskManager Resource</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+</ul>
+
+<div class="sidenav-search-box">
+  <form class="navbar-form" role="search" action="//flink-china.org/doc/blink/search-results.html">
+    <div class="form-group">
+      <input type="text" class="form-control" size="16px" name="q" placeholder="Search">
+    </div>
+    <button type="submit" class="btn btn-default">Go</button>
+  </form>
+</div>
+
+<div class="sidenav-versions">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Pick Docs Version
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.4">v1.4</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.3">v1.3</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.2">v1.2</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.1">v1.1</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.0">v1.0</a></li>
+      
+    </ul>
+  </div>
+</div>
+
+        </div>
+        <div class="col-lg-9 content" id="contentcol">
+          
+
+          
+
+
+
+
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+
+
+
+<ol class="breadcrumb">
+
+  
+  
+    <li><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development</li>
+  
+
+  
+  
+    <li class="active">Basic API Concepts</li>
+  
+
+</ol>
+
+<h1>Basic API Concepts</h1>
+
+
+
+
+<p>Flink programs are regular programs that implement transformations on distributed collections
+(e.g., filtering, mapping, updating state, joining, grouping, defining windows, aggregating).
+Collections are initially created from sources (e.g., by reading from files, kafka topics, or from local, in-memory
+collections). Results are returned via sinks, which may for example write the data to
+(distributed) files, or to standard output (for example, the command line terminal).
+Flink programs run in a variety of contexts, standalone, or embedded in other programs.
+The execution can happen in a local JVM, or on clusters of many machines.</p>
+
+<p>Depending on the type of data sources, i.e. bounded or unbounded sources, you would either
+write a batch program or a streaming program where the DataSet API is used for batch
+and the DataStream API is used for streaming. This guide will introduce the basic concepts
+that are common to both APIs but please see our
+<a href="//flink-china.org/doc/blink/dev/datastream_api.html">Streaming Guide</a> and
+<a href="//flink-china.org/doc/blink/dev/batch/index.html">Batch Guide</a> for concrete information about
+writing programs with each API.</p>
+
+<p><strong>NOTE:</strong> When showing actual examples of how the APIs can be used  we will use
+<code class="highlighter-rouge">StreamExecutionEnvironment</code> and the <code class="highlighter-rouge">DataStream</code> API. The concepts are exactly the same
+in the <code class="highlighter-rouge">DataSet</code> API, just replace by <code class="highlighter-rouge">ExecutionEnvironment</code> and <code class="highlighter-rouge">DataSet</code>.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#dataset-and-datastream" id="markdown-toc-dataset-and-datastream">DataSet and DataStream</a></li>
+  <li><a href="#anatomy-of-a-flink-program" id="markdown-toc-anatomy-of-a-flink-program">Anatomy of a Flink Program</a></li>
+  <li><a href="#lazy-evaluation" id="markdown-toc-lazy-evaluation">Lazy Evaluation</a></li>
+  <li><a href="#specifying-keys" id="markdown-toc-specifying-keys">Specifying Keys</a></li>
+  <li><a href="#specifying-transformation-functions" id="markdown-toc-specifying-transformation-functions">Specifying Transformation Functions</a></li>
+  <li><a href="#supported-data-types" id="markdown-toc-supported-data-types">Supported Data Types</a></li>
+  <li><a href="#accumulators--counters" id="markdown-toc-accumulators--counters">Accumulators &amp; Counters</a></li>
+</ul>
+
+<h2 id="dataset-and-datastream">DataSet and DataStream</h2>
+
+<p>Flink has the special classes <code class="highlighter-rouge">DataSet</code> and <code class="highlighter-rouge">DataStream</code> to represent data in a program. You
+can think of them as immutable collections of data that can contain duplicates. In the case
+of <code class="highlighter-rouge">DataSet</code> the data is finite while for a <code class="highlighter-rouge">DataStream</code> the number of elements can be unbounded.</p>
+
+<p>These collections differ from regular Java collections in some key ways. First, they
+are immutable, meaning that once they are created you cannot add or remove elements. You can also
+not simply inspect the elements inside.</p>
+
+<p>A collection is initially created by adding a source in a Flink program and new collections are
+derived from these by transforming them using API methods such as <code class="highlighter-rouge">map</code>, <code class="highlighter-rouge">filter</code> and so on.</p>
+
+<h2 id="anatomy-of-a-flink-program">Anatomy of a Flink Program</h2>
+
+<p>Flink programs look like regular programs that transform collections of data.
+Each program consists of the same basic parts:</p>
+
+<ol>
+  <li>Obtain an <code class="highlighter-rouge">execution environment</code>,</li>
+  <li>Load/create the initial data,</li>
+  <li>Specify transformations on this data,</li>
+  <li>Specify where to put the results of your computations,</li>
+  <li>Trigger the program execution</li>
+</ol>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <p>We will now give an overview of each of those steps, please refer to the respective sections for
+more details. Note that all core classes of the Java DataSet API are found in the package
+<a href="https://github.com/apache/flink/blob/master//flink-java/src/main/java/org/apache/flink/api/java">org.apache.flink.api.java</a>
+while the classes of the Java DataStream API can be found in
+<a href="https://github.com/apache/flink/blob/master//flink-streaming-java/src/main/java/org/apache/flink/streaming/api">org.apache.flink.streaming.api</a>.</p>
+
+    <p>The <code class="highlighter-rouge">StreamExecutionEnvironment</code> is the basis for all Flink programs. You can
+obtain one using these static methods on <code class="highlighter-rouge">StreamExecutionEnvironment</code>:</p>
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">getExecutionEnvironment</span><span class="o">()</span>
+
+<span class="n">createLocalEnvironment</span><span class="o">()</span>
+
+<span class="n">createRemoteEnvironment</span><span class="o">(</span><span class="n">String</span> <span class="n">host</span><span class="o">,</span> <span class="kt">int</span> <span class="n">port</span><span class="o">,</span> <span class="n">String</span><span class="o">...</span> <span class="n">jarFiles</span><span class="o">)</span></code></pre></figure>
+
+    <p>Typically, you only need to use <code class="highlighter-rouge">getExecutionEnvironment()</code>, since this
+will do the right thing depending on the context: if you are executing
+your program inside an IDE or as a regular Java program it will create
+a local environment that will execute your program on your local machine. If
+you created a JAR file from your program, and invoke it through the
+<a href="//flink-china.org/doc/blink/ops/cli.html">command line</a>, the Flink cluster manager
+will execute your main method and <code class="highlighter-rouge">getExecutionEnvironment()</code> will return
+an execution environment for executing your program on a cluster.</p>
+
+    <p>For specifying data sources the execution environment has several methods
+to read from files using various methods: you can just read them line by line,
+as CSV files, or using completely custom data input formats. To just read
+a text file as a sequence of lines, you can use:</p>
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="n">StreamExecutionEnvironment</span> <span class="n">env</span> <span class="o">=</span> <span class="n">StreamExecutionEnvironment</span><span class="o">.</span><span class="na">getExecutionEnvironment</span><span class="o">();</span>
+
+<span class="n">DataStream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">text</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="na">readTextFile</span><span class="o">(</span><span class="s">"file:///path/to/file"</span><span class="o">);</span></code></pre></figure>
+
+    <p>This will give you a DataStream on which you can then apply transformations to create new
+derived DataStreams.</p>
+
+    <p>You apply transformations by calling methods on DataStream with a transformation
+functions. For example, a map transformation looks like this:</p>
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">input</span> <span class="o">=</span> <span class="o">...;</span>
+
+<span class="n">DataStream</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">parsed</span> <span class="o">=</span> <span class="n">input</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="k">new</span> <span class="n">MapFunction</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">map</span><span class="o">(</span><span class="n">String</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">});</span></code></pre></figure>
+
+    <p>This will create a new DataStream by converting every String in the original
+collection to an Integer.</p>
+
+    <p>Once you have a DataStream containing your final results, you can write it to an outside system
+by creating a sink. These are just some example methods for creating a sink:</p>
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">writeAsText</span><span class="o">(</span><span class="n">String</span> <span class="n">path</span><span class="o">)</span>
+
+<span class="n">print</span><span class="o">()</span></code></pre></figure>
+
+  </div>
+  <div data-lang="scala">
+
+    <p>We will now give an overview of each of those steps, please refer to the respective sections for
+more details. Note that all core classes of the Scala DataSet API are found in the package
+<a href="https://github.com/apache/flink/blob/master//flink-scala/src/main/scala/org/apache/flink/api/scala">org.apache.flink.api.scala</a>
+while the classes of the Scala DataStream API can be found in
+<a href="https://github.com/apache/flink/blob/master//flink-streaming-scala/src/main/scala/org/apache/flink/streaming/api/scala">org.apache.flink.streaming.api.scala</a>.</p>
+
+    <p>The <code class="highlighter-rouge">StreamExecutionEnvironment</code> is the basis for all Flink programs. You can
+obtain one using these static methods on <code class="highlighter-rouge">StreamExecutionEnvironment</code>:</p>
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="n">getExecutionEnvironment</span><span class="o">()</span>
+
+<span class="n">createLocalEnvironment</span><span class="o">()</span>
+
+<span class="n">createRemoteEnvironment</span><span class="o">(</span><span class="n">host</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">port</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">jarFiles</span><span class="k">:</span> <span class="kt">String*</span><span class="o">)</span></code></pre></figure>
+
+    <p>Typically, you only need to use <code class="highlighter-rouge">getExecutionEnvironment()</code>, since this
+will do the right thing depending on the context: if you are executing
+your program inside an IDE or as a regular Java program it will create
+a local environment that will execute your program on your local machine. If
+you created a JAR file from your program, and invoke it through the
+<a href="//flink-china.org/doc/blink/ops/cli.html">command line</a>, the Flink cluster manager
+will execute your main method and <code class="highlighter-rouge">getExecutionEnvironment()</code> will return
+an execution environment for executing your program on a cluster.</p>
+
+    <p>For specifying data sources the execution environment has several methods
+to read from files using various methods: you can just read them line by line,
+as CSV files, or using completely custom data input formats. To just read
+a text file as a sequence of lines, you can use:</p>
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">env</span> <span class="k">=</span> <span class="nc">StreamExecutionEnvironment</span><span class="o">.</span><span class="n">getExecutionEnvironment</span><span class="o">()</span>
+
+<span class="k">val</span> <span class="n">text</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="n">env</span><span class="o">.</span><span class="n">readTextFile</span><span class="o">(</span><span class="s">"file:///path/to/file"</span><span class="o">)</span></code></pre></figure>
+
+    <p>This will give you a DataStream on which you can then apply transformations to create new
+derived DataStreams.</p>
+
+    <p>You apply transformations by calling methods on DataSet with a transformation
+functions. For example, a map transformation looks like this:</p>
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">input</span><span class="k">:</span> <span class="kt">DataSet</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="o">...</span>
+
+<span class="k">val</span> <span class="n">mapped</span> <span class="k">=</span> <span class="n">input</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span> <span class="n">x</span> <span class="k">=&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">toInt</span> <span class="o">}</span></code></pre></figure>
+
+    <p>This will create a new DataStream by converting every String in the original
+collection to an Integer.</p>
+
+    <p>Once you have a DataStream containing your final results, you can write it to an outside system
+by creating a sink. These are just some example methods for creating a sink:</p>
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="n">writeAsText</span><span class="o">(</span><span class="n">path</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span>
+
+<span class="n">print</span><span class="o">()</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p>Once you specified the complete program you need to <strong>trigger the program execution</strong> by calling
+<code class="highlighter-rouge">execute()</code> on the <code class="highlighter-rouge">StreamExecutionEnvironment</code>.
+Depending on the type of the <code class="highlighter-rouge">ExecutionEnvironment</code> the execution will be triggered on your local
+machine or submit your program for execution on a cluster.</p>
+
+<p>The <code class="highlighter-rouge">execute()</code> method is returning a <code class="highlighter-rouge">JobExecutionResult</code>, this contains execution
+times and accumulator results.</p>
+
+<p>Please see the <a href="//flink-china.org/doc/blink/dev/datastream_api.html">Streaming Guide</a>
+for information about streaming data sources and sink and for more in-depths information
+about the supported transformations on DataStream.</p>
+
+<p>Check out the <a href="//flink-china.org/doc/blink/dev/batch/index.html">Batch Guide</a>
+for information about batch data sources and sink and for more in-depths information
+about the supported transformations on DataSet.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h2 id="lazy-evaluation">Lazy Evaluation</h2>
+
+<p>All Flink programs are executed lazily: When the program’s main method is executed, the data loading
+and transformations do not happen directly. Rather, each operation is created and added to the
+program’s plan. The operations are actually executed when the execution is explicitly triggered by
+an <code class="highlighter-rouge">execute()</code> call on the execution environment. Whether the program is executed locally
+or on a cluster depends on the type of execution environment</p>
+
+<p>The lazy evaluation lets you construct sophisticated programs that Flink executes as one
+holistically planned unit.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h2 id="specifying-keys">Specifying Keys</h2>
+
+<p>Some transformations (join, coGroup, keyBy, groupBy) require that a key be defined on
+a collection of elements. Other transformations (Reduce, GroupReduce,
+Aggregate, Windows) allow data being grouped on a key before they are
+applied.</p>
+
+<p>A DataSet is grouped as</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataSet</span><span class="o">&lt;...&gt;</span> <span class="n">input</span> <span class="o">=</span> <span class="c1">// [...]</span>
+<span class="n">DataSet</span><span class="o">&lt;...&gt;</span> <span class="n">reduced</span> <span class="o">=</span> <span class="n">input</span>
+  <span class="o">.</span><span class="na">groupBy</span><span class="o">(</span><span class="cm">/*define key here*/</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">reduceGroup</span><span class="o">(</span><span class="cm">/*do something*/</span><span class="o">);</span></code></pre></figure>
+
+<p>while a key can be specified on a DataStream using</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;...&gt;</span> <span class="n">input</span> <span class="o">=</span> <span class="c1">// [...]</span>
+<span class="n">DataStream</span><span class="o">&lt;...&gt;</span> <span class="n">windowed</span> <span class="o">=</span> <span class="n">input</span>
+  <span class="o">.</span><span class="na">keyBy</span><span class="o">(</span><span class="cm">/*define key here*/</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">window</span><span class="o">(</span><span class="cm">/*window specification*/</span><span class="o">);</span></code></pre></figure>
+
+<p>The data model of Flink is not based on key-value pairs. Therefore,
+you do not need to physically pack the data set types into keys and
+values. Keys are “virtual”: they are defined as functions over the
+actual data to guide the grouping operator.</p>
+
+<p><strong>NOTE:</strong> In the following discussion we will use the <code class="highlighter-rouge">DataStream</code> API and <code class="highlighter-rouge">keyBy</code>.
+For the DataSet API you just have to replace by <code class="highlighter-rouge">DataSet</code> and <code class="highlighter-rouge">groupBy</code>.</p>
+
+<h3 class="no_toc" id="define-keys-for-tuples">Define keys for Tuples</h3>
+
+<p>The simplest case is grouping Tuples on one or more
+fields of the Tuple:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">Tuple3</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">input</span> <span class="o">=</span> <span class="c1">// [...]</span>
+<span class="n">KeyedStream</span><span class="o">&lt;</span><span class="n">Tuple3</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;,</span><span class="n">Tuple</span><span class="o">&gt;</span> <span class="n">keyed</span> <span class="o">=</span> <span class="n">input</span><span class="o">.</span><span class="na">keyBy</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span></code></pre></figure>
+
+  </div>
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">input</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[(</span><span class="kt">Int</span>, <span class="kt">String</span>, <span class="kt">Long</span><span class="o">)]</span> <span class="k">=</span> <span class="c1">// [...]
+</span><span class="k">val</span> <span class="n">keyed</span> <span class="k">=</span> <span class="n">input</span><span class="o">.</span><span class="n">keyBy</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p>The tuples are grouped on the first field (the one of
+Integer type).</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">Tuple3</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">input</span> <span class="o">=</span> <span class="c1">// [...]</span>
+<span class="n">KeyedStream</span><span class="o">&lt;</span><span class="n">Tuple3</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span><span class="n">String</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;,</span><span class="n">Tuple</span><span class="o">&gt;</span> <span class="n">keyed</span> <span class="o">=</span> <span class="n">input</span><span class="o">.</span><span class="na">keyBy</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">1</span><span class="o">)</span></code></pre></figure>
+
+  </div>
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">input</span><span class="k">:</span> <span class="kt">DataSet</span><span class="o">[(</span><span class="kt">Int</span>, <span class="kt">String</span>, <span class="kt">Long</span><span class="o">)]</span> <span class="k">=</span> <span class="c1">// [...]
+</span><span class="k">val</span> <span class="n">grouped</span> <span class="k">=</span> <span class="n">input</span><span class="o">.</span><span class="n">groupBy</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">1</span><span class="o">)</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p>Here, we group the tuples on a composite key consisting of the first and the
+second field.</p>
+
+<p>A note on nested Tuples: If you have a DataStream with a nested tuple, such as:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">Tuple3</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Float</span><span class="o">&gt;,</span><span class="n">String</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;&gt;</span> <span class="n">ds</span><span class="o">;</span></code></pre></figure>
+
+<p>Specifying <code class="highlighter-rouge">keyBy(0)</code> will cause the system to use the full <code class="highlighter-rouge">Tuple2</code> as a key (with the Integer and Float being the key). If you want to “navigate” into the nested <code class="highlighter-rouge">Tuple2</code>, you have to use field expression keys which are explained below.</p>
+
+<h3 class="no_toc" id="define-keys-using-field-expressions">Define keys using Field Expressions</h3>
+
+<p>You can use String-based field expressions to reference nested fields and define keys for grouping, sorting, joining, or coGrouping.</p>
+
+<p>Field expressions make it very easy to select fields in (nested) composite types such as <a href="#tuples-and-case-classes">Tuple</a> and <a href="#pojos">POJO</a> types.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <p>In the example below, we have a <code class="highlighter-rouge">WC</code> POJO with two fields “word” and “count”. To group by the field <code class="highlighter-rouge">word</code>, we just pass its name to the <code class="highlighter-rouge">keyBy()</code> function.</p>
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// some ordinary POJO (Plain old Java Object)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WC</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="n">word</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="n">count</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="n">DataStream</span><span class="o">&lt;</span><span class="n">WC</span><span class="o">&gt;</span> <span class="n">words</span> <span class="o">=</span> <span class="c1">// [...]</span>
+<span class="n">DataStream</span><span class="o">&lt;</span><span class="n">WC</span><span class="o">&gt;</span> <span class="n">wordCounts</span> <span class="o">=</span> <span class="n">words</span><span class="o">.</span><span class="na">keyBy</span><span class="o">(</span><span class="s">"word"</span><span class="o">).</span><span class="na">window</span><span class="o">(</span><span class="cm">/*window specification*/</span><span class="o">);</span></code></pre></figure>
+
+    <p><strong>Field Expression Syntax</strong>:</p>
+
+    <ul>
+      <li>
+        <p>Select POJO fields by their field name. For example <code class="highlighter-rouge">"user"</code> refers to the “user” field of a POJO type.</p>
+      </li>
+      <li>
+        <p>Select Tuple fields by their field name or 0-offset field index. For example <code class="highlighter-rouge">"f0"</code> and <code class="highlighter-rouge">"5"</code> refer to the first and sixth field of a Java Tuple type, respectively.</p>
+      </li>
+      <li>
+        <p>You can select nested fields in POJOs and Tuples. For example <code class="highlighter-rouge">"user.zip"</code> refers to the “zip” field of a POJO which is stored in the “user” field of a POJO type. Arbitrary nesting and mixing of POJOs and Tuples is supported such as <code class="highlighter-rouge">"f1.user.zip"</code> or <code class="highlighter-rouge">"user.f3.1.zip"</code>.</p>
+      </li>
+      <li>
+        <p>You can select the full type using the <code class="highlighter-rouge">"*"</code> wildcard expressions. This does also work for types which are not Tuple or POJO types.</p>
+      </li>
+    </ul>
+
+    <p><strong>Field Expression Example</strong>:</p>
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">WC</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="n">ComplexNestedClass</span> <span class="n">complex</span><span class="o">;</span> <span class="c1">//nested POJO</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">count</span><span class="o">;</span>
+  <span class="c1">// getter / setter for private field (count)</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getCount</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">count</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCount</span><span class="o">(</span><span class="kt">int</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">count</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">ComplexNestedClass</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="n">Integer</span> <span class="n">someNumber</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kt">float</span> <span class="n">someFloat</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="n">Tuple3</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">Long</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">word</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="n">IntWritable</span> <span class="n">hadoopCitizen</span><span class="o">;</span>
+<span class="o">}</span></code></pre></figure>
+
+    <p>These are valid field expressions for the example code above:</p>
+
+    <ul>
+      <li>
+        <p><code class="highlighter-rouge">"count"</code>: The count field in the <code class="highlighter-rouge">WC</code> class.</p>
+      </li>
+      <li>
+        <p><code class="highlighter-rouge">"complex"</code>: Recursively selects all fields of the field complex of POJO type <code class="highlighter-rouge">ComplexNestedClass</code>.</p>
+      </li>
+      <li>
+        <p><code class="highlighter-rouge">"complex.word.f2"</code>: Selects the last field of the nested <code class="highlighter-rouge">Tuple3</code>.</p>
+      </li>
+      <li>
+        <p><code class="highlighter-rouge">"complex.hadoopCitizen"</code>: Selects the Hadoop <code class="highlighter-rouge">IntWritable</code> type.</p>
+      </li>
+    </ul>
+
+  </div>
+  <div data-lang="scala">
+
+    <p>In the example below, we have a <code class="highlighter-rouge">WC</code> POJO with two fields “word” and “count”. To group by the field <code class="highlighter-rouge">word</code>, we just pass its name to the <code class="highlighter-rouge">keyBy()</code> function.</p>
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// some ordinary POJO (Plain old Java Object)</span>
+<span class="kd">class</span> <span class="nf">WC</span><span class="o">(</span><span class="n">var</span> <span class="nl">word:</span> <span class="n">String</span><span class="o">,</span> <span class="n">var</span> <span class="nl">count:</span> <span class="n">Int</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">def</span> <span class="nf">this</span><span class="o">()</span> <span class="o">{</span> <span class="k">this</span><span class="o">(</span><span class="s">""</span><span class="o">,</span> <span class="mi">0L</span><span class="o">)</span> <span class="o">}</span>
+<span class="o">}</span>
+<span class="n">val</span> <span class="nl">words:</span> <span class="n">DataStream</span><span class="o">[</span><span class="n">WC</span><span class="o">]</span> <span class="o">=</span> <span class="c1">// [...]</span>
+<span class="n">val</span> <span class="n">wordCounts</span> <span class="o">=</span> <span class="n">words</span><span class="o">.</span><span class="na">keyBy</span><span class="o">(</span><span class="s">"word"</span><span class="o">).</span><span class="na">window</span><span class="o">(</span><span class="cm">/*window specification*/</span><span class="o">)</span>
+
+<span class="c1">// or, as a case class, which is less typing</span>
+<span class="k">case</span> <span class="kd">class</span> <span class="nf">WC</span><span class="o">(</span><span class="nl">word:</span> <span class="n">String</span><span class="o">,</span> <span class="nl">count:</span> <span class="n">Int</span><span class="o">)</span>
+<span class="n">val</span> <span class="nl">words:</span> <span class="n">DataStream</span><span class="o">[</span><span class="n">WC</span><span class="o">]</span> <span class="o">=</span> <span class="c1">// [...]</span>
+<span class="n">val</span> <span class="n">wordCounts</span> <span class="o">=</span> <span class="n">words</span><span class="o">.</span><span class="na">keyBy</span><span class="o">(</span><span class="s">"word"</span><span class="o">).</span><span class="na">window</span><span class="o">(</span><span class="cm">/*window specification*/</span><span class="o">)</span></code></pre></figure>
+
+    <p><strong>Field Expression Syntax</strong>:</p>
+
+    <ul>
+      <li>
+        <p>Select POJO fields by their field name. For example <code class="highlighter-rouge">"user"</code> refers to the “user” field of a POJO type.</p>
+      </li>
+      <li>
+        <p>Select Tuple fields by their 1-offset field name or 0-offset field index. For example <code class="highlighter-rouge">"_1"</code> and <code class="highlighter-rouge">"5"</code> refer to the first and sixth field of a Scala Tuple type, respectively.</p>
+      </li>
+      <li>
+        <p>You can select nested fields in POJOs and Tuples. For example <code class="highlighter-rouge">"user.zip"</code> refers to the “zip” field of a POJO which is stored in the “user” field of a POJO type. Arbitrary nesting and mixing of POJOs and Tuples is supported such as <code class="highlighter-rouge">"_2.user.zip"</code> or <code class="highlighter-rouge">"user._4.1.zip"</code>.</p>
+      </li>
+      <li>
+        <p>You can select the full type using the <code class="highlighter-rouge">"_"</code> wildcard expressions. This does also work for types which are not Tuple or POJO types.</p>
+      </li>
+    </ul>
+
+    <p><strong>Field Expression Example</strong>:</p>
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">class</span> <span class="nc">WC</span><span class="o">(</span><span class="k">var</span> <span class="n">complex</span><span class="k">:</span> <span class="kt">ComplexNestedClass</span><span class="o">,</span> <span class="k">var</span> <span class="n">count</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="k">this</span><span class="o">()</span> <span class="o">{</span> <span class="k">this</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="mi">0</span><span class="o">)</span> <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="k">class</span> <span class="nc">ComplexNestedClass</span><span class="o">(</span>
+    <span class="k">var</span> <span class="n">someNumber</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span>
+    <span class="n">someFloat</span><span class="k">:</span> <span class="kt">Float</span><span class="o">,</span>
+    <span class="n">word</span><span class="k">:</span> <span class="o">(</span><span class="kt">Long</span><span class="o">,</span> <span class="kt">Long</span><span class="o">,</span> <span class="nc">String</span><span class="o">),</span>
+    <span class="n">hadoopCitizen</span><span class="k">:</span> <span class="kt">IntWritable</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="k">this</span><span class="o">()</span> <span class="o">{</span> <span class="k">this</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="s">""</span><span class="o">),</span> <span class="k">new</span> <span class="nc">IntWritable</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span> <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+    <p>These are valid field expressions for the example code above:</p>
+
+    <ul>
+      <li>
+        <p><code class="highlighter-rouge">"count"</code>: The count field in the <code class="highlighter-rouge">WC</code> class.</p>
+      </li>
+      <li>
+        <p><code class="highlighter-rouge">"complex"</code>: Recursively selects all fields of the field complex of POJO type <code class="highlighter-rouge">ComplexNestedClass</code>.</p>
+      </li>
+      <li>
+        <p><code class="highlighter-rouge">"complex.word._3"</code>: Selects the last field of the nested <code class="highlighter-rouge">Tuple3</code>.</p>
+      </li>
+      <li>
+        <p><code class="highlighter-rouge">"complex.hadoopCitizen"</code>: Selects the Hadoop <code class="highlighter-rouge">IntWritable</code> type.</p>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+<h3 class="no_toc" id="define-keys-using-key-selector-functions">Define keys using Key Selector Functions</h3>
+
+<p>An additional way to define keys are “key selector” functions. A key selector function
+takes a single element as input and returns the key for the element. The key can be of any type and be derived from deterministic computations.</p>
+
+<p>The following example shows a key selector function that simply returns the field of an object:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// some ordinary POJO</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">WC</span> <span class="o">{</span><span class="kd">public</span> <span class="n">String</span> <span class="n">word</span><span class="o">;</span> <span class="kd">public</span> <span class="kt">int</span> <span class="n">count</span><span class="o">;}</span>
+<span class="n">DataStream</span><span class="o">&lt;</span><span class="n">WC</span><span class="o">&gt;</span> <span class="n">words</span> <span class="o">=</span> <span class="c1">// [...]</span>
+<span class="n">KeyedStream</span><span class="o">&lt;</span><span class="n">WC</span><span class="o">&gt;</span> <span class="n">keyed</span> <span class="o">=</span> <span class="n">words</span>
+  <span class="o">.</span><span class="na">keyBy</span><span class="o">(</span><span class="k">new</span> <span class="n">KeySelector</span><span class="o">&lt;</span><span class="n">WC</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
+     <span class="kd">public</span> <span class="n">String</span> <span class="nf">getKey</span><span class="o">(</span><span class="n">WC</span> <span class="n">wc</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">wc</span><span class="o">.</span><span class="na">word</span><span class="o">;</span> <span class="o">}</span>
+   <span class="o">});</span></code></pre></figure>
+
+  </div>
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="c1">// some ordinary case class
+</span><span class="k">case</span> <span class="k">class</span> <span class="nc">WC</span><span class="o">(</span><span class="n">word</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">count</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">words</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[</span><span class="kt">WC</span><span class="o">]</span> <span class="k">=</span> <span class="c1">// [...]
+</span><span class="k">val</span> <span class="n">keyed</span> <span class="k">=</span> <span class="n">words</span><span class="o">.</span><span class="n">keyBy</span><span class="o">(</span> <span class="k">_</span><span class="o">.</span><span class="n">word</span> <span class="o">)</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h2 id="specifying-transformation-functions">Specifying Transformation Functions</h2>
+
+<p>Most transformations require user-defined functions. This section lists different ways
+of how they can be specified.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <h4 id="implementing-an-interface">Implementing an interface</h4>
+
+    <p>The most basic way is to implement one of the provided interfaces:</p>
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">MyMapFunction</span> <span class="kd">implements</span> <span class="n">MapFunction</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">map</span><span class="o">(</span><span class="n">String</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">value</span><span class="o">);</span> <span class="o">}</span>
+<span class="o">};</span>
+<span class="n">data</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="k">new</span> <span class="n">MyMapFunction</span><span class="o">());</span></code></pre></figure>
+
+    <h4 id="anonymous-classes">Anonymous classes</h4>
+
+    <p>You can pass a function as an anonymous class:</p>
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">data</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="k">new</span> <span class="n">MapFunction</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="o">()</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">map</span><span class="o">(</span><span class="n">String</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">value</span><span class="o">);</span> <span class="o">}</span>
+<span class="o">});</span></code></pre></figure>
+
+    <h4 id="java-8-lambdas">Java 8 Lambdas</h4>
+
+    <p>Flink also supports Java 8 Lambdas in the Java API. Please see the full <a href="//flink-china.org/doc/blink/dev/java8.html">Java 8 Guide</a>.</p>
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">data</span><span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">"http://"</span><span class="o">));</span></code></pre></figure>
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">data</span><span class="o">.</span><span class="na">reduce</span><span class="o">((</span><span class="n">i1</span><span class="o">,</span><span class="n">i2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">i1</span> <span class="o">+</span> <span class="n">i2</span><span class="o">);</span></code></pre></figure>
+
+    <h4 id="rich-functions">Rich functions</h4>
+
+    <p>All transformations that require a user-defined function can
+instead take as argument a <em>rich</em> function. For example, instead of</p>
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">MyMapFunction</span> <span class="kd">implements</span> <span class="n">MapFunction</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">map</span><span class="o">(</span><span class="n">String</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">value</span><span class="o">);</span> <span class="o">}</span>
+<span class="o">};</span></code></pre></figure>
+
+    <p>you can write</p>
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">MyMapFunction</span> <span class="kd">extends</span> <span class="n">RichMapFunction</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">map</span><span class="o">(</span><span class="n">String</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">value</span><span class="o">);</span> <span class="o">}</span>
+<span class="o">};</span></code></pre></figure>
+
+    <p>and pass the function as usual to a <code class="highlighter-rouge">map</code> transformation:</p>
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">data</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="k">new</span> <span class="n">MyMapFunction</span><span class="o">());</span></code></pre></figure>
+
+    <p>Rich functions can also be defined as an anonymous class:</p>
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">data</span><span class="o">.</span><span class="na">map</span> <span class="o">(</span><span class="k">new</span> <span class="n">RichMapFunction</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;()</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">map</span><span class="o">(</span><span class="n">String</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">value</span><span class="o">);</span> <span class="o">}</span>
+<span class="o">});</span></code></pre></figure>
+
+  </div>
+  <div data-lang="scala">
+
+    <h4 id="lambda-functions">Lambda Functions</h4>
+
+    <p>As already seen in previous examples all operations accept lambda functions for describing
+the operation:</p>
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">data</span><span class="k">:</span> <span class="kt">DataSet</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="c1">// [...]
+</span><span class="n">data</span><span class="o">.</span><span class="n">filter</span> <span class="o">{</span> <span class="k">_</span><span class="o">.</span><span class="n">startsWith</span><span class="o">(</span><span class="s">"http://"</span><span class="o">)</span> <span class="o">}</span></code></pre></figure>
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">data</span><span class="k">:</span> <span class="kt">DataSet</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="c1">// [...]
+</span><span class="n">data</span><span class="o">.</span><span class="n">reduce</span> <span class="o">{</span> <span class="o">(</span><span class="n">i1</span><span class="o">,</span><span class="n">i2</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">i1</span> <span class="o">+</span> <span class="n">i2</span> <span class="o">}</span>
+<span class="c1">// or
+</span><span class="n">data</span><span class="o">.</span><span class="n">reduce</span> <span class="o">{</span> <span class="k">_</span> <span class="o">+</span> <span class="k">_</span> <span class="o">}</span></code></pre></figure>
+
+    <h4 id="rich-functions-1">Rich functions</h4>
+
+    <p>All transformations that take as argument a lambda function can
+instead take as argument a <em>rich</em> function. For example, instead of</p>
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="n">data</span><span class="o">.</span><span class="n">map</span> <span class="o">{</span> <span class="n">x</span> <span class="k">=&gt;</span> <span class="n">x</span><span class="o">.</span><span class="n">toInt</span> <span class="o">}</span></code></pre></figure>
+
+    <p>you can write</p>
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">class</span> <span class="nc">MyMapFunction</span> <span class="k">extends</span> <span class="nc">RichMapFunction</span><span class="o">[</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">]</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">map</span><span class="o">(</span><span class="n">in</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span><span class="k">:</span><span class="kt">Int</span> <span class="o">=</span> <span class="o">{</span> <span class="n">in</span><span class="o">.</span><span class="n">toInt</span> <span class="o">}</span>
+<span class="o">};</span></code></pre></figure>
+
+    <p>and pass the function to a <code class="highlighter-rouge">map</code> transformation:</p>
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="n">data</span><span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="k">new</span> <span class="nc">MyMapFunction</span><span class="o">())</span></code></pre></figure>
+
+    <p>Rich functions can also be defined as an anonymous class:</p>
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="n">data</span><span class="o">.</span><span class="n">map</span> <span class="o">(</span><span class="k">new</span> <span class="nc">RichMapFunction</span><span class="o">[</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">]</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">map</span><span class="o">(</span><span class="n">in</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span><span class="k">:</span><span class="kt">Int</span> <span class="o">=</span> <span class="o">{</span> <span class="n">in</span><span class="o">.</span><span class="n">toInt</span> <span class="o">}</span>
+<span class="o">})</span></code></pre></figure>
+
+  </div>
+
+</div>
+
+<p>Rich functions provide, in addition to the user-defined function (map,
+reduce, etc), four methods: <code class="highlighter-rouge">open</code>, <code class="highlighter-rouge">close</code>, <code class="highlighter-rouge">getRuntimeContext</code>, and
+<code class="highlighter-rouge">setRuntimeContext</code>. These are useful for parameterizing the function
+(see <a href="//flink-china.org/doc/blink/dev/batch/index.html#passing-parameters-to-functions">Passing Parameters to Functions</a>),
+creating and finalizing local state, accessing broadcast variables (see
+<a href="//flink-china.org/doc/blink/dev/batch/index.html#broadcast-variables">Broadcast Variables</a>), and for accessing runtime
+information such as accumulators and counters (see
+<a href="#accumulators--counters">Accumulators and Counters</a>), and information
+on iterations (see <a href="//flink-china.org/doc/blink/dev/batch/iterations.html">Iterations</a>).</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h2 id="supported-data-types">Supported Data Types</h2>
+
+<p>Flink places some restrictions on the type of elements that can be in a DataSet or DataStream.
+The reason for this is that the system analyzes the types to determine
+efficient execution strategies.</p>
+
+<p>There are six different categories of data types:</p>
+
+<ol>
+  <li><strong>Java Tuples</strong> and <strong>Scala Case Classes</strong></li>
+  <li><strong>Java POJOs</strong></li>
+  <li><strong>Primitive Types</strong></li>
+  <li><strong>Regular Classes</strong></li>
+  <li><strong>Values</strong></li>
+  <li><strong>Hadoop Writables</strong></li>
+  <li><strong>Special Types</strong></li>
+</ol>
+
+<h4 id="tuples-and-case-classes">Tuples and Case Classes</h4>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <p>Tuples are composite types that contain a fixed number of fields with various types.
+The Java API provides classes from <code class="highlighter-rouge">Tuple1</code> up to <code class="highlighter-rouge">Tuple25</code>. Every field of a tuple
+can be an arbitrary Flink type including further tuples, resulting in nested tuples. Fields of a
+tuple can be accessed directly using the field’s name as <code class="highlighter-rouge">tuple.f4</code>, or using the generic getter method
+<code class="highlighter-rouge">tuple.getField(int position)</code>. The field indices start at 0. Note that this stands in contrast
+to the Scala tuples, but it is more consistent with Java’s general indexing.</p>
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="n">wordCounts</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="na">fromElements</span><span class="o">(</span>
+    <span class="k">new</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;(</span><span class="s">"hello"</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span>
+    <span class="k">new</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;(</span><span class="s">"world"</span><span class="o">,</span> <span class="mi">2</span><span class="o">));</span>
+
+<span class="n">wordCounts</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="k">new</span> <span class="n">MapFunction</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;,</span> <span class="n">Integer</span><span class="o">&gt;()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">map</span><span class="o">(</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">value</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="na">f1</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+
+<span class="n">wordCounts</span><span class="o">.</span><span class="na">keyBy</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span> <span class="c1">// also valid .keyBy("f0")</span></code></pre></figure>
+
+  </div>
+  <div data-lang="scala">
+
+    <p>Scala case classes (and Scala tuples which are a special case of case classes), are composite types that contain a fixed number of fields with various types. Tuple fields are addressed by their 1-offset names such as <code class="highlighter-rouge">_1</code> for the first field. Case class fields are accessed by their name.</p>
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">case</span> <span class="k">class</span> <span class="nc">WordCount</span><span class="o">(</span><span class="n">word</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">count</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">input</span> <span class="k">=</span> <span class="n">env</span><span class="o">.</span><span class="n">fromElements</span><span class="o">(</span>
+    <span class="nc">WordCount</span><span class="o">(</span><span class="s">"hello"</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span>
+    <span class="nc">WordCount</span><span class="o">(</span><span class="s">"world"</span><span class="o">,</span> <span class="mi">2</span><span class="o">))</span> <span class="c1">// Case Class Data Set
+</span>
+<span class="n">input</span><span class="o">.</span><span class="n">keyBy</span><span class="o">(</span><span class="s">"word"</span><span class="o">)</span><span class="c1">// key by field expression "word"
+</span>
+<span class="k">val</span> <span class="n">input2</span> <span class="k">=</span> <span class="n">env</span><span class="o">.</span><span class="n">fromElements</span><span class="o">((</span><span class="s">"hello"</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span> <span class="o">(</span><span class="s">"world"</span><span class="o">,</span> <span class="mi">2</span><span class="o">))</span> <span class="c1">// Tuple2 Data Set
+</span>
+<span class="n">input2</span><span class="o">.</span><span class="n">keyBy</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">)</span> <span class="o">//</span> <span class="n">key</span> <span class="n">by</span> <span class="n">field</span> <span class="n">positions</span> <span class="mi">0</span> <span class="n">and</span> <span class="mi">1</span></code></pre></figure>
+
+  </div>
+</div>
+
+<h4 id="pojos">POJOs</h4>
+
+<p>Java and Scala classes are treated by Flink as a special POJO data type if they fulfill the following requirements:</p>
+
+<ul>
+  <li>
+    <p>The class must be public.</p>
+  </li>
+  <li>
+    <p>It must have a public constructor without arguments (default constructor).</p>
+  </li>
+  <li>
+    <p>All fields are either public or must be accessible through getter and setter functions. For a field called <code class="highlighter-rouge">foo</code> the getter and setter methods must be named <code class="highlighter-rouge">getFoo()</code> and <code class="highlighter-rouge">setFoo()</code>.</p>
+  </li>
+  <li>
+    <p>The type of a field must be supported by Flink. At the moment, Flink uses <a href="http://avro.apache.org">Avro</a> to serialize arbitrary objects (such as <code class="highlighter-rouge">Date</code>).</p>
+  </li>
+</ul>
+
+<p>Flink analyzes the structure of POJO types, i.e., it learns about the fields of a POJO. As a result POJO types are easier to use than general types. Moreover, Flink can process POJOs more efficiently than general types.</p>
+
+<p>The following example shows a simple POJO with two public fields.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WordWithCount</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="n">word</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">count</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">WordWithCount</span><span class="o">()</span> <span class="o">{}</span>
+
+    <span class="kd">public</span> <span class="nf">WordWithCount</span><span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">,</span> <span class="kt">int</span> <span class="n">count</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">count</span> <span class="o">=</span> <span class="n">count</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">DataStream</span><span class="o">&lt;</span><span class="n">WordWithCount</span><span class="o">&gt;</span> <span class="n">wordCounts</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="na">fromElements</span><span class="o">(</span>
+    <span class="k">new</span> <span class="nf">WordWithCount</span><span class="o">(</span><span class="s">"hello"</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span>
+    <span class="k">new</span> <span class="nf">WordWithCount</span><span class="o">(</span><span class="s">"world"</span><span class="o">,</span> <span class="mi">2</span><span class="o">));</span>
+
+<span class="n">wordCounts</span><span class="o">.</span><span class="na">keyBy</span><span class="o">(</span><span class="s">"word"</span><span class="o">);</span> <span class="c1">// key by field expression "word"</span></code></pre></figure>
+
+  </div>
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">class</span> <span class="nc">WordWithCount</span><span class="o">(</span><span class="k">var</span> <span class="n">word</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="k">var</span> <span class="n">count</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">def</span> <span class="k">this</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">this</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="k">val</span> <span class="n">input</span> <span class="k">=</span> <span class="n">env</span><span class="o">.</span><span class="n">fromElements</span><span class="o">(</span>
+    <span class="k">new</span> <span class="nc">WordWithCount</span><span class="o">(</span><span class="s">"hello"</span><span class="o">,</span> <span class="mi">1</span><span class="o">),</span>
+    <span class="k">new</span> <span class="nc">WordWithCount</span><span class="o">(</span><span class="s">"world"</span><span class="o">,</span> <span class="mi">2</span><span class="o">))</span> <span class="c1">// Case Class Data Set
+</span>
+<span class="n">input</span><span class="o">.</span><span class="n">keyBy</span><span class="o">(</span><span class="s">"word"</span><span class="o">)//</span> <span class="n">key</span> <span class="n">by</span> <span class="n">field</span> <span class="n">expression</span> <span class="s">"word"</span></code></pre></figure>
+
+  </div>
+</div>
+
+<h4 id="primitive-types">Primitive Types</h4>
+
+<p>Flink supports all Java and Scala primitive types such as <code class="highlighter-rouge">Integer</code>, <code class="highlighter-rouge">String</code>, and <code class="highlighter-rouge">Double</code>.</p>
+
+<h4 id="general-class-types">General Class Types</h4>
+
+<p>Flink supports most Java and Scala classes (API and custom).
+Restrictions apply to classes containing fields that cannot be serialized, like file pointers, I/O streams, or other native
+resources. Classes that follow the Java Beans conventions work well in general.</p>
+
+<p>All classes that are not identified as POJO types (see POJO requirements above) are handled by Flink as general class types.
+Flink treats these data types as black boxes and is not able to access their content (i.e., for efficient sorting). General types are de/serialized using the serialization framework <a href="https://github.com/EsotericSoftware/kryo">Kryo</a>.</p>
+
+<h4 id="values">Values</h4>
+
+<p><em>Value</em> types describe their serialization and deserialization manually. Instead of going through a
+general purpose serialization framework, they provide custom code for those operations by means of
+implementing the <code class="highlighter-rouge">org.apache.flink.types.Value</code> interface with the methods <code class="highlighter-rouge">read</code> and <code class="highlighter-rouge">write</code>. Using
+a Value type is reasonable when general purpose serialization would be highly inefficient. An
+example would be a data type that implements a sparse vector of elements as an array. Knowing that
+the array is mostly zero, one can use a special encoding for the non-zero elements, while the
+general purpose serialization would simply write all array elements.</p>
+
+<p>The <code class="highlighter-rouge">org.apache.flink.types.CopyableValue</code> interface supports manual internal cloning logic in a
+similar way.</p>
+
+<p>Flink comes with pre-defined Value types that correspond to basic data types. (<code class="highlighter-rouge">ByteValue</code>,
+<code class="highlighter-rouge">ShortValue</code>, <code class="highlighter-rouge">IntValue</code>, <code class="highlighter-rouge">LongValue</code>, <code class="highlighter-rouge">FloatValue</code>, <code class="highlighter-rouge">DoubleValue</code>, <code class="highlighter-rouge">StringValue</code>, <code class="highlighter-rouge">CharValue</code>,
+<code class="highlighter-rouge">BooleanValue</code>). These Value types act as mutable variants of the basic data types: Their value can
+be altered, allowing programmers to reuse objects and take pressure off the garbage collector.</p>
+
+<h4 id="hadoop-writables">Hadoop Writables</h4>
+
+<p>You can use types that implement the <code class="highlighter-rouge">org.apache.hadoop.Writable</code> interface. The serialization logic
+defined in the <code class="highlighter-rouge">write()</code>and <code class="highlighter-rouge">readFields()</code> methods will be used for serialization.</p>
+
+<h4 id="special-types">Special Types</h4>
+
+<p>You can use special types, including Scala’s <code class="highlighter-rouge">Either</code>, <code class="highlighter-rouge">Option</code>, and <code class="highlighter-rouge">Try</code>.
+The Java API has its own custom implementation of <code class="highlighter-rouge">Either</code>.
+Similarly to Scala’s <code class="highlighter-rouge">Either</code>, it represents a value of one of two possible types, <em>Left</em> or <em>Right</em>.
+<code class="highlighter-rouge">Either</code> can be useful for error handling or operators that need to output two different types of records.</p>
+
+<h4 id="type-erasure--type-inference">Type Erasure &amp; Type Inference</h4>
+
+<p><em>Note: This Section is only relevant for Java.</em></p>
+
+<p>The Java compiler throws away much of the generic type information after compilation. This is
+known as <em>type erasure</em> in Java. It means that at runtime, an instance of an object does not know
+its generic type any more. For example, instances of <code class="highlighter-rouge">DataStream&lt;String&gt;</code> and <code class="highlighter-rouge">DataStream&lt;Long&gt;</code> look the
+same to the JVM.</p>
+
+<p>Flink requires type information at the time when it prepares the program for execution (when the
+main method of the program is called). The Flink Java API tries to reconstruct the type information
+that was thrown away in various ways and store it explicitly in the data sets and operators. You can
+retrieve the type via <code class="highlighter-rouge">DataStream.getType()</code>. The method returns an instance of <code class="highlighter-rouge">TypeInformation</code>,
+which is Flink’s internal way of representing types.</p>
+
+<p>The type inference has its limits and needs the “cooperation” of the programmer in some cases.
+Examples for that are methods that create data sets from collections, such as
+<code class="highlighter-rouge">ExecutionEnvironment.fromCollection(),</code> where you can pass an argument that describes the type. But
+also generic functions like <code class="highlighter-rouge">MapFunction&lt;I, O&gt;</code> may need extra type information.</p>
+
+<p>The
+<a href="https://github.com/apache/flink/blob/master//flink-core/src/main/java/org/apache/flink/api/java/typeutils/ResultTypeQueryable.java">ResultTypeQueryable</a>
+interface can be implemented by input formats and functions to tell the API
+explicitly about their return type. The <em>input types</em> that the functions are invoked with can
+usually be inferred by the result types of the previous operations.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h2 id="accumulators--counters">Accumulators &amp; Counters</h2>
+
+<p>Accumulators are simple constructs with an <strong>add operation</strong> and a <strong>final accumulated result</strong>,
+which is available after the job ended.</p>
+
+<p>The most straightforward accumulator is a <strong>counter</strong>: You can increment it using the
+<code class="highlighter-rouge">Accumulator.add(V value)</code> method. At the end of the job Flink will sum up (merge) all partial
+results and send the result to the client. Accumulators are useful during debugging or if you
+quickly want to find out more about your data.</p>
+
+<p>Flink currently has the following <strong>built-in accumulators</strong>. Each of them implements the
+<a href="https://github.com/apache/flink/blob/master//flink-core/src/main/java/org/apache/flink/api/common/accumulators/Accumulator.java">Accumulator</a>
+interface.</p>
+
+<ul>
+  <li><a href="https://github.com/apache/flink/blob/master//flink-core/src/main/java/org/apache/flink/api/common/accumulators/IntCounter.java"><strong>IntCounter</strong></a>,
+<a href="https://github.com/apache/flink/blob/master//flink-core/src/main/java/org/apache/flink/api/common/accumulators/LongCounter.java"><strong>LongCounter</strong></a>
+and <a href="https://github.com/apache/flink/blob/master//flink-core/src/main/java/org/apache/flink/api/common/accumulators/DoubleCounter.java"><strong>DoubleCounter</strong></a>:
+See below for an example using a counter.</li>
+  <li><a href="https://github.com/apache/flink/blob/master//flink-core/src/main/java/org/apache/flink/api/common/accumulators/Histogram.java"><strong>Histogram</strong></a>:
+A histogram implementation for a discrete number of bins. Internally it is just a map from Integer
+to Integer. You can use this to compute distributions of values, e.g. the distribution of
+words-per-line for a word count program.</li>
+</ul>
+
+<p><strong>How to use accumulators:</strong></p>
+
+<p>First you have to create an accumulator object (here a counter) in the user-defined transformation
+function where you want to use it.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="n">IntCounter</span> <span class="n">numLines</span> <span class="o">=</span> <span class="k">new</span> <span class="n">IntCounter</span><span class="o">();</span></code></pre></figure>
+
+<p>Second you have to register the accumulator object, typically in the <code class="highlighter-rouge">open()</code> method of the
+<em>rich</em> function. Here you also define the name.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">getRuntimeContext</span><span class="o">().</span><span class="na">addAccumulator</span><span class="o">(</span><span class="s">"num-lines"</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">numLines</span><span class="o">);</span></code></pre></figure>
+
+<p>You can now use the accumulator anywhere in the operator function, including in the <code class="highlighter-rouge">open()</code> and
+<code class="highlighter-rouge">close()</code> methods.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">this</span><span class="o">.</span><span class="na">numLines</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span></code></pre></figure>
+
+<p>The overall result will be stored in the <code class="highlighter-rouge">JobExecutionResult</code> object which is
+returned from the <code class="highlighter-rouge">execute()</code> method of the execution environment
+(currently this only works if the execution waits for the
+completion of the job).</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">myJobExecutionResult</span><span class="o">.</span><span class="na">getAccumulatorResult</span><span class="o">(</span><span class="s">"num-lines"</span><span class="o">)</span></code></pre></figure>
+
+<p>All accumulators share a single namespace per job. Thus you can use the same accumulator in
+different operator functions of your job. Flink will internally merge all accumulators with the same
+name.</p>
+
+<p>A note on accumulators and iterations: Currently the result of accumulators is only available after
+the overall job has ended. We plan to also make the result of the previous iteration available in the
+next iteration. You can use
+<a href="https://github.com/apache/flink/blob/master//flink-java/src/main/java/org/apache/flink/api/java/operators/IterativeDataSet.java#L98">Aggregators</a>
+to compute per-iteration statistics and base the termination of iterations on such statistics.</p>
+
+<p><strong>Custom accumulators:</strong></p>
+
+<p>To implement your own accumulator you simply have to write your implementation of the Accumulator
+interface. Feel free to create a pull request if you think your custom accumulator should be shipped
+with Flink.</p>
+
+<p>You have the choice to implement either
+<a href="https://github.com/apache/flink/blob/master//flink-core/src/main/java/org/apache/flink/api/common/accumulators/Accumulator.java">Accumulator</a>
+or <a href="https://github.com/apache/flink/blob/master//flink-core/src/main/java/org/apache/flink/api/common/accumulators/SimpleAccumulator.java">SimpleAccumulator</a>.</p>
+
+<p><code class="highlighter-rouge">Accumulator&lt;V,R&gt;</code> is most flexible: It defines a type <code class="highlighter-rouge">V</code> for the value to add, and a
+result type <code class="highlighter-rouge">R</code> for the final result. E.g. for a histogram, <code class="highlighter-rouge">V</code> is a number and <code class="highlighter-rouge">R</code> is
+ a histogram. <code class="highlighter-rouge">SimpleAccumulator</code> is for the cases where both types are the same, e.g. for counters.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+
+        </div>
+      </div>
+    </div><!-- /.container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//flink-china.org/doc/blink/page/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.0/anchor.min.js"></script>
+    <script src="//flink-china.org/doc/blink/page/js/flink.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-52545728-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- Disqus -->
+    
+  </body>
+</html>

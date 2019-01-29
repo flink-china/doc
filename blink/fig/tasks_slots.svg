@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-1717 -984 1492 667" width="1492" height="667">
+  <defs>
+    <font-face font-family="Helvetica Neue" font-size="16" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica Neue" font-size="12" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica Neue" font-size="12" panose-1="2 0 5 3 0 0 0 9 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="-1e3" x-height="517" cap-height="714" ascent="957.0007" descent="-212.99744" font-style="italic" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue-Italic"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica Neue" font-size="16" panose-1="2 0 5 3 0 0 0 9 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="-750" x-height="517" cap-height="714" ascent="957.0007" descent="-212.99744" font-style="italic" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue-Italic"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 -3 L 0 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.9.4
+    <dc:date>2018-12-27 07:18:17 +0000</dc:date>
+  </metadata>
+  <g id="Slot_w__ResourceProfile" fill-opacity="1" stroke-opacity="1" stroke="none" stroke-dasharray="none" fill="none">
+    <title>Slot w/ ResourceProfile</title>
+    <g id="Slot_w__ResourceProfile: Layer 1">
+      <title>Layer 1</title>
+      <g id="Group_283">
+        <g id="Graphic_171">
+          <rect x="-1595.3256" y="-768" width="587.5" height="235" fill="#c4e0b4"/>
+          <rect x="-1595.3256" y="-768" width="587.5" height="235" stroke="#b34400" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(-1590.3256 -763)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="241.038" y="15">TaskManager</tspan>
+          </text>
+        </g>
+        <g id="Graphic_235">
+          <title>Rectangle</title>
+          <rect x="-1584.5756" y="-734" width="179.25" height="194" fill="#e4eaf4"/>
+          <rect x="-1584.5756" y="-734" width="179.25" height="194" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(-1579.5756 -729)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="52.177" y="15">Task Slot</tspan>
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="60.169" y="33.448">(512M)</tspan>
+          </text>
+        </g>
+        <g id="Group_196">
+          <g id="Graphic_198">
+            <path d="M -1527.2006 -667.4066 L -1462.7006 -667.4066 C -1457.1777 -667.4066 -1452.7006 -662.92944 -1452.7006 -657.4066 L -1452.7006 -592.9066 C -1452.7006 -587.38375 -1457.1777 -582.9066 -1462.7006 -582.9066 L -1527.2006 -582.9066 C -1532.7234 -582.9066 -1537.2006 -587.38375 -1537.2006 -592.9066 L -1537.2006 -657.4066 C -1537.2006 -662.92944 -1532.7234 -667.4066 -1527.2006 -667.4066 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.0,4.0" stroke-width="1"/>
+          </g>
+          <g id="Graphic_197">
+            <title>Circle</title>
+            <circle cx="-1494.9506" cy="-625.1566" r="35.2500563260418" fill="#ffd966"/>
+            <text transform="translate(-1523.1506 -653.8286)" fill="black">
+              <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="4.98" y="11">keyBy( )/</tspan>
+              <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x=".66" y="25.336">window( )/</tspan>
+              <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="8.754" y="39.671997">apply( )</tspan>
+              <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="54.007996">[1]</tspan>
+            </text>
+          </g>
+        </g>
+        <g id="Graphic_241">
+          <rect x="-1391.2006" y="-734" width="179.25" height="194" fill="#e4eaf4"/>
+          <rect x="-1391.2006" y="-734" width="179.25" height="194" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(-1386.2006 -729)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="52.177" y="15">Task Slot</tspan>
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="60.169" y="33.448">(512M)</tspan>
+          </text>
+        </g>
+        <g id="Group_238">
+          <g id="Graphic_240">
+            <path d="M -1333.8256 -667.4066 L -1269.3256 -667.4066 C -1263.8027 -667.4066 -1259.3256 -662.92944 -1259.3256 -657.4066 L -1259.3256 -592.9066 C -1259.3256 -587.38375 -1263.8027 -582.9066 -1269.3256 -582.9066 L -1333.8256 -582.9066 C -1339.3484 -582.9066 -1343.8256 -587.38375 -1343.8256 -592.9066 L -1343.8256 -657.4066 C -1343.8256 -662.92944 -1339.3484 -667.4066 -1333.8256 -667.4066 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.0,4.0" stroke-width="1"/>
+          </g>
+          <g id="Graphic_239">
+            <title>Circle</title>
+            <circle cx="-1301.5756" cy="-625.1566" r="35.2500563260418" fill="#ffd966"/>
+            <text transform="translate(-1329.7756 -653.8286)" fill="black">
+              <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="4.98" y="11">keyBy( )/</tspan>
+              <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x=".66" y="25.336">window( )/</tspan>
+              <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="8.754" y="39.671997">apply( )</tspan>
+              <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="54.007996">[2]</tspan>
+            </text>
+          </g>
+        </g>
+        <g id="Graphic_246">
+          <title>Rectangle</title>
+          <rect x="-1197.8256" y="-734" width="179.25" height="194" fill="#e4eaf4"/>
+          <rect x="-1197.8256" y="-734" width="179.25" height="194" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+          <text transform="translate(-1192.8256 -729)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="52.177" y="15">Task Slot</tspan>
+            <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="60.169" y="33.448">(512M)</tspan>
+          </text>
+        </g>
+        <g id="Group_243">
+          <g id="Graphic_245">
+            <path d="M -1140.4506 -667.4066 L -1075.9506 -667.4066 C -1070.4277 -667.4066 -1065.9506 -662.92944 -1065.9506 -657.4066 L -1065.9506 -592.9066 C -1065.9506 -587.38375 -1070.4277 -582.9066 -1075.9506 -582.9066 L -1140.4506 -582.9066 C -1145.9734 -582.9066 -1150.4506 -587.38375 -1150.4506 -592.9066 L -1150.4506 -657.4066 C -1150.4506 -662.92944 -1145.9734 -667.4066 -1140.4506 -667.4066 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.0,4.0" stroke-width="1"/>
+          </g>
+          <g id="Graphic_244">
+            <title>Circle</title>
+            <circle cx="-1108.2006" cy="-625.1566" r="35.2500563260418" fill="#ffd966"/>
+            <text transform="translate(-1136.4006 -653.8286)" fill="black">
+              <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="4.98" y="11">keyBy( )/</tspan>
+              <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x=".66" y="25.336">window( )/</tspan>
+              <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="8.754" y="39.671997">apply( )</tspan>
+              <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="54.007996">[3]</tspan>
+            </text>
+          </g>
+        </g>
+        <g id="Group_282">
+          <g id="Graphic_205">
+            <title>Rectangle</title>
+            <rect x="-1595.3256" y="-941" width="587.5" height="160" fill="#c4e0b4"/>
+            <rect x="-1595.3256" y="-941" width="587.5" height="160" stroke="#b34400" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+            <text transform="translate(-1590.3256 -936)" fill="black">
+              <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="241.038" y="15">TaskManager</tspan>
+            </text>
+          </g>
+          <g id="Group_189">
+            <g id="Graphic_194">
+              <title>Rectangle</title>
+              <rect x="-1584.5756" y="-911" width="179.25" height="121" fill="#e4eaf4"/>
+              <rect x="-1584.5756" y="-911" width="179.25" height="121" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+              <text transform="translate(-1579.5756 -906)" fill="black">
+                <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="25.497" y="15">Task Slot (256M)</tspan>
+              </text>
+            </g>
+            <g id="Group_190">
+              <g id="Graphic_193">
+                <title>Rectangle</title>
+                <path d="M -1559.2006 -883.9023 L -1430.7006 -883.9023 C -1425.1777 -883.9023 -1420.7006 -879.4252 -1420.7006 -873.9023 L -1420.7006 -809.4023 C -1420.7006 -803.8795 -1425.1777 -799.4023 -1430.7006 -799.4023 L -1559.2006 -799.4023 C -1564.7234 -799.4023 -1569.2006 -803.8795 -1569.2006 -809.4023 L -1569.2006 -873.9023 C -1569.2006 -879.4252 -1564.7234 -883.9023 -1559.2006 -883.9023 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.0,4.0" stroke-width="1"/>
+              </g>
+              <g id="Graphic_192">
+                <title>Circle</title>
+                <circle cx="-1525.4506" cy="-841.6523" r="35.2500563260419" fill="#ffd966"/>
+                <circle cx="-1525.4506" cy="-841.6523" r="35.2500563260419" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text transform="translate(-1553.6506 -855.9883)" fill="black">
+                  <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="9.198" y="11">Source</tspan>
+                  <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="25.336">[1]</tspan>
+                </text>
+              </g>
+              <g id="Graphic_191">
+                <title>Circle</title>
+                <circle cx="-1464.4506" cy="-841.6523" r="35.2500563260417" fill="#ffd966"/>
+                <circle cx="-1464.4506" cy="-841.6523" r="35.2500563260417" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text transform="translate(-1492.6506 -855.9883)" fill="black">
+                  <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="11.526" y="11">map( )</tspan>
+                  <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="25.336">[1]</tspan>
+                </text>
+              </g>
+            </g>
+          </g>
+          <g id="Group_222">
+            <g id="Graphic_227">
+              <rect x="-1391.2006" y="-911.1923" width="179.25" height="121" fill="#e4eaf4"/>
+              <rect x="-1391.2006" y="-911.1923" width="179.25" height="121" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+              <text transform="translate(-1386.2006 -906.1923)" fill="black">
+                <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="25.497" y="15">Task Slot (256M)</tspan>
+              </text>
+            </g>
+            <g id="Group_223">
+              <title>Group</title>
+              <g id="Graphic_226">
+                <title>Rectangle</title>
+                <path d="M -1365.8256 -884.6923 L -1237.3256 -884.6923 C -1231.8027 -884.6923 -1227.3256 -880.2152 -1227.3256 -874.6923 L -1227.3256 -810.1923 C -1227.3256 -804.6695 -1231.8027 -800.1923 -1237.3256 -800.1923 L -1365.8256 -800.1923 C -1371.3484 -800.1923 -1375.8256 -804.6695 -1375.8256 -810.1923 L -1375.8256 -874.6923 C -1375.8256 -880.2152 -1371.3484 -884.6923 -1365.8256 -884.6923 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.0,4.0" stroke-width="1"/>
+              </g>
+              <g id="Graphic_225">
+                <circle cx="-1332.0756" cy="-842.4423" r="35.2500563260418" fill="#ffd966"/>
+                <circle cx="-1332.0756" cy="-842.4423" r="35.2500563260418" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text transform="translate(-1360.2756 -856.7783)" fill="black">
+                  <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="9.198" y="11">Source</tspan>
+                  <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="25.336">[2]</tspan>
+                </text>
+              </g>
+              <g id="Graphic_224">
+                <circle cx="-1271.0756" cy="-842.4423" r="35.2500563260419" fill="#ffd966"/>
+                <circle cx="-1271.0756" cy="-842.4423" r="35.2500563260419" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text transform="translate(-1299.2756 -856.7783)" fill="black">
+                  <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="11.526" y="11">map( )</tspan>
+                  <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="25.336">[2]</tspan>
+                </text>
+              </g>
+            </g>
+          </g>
+          <g id="Group_228">
+            <g id="Graphic_233">
+              <rect x="-1197.8256" y="-910.9023" width="179.25" height="121" fill="#e4eaf4"/>
+              <rect x="-1197.8256" y="-910.9023" width="179.25" height="121" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+              <text transform="translate(-1192.8256 -905.9023)" fill="black">
+                <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="25.497" y="15">Task Slot (256M)</tspan>
+              </text>
+            </g>
+            <g id="Group_229">
+              <g id="Graphic_232">
+                <title>Rectangle</title>
+                <path d="M -1168.3256 -885.6923 L -1039.8256 -885.6923 C -1034.3027 -885.6923 -1029.8256 -881.2152 -1029.8256 -875.6923 L -1029.8256 -811.1923 C -1029.8256 -805.6695 -1034.3027 -801.1923 -1039.8256 -801.1923 L -1168.3256 -801.1923 C -1173.8484 -801.1923 -1178.3256 -805.6695 -1178.3256 -811.1923 L -1178.3256 -875.6923 C -1178.3256 -881.2152 -1173.8484 -885.6923 -1168.3256 -885.6923 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.0,4.0" stroke-width="1"/>
+              </g>
+              <g id="Graphic_231">
+                <circle cx="-1134.5756" cy="-843.4423" r="35.2500563260419" fill="#ffd966"/>
+                <circle cx="-1134.5756" cy="-843.4423" r="35.2500563260419" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text transform="translate(-1162.7756 -857.7783)" fill="black">
+                  <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="9.198" y="11">Source</tspan>
+                  <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="25.336">[3]</tspan>
+                </text>
+              </g>
+              <g id="Graphic_230">
+                <title>Circle</title>
+                <circle cx="-1073.5756" cy="-843.4423" r="35.2500563260418" fill="#ffd966"/>
+                <circle cx="-1073.5756" cy="-843.4423" r="35.2500563260418" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text transform="translate(-1101.7756 -857.7783)" fill="black">
+                  <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="11.526" y="11">map( )</tspan>
+                  <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="25.336">[3]</tspan>
+                </text>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g id="Group_281">
+          <title>Group</title>
+          <g id="Graphic_186">
+            <rect x="-1595.3256" y="-520" width="587.5" height="160" fill="#c4e0b4"/>
+            <rect x="-1595.3256" y="-520" width="587.5" height="160" stroke="#b34400" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+            <text transform="translate(-1590.3256 -515)" fill="#c4e0b4">
+              <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="#c4e0b4" x="241.038" y="15">TaskManager</tspan>
+            </text>
+          </g>
+          <g id="Group_250">
+            <g id="Graphic_249">
+              <rect x="-1584.5756" y="-490" width="179.25" height="121" fill="#e4eaf4"/>
+              <rect x="-1584.5756" y="-490" width="179.25" height="121" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+              <text transform="translate(-1579.5756 -485)" fill="black">
+                <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="25.497" y="15">Task Slot (256M)</tspan>
+              </text>
+            </g>
+            <g id="Group_201">
+              <g id="Graphic_203">
+                <path d="M -1527.2006 -462.5 L -1462.7006 -462.5 C -1457.1777 -462.5 -1452.7006 -458.02285 -1452.7006 -452.5 L -1452.7006 -388 C -1452.7006 -382.47715 -1457.1777 -378 -1462.7006 -378 L -1527.2006 -378 C -1532.7234 -378 -1537.2006 -382.47715 -1537.2006 -388 L -1537.2006 -452.5 C -1537.2006 -458.02285 -1532.7234 -462.5 -1527.2006 -462.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.0,4.0" stroke-width="1"/>
+              </g>
+              <g id="Graphic_202">
+                <title>Circle</title>
+                <circle cx="-1494.9506" cy="-420.25" r="35.2500563260419" fill="#ffd966"/>
+                <text transform="translate(-1523.1506 -434.586)" fill="black">
+                  <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="16.53" y="11">Sink</tspan>
+                  <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="25.336">[1]</tspan>
+                </text>
+              </g>
+            </g>
+          </g>
+          <g id="Graphic_255">
+            <title>Rectangle</title>
+            <rect x="-1391.2006" y="-490" width="179.25" height="121" fill="#e4eaf4"/>
+            <rect x="-1391.2006" y="-490" width="179.25" height="121" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+            <text transform="translate(-1386.2006 -485)" fill="black">
+              <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="25.497" y="15">Task Slot (256M)</tspan>
+            </text>
+          </g>
+          <g id="Graphic_260">
+            <rect x="-1197.8256" y="-490" width="179.25" height="121" fill="#e4eaf4"/>
+            <rect x="-1197.8256" y="-490" width="179.25" height="121" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+            <text transform="translate(-1192.8256 -485)" fill="black">
+              <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="25.497" y="15">Task Slot (256M)</tspan>
+            </text>
+          </g>
+        </g>
+        <g id="Graphic_262">
+          <text transform="translate(-1711.3256 -659.724)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-style="italic" font-weight="400" fill="black" x=".272" y="15">Processes</tspan>
+          </text>
+        </g>
+        <g id="Line_263">
+          <line x1="-1668.3031" y1="-665.5" x2="-1599.0142" y2="-838.076" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+        <g id="Line_264">
+          <line x1="-1632.3256" y1="-650.6446" x2="-1605.2255" y2="-650.73785" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+        <g id="Line_265">
+          <line x1="-1668.0624" y1="-635.5" x2="-1599.1401" y2="-470.43386" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+        <g id="Graphic_266">
+          <text transform="translate(-1173.3256 -978.224)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-style="italic" font-weight="400" fill="black" x=".4" y="15">Threads</tspan>
+          </text>
+        </g>
+        <g id="Line_267">
+          <line x1="-1178.3256" y1="-956.6511" x2="-1411.3953" y2="-871.9997" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+        <g id="Line_268">
+          <line x1="-1162.9633" y1="-954" x2="-1241.3668" y2="-890.8994" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+        <g id="Line_269">
+          <line x1="-1139.517" y1="-954" x2="-1120.6418" y2="-895.1197" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+      </g>
+      <g id="Group_280">
+        <g id="Group_118">
+          <g id="Graphic_111">
+            <title>Rectangle</title>
+            <rect x="-813" y="-941" width="587.5" height="185" fill="#c4e0b4"/>
+            <rect x="-813" y="-941" width="587.5" height="185" stroke="#b34400" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+            <text transform="translate(-808 -936)" fill="black">
+              <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="241.038" y="15">TaskManager</tspan>
+            </text>
+          </g>
+          <g id="Group_117">
+            <g id="Group_115">
+              <g id="Graphic_99">
+                <title>Rectangle</title>
+                <rect x="-398.75" y="-903.5" width="162.5" height="138.5" fill="#e4eaf4"/>
+                <rect x="-398.75" y="-903.5" width="162.5" height="138.5" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text transform="translate(-393.75 -898.5)" fill="black">
+                  <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="43.802" y="15">Task Slot</tspan>
+                  <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="51.794" y="33.448">(256M)</tspan>
+                </text>
+              </g>
+              <g id="Group_96">
+                <g id="Graphic_98">
+                  <path d="M -349.75 -858 L -285.25 -858 C -279.72715 -858 -275.25 -853.5228 -275.25 -848 L -275.25 -783.5 C -275.25 -777.97715 -279.72715 -773.5 -285.25 -773.5 L -349.75 -773.5 C -355.27285 -773.5 -359.75 -777.97715 -359.75 -783.5 L -359.75 -848 C -359.75 -853.5228 -355.27285 -858 -349.75 -858 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.0,4.0" stroke-width="1"/>
+                </g>
+                <g id="Graphic_97">
+                  <title>Circle</title>
+                  <circle cx="-317.5" cy="-815.75" r="35.2500563260418" fill="#ffd966"/>
+                  <text transform="translate(-345.7 -830.086)" fill="black">
+                    <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="16.53" y="11">Sink</tspan>
+                    <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="25.336">[1]</tspan>
+                  </text>
+                </g>
+              </g>
+            </g>
+            <g id="Group_116">
+              <g id="Graphic_104">
+                <title>Rectangle</title>
+                <rect x="-629.25" y="-903.5" width="220" height="138.5" fill="#e4eaf4"/>
+                <rect x="-629.25" y="-903.5" width="220" height="138.5" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text transform="translate(-624.25 -898.5)" fill="black">
+                  <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="72.552" y="15">Task Slot</tspan>
+                  <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="80.544" y="33.448">(512M)</tspan>
+                </text>
+              </g>
+              <g id="Group_112">
+                <g id="Graphic_114">
+                  <path d="M -551.5 -857.5 L -487 -857.5 C -481.47715 -857.5 -477 -853.0228 -477 -847.5 L -477 -783 C -477 -777.47715 -481.47715 -773 -487 -773 L -551.5 -773 C -557.02285 -773 -561.5 -777.47715 -561.5 -783 L -561.5 -847.5 C -561.5 -853.0228 -557.02285 -857.5 -551.5 -857.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.0,4.0" stroke-width="1"/>
+                </g>
+                <g id="Graphic_113">
+                  <title>Circle</title>
+                  <circle cx="-519.25" cy="-815.25" r="35.2500563260418" fill="#ffd966"/>
+                  <text transform="translate(-547.45 -843.922)" fill="black">
+                    <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="4.98" y="11">keyBy( )/</tspan>
+                    <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x=".66" y="25.336">window( )/</tspan>
+                    <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="8.754" y="39.671997">apply( )</tspan>
+                    <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="54.007996">[1]</tspan>
+                  </text>
+                </g>
+              </g>
+            </g>
+            <g id="Group_105">
+              <g id="Graphic_110">
+                <rect x="-802.25" y="-903.5" width="162.5" height="138.5" fill="#e4eaf4"/>
+                <rect x="-802.25" y="-903.5" width="162.5" height="138.5" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text transform="translate(-797.25 -898.5)" fill="black">
+                  <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="43.802" y="15">Task Slot</tspan>
+                  <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="51.794" y="33.448">(256M)</tspan>
+                </text>
+              </g>
+              <g id="Group_106">
+                <g id="Graphic_109">
+                  <title>Rectangle</title>
+                  <path d="M -785.25 -857.75 L -656.75 -857.75 C -651.22715 -857.75 -646.75 -853.2728 -646.75 -847.75 L -646.75 -783.25 C -646.75 -777.72715 -651.22715 -773.25 -656.75 -773.25 L -785.25 -773.25 C -790.77285 -773.25 -795.25 -777.72715 -795.25 -783.25 L -795.25 -847.75 C -795.25 -853.2728 -790.77285 -857.75 -785.25 -857.75 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.0,4.0" stroke-width="1"/>
+                </g>
+                <g id="Graphic_108">
+                  <circle cx="-751.5" cy="-815.5" r="35.2500563260417" fill="#ffd966"/>
+                  <circle cx="-751.5" cy="-815.5" r="35.2500563260417" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                  <text transform="translate(-779.7 -829.836)" fill="black">
+                    <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="9.198" y="11">Source</tspan>
+                    <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="25.336">[1]</tspan>
+                  </text>
+                </g>
+                <g id="Graphic_107">
+                  <circle cx="-690.5" cy="-815.5" r="35.2500563260417" fill="#ffd966"/>
+                  <circle cx="-690.5" cy="-815.5" r="35.2500563260417" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                  <text transform="translate(-718.7 -829.836)" fill="black">
+                    <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="11.526" y="11">map( )</tspan>
+                    <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="25.336">[1]</tspan>
+                  </text>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g id="Group_119">
+          <g id="Graphic_137">
+            <rect x="-813" y="-743" width="587.5" height="185" fill="#c4e0b4"/>
+            <rect x="-813" y="-743" width="587.5" height="185" stroke="#b34400" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+            <text transform="translate(-808 -738)" fill="black">
+              <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="241.038" y="15">TaskManager</tspan>
+            </text>
+          </g>
+          <g id="Group_120">
+            <g id="Graphic_136">
+              <title>Rectangle</title>
+              <rect x="-398.75" y="-705.5" width="162.5" height="138.5" fill="#e4eaf4"/>
+              <rect x="-398.75" y="-705.5" width="162.5" height="138.5" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+              <text transform="translate(-393.75 -700.5)" fill="black">
+                <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="43.802" y="15">Task Slot</tspan>
+                <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="39.506" y="33.448">(unknown)</tspan>
+              </text>
+            </g>
+            <g id="Group_127">
+              <g id="Graphic_131">
+                <rect x="-629.25" y="-705.5" width="220" height="138.5" fill="#e4eaf4"/>
+                <rect x="-629.25" y="-705.5" width="220" height="138.5" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text transform="translate(-624.25 -700.5)" fill="black">
+                  <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="72.552" y="15">Task Slot</tspan>
+                  <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="80.544" y="33.448">(512M)</tspan>
+                </text>
+              </g>
+              <g id="Group_128">
+                <g id="Graphic_130">
+                  <path d="M -551.5 -659.5 L -487 -659.5 C -481.47715 -659.5 -477 -655.02285 -477 -649.5 L -477 -585 C -477 -579.47715 -481.47715 -575 -487 -575 L -551.5 -575 C -557.02285 -575 -561.5 -579.47715 -561.5 -585 L -561.5 -649.5 C -561.5 -655.02285 -557.02285 -659.5 -551.5 -659.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.0,4.0" stroke-width="1"/>
+                </g>
+                <g id="Graphic_129">
+                  <title>Circle</title>
+                  <circle cx="-519.25" cy="-617.25" r="35.2500563260418" fill="#ffd966"/>
+                  <text transform="translate(-547.45 -645.922)" fill="black">
+                    <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="4.98" y="11">keyBy( )/</tspan>
+                    <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x=".66" y="25.336">window( )/</tspan>
+                    <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="8.754" y="39.671997">apply( )</tspan>
+                    <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="54.007996">[2]</tspan>
+                  </text>
+                </g>
+              </g>
+            </g>
+            <g id="Group_121">
+              <g id="Graphic_126">
+                <rect x="-802.25" y="-705.5" width="162.5" height="138.5" fill="#e4eaf4"/>
+                <rect x="-802.25" y="-705.5" width="162.5" height="138.5" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text transform="translate(-797.25 -700.5)" fill="black">
+                  <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="43.802" y="15">Task Slot</tspan>
+                  <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="51.794" y="33.448">(256M)</tspan>
+                </text>
+              </g>
+              <g id="Group_122">
+                <g id="Graphic_125">
+                  <title>Rectangle</title>
+                  <path d="M -785.25 -659.75 L -656.75 -659.75 C -651.22715 -659.75 -646.75 -655.27285 -646.75 -649.75 L -646.75 -585.25 C -646.75 -579.72715 -651.22715 -575.25 -656.75 -575.25 L -785.25 -575.25 C -790.77285 -575.25 -795.25 -579.72715 -795.25 -585.25 L -795.25 -649.75 C -795.25 -655.27285 -790.77285 -659.75 -785.25 -659.75 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.0,4.0" stroke-width="1"/>
+                </g>
+                <g id="Graphic_124">
+                  <circle cx="-751.5" cy="-617.5" r="35.2500563260418" fill="#ffd966"/>
+                  <circle cx="-751.5" cy="-617.5" r="35.2500563260418" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                  <text transform="translate(-779.7 -631.836)" fill="black">
+                    <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="9.198" y="11">Source</tspan>
+                    <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="25.336">[2]</tspan>
+                  </text>
+                </g>
+                <g id="Graphic_123">
+                  <title>Circle</title>
+                  <circle cx="-690.5" cy="-617.5" r="35.2500563260418" fill="#ffd966"/>
+                  <circle cx="-690.5" cy="-617.5" r="35.2500563260418" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                  <text transform="translate(-718.7 -631.836)" fill="black">
+                    <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="11.526" y="11">map( )</tspan>
+                    <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="25.336">[2]</tspan>
+                  </text>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g id="Group_138">
+          <g id="Graphic_156">
+            <title>Rectangle</title>
+            <rect x="-813" y="-545" width="587.5" height="185" fill="#c4e0b4"/>
+            <rect x="-813" y="-545" width="587.5" height="185" stroke="#b34400" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+            <text transform="translate(-808 -540)" fill="black">
+              <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="241.038" y="15">TaskManager</tspan>
+            </text>
+          </g>
+          <g id="Group_139">
+            <g id="Graphic_155">
+              <title>Rectangle</title>
+              <rect x="-398.75" y="-507.5" width="162.5" height="138.5" fill="#e4eaf4"/>
+              <rect x="-398.75" y="-507.5" width="162.5" height="138.5" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+              <text transform="translate(-393.75 -502.5)" fill="black">
+                <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="43.802" y="15">Task Slot</tspan>
+                <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="39.506" y="33.448">(unknown)</tspan>
+              </text>
+            </g>
+            <g id="Group_146">
+              <g id="Graphic_150">
+                <rect x="-629.25" y="-507.5" width="220" height="138.5" fill="#e4eaf4"/>
+                <rect x="-629.25" y="-507.5" width="220" height="138.5" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text transform="translate(-624.25 -502.5)" fill="black">
+                  <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="72.552" y="15">Task Slot</tspan>
+                  <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="80.544" y="33.448">(512M)</tspan>
+                </text>
+              </g>
+              <g id="Group_147">
+                <g id="Graphic_149">
+                  <path d="M -551.5 -461.5 L -487 -461.5 C -481.47715 -461.5 -477 -457.02285 -477 -451.5 L -477 -387 C -477 -381.47715 -481.47715 -377 -487 -377 L -551.5 -377 C -557.02285 -377 -561.5 -381.47715 -561.5 -387 L -561.5 -451.5 C -561.5 -457.02285 -557.02285 -461.5 -551.5 -461.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.0,4.0" stroke-width="1"/>
+                </g>
+                <g id="Graphic_148">
+                  <title>Circle</title>
+                  <circle cx="-519.25" cy="-419.25" r="35.2500563260418" fill="#ffd966"/>
+                  <text transform="translate(-547.45 -447.922)" fill="black">
+                    <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="4.98" y="11">keyBy( )/</tspan>
+                    <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x=".66" y="25.336">window( )/</tspan>
+                    <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="8.754" y="39.671997">apply( )</tspan>
+                    <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="54.007996">[3]</tspan>
+                  </text>
+                </g>
+              </g>
+            </g>
+            <g id="Group_140">
+              <g id="Graphic_145">
+                <rect x="-802.25" y="-507.5" width="162.5" height="138.5" fill="#e4eaf4"/>
+                <rect x="-802.25" y="-507.5" width="162.5" height="138.5" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                <text transform="translate(-797.25 -502.5)" fill="black">
+                  <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="43.802" y="15">Task Slot</tspan>
+                  <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x="51.794" y="33.448">(256M)</tspan>
+                </text>
+              </g>
+              <g id="Group_141">
+                <g id="Graphic_144">
+                  <title>Rectangle</title>
+                  <path d="M -785.25 -461.75 L -656.75 -461.75 C -651.22715 -461.75 -646.75 -457.27285 -646.75 -451.75 L -646.75 -387.25 C -646.75 -381.72715 -651.22715 -377.25 -656.75 -377.25 L -785.25 -377.25 C -790.77285 -377.25 -795.25 -381.72715 -795.25 -387.25 L -795.25 -451.75 C -795.25 -457.27285 -790.77285 -461.75 -785.25 -461.75 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.0,4.0" stroke-width="1"/>
+                </g>
+                <g id="Graphic_143">
+                  <title>Circle</title>
+                  <circle cx="-751.5" cy="-419.5" r="35.2500563260418" fill="#ffd966"/>
+                  <circle cx="-751.5" cy="-419.5" r="35.2500563260418" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                  <text transform="translate(-779.7 -433.836)" fill="black">
+                    <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="9.198" y="11">Source</tspan>
+                    <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="25.336">[3]</tspan>
+                  </text>
+                </g>
+                <g id="Graphic_142">
+                  <circle cx="-690.5" cy="-419.5" r="35.2500563260418" fill="#ffd966"/>
+                  <circle cx="-690.5" cy="-419.5" r="35.2500563260418" stroke="#a5a5a5" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+                  <text transform="translate(-718.7 -433.836)" fill="black">
+                    <tspan font-family="Helvetica Neue" font-size="12" font-weight="400" fill="black" x="11.526" y="11">map( )</tspan>
+                    <tspan font-family="Helvetica Neue" font-size="12" font-style="italic" font-weight="400" fill="black" x="21.756" y="25.336">[3]</tspan>
+                  </text>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+        <g id="Graphic_271">
+          <text transform="translate(-391 -978.224)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-style="italic" font-weight="400" fill="black" x=".4" y="15">Threads</tspan>
+          </text>
+        </g>
+        <g id="Graphic_272">
+          <text transform="translate(-929 -659.724)" fill="black">
+            <tspan font-family="Helvetica Neue" font-size="16" font-style="italic" font-weight="400" fill="black" x=".272" y="15">Processes</tspan>
+          </text>
+        </g>
+        <g id="Line_273">
+          <line x1="-885.7217" y1="-665.5" x2="-816.8224" y2="-830.1133" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+        <g id="Line_274">
+          <line x1="-850" y1="-648.71386" x2="-822.8911" y2="-647.561" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+        <g id="Line_275">
+          <line x1="-886.1729" y1="-635.5" x2="-816.5849" y2="-456.3685" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+        <g id="Line_277">
+          <line x1="-357.64437" y1="-954" x2="-332.52903" y2="-867.5073" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+        <g id="Line_278">
+          <line x1="-377.34146" y1="-954" x2="-472.42164" y2="-861.0361" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+        <g id="Line_279">
+          <line x1="-396" y1="-954.4624" x2="-637.6472" y2="-851.1397" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        </g>
+      </g>
+      <g id="Graphic_286">
+        <text transform="translate(-1411.0756 -341.224)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x=".248" y="15">Per-job Mode</tspan>
+        </text>
+      </g>
+      <g id="Graphic_287">
+        <text transform="translate(-631.25 -341.224)" fill="black">
+          <tspan font-family="Helvetica Neue" font-size="16" font-weight="400" fill="black" x=".38" y="15">Session Mode</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>

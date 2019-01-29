@@ -1,0 +1,5185 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Apache Flink 1.5.1 Documentation: Table Sources & Sinks</title>
+    <link rel="shortcut icon" href="//flink-china.org/doc/blink/page/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="//flink-china.org/doc/blink/page/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/flink.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/syntax.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/codetabs.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/font-awesome/css/font-awesome.min.css">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    
+
+    <!-- Main content. -->
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-lg-3" id="sidenavcol">
+          
+
+
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="sidenav-logo">
+  <p><a href="//flink-china.org/doc/blink"><img class="bottom" alt="Apache Flink" src="//flink-china.org/doc/blink/page/img/navbar-brand-logo.jpg"></a> v1.5.1</p>
+</div>
+<ul id="sidenav">
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/"><i class="fa fa-home title" aria-hidden="true"></i> Home</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-2" data-toggle="collapse"><i class="fa fa-map-o title appetizer" aria-hidden="true"></i> Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-2"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/concepts/programming-model.html">Programming Model</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/concepts/runtime.html">Distributed Runtime</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-6" data-toggle="collapse"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-6"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-7" data-toggle="collapse">API Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-7"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/datastream_api.html">DataStream API</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-10" data-toggle="collapse">Setup Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-10"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/local_setup.html">Local Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/setup_quickstart.html"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-16" data-toggle="collapse"><i class="fa fa-file-code-o title appetizer" aria-hidden="true"></i> Examples <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-16"><ul>
+  <li><a href="//flink-china.org/doc/blink/examples/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/examples.html">DataStream Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/examples.html">DataSet Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/stream_sql_quickstart.html">Stream SQL Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/batch_sql_quickstart.html">Batch SQL Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/scala_shell_quickstart.html">Scala Shell Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/zeppelin_quickstart.html">Flink on Zeppelin Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/examples.html">Flink-Hive Examples</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-25" data-toggle="collapse"><i class="fa fa-cogs title maindish" aria-hidden="true"></i> Project Setup <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-25"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/java_api_quickstart.html">Project Template for Java</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/scala_api_quickstart.html">Project Template for Scala</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/dependencies.html">Configuring Dependencies, Connectors, Libraries</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/ide_setup.html">IDE Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/scala_shell.html">Scala Shell</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/building.html">Building Flink from Source</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-34" data-toggle="collapse" class="active"><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development</a><div class="collapse in" id="collapse-34"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-35" data-toggle="collapse">Basic API Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-35"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/api_concepts.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/scala_api_extensions.html">Scala API Extensions</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/java8.html">Java 8</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-39" data-toggle="collapse">Streaming (DataStream API) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-39"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/datastream_api.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-40" data-toggle="collapse">Event Time <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-40"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/event_time.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/event_timestamps_watermarks.html">Generating Timestamps / Watermarks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/event_timestamp_extractors.html">Pre-defined Timestamp Extractors / Watermark Emitters</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-44" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-44"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/stream/state/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/state.html">Working with State</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/broadcast_state.html">The Broadcast State Pattern</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/checkpointing.html">Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/queryable_state.html">Queryable State</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/custom_serialization.html">Custom Serialization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-52" data-toggle="collapse">Operators <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-52"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/stream/operators/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/windows.html">Windows</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/process_function.html">Process Function</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/asyncio.html">Async I/O</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-57" data-toggle="collapse">Connectors <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-57"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/connectors/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/guarantees.html">Fault Tolerance Guarantees</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/kafka.html">Kafka</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/cassandra.html">Cassandra</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/kinesis.html">Kinesis</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/elasticsearch.html">Elasticsearch</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/filesystem_sink.html">Rolling File Sink</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/rabbitmq.html">RabbitMQ</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/nifi.html">NiFi</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/twitter.html">Twitter</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/side_output.html">Side Outputs</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/testing.html">Testing</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/experimental.html">Experimental Features</a></li>
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-73" data-toggle="collapse">Batch (DataSet API) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-73"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/batch/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/dataset_transformations.html">Transformations</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/fault_tolerance.html">Fault Tolerance</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/zip_elements_guide.html">Zipping Elements</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/iterations.html">Iterations</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/connectors.html">Connectors</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/hadoop_compatibility.html">Hadoop Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/local_execution.html">Local Execution</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/cluster_execution.html">Cluster Execution</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-84" data-toggle="collapse" class="active">Table API & SQL</a><div class="collapse in" id="collapse-84"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/table/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/common.html">Concepts & Common API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/hive_compatibility.html">Hive Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-87" data-toggle="collapse">Streaming Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-87"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/table/streaming/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/dynamic_tables.html">Dynamic Tables</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/time_attributes.html">Time Attributes</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/joins.html">Joins in Continuous Queries</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/temporal_tables.html">Temporal Tables</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/match_recognize.html">Detecting Patterns</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/query_configuration.html">Query Configuration</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/tableApi.html">Table API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sql.html">SQL</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/supported_ddl.html">SQL Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sourceSinks.html" class="active">Table Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/udfs.html">User-defined Functions</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sqlClient.html">SQL Client</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/resource.html">SQL Resource</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/catalog.html">Catalog</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming_optimization.html">Streaming Aggregation Optimization</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/multiple_tablesink_optimization.html">Multiple TableSink Optimization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-106" data-toggle="collapse">Data Types & Serialization <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-106"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/types_serialization.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/custom_serializers.html">Custom Serializers</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-109" data-toggle="collapse">Managing Execution <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-109"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/execution_configuration.html">Execution Configuration</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/packaging.html">Program Packaging</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/parallel.html">Parallel Execution</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/execution_plans.html">Execution Plans</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/restart_strategies.html">Restart Strategies</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-116" data-toggle="collapse">Libraries <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-116"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/cep.html">Event Processing (CEP)</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-118" data-toggle="collapse">Graphs: Gelly <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-118"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/libs/gelly/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_api.html">Graph API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/iterative_graph_processing.html">Iterative Graph Processing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/library_methods.html">Library Methods</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_algorithms.html">Graph Algorithms</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_generators.html">Graph Generators</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/bipartite_graph.html">Bipartite Graph</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-126" data-toggle="collapse">Machine Learning <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-126"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/libs/ml/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/quickstart.html">Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/contribution_guide.html">How to Contribute</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/cross_validation.html">Cross Validation</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/distance_metrics.html">Distance Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/knn.html">k-Nearest Neighbors Join</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/min_max_scaler.html">MinMax Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/multiple_linear_regression.html">Multiple Linear Regression</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/pipelines.html">Pipelines</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/polynomial_features.html">Polynomial Features</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/sos.html">Stochastic Outlier Selection</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/standard_scaler.html">Standard Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/als.html">ALS</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/svm.html">SVM using CoCoA</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/best_practices.html">Best Practices</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/migration.html">API Migration Guides</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-145" data-toggle="collapse"><i class="fa fa-sliders title maindish" aria-hidden="true"></i> Deployment & Operations <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-145"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-146" data-toggle="collapse">Clusters & Deployment <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-146"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/cluster_setup.html">Standalone Cluster</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/yarn_setup.html">YARN</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/mesos.html">Mesos</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/kubernetes.html">Kubernetes</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/docker.html">Docker</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/aws.html">AWS</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/gce_setup.html">Google Compute Engine</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/mapr_setup.html">MapR</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/hadoop.html">Hadoop Integration</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-157" data-toggle="collapse">High Availability (HA) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-157"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/ha/jobmanager_high_availability.html">JobManager High Availability (HA)</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/ha/jobmanager_failover.html">JobManager Failover</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-161" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-161"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/checkpoints.html">Checkpoints</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/savepoints.html">Savepoints</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/large_state_tuning.html">Tuning Checkpoints and Large State</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/ops/config.html">Configuration</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/production_ready.html">Production Readiness Checklist</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/cli.html">CLI</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/security-kerberos.html">Kerberos</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/security-ssl.html">SSL Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/zeppelin.html">Flink on Zeppelin</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/upgrading.html">Upgrading Applications and Flink Versions</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-176" data-toggle="collapse"><i class="fa fa-bug title maindish" aria-hidden="true"></i> Debugging & Monitoring <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-176"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/metrics.html">Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/logging.html">Logging</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/historyserver.html">History Server</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/checkpoint_monitoring.html">Monitoring Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/back_pressure.html">Monitoring Back Pressure</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/rest_api.html">Monitoring REST API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_event_time.html">Debugging Windows & Event Time</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_classloading.html">Debugging Classloading</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/application_profiling.html">Application Profiling</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_job_resources.html">Debugging Job Resources</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-188" data-toggle="collapse"><i class="fa fa-book title dessert" aria-hidden="true"></i> Internals <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-188"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/components.html">Component Stack</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/stream_checkpointing.html">Fault Tolerance for Data Streaming</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/job_scheduling.html">Jobs and Scheduling</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/task_lifecycle.html">Task Lifecycle</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/taskmanager_resource.html">TaskManager Resource</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+</ul>
+
+<div class="sidenav-search-box">
+  <form class="navbar-form" role="search" action="//flink-china.org/doc/blink/search-results.html">
+    <div class="form-group">
+      <input type="text" class="form-control" size="16px" name="q" placeholder="Search">
+    </div>
+    <button type="submit" class="btn btn-default">Go</button>
+  </form>
+</div>
+
+<div class="sidenav-versions">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Pick Docs Version
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.4">v1.4</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.3">v1.3</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.2">v1.2</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.1">v1.1</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.0">v1.0</a></li>
+      
+    </ul>
+  </div>
+</div>
+
+        </div>
+        <div class="col-lg-9 content" id="contentcol">
+          
+
+          
+
+
+
+
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+
+
+
+<ol class="breadcrumb">
+
+  
+  
+    <li><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development</li>
+  
+
+  
+  
+    <li><a href="//flink-china.org/doc/blink/dev/table/">Table API & SQL</a></li>
+  
+
+  
+  
+    <li class="active">Table Sources & Sinks</li>
+  
+
+</ol>
+
+<h1>Table Sources & Sinks</h1>
+
+
+
+
+<p>A <code class="highlighter-rouge">TableSource</code> provides access to data which is stored in external systems (database, key-value store, message queue) or files. After a <a href="common.html#register-a-tablesource">TableSource is registered in a TableEnvironment</a> it can accessed by <a href="tableApi.html">Table API</a> or <a href="sql.html">SQL</a> queries.</p>
+
+<p>A TableSink <a href="common.html#emit-a-table">emits a Table</a> to an external storage system, such as a database, key-value store, message queue, or file system (in different encodings, e.g., CSV, Parquet, or ORC).</p>
+
+<p>Have a look at the <a href="common.html">common concepts and API</a> page for details how to <a href="common.html#register-a-tablesource">register a TableSource</a> and how to <a href="common.html#emit-a-table">emit a Table through a TableSink</a>.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#provided-tablesources" id="markdown-toc-provided-tablesources">Provided TableSources</a>    <ul>
+      <li><a href="#kafkajsontablesource" id="markdown-toc-kafkajsontablesource">KafkaJsonTableSource</a></li>
+      <li><a href="#kafkaavrotablesource" id="markdown-toc-kafkaavrotablesource">KafkaAvroTableSource</a></li>
+      <li><a href="#configuring-a-processing-time-attribute" id="markdown-toc-configuring-a-processing-time-attribute">Configuring a Processing Time Attribute</a></li>
+      <li><a href="#configuring-a-rowtime-attribute" id="markdown-toc-configuring-a-rowtime-attribute">Configuring a Rowtime Attribute</a></li>
+      <li><a href="#csvtablesource" id="markdown-toc-csvtablesource">CsvTableSource</a></li>
+      <li><a href="#orcvectorizedcolumnrowtablesource-and-parquetvectorizedcolumnrowtablesource" id="markdown-toc-orcvectorizedcolumnrowtablesource-and-parquetvectorizedcolumnrowtablesource">OrcVectorizedColumnRowTableSource and ParquetVectorizedColumnRowTableSource</a></li>
+      <li><a href="#orctablesource" id="markdown-toc-orctablesource">OrcTableSource</a></li>
+      <li><a href="#hivetablesourcebeta" id="markdown-toc-hivetablesourcebeta">HiveTableSource（beta）</a></li>
+    </ul>
+  </li>
+  <li><a href="#provided-tablesinks" id="markdown-toc-provided-tablesinks">Provided TableSinks</a>    <ul>
+      <li><a href="#kafkajsontablesink" id="markdown-toc-kafkajsontablesink">KafkaJsonTableSink</a></li>
+      <li><a href="#csvtablesink" id="markdown-toc-csvtablesink">CsvTableSink</a></li>
+      <li><a href="#jdbcappendtablesink" id="markdown-toc-jdbcappendtablesink">JDBCAppendTableSink</a></li>
+      <li><a href="#cassandraappendtablesink" id="markdown-toc-cassandraappendtablesink">CassandraAppendTableSink</a></li>
+    </ul>
+  </li>
+  <li><a href="#define-a-tablesource" id="markdown-toc-define-a-tablesource">Define a TableSource</a>    <ul>
+      <li><a href="#defining-a-batchtablesource" id="markdown-toc-defining-a-batchtablesource">Defining a BatchTableSource</a></li>
+      <li><a href="#defining-a-streamtablesource" id="markdown-toc-defining-a-streamtablesource">Defining a StreamTableSource</a></li>
+      <li><a href="#defining-a-tablesource-with-time-attributes" id="markdown-toc-defining-a-tablesource-with-time-attributes">Defining a TableSource with Time Attributes</a></li>
+      <li><a href="#defining-a-tablesource-with-projection-push-down" id="markdown-toc-defining-a-tablesource-with-projection-push-down">Defining a TableSource with Projection Push-Down</a></li>
+      <li><a href="#defining-a-tablesource-with-filter-push-down" id="markdown-toc-defining-a-tablesource-with-filter-push-down">Defining a TableSource with Filter Push-Down</a></li>
+      <li><a href="#defining-a-tablesource-with-lookupable" id="markdown-toc-defining-a-tablesource-with-lookupable">Defining a TableSource with lookupable</a></li>
+    </ul>
+  </li>
+  <li><a href="#define-a-tablesink" id="markdown-toc-define-a-tablesink">Define a TableSink</a>    <ul>
+      <li><a href="#batchtablesink" id="markdown-toc-batchtablesink">BatchTableSink</a></li>
+      <li><a href="#appendstreamtablesink" id="markdown-toc-appendstreamtablesink">AppendStreamTableSink</a></li>
+      <li><a href="#retractstreamtablesink" id="markdown-toc-retractstreamtablesink">RetractStreamTableSink</a></li>
+      <li><a href="#upsertstreamtablesink" id="markdown-toc-upsertstreamtablesink">UpsertStreamTableSink</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="provided-tablesources">Provided TableSources</h2>
+
+<p>Currently, Flink provides the <code class="highlighter-rouge">CsvTableSource</code> to read CSV files and a few table sources to read JSON or Avro data from Kafka.
+A custom <code class="highlighter-rouge">TableSource</code> can be defined by implementing the <code class="highlighter-rouge">BatchTableSource</code> or <code class="highlighter-rouge">StreamTableSource</code> interface. See section on <a href="#define-a-tablesource">defining a custom TableSource</a> for details.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Class name</strong></td>
+      <td><strong>Maven dependency</strong></td>
+      <td><strong>Batch?</strong></td>
+      <td><strong>Streaming?</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Kafka011AvroTableSource</code></td>
+      <td><code class="highlighter-rouge">flink-connector-kafka-0.11</code></td>
+      <td>N</td>
+      <td>Y</td>
+      <td>A <code class="highlighter-rouge">TableSource</code> for Avro-encoded Kafka 0.11 topics.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Kafka011JsonTableSource</code></td>
+      <td><code class="highlighter-rouge">flink-connector-kafka-0.11</code></td>
+      <td>N</td>
+      <td>Y</td>
+      <td>A <code class="highlighter-rouge">TableSource</code> for flat Json-encoded Kafka 0.11 topics.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Kafka010AvroTableSource</code></td>
+      <td><code class="highlighter-rouge">flink-connector-kafka-0.10</code></td>
+      <td>N</td>
+      <td>Y</td>
+      <td>A <code class="highlighter-rouge">TableSource</code> for Avro-encoded Kafka 0.10 topics.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Kafka010JsonTableSource</code></td>
+      <td><code class="highlighter-rouge">flink-connector-kafka-0.10</code></td>
+      <td>N</td>
+      <td>Y</td>
+      <td>A <code class="highlighter-rouge">TableSource</code> for flat Json-encoded Kafka 0.10 topics.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Kafka09AvroTableSource</code></td>
+      <td><code class="highlighter-rouge">flink-connector-kafka-0.9</code></td>
+      <td>N</td>
+      <td>Y</td>
+      <td>A <code class="highlighter-rouge">TableSource</code> for Avro-encoded Kafka 0.9 topics.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Kafka09JsonTableSource</code></td>
+      <td><code class="highlighter-rouge">flink-connector-kafka-0.9</code></td>
+      <td>N</td>
+      <td>Y</td>
+      <td>A <code class="highlighter-rouge">TableSource</code> for flat Json-encoded Kafka 0.9 topics.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Kafka08AvroTableSource</code></td>
+      <td><code class="highlighter-rouge">flink-connector-kafka-0.8</code></td>
+      <td>N</td>
+      <td>Y</td>
+      <td>A <code class="highlighter-rouge">TableSource</code> for Avro-encoded Kafka 0.8 topics.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Kafka08JsonTableSource</code></td>
+      <td><code class="highlighter-rouge">flink-connector-kafka-0.8</code></td>
+      <td>N</td>
+      <td>Y</td>
+      <td>A <code class="highlighter-rouge">TableSource</code> for flat Json-encoded Kafka 0.8 topics.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">CsvTableSource</code></td>
+      <td><code class="highlighter-rouge">flink-table</code></td>
+      <td>Y</td>
+      <td>Y</td>
+      <td>A simple <code class="highlighter-rouge">TableSource</code> for CSV files.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">OrcVectorizedColumnRowTableSource</code></td>
+      <td><code class="highlighter-rouge">flink-table</code></td>
+      <td>Y</td>
+      <td>Y</td>
+      <td>A vectorized <code class="highlighter-rouge">TableSource</code> for ORC files.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ParquetVectorizedColumnRowTableSource</code></td>
+      <td><code class="highlighter-rouge">flink-table</code></td>
+      <td>Y</td>
+      <td>Y</td>
+      <td>A vectorized <code class="highlighter-rouge">TableSource</code> for Parquet files.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">OrcTableSource</code></td>
+      <td><code class="highlighter-rouge">flink-orc</code></td>
+      <td>Y</td>
+      <td>N</td>
+      <td>A <code class="highlighter-rouge">TableSource</code> for ORC files.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">HiveTableSource</code>(beta)</td>
+      <td><code class="highlighter-rouge">flink-connector-hive</code> and <code class="highlighter-rouge">flink-hadoop-compatibility</code></td>
+      <td>Y</td>
+      <td>N</td>
+      <td>A <code class="highlighter-rouge">TableSource</code> for hive table</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>All sources that come with the <code class="highlighter-rouge">flink-table</code> dependency are directly available for Table API or SQL programs. For all other table sources, you have to add the respective dependency in addition to the <code class="highlighter-rouge">flink-table</code> dependency.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="kafkajsontablesource">KafkaJsonTableSource</h3>
+
+<p>A <code class="highlighter-rouge">KafkaJsonTableSource</code> ingests JSON-encoded messages from a Kafka topic. Currently, only JSON records with flat (non-nested) schema are supported.</p>
+
+<p>A <code class="highlighter-rouge">KafkaJsonTableSource</code> is created and configured using a builder. The following example shows how to create a <code class="highlighter-rouge">KafkaJsonTableSource</code> with basic properties:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// create builder</span>
+<span class="n">KafkaTableSource</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Kafka010JsonTableSource</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+  <span class="c1">// set Kafka topic</span>
+  <span class="o">.</span><span class="na">forTopic</span><span class="o">(</span><span class="s">"sensors"</span><span class="o">)</span>
+  <span class="c1">// set Kafka consumer properties</span>
+  <span class="o">.</span><span class="na">withKafkaProperties</span><span class="o">(</span><span class="n">kafkaProps</span><span class="o">)</span>
+  <span class="c1">// set Table schema</span>
+  <span class="o">.</span><span class="na">withSchema</span><span class="o">(</span><span class="n">TableSchema</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"sensorId"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">LONG</span><span class="o">)</span>  
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"temp"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">DOUBLE</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"time"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">TIMESTAMP</span><span class="o">).</span><span class="na">build</span><span class="o">())</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="c1">// create builder
+</span><span class="k">val</span> <span class="n">source</span><span class="k">:</span> <span class="kt">KafkaTableSource</span> <span class="o">=</span> <span class="nc">Kafka010JsonTableSource</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+  <span class="c1">// set Kafka topic
+</span>  <span class="o">.</span><span class="n">forTopic</span><span class="o">(</span><span class="s">"sensors"</span><span class="o">)</span>
+  <span class="c1">// set Kafka consumer properties
+</span>  <span class="o">.</span><span class="n">withKafkaProperties</span><span class="o">(</span><span class="n">kafkaProps</span><span class="o">)</span>
+  <span class="c1">// set Table schema
+</span>  <span class="o">.</span><span class="n">withSchema</span><span class="o">(</span><span class="nc">TableSchema</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"sensorId"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">LONG</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"temp"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">DOUBLE</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"time"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">TIMESTAMP</span><span class="o">).</span><span class="n">build</span><span class="o">())</span>
+  <span class="o">.</span><span class="n">build</span><span class="o">()</span></code></pre></figure>
+
+  </div>
+</div>
+
+<h4 id="optional-configuration">Optional Configuration</h4>
+
+<ul>
+  <li>
+    <p><strong>Time Attributes:</strong> Please see the sections on <a href="#configuring-a-rowtime-attribute">configuring a rowtime attribute</a> and <a href="#configuring-a-processing-time-attribute">configuring a processing time attribute</a>.</p>
+  </li>
+  <li>
+    <p><strong>Explicit JSON parse schema:</strong> By default, the JSON records are parsed with the table schema. You can configure an explicit JSON schema and provide a mapping from table schema fields to JSON fields as shown in the following example.</p>
+  </li>
+</ul>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">mapping</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+<span class="n">mapping</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"sensorId"</span><span class="o">,</span> <span class="s">"id"</span><span class="o">);</span>
+<span class="n">mapping</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"temperature"</span><span class="o">,</span> <span class="s">"temp"</span><span class="o">);</span>
+
+<span class="n">KafkaTableSource</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Kafka010JsonTableSource</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+  <span class="c1">// ...</span>
+  <span class="c1">// set Table schema</span>
+  <span class="o">.</span><span class="na">withSchema</span><span class="o">(</span><span class="n">TableSchema</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"sensorId"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">LONG</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"temperature"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">DOUBLE</span><span class="o">).</span><span class="na">build</span><span class="o">())</span>
+  <span class="c1">// set JSON parsing schema</span>
+  <span class="o">.</span><span class="na">forJsonSchema</span><span class="o">(</span><span class="n">TableSchema</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">LONG</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"temp"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">DOUBLE</span><span class="o">).</span><span class="na">build</span><span class="o">())</span>
+  <span class="c1">// set mapping from table fields to JSON fields</span>
+  <span class="o">.</span><span class="na">withTableToJsonMapping</span><span class="o">(</span><span class="n">mapping</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">source</span><span class="k">:</span> <span class="kt">KafkaTableSource</span> <span class="o">=</span> <span class="nc">Kafka010JsonTableSource</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+  <span class="c1">// ...
+</span>  <span class="c1">// set Table schema
+</span>  <span class="o">.</span><span class="n">withSchema</span><span class="o">(</span><span class="nc">TableSchema</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"sensorId"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">LONG</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"temperature"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">DOUBLE</span><span class="o">).</span><span class="n">build</span><span class="o">())</span>
+  <span class="c1">// set JSON parsing schema
+</span>  <span class="o">.</span><span class="n">forJsonSchema</span><span class="o">(</span><span class="nc">TableSchema</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">LONG</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"temp"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">DOUBLE</span><span class="o">).</span><span class="n">build</span><span class="o">())</span>
+  <span class="c1">// set mapping from table fields to JSON fields
+</span>  <span class="o">.</span><span class="n">withTableToJsonMapping</span><span class="o">(</span><span class="nc">Map</span><span class="o">(</span>
+    <span class="s">"sensorId"</span> <span class="o">-&gt;</span> <span class="s">"id"</span><span class="o">,</span> 
+    <span class="s">"temperature"</span> <span class="o">-&gt;</span> <span class="s">"temp"</span><span class="o">).</span><span class="n">asJava</span><span class="o">)</span>
+  <span class="o">.</span><span class="n">build</span><span class="o">()</span></code></pre></figure>
+
+  </div>
+</div>
+
+<ul>
+  <li><strong>Missing Field Handling:</strong> By default, a missing JSON field is set to <code class="highlighter-rouge">null</code>. You can enable strict JSON parsing that will cancel the source (and query) if a field is missing.</li>
+</ul>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">KafkaTableSource</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Kafka010JsonTableSource</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+  <span class="c1">// ...</span>
+  <span class="c1">// configure missing field behavior</span>
+  <span class="o">.</span><span class="na">failOnMissingField</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">source</span><span class="k">:</span> <span class="kt">KafkaTableSource</span> <span class="o">=</span> <span class="nc">Kafka010JsonTableSource</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+  <span class="c1">// ...
+</span>  <span class="c1">// configure missing field behavior
+</span>  <span class="o">.</span><span class="n">failOnMissingField</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+  <span class="o">.</span><span class="n">build</span><span class="o">()</span></code></pre></figure>
+
+  </div>
+</div>
+
+<ul>
+  <li><strong>Specify the start reading position:</strong> By default, the table source will start reading data from the committed group offsets in Zookeeper or Kafka brokers. You can specify other start positions via the builder’s methods, which correspond to the configurations in section <a href="../connectors/kafka.html#kafka-consumers-start-position-configuration">Kafka Consumers Start Position Configuration</a>.</li>
+</ul>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">KafkaTableSource</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Kafka010JsonTableSource</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+  <span class="c1">// ...</span>
+  <span class="c1">// start reading from the earliest offset</span>
+  <span class="o">.</span><span class="na">fromEarliest</span><span class="o">()</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">source</span><span class="k">:</span> <span class="kt">KafkaTableSource</span> <span class="o">=</span> <span class="nc">Kafka010JsonTableSource</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+  <span class="c1">// ...
+</span>  <span class="c1">// start reading from the earliest offset
+</span>  <span class="o">.</span><span class="n">fromEarliest</span><span class="o">()</span>
+  <span class="o">.</span><span class="n">build</span><span class="o">()</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="kafkaavrotablesource">KafkaAvroTableSource</h3>
+
+<p>A <code class="highlighter-rouge">KafkaAvroTableSource</code> ingests Avro-encoded records from a Kafka topic.</p>
+
+<p>A <code class="highlighter-rouge">KafkaAvroTableSource</code> is created and configured using a builder. The following example shows how to create a <code class="highlighter-rouge">KafkaAvroTableSource</code> with basic properties:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// create builder</span>
+<span class="n">KafkaTableSource</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Kafka010AvroTableSource</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+  <span class="c1">// set Kafka topic</span>
+  <span class="o">.</span><span class="na">forTopic</span><span class="o">(</span><span class="s">"sensors"</span><span class="o">)</span>
+  <span class="c1">// set Kafka consumer properties</span>
+  <span class="o">.</span><span class="na">withKafkaProperties</span><span class="o">(</span><span class="n">kafkaProps</span><span class="o">)</span>
+  <span class="c1">// set Table schema</span>
+  <span class="o">.</span><span class="na">withSchema</span><span class="o">(</span><span class="n">TableSchema</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"sensorId"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">LONG</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"temp"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">DOUBLE</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"time"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">TIMESTAMP</span><span class="o">).</span><span class="na">build</span><span class="o">())</span>
+  <span class="c1">// set class of Avro record</span>
+  <span class="o">.</span><span class="na">forAvroRecordClass</span><span class="o">(</span><span class="n">SensorReading</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="c1">// create builder
+</span><span class="k">val</span> <span class="n">source</span><span class="k">:</span> <span class="kt">KafkaTableSource</span> <span class="o">=</span> <span class="nc">Kafka010JsonTableSource</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+  <span class="c1">// set Kafka topic
+</span>  <span class="o">.</span><span class="n">forTopic</span><span class="o">(</span><span class="s">"sensors"</span><span class="o">)</span>
+  <span class="c1">// set Kafka consumer properties
+</span>  <span class="o">.</span><span class="n">withKafkaProperties</span><span class="o">(</span><span class="n">kafkaProps</span><span class="o">)</span>
+  <span class="c1">// set Table schema
+</span>  <span class="o">.</span><span class="n">withSchema</span><span class="o">(</span><span class="nc">TableSchema</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"sensorId"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">LONG</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"temp"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">DOUBLE</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"time"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">TIMESTAMP</span><span class="o">).</span><span class="n">build</span><span class="o">())</span>
+  <span class="c1">// set class of Avro record
+</span>  <span class="o">.</span><span class="n">forAvroRecordClass</span><span class="o">(</span><span class="n">classOf</span><span class="o">[</span><span class="kt">SensorReading</span><span class="o">])</span>
+  <span class="o">.</span><span class="n">build</span><span class="o">()</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p><strong>NOTE:</strong> The specified Avro record class must provide all fields of the table schema with corresponding type.</p>
+
+<h4 id="optional-configuration-1">Optional Configuration</h4>
+
+<ul>
+  <li>
+    <p><strong>Time Attributes:</strong> Please see the sections on <a href="#configure-a-rowtime-attribute">configuring a rowtime attribute</a> and <a href="#configure-a-processing-time-attribute">configuring a processing time attribute</a>.</p>
+  </li>
+  <li>
+    <p><strong>Explicit Schema Field to Avro Mapping:</strong> By default, all fields of the table schema are mapped by name to fields of the Avro records. If the fields in the Avro records have different names, a mapping from table schema fields to Avro fields can be specified.</p>
+  </li>
+</ul>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">mapping</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+<span class="n">mapping</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"sensorId"</span><span class="o">,</span> <span class="s">"id"</span><span class="o">);</span>
+<span class="n">mapping</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"temperature"</span><span class="o">,</span> <span class="s">"temp"</span><span class="o">);</span>
+
+<span class="n">KafkaTableSource</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Kafka010AvroTableSource</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+  <span class="c1">// ...</span>
+  <span class="c1">// set Table schema</span>
+  <span class="o">.</span><span class="na">withSchema</span><span class="o">(</span><span class="n">TableSchema</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"sensorId"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">LONG</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"temperature"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">DOUBLE</span><span class="o">).</span><span class="na">build</span><span class="o">())</span>
+  <span class="c1">// set class of Avro record with fields [id, temp]</span>
+  <span class="o">.</span><span class="na">forAvroRecordClass</span><span class="o">(</span><span class="n">SensorReading</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+  <span class="c1">// set mapping from table fields to Avro fields</span>
+  <span class="o">.</span><span class="na">withTableToAvroMapping</span><span class="o">(</span><span class="n">mapping</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">source</span><span class="k">:</span> <span class="kt">KafkaTableSource</span> <span class="o">=</span> <span class="nc">Kafka010AvroTableSource</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+  <span class="c1">// ...
+</span>  <span class="c1">// set Table schema
+</span>  <span class="o">.</span><span class="n">withSchema</span><span class="o">(</span><span class="nc">TableSchema</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"sensorId"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">LONG</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"temperature"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">DOUBLE</span><span class="o">).</span><span class="n">build</span><span class="o">())</span>
+  <span class="c1">// set class of Avro record with fields [id, temp]
+</span>  <span class="o">.</span><span class="n">forAvroRecordClass</span><span class="o">(</span><span class="n">classOf</span><span class="o">[</span><span class="kt">SensorReading</span><span class="o">])</span>
+  <span class="c1">// set mapping from table fields to Avro fields
+</span>  <span class="o">.</span><span class="n">withTableToAvroMapping</span><span class="o">(</span><span class="nc">Map</span><span class="o">(</span>
+    <span class="s">"sensorId"</span> <span class="o">-&gt;</span> <span class="s">"id"</span><span class="o">,</span> 
+    <span class="s">"temperature"</span> <span class="o">-&gt;</span> <span class="s">"temp"</span><span class="o">).</span><span class="n">asJava</span><span class="o">)</span>
+  <span class="o">.</span><span class="n">build</span><span class="o">()</span></code></pre></figure>
+
+  </div>
+</div>
+
+<ul>
+  <li><strong>Specify the start reading position:</strong> By default, the table source will start reading data from the committed group offsets in Zookeeper or Kafka brokers. You can specify other start positions via the builder’s methods, which correspond to the configurations in section <a href="../connectors/kafka.html#kafka-consumers-start-position-configuration">Kafka Consumers Start Position Configuration</a>.</li>
+</ul>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">KafkaTableSource</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Kafka010AvroTableSource</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+  <span class="c1">// ...</span>
+  <span class="c1">// start reading from the earliest offset</span>
+  <span class="o">.</span><span class="na">fromEarliest</span><span class="o">()</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">source</span><span class="k">:</span> <span class="kt">KafkaTableSource</span> <span class="o">=</span> <span class="nc">Kafka010AvroTableSource</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+  <span class="c1">// ...
+</span>  <span class="c1">// start reading from the earliest offset
+</span>  <span class="o">.</span><span class="n">fromEarliest</span><span class="o">()</span>
+  <span class="o">.</span><span class="n">build</span><span class="o">()</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="configuring-a-processing-time-attribute">Configuring a Processing Time Attribute</h3>
+
+<p><a href="streaming.html#processing-time">Processing time attributes</a> are commonly used in streaming queries. A processing time attribute returns the current wall-clock time of the operator that accesses it.</p>
+
+<p>Batch queries support processing time attributes as well. However, processing time attributes are initialized with the wall-clock time of the table scan operator and keep this value throughout the query evaluation.</p>
+
+<p>A table schema field of type <code class="highlighter-rouge">PROCTIME_INDICATOR</code> can be declared as a processing time attribute as shown in the following example.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">KafkaTableSource</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Kafka010JsonTableSource</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+  <span class="c1">// ... </span>
+  <span class="o">.</span><span class="na">withSchema</span><span class="o">(</span><span class="n">TableSchema</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"sensorId"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">LONG</span><span class="o">)</span>  
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"temp"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">DOUBLE</span><span class="o">)</span>
+    <span class="c1">// field "ptime" is of type TIMESTAMP</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"ptime"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">PROCTIME_INDICATOR</span><span class="o">).</span><span class="na">build</span><span class="o">())</span>
+  <span class="c1">// declare "ptime" as processing time attribute</span>
+  <span class="o">.</span><span class="na">withProctimeAttribute</span><span class="o">(</span><span class="s">"ptime"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">source</span><span class="k">:</span> <span class="kt">KafkaTableSource</span> <span class="o">=</span> <span class="nc">Kafka010JsonTableSource</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+  <span class="c1">// ...
+</span>  <span class="o">.</span><span class="n">withSchema</span><span class="o">(</span><span class="nc">TableSchema</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"sensorId"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">LONG</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"temp"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">DOUBLE</span><span class="o">)</span>
+    <span class="c1">// field "ptime" is of type TIMESTAMP
+</span>    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"ptime"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">PROCTIME_INDICATOR</span><span class="o">).</span><span class="n">build</span><span class="o">())</span>
+  <span class="c1">// declare "ptime" as processing time attribute
+</span>  <span class="o">.</span><span class="n">withProctimeAttribute</span><span class="o">(</span><span class="s">"ptime"</span><span class="o">)</span>
+  <span class="o">.</span><span class="n">build</span><span class="o">()</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="configuring-a-rowtime-attribute">Configuring a Rowtime Attribute</h3>
+
+<p><a href="streaming.html#event-time">Rowtime attributes</a> are attributes of type <code class="highlighter-rouge">ROWTIME_INDICATOR</code> and handled in a unified way in stream and batch queries.</p>
+
+<p>A table schema field of type <code class="highlighter-rouge">ROWTIME_INDICATOR</code> can be declared as rowtime attribute by specifying</p>
+
+<ul>
+  <li>the name of the field,</li>
+  <li>a <code class="highlighter-rouge">TimestampExtractor</code> that computes the actual value for the attribute (usually from one or more other attributes), and</li>
+  <li>a <code class="highlighter-rouge">WatermarkStrategy</code> that specifies how watermarks are generated for the rowtime attribute.</li>
+</ul>
+
+<p>The following example shows how to configure a rowtime attribute.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">KafkaTableSource</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Kafka010JsonTableSource</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+  <span class="c1">// ...</span>
+  <span class="o">.</span><span class="na">withSchema</span><span class="o">(</span><span class="n">TableSchema</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"sensorId"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">LONG</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"temp"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">DOUBLE</span><span class="o">)</span>
+    <span class="c1">// field "rtime" is of type ROWTIME_INDICATOR</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"rtime"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">ROWTIME_INDICATOR</span><span class="o">).</span><span class="na">build</span><span class="o">())</span>
+  <span class="o">.</span><span class="na">withRowtimeAttribute</span><span class="o">(</span>
+    <span class="c1">// "rtime" is rowtime attribute</span>
+    <span class="s">"rtime"</span><span class="o">,</span>
+    <span class="c1">// value of "rtime" is extracted from existing field with same name</span>
+    <span class="k">new</span> <span class="nf">ExistingField</span><span class="o">(</span><span class="s">"rtime"</span><span class="o">),</span>
+    <span class="c1">// values of "rtime" are at most out-of-order by 30 seconds</span>
+    <span class="k">new</span> <span class="nf">BoundedOutOfOrderWatermarks</span><span class="o">(</span><span class="mi">30000L</span><span class="o">))</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">source</span><span class="k">:</span> <span class="kt">KafkaTableSource</span> <span class="o">=</span> <span class="nc">Kafka010JsonTableSource</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+  <span class="c1">// ...
+</span>  <span class="o">.</span><span class="n">withSchema</span><span class="o">(</span><span class="nc">TableSchema</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"sensorId"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">LONG</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"temp"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">DOUBLE</span><span class="o">)</span>
+    <span class="c1">// field "rtime" is of type ROWTIME_INDICATOR
+</span>    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"rtime"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">ROWTIME_INDICATOR</span><span class="o">).</span><span class="n">build</span><span class="o">())</span>
+  <span class="o">.</span><span class="n">withRowtimeAttribute</span><span class="o">(</span>
+    <span class="c1">// "rtime" is rowtime attribute
+</span>    <span class="s">"rtime"</span><span class="o">,</span>
+    <span class="c1">// value of "rtime" is extracted from existing field with same name
+</span>    <span class="k">new</span> <span class="nc">ExistingField</span><span class="o">(</span><span class="s">"rtime"</span><span class="o">),</span>
+    <span class="c1">// values of "rtime" are at most out-of-order by 30 seconds
+</span>    <span class="k">new</span> <span class="nc">BoundedOutOfOrderTimestamps</span><span class="o">(</span><span class="mi">30000L</span><span class="o">))</span>
+  <span class="o">.</span><span class="n">build</span><span class="o">()</span></code></pre></figure>
+
+  </div>
+</div>
+
+<h4 id="extracting-kafka-010-timestamps-into-rowtime-attribute">Extracting Kafka 0.10+ Timestamps into Rowtime Attribute</h4>
+
+<p>Since Kafka 0.10, Kafka messages have a timestamp as metadata that specifies when the record was written into the Kafka topic. <code class="highlighter-rouge">KafkaTableSources</code> can assign Kafka’s message timestamp as rowtime attribute as follows:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">KafkaTableSource</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Kafka010JsonTableSource</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+  <span class="c1">// ...</span>
+  <span class="o">.</span><span class="na">withSchema</span><span class="o">(</span><span class="n">TableSchema</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"sensorId"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">LONG</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"temp"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">DOUBLE</span><span class="o">)</span>
+    <span class="c1">// field "rtime" is of type ROWTIME_INDICATOR</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"rtime"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">ROWTIME_INDICATOR</span><span class="o">).</span><span class="na">build</span><span class="o">())</span>
+  <span class="c1">// use Kafka timestamp as rowtime attribute</span>
+  <span class="o">.</span><span class="na">withKafkaTimestampAsRowtimeAttribute</span><span class="o">()(</span>
+    <span class="c1">// "rtime" is rowtime attribute</span>
+    <span class="s">"rtime"</span><span class="o">,</span>
+    <span class="c1">// values of "rtime" are ascending</span>
+    <span class="k">new</span> <span class="nf">AscendingTimestamps</span><span class="o">())</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">source</span><span class="k">:</span> <span class="kt">KafkaTableSource</span> <span class="o">=</span> <span class="nc">Kafka010JsonTableSource</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+  <span class="c1">// ...
+</span>  <span class="o">.</span><span class="n">withSchema</span><span class="o">(</span><span class="nc">TableSchema</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"sensorId"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">LONG</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"temp"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">DOUBLE</span><span class="o">)</span>
+    <span class="c1">// field "rtime" is of type ROWTIME_INDICATOR
+</span>    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"rtime"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">ROWTIME_INDICATOR</span><span class="o">).</span><span class="n">build</span><span class="o">())</span>
+  <span class="c1">// use Kafka timestamp as rowtime attribute
+</span>  <span class="o">.</span><span class="n">withKafkaTimestampAsRowtimeAttribute</span><span class="o">()(</span>
+    <span class="c1">// "rtime" is rowtime attribute
+</span>    <span class="s">"rtime"</span><span class="o">,</span>
+    <span class="c1">// values of "rtime" are ascending
+</span>    <span class="k">new</span> <span class="nc">AscendingTimestamps</span><span class="o">())</span>
+  <span class="o">.</span><span class="n">build</span><span class="o">()</span></code></pre></figure>
+
+  </div>
+</div>
+
+<h4 id="provided-timestampextractors">Provided TimestampExtractors</h4>
+
+<p>Flink provides <code class="highlighter-rouge">TimestampExtractor</code> implementations for common use cases.
+The following <code class="highlighter-rouge">TimestampExtractor</code> implementations are currently available:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">ExistingField(fieldName)</code>: Extracts the value of a rowtime attribute from an existing <code class="highlighter-rouge">LONG</code> or <code class="highlighter-rouge">TIMESTAMP</code> field.</li>
+  <li><code class="highlighter-rouge">StreamRecordTimestamp()</code>: Extracts the value of a rowtime attribute from the timestamp of the <code class="highlighter-rouge">DataStream</code> <code class="highlighter-rouge">StreamRecord</code>. Note, this <code class="highlighter-rouge">TimestampExtractor</code> is not available for batch table sources.</li>
+</ul>
+
+<p>A custom <code class="highlighter-rouge">TimestampExtractor</code> can be defined by implementing the corresponding interface.</p>
+
+<h4 id="provided-watermarkstrategies">Provided WatermarkStrategies</h4>
+
+<p>Flink provides <code class="highlighter-rouge">WatermarkStrategy</code> implementations for common use cases.
+The following <code class="highlighter-rouge">WatermarkStrategy</code> implementations are currently available:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">AscendingTimestamps</code>: A watermark strategy for ascending timestamps. Records with timestamps that are out-of-order will be considered late.</li>
+  <li><code class="highlighter-rouge">BoundedOutOfOrderTimestamps(delay)</code>: A watermark strategy for timestamps that are at most out-of-order by the specified delay.</li>
+</ul>
+
+<p>A custom <code class="highlighter-rouge">WatermarkStrategy</code> can be defined by implementing the corresponding interface.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="csvtablesource">CsvTableSource</h3>
+
+<p>The <code class="highlighter-rouge">CsvTableSource</code> is already included in <code class="highlighter-rouge">flink-table</code> without additional dependencies.</p>
+
+<p>The easiest way to create a <code class="highlighter-rouge">CsvTableSource</code> is by using the enclosed builder <code class="highlighter-rouge">CsvTableSource.builder()</code>, the builder has the following methods to configure properties:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">path(String path)</code> Sets the path to the CSV file, required.</li>
+  <li><code class="highlighter-rouge">field(String fieldName, InternalType fieldType)</code> Adds a field with the field name and field type, can be called multiple times, required. The call order of this method defines also the order of the fields in a row.</li>
+  <li><code class="highlighter-rouge">fieldDelimiter(String delim)</code> Sets the field delimiter, <code class="highlighter-rouge">","</code> by default.</li>
+  <li><code class="highlighter-rouge">lineDelimiter(String delim)</code> Sets the line delimiter, <code class="highlighter-rouge">"\n"</code> by default.</li>
+  <li><code class="highlighter-rouge">quoteCharacter(Character quote)</code> Sets the quote character for String values, <code class="highlighter-rouge">null</code> by default.</li>
+  <li><code class="highlighter-rouge">commentPrefix(String prefix)</code> Sets a prefix to indicate comments, <code class="highlighter-rouge">null</code> by default.</li>
+  <li><code class="highlighter-rouge">ignoreFirstLine()</code> Ignore the first line. Disabled by default.</li>
+  <li><code class="highlighter-rouge">ignoreParseErrors()</code> Skip records with parse error instead to fail. Throwing an exception by default.</li>
+</ul>
+
+<p>You can create the source as follows:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">CsvTableSource</span> <span class="n">csvTableSource</span> <span class="o">=</span> <span class="n">CsvTableSource</span>
+    <span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">path</span><span class="o">(</span><span class="s">"/path/to/your/file.csv"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">STRING</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">INT</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"score"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">DOUBLE</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">"comments"</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">STRING</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">fieldDelimiter</span><span class="o">(</span><span class="s">"#"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">lineDelimiter</span><span class="o">(</span><span class="s">"$"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">ignoreFirstLine</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">ignoreParseErrors</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">commentPrefix</span><span class="o">(</span><span class="s">"%"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">csvTableSource</span> <span class="k">=</span> <span class="nc">CsvTableSource</span>
+    <span class="o">.</span><span class="n">builder</span>
+    <span class="o">.</span><span class="n">path</span><span class="o">(</span><span class="s">"/path/to/your/file.csv"</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">STRING</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">INT</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"score"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">DOUBLE</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">field</span><span class="o">(</span><span class="s">"comments"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">STRING</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">fieldDelimiter</span><span class="o">(</span><span class="s">"#"</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">lineDelimiter</span><span class="o">(</span><span class="s">"$"</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">ignoreFirstLine</span>
+    <span class="o">.</span><span class="n">ignoreParseErrors</span>
+    <span class="o">.</span><span class="n">commentPrefix</span><span class="o">(</span><span class="s">"%"</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">build</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="orcvectorizedcolumnrowtablesource-and-parquetvectorizedcolumnrowtablesource">OrcVectorizedColumnRowTableSource and ParquetVectorizedColumnRowTableSource</h3>
+
+<p>The <code class="highlighter-rouge">OrcVectorizedColumnRowTableSource</code> reads <a href="https://orc.apache.org">ORC files</a> and <code class="highlighter-rouge">ParquetVectorizedColumnRowTableSource</code> reads <a href="https://parquet.apache.org/">Parquet files</a>. Both return ColumnarRow.</p>
+
+<p>They are already include in <code class="highlighter-rouge">flink-table</code> without additional dependencies.</p>
+
+<div data-lang="scala">
+
+  <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">names</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">(</span><span class="s">"first"</span><span class="o">,</span> <span class="s">"id"</span><span class="o">,</span> <span class="s">"score"</span><span class="o">,</span> <span class="s">"last"</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">types</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">InternalType</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">(</span>
+  <span class="nc">StringType</span><span class="o">.</span><span class="nc">INSTANCE</span><span class="o">,</span>
+  <span class="nc">IntType</span><span class="o">.</span><span class="nc">INSTANCE</span><span class="o">,</span>
+  <span class="nc">DoubleType</span><span class="o">.</span><span class="nc">INSTANCE</span><span class="o">,</span>
+  <span class="nc">StringType</span><span class="o">.</span><span class="nc">INSTANCE</span>
+<span class="o">)</span>
+
+<span class="c1">// create OrcVectorizedColumnRowTableSource
+</span><span class="k">val</span> <span class="n">orcTable</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">OrcVectorizedColumnRowTableSource</span><span class="o">(</span>
+  <span class="k">new</span> <span class="nc">Path</span><span class="o">(</span><span class="s">"/path/to/your/file.orc"</span><span class="o">),</span>
+  <span class="n">types</span><span class="o">,</span>
+  <span class="n">names</span><span class="o">,</span>
+  <span class="kc">true</span><span class="o">)</span>
+
+<span class="c1">// create ParquetVectorizedColumnRowTableSource
+</span><span class="k">val</span> <span class="n">parquetTable</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">ParquetVectorizedColumnRowTableSource</span><span class="o">(</span>
+  <span class="k">new</span> <span class="nc">Path</span><span class="o">(</span><span class="s">"/path/to/your/file.parquet"</span><span class="o">),</span>
+  <span class="n">types</span><span class="o">,</span>
+  <span class="n">names</span><span class="o">,</span>
+  <span class="kc">true</span><span class="o">)</span></code></pre></figure>
+
+</div>
+<p>&lt;/div&gt;</p>
+
+<p><strong>Note:</strong> The <code class="highlighter-rouge">OrcVectorizedColumnRowTableSource</code> and <code class="highlighter-rouge">ParquetVectorizedColumnRowTableSource</code> do not support complex type yet.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="orctablesource">OrcTableSource</h3>
+
+<p>The <code class="highlighter-rouge">OrcTableSource</code> reads <a href="https://orc.apache.org">ORC files</a>. ORC is a file format for structured data and stores the data in a compressed, columnar representation. ORC is very storage efficient and supports projection and filter push-down.</p>
+
+<p>An <code class="highlighter-rouge">OrcTableSource</code> is created as shown below:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// create Hadoop Configuration</span>
+<span class="n">Configuration</span> <span class="n">config</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">();</span>
+
+<span class="n">OrcTableSource</span> <span class="n">orcTableSource</span> <span class="o">=</span> <span class="n">OrcTableSource</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+  <span class="c1">// path to ORC file(s). NOTE: By default, directories are recursively scanned.</span>
+  <span class="o">.</span><span class="na">path</span><span class="o">(</span><span class="s">"file:///path/to/data"</span><span class="o">)</span>
+  <span class="c1">// schema of ORC files</span>
+  <span class="o">.</span><span class="na">forOrcSchema</span><span class="o">(</span><span class="s">"struct&lt;name:string,addresses:array&lt;struct&lt;street:string,zip:smallint&gt;&gt;&gt;"</span><span class="o">)</span>
+  <span class="c1">// Hadoop configuration</span>
+  <span class="o">.</span><span class="na">withConfiguration</span><span class="o">(</span><span class="n">config</span><span class="o">)</span>
+  <span class="c1">// build OrcTableSource</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="c1">// create Hadoop Configuration
+</span><span class="k">val</span> <span class="n">config</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Configuration</span><span class="o">()</span>
+
+<span class="k">val</span> <span class="n">orcTableSource</span> <span class="k">=</span> <span class="nc">OrcTableSource</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+  <span class="c1">// path to ORC file(s). NOTE: By default, directories are recursively scanned.
+</span>  <span class="o">.</span><span class="n">path</span><span class="o">(</span><span class="s">"file:///path/to/data"</span><span class="o">)</span>
+  <span class="c1">// schema of ORC files
+</span>  <span class="o">.</span><span class="n">forOrcSchema</span><span class="o">(</span><span class="s">"struct&lt;name:string,addresses:array&lt;struct&lt;street:string,zip:smallint&gt;&gt;&gt;"</span><span class="o">)</span>
+  <span class="c1">// Hadoop configuration
+</span>  <span class="o">.</span><span class="n">withConfiguration</span><span class="o">(</span><span class="n">config</span><span class="o">)</span>
+  <span class="c1">// build OrcTableSource
+</span>  <span class="o">.</span><span class="n">build</span><span class="o">()</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p><strong>Note:</strong> The <code class="highlighter-rouge">OrcTableSource</code> does not support ORC’s <code class="highlighter-rouge">Union</code> type yet.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="hivetablesourcebeta">HiveTableSource（beta）</h3>
+
+<p>The <code class="highlighter-rouge">HiveTableSource</code> reads <a href="https://hive.apache.org/">Hive table</a>. Apache Hive is a data warehouse software project built on top of Apache Hadoop for providing data query and analysis.</p>
+
+<p>An <code class="highlighter-rouge">HiveTableSource</code> is created as shown below:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="c1">// use hive catalog to obtain necessary hive table properties</span>
+    <span class="n">HiveCatalog</span> <span class="n">hiveCatalog</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HiveCatalog</span><span class="o">(</span><span class="s">"myHive"</span><span class="o">,</span><span class="s">"thrift://xxxx:9083"</span><span class="o">);</span>
+    <span class="n">hiveCatalog</span><span class="o">.</span><span class="na">open</span><span class="o">();</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">hiveCatalog</span><span class="o">.</span><span class="na">getTable</span><span class="o">(</span>
+                <span class="k">new</span> <span class="nf">ObjectPath</span><span class="o">(</span><span class="s">"default"</span><span class="o">,</span> <span class="s">"products"</span><span class="o">)).</span><span class="na">getProperties</span><span class="o">();</span>
+    <span class="n">BatchTableSource</span> <span class="n">hiveTableSource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HiveTableFactory</span><span class="o">().</span><span class="na">createBatchTableSource</span><span class="o">(</span><span class="n">properties</span><span class="o">);</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala">    <span class="c1">// use hive catalog to obtain necessary hive table properties
+</span>    <span class="k">val</span> <span class="n">hiveCatalog</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">HiveCatalog</span><span class="o">(</span><span class="s">"myHive"</span><span class="o">,</span> <span class="s">"thrift://xxxx:9083"</span><span class="o">)</span>
+    <span class="n">hiveCatalog</span><span class="o">.</span><span class="n">open</span><span class="o">()</span>
+    <span class="k">val</span> <span class="n">properties</span><span class="k">:</span> <span class="kt">util.Map</span><span class="o">[</span><span class="kt">String</span>, <span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="n">hiveCatalog</span>
+      <span class="o">.</span><span class="n">getTable</span><span class="o">(</span><span class="k">new</span> <span class="nc">ObjectPath</span><span class="o">(</span><span class="s">"default"</span><span class="o">,</span> <span class="s">"products"</span><span class="o">)).</span><span class="n">getProperties</span>
+    <span class="k">val</span> <span class="n">hiveTableSource</span><span class="k">:</span> <span class="kt">BatchTableSource</span><span class="o">[</span><span class="k">_</span><span class="o">]</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">HiveTableFactory</span><span class="o">()</span>
+      <span class="o">.</span><span class="n">createBatchTableSource</span><span class="o">(</span><span class="n">properties</span><span class="o">)</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h2 id="provided-tablesinks">Provided TableSinks</h2>
+
+<p>The following table lists the <code class="highlighter-rouge">TableSink</code>s which are provided with Flink.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Class name</strong></td>
+      <td><strong>Maven dependency</strong></td>
+      <td><strong>Batch?</strong></td>
+      <td><strong>Streaming?</strong></td>
+      <td><strong>Description</strong></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">CsvTableSink</code></td>
+      <td><code class="highlighter-rouge">flink-table</code></td>
+      <td>Y</td>
+      <td>Append</td>
+      <td>A simple sink for CSV files.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">JDBCAppendTableSink</code></td>
+      <td><code class="highlighter-rouge">flink-jdbc</code></td>
+      <td>Y</td>
+      <td>Append</td>
+      <td>Writes a Table to a JDBC table.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">CassandraAppendTableSink</code></td>
+      <td><code class="highlighter-rouge">flink-connector-cassandra</code></td>
+      <td>N</td>
+      <td>Append</td>
+      <td>Writes a Table to a Cassandra table.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Kafka08JsonTableSink</code></td>
+      <td><code class="highlighter-rouge">flink-connector-kafka-0.8</code></td>
+      <td>N</td>
+      <td>Append</td>
+      <td>A Kafka 0.8 sink with JSON encoding.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Kafka09JsonTableSink</code></td>
+      <td><code class="highlighter-rouge">flink-connector-kafka-0.9</code></td>
+      <td>N</td>
+      <td>Append</td>
+      <td>A Kafka 0.9 sink with JSON encoding.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Kafka010JsonTableSink</code></td>
+      <td><code class="highlighter-rouge">flink-connector-kafka-0.10</code></td>
+      <td>N</td>
+      <td>Append</td>
+      <td>A Kafka 0.10 sink with JSON encoding.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>All sinks that come with the <code class="highlighter-rouge">flink-table</code> dependency can be directly used by your Table programs. For all other table sinks, you have to add the respective dependency in addition to the <code class="highlighter-rouge">flink-table</code> dependency.</p>
+
+<p>A custom <code class="highlighter-rouge">TableSink</code> can be defined by implementing the <code class="highlighter-rouge">BatchTableSink</code>, <code class="highlighter-rouge">AppendStreamTableSink</code>, <code class="highlighter-rouge">RetractStreamTableSink</code>, or <code class="highlighter-rouge">UpsertStreamTableSink</code> interface. See section on <a href="#define-a-tablesink">defining a custom TableSink</a> for details.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="kafkajsontablesink">KafkaJsonTableSink</h3>
+
+<p>A <code class="highlighter-rouge">KafkaJsonTableSink</code> emits a <a href="./streaming.html#table-to-stream-conversion">streaming append <code class="highlighter-rouge">Table</code></a> to an Apache Kafka topic. The rows of the table are encoded as JSON records. Currently, only tables with flat schema, i.e., non-nested fields, are supported.</p>
+
+<p>A <code class="highlighter-rouge">KafkaJsonTableSink</code> produces with at-least-once guarantees into a Kafka topic if the query is executed with <a href="//flink-china.org/doc/blink/dev/stream/state/checkpointing.html#enabling-and-configuring-checkpointing">checkpointing enabled</a>.</p>
+
+<p>By default, a <code class="highlighter-rouge">KafkaJsonTableSink</code> writes to at most as many partitions as its own parallelism (each parallel instance of the sink writes to exactly one partition). In order to distribute the writes to more partitions or control the routing of rows into partitions, a custom <code class="highlighter-rouge">FlinkKafkaPartitioner</code> can be provided.</p>
+
+<p>The following example shows how to create a <code class="highlighter-rouge">KafkaJsonTableSink</code> for Kafka 0.10. Sinks for Kafka 0.8 and 0.9 are instantiated analogously.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Table</span> <span class="n">table</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="n">Properties</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="o">();</span>
+<span class="n">props</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">"bootstrap.servers"</span><span class="o">,</span> <span class="s">"localhost:9092"</span><span class="o">);</span>
+
+<span class="n">table</span><span class="o">.</span><span class="na">writeToSink</span><span class="o">(</span>
+  <span class="k">new</span> <span class="nf">Kafka010JsonTableSink</span><span class="o">(</span>
+    <span class="s">"myTopic"</span><span class="o">,</span>                <span class="c1">// Kafka topic to write to</span>
+    <span class="n">props</span><span class="o">));</span>                  <span class="c1">// Properties to configure the producer</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">table</span><span class="k">:</span> <span class="kt">Table</span> <span class="o">=</span> <span class="o">???</span>
+
+<span class="k">val</span> <span class="n">props</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Properties</span><span class="o">()</span>
+<span class="n">props</span><span class="o">.</span><span class="n">setProperty</span><span class="o">(</span><span class="s">"bootstrap.servers"</span><span class="o">,</span> <span class="s">"localhost:9092"</span><span class="o">)</span>
+
+<span class="n">table</span><span class="o">.</span><span class="n">writeToSink</span><span class="o">(</span>
+  <span class="k">new</span> <span class="nc">Kafka010JsonTableSink</span><span class="o">(</span>
+    <span class="s">"myTopic"</span><span class="o">,</span>                <span class="c1">// Kafka topic to write to
+</span>    <span class="n">props</span><span class="o">))</span>                   <span class="c1">// Properties to configure the producer
+</span>  </code></pre></figure>
+
+  </div>
+</div>
+
+<h3 id="csvtablesink">CsvTableSink</h3>
+
+<p>The <code class="highlighter-rouge">CsvTableSink</code> emits a <code class="highlighter-rouge">Table</code> to one or more CSV files.</p>
+
+<p>The sink only supports append-only streaming tables. It cannot be used to emit a <code class="highlighter-rouge">Table</code> that is continuously updated. See the <a href="./streaming.html#table-to-stream-conversion">documentation on Table to Stream conversions</a> for details. When emitting a streaming table, rows are written at least once (if checkpointing is enabled) and the <code class="highlighter-rouge">CsvTableSink</code> does not split output files into bucket files but continuously writes to the same files.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Table</span> <span class="n">table</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="n">table</span><span class="o">.</span><span class="na">writeToSink</span><span class="o">(</span>
+  <span class="k">new</span> <span class="nf">CsvTableSink</span><span class="o">(</span>
+    <span class="n">path</span><span class="o">,</span>                  <span class="c1">// output path </span>
+    <span class="s">"|"</span><span class="o">,</span>                   <span class="c1">// optional: delimit files by '|'</span>
+    <span class="mi">1</span><span class="o">,</span>                     <span class="c1">// optional: write to a single file</span>
+    <span class="n">WriteMode</span><span class="o">.</span><span class="na">OVERWRITE</span><span class="o">));</span> <span class="c1">// optional: override existing files</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">table</span><span class="k">:</span> <span class="kt">Table</span> <span class="o">=</span> <span class="o">???</span>
+
+<span class="n">table</span><span class="o">.</span><span class="n">writeToSink</span><span class="o">(</span>
+  <span class="k">new</span> <span class="nc">CsvTableSink</span><span class="o">(</span>
+    <span class="n">path</span><span class="o">,</span>                             <span class="c1">// output path 
+</span>    <span class="n">fieldDelim</span> <span class="k">=</span> <span class="s">"|"</span><span class="o">,</span>                 <span class="c1">// optional: delimit files by '|'
+</span>    <span class="n">numFiles</span> <span class="k">=</span> <span class="mi">1</span><span class="o">,</span>                     <span class="c1">// optional: write to a single file
+</span>    <span class="n">writeMode</span> <span class="k">=</span> <span class="nc">WriteMode</span><span class="o">.</span><span class="nc">OVERWRITE</span><span class="o">))</span> <span class="o">//</span> <span class="n">optional</span><span class="k">:</span> <span class="kt">override</span> <span class="kt">existing</span> <span class="kt">files</span></code></pre></figure>
+
+  </div>
+</div>
+
+<h3 id="jdbcappendtablesink">JDBCAppendTableSink</h3>
+
+<p>The <code class="highlighter-rouge">JDBCAppendTableSink</code> emits a <code class="highlighter-rouge">Table</code> to a JDBC connection. The sink only supports append-only streaming tables. It cannot be used to emit a <code class="highlighter-rouge">Table</code> that is continuously updated. See the <a href="./streaming.html#table-to-stream-conversion">documentation on Table to Stream conversions</a> for details.</p>
+
+<p>The <code class="highlighter-rouge">JDBCAppendTableSink</code> inserts each <code class="highlighter-rouge">Table</code> row at least once into the database table (if checkpointing is enabled). However, you can specify the insertion query using <code>REPLACE</code> or <code>INSERT OVERWRITE</code> to perform upsert writes to the database.</p>
+
+<p>To use the JDBC sink, you have to add the JDBC connector dependency (<code>flink-jdbc</code>) to your project. Then you can create the sink using <code>JDBCAppendSinkBuilder</code>:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">JDBCAppendTableSink</span> <span class="n">sink</span> <span class="o">=</span> <span class="n">JDBCAppendTableSink</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+  <span class="o">.</span><span class="na">setDrivername</span><span class="o">(</span><span class="s">"org.apache.derby.jdbc.EmbeddedDriver"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">setDBUrl</span><span class="o">(</span><span class="s">"jdbc:derby:memory:ebookshop"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">setQuery</span><span class="o">(</span><span class="s">"INSERT INTO books (id) VALUES (?)"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">setParameterTypes</span><span class="o">(</span><span class="n">DataTypes</span><span class="o">.</span><span class="na">INT</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+<span class="n">Table</span> <span class="n">table</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">table</span><span class="o">.</span><span class="na">writeToSink</span><span class="o">(</span><span class="n">sink</span><span class="o">);</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">sink</span><span class="k">:</span> <span class="kt">JDBCAppendTableSink</span> <span class="o">=</span> <span class="nc">JDBCAppendTableSink</span><span class="o">.</span><span class="n">builder</span><span class="o">()</span>
+  <span class="o">.</span><span class="n">setDrivername</span><span class="o">(</span><span class="s">"org.apache.derby.jdbc.EmbeddedDriver"</span><span class="o">)</span>
+  <span class="o">.</span><span class="n">setDBUrl</span><span class="o">(</span><span class="s">"jdbc:derby:memory:ebookshop"</span><span class="o">)</span>
+  <span class="o">.</span><span class="n">setQuery</span><span class="o">(</span><span class="s">"INSERT INTO books (id) VALUES (?)"</span><span class="o">)</span>
+  <span class="o">.</span><span class="n">setParameterTypes</span><span class="o">(</span><span class="nc">INT_TYPE_INFO</span><span class="o">)</span>
+  <span class="o">.</span><span class="n">build</span><span class="o">()</span>
+
+<span class="k">val</span> <span class="n">table</span><span class="k">:</span> <span class="kt">Table</span> <span class="o">=</span> <span class="o">???</span>
+<span class="n">table</span><span class="o">.</span><span class="n">writeToSink</span><span class="o">(</span><span class="n">sink</span><span class="o">)</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p>Similar to using <code>JDBCOutputFormat</code>, you have to explicitly specify the name of the JDBC driver, the JDBC URL, the query to be executed, and the field types of the JDBC table.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="cassandraappendtablesink">CassandraAppendTableSink</h3>
+
+<p>The <code class="highlighter-rouge">CassandraAppendTableSink</code> emits a <code class="highlighter-rouge">Table</code> to a Cassandra table. The sink only supports append-only streaming tables. It cannot be used to emit a <code class="highlighter-rouge">Table</code> that is continuously updated. See the <a href="./streaming.html#table-to-stream-conversion">documentation on Table to Stream conversions</a> for details.</p>
+
+<p>The <code class="highlighter-rouge">CassandraAppendTableSink</code> inserts all rows at least once into the Cassandra table if checkpointing is enabled. However, you can specify the query as upsert query.</p>
+
+<p>To use the <code class="highlighter-rouge">CassandraAppendTableSink</code>, you have to add the Cassandra connector dependency (<code>flink-connector-cassandra</code>) to your project. The example below shows how to use the <code class="highlighter-rouge">CassandraAppendTableSink</code>.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ClusterBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="o">...</span> <span class="c1">// configure Cassandra cluster connection</span>
+
+<span class="n">CassandraAppendTableSink</span> <span class="n">sink</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CassandraAppendTableSink</span><span class="o">(</span>
+  <span class="n">builder</span><span class="o">,</span> 
+  <span class="c1">// the query must match the schema of the table</span>
+  <span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">flink</span><span class="o">.</span><span class="na">myTable</span> <span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">value</span><span class="o">)</span> <span class="n">VALUES</span> <span class="o">(?,</span> <span class="o">?,</span> <span class="o">?));</span>
+
+<span class="n">Table</span> <span class="n">table</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">table</span><span class="o">.</span><span class="na">writeToSink</span><span class="o">(</span><span class="n">sink</span><span class="o">);</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">builder</span><span class="k">:</span> <span class="kt">ClusterBuilder</span> <span class="o">=</span> <span class="o">...</span> <span class="c1">// configure Cassandra cluster connection
+</span>
+<span class="k">val</span> <span class="n">sink</span><span class="k">:</span> <span class="kt">CassandraAppendTableSink</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CassandraAppendTableSink</span><span class="o">(</span>
+  <span class="n">builder</span><span class="o">,</span> 
+  <span class="c1">// the query must match the schema of the table
+</span>  <span class="nc">INSERT</span> <span class="nc">INTO</span> <span class="n">flink</span><span class="o">.</span><span class="n">myTable</span> <span class="o">(</span><span class="n">id</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">value</span><span class="o">)</span> <span class="nc">VALUES</span> <span class="o">(?,</span> <span class="o">?,</span> <span class="o">?))</span>
+
+<span class="k">val</span> <span class="n">table</span><span class="k">:</span> <span class="kt">Table</span> <span class="o">=</span> <span class="o">???</span>
+<span class="n">table</span><span class="o">.</span><span class="n">writeToSink</span><span class="o">(</span><span class="n">sink</span><span class="o">)</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h2 id="define-a-tablesource">Define a TableSource</h2>
+
+<p>A <code class="highlighter-rouge">TableSource</code> is a generic interface that gives Table API and SQL queries access to data stored in an external system. It provides the schema of the table and the records that are mapped to rows with the table’s schema. Depending on whether the <code class="highlighter-rouge">TableSource</code> is used in a streaming or batch query, the records are produced as a <code class="highlighter-rouge">DataSet</code> or <code class="highlighter-rouge">DataStream</code>.</p>
+
+<p>If a <code class="highlighter-rouge">TableSource</code> is used in a streaming query it must implement the <code class="highlighter-rouge">StreamTableSource</code> interface, if it is used in a batch query it must implement the <code class="highlighter-rouge">BatchTableSource</code> interface. A <code class="highlighter-rouge">TableSource</code> can also implement both interfaces and be used in streaming and batch queries.</p>
+
+<p><code class="highlighter-rouge">StreamTableSource</code> and <code class="highlighter-rouge">BatchTableSource</code> extend the base interface <code class="highlighter-rouge">TableSource</code> that defines the following methods:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">TableSource</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="n">TableSchema</span> <span class="nf">getTableSchema</span><span class="o">();</span>
+
+  <span class="kd">public</span> <span class="n">DataType</span> <span class="nf">getReturnType</span><span class="o">();</span>
+
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">explainSource</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="nc">TableSource</span> <span class="o">{</span>
+
+  <span class="k">def</span> <span class="n">getTableSchema</span><span class="k">:</span> <span class="kt">TableSchema</span>
+
+  <span class="k">def</span> <span class="n">getReturnType</span><span class="k">:</span> <span class="kt">DataType</span>
+
+  <span class="k">def</span> <span class="n">explainSource</span><span class="k">:</span> <span class="kt">String</span>
+
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+</div>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">getTableSchema()</code>: Returns the schema of the table, i.e., the names and types of the fields of the table. The field types are defined using Flink’s <code class="highlighter-rouge">DataType</code> (see <a href="tableApi.html#data-types">Table API types</a> and <a href="sql.html#data-types">SQL types</a>).</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">getReturnType()</code>: Returns the physical type of the <code class="highlighter-rouge">DataStream</code> (<code class="highlighter-rouge">StreamTableSource</code>) or <code class="highlighter-rouge">DataSet</code> (<code class="highlighter-rouge">BatchTableSource</code>) and the records that are produced by the <code class="highlighter-rouge">TableSource</code>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">explainSource()</code>: Returns a String that describes the <code class="highlighter-rouge">TableSource</code>. This method is optional and used for display purposes only.</p>
+  </li>
+</ul>
+
+<p>The <code class="highlighter-rouge">TableSource</code> interface separates the logical table schema from the physical type of the returned <code class="highlighter-rouge">DataStream</code> or <code class="highlighter-rouge">DataSet</code>. As a consequence, all fields of the table schema (<code class="highlighter-rouge">getTableSchema()</code>) must be mapped to a field with corresponding type of the physical return type (<code class="highlighter-rouge">getReturnType()</code>). By default, this mapping is done based on field names. For example, a <code class="highlighter-rouge">TableSource</code> that defines a table schema with two fields <code class="highlighter-rouge">[name: String, size: Integer]</code> requires a <code class="highlighter-rouge">DataType</code> with at least two fields called <code class="highlighter-rouge">name</code> and <code class="highlighter-rouge">size</code> of type <code class="highlighter-rouge">String</code> and <code class="highlighter-rouge">Integer</code>, respectively. This could be a <code class="highlighter-rouge">TypeInfoWrappedType</code> decorating a <code class="highlighter-rouge">PojoTypeInfo</code> or a <code class="highlighter-rouge">RowTypeInfo</code> that have two fields named <code class="highlighter-rouge">name</code> and <code class="highlighter-rouge">size</code> with matching types.</p>
+
+<p>However, some types, such as Tuple or CaseClass types, do support custom field names. If a <code class="highlighter-rouge">TableSource</code> returns a <code class="highlighter-rouge">DataStream</code> or <code class="highlighter-rouge">DataSet</code> of a type with fixed field names, it can implement the <code class="highlighter-rouge">DefinedFieldMapping</code> interface to map field names from the table schema to field names of the physical return type.</p>
+
+<h3 id="defining-a-batchtablesource">Defining a BatchTableSource</h3>
+
+<p>The <code class="highlighter-rouge">BatchTableSource</code> interface extends the <code class="highlighter-rouge">TableSource</code> interface and defines one additional method:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">BatchTableSource</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">TableSource</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="n">DataStream</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">getBoundedStream</span><span class="o">(</span><span class="n">StreamExecutionEnvironment</span> <span class="n">execEnv</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="nc">BatchTableSource</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">extends</span> <span class="nc">TableSource</span> <span class="o">{</span>
+
+  <span class="k">def</span> <span class="n">getBoundedStream</span><span class="o">(</span><span class="n">execEnv</span><span class="k">:</span> <span class="kt">StreamExecutionEnvironment</span><span class="o">)</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+</div>
+
+<ul>
+  <li><code class="highlighter-rouge">getBoundedStream(execEnv)</code>: Returns a <code class="highlighter-rouge">DataStream</code> with the data of the table. The type of the <code class="highlighter-rouge">DataStream</code> must be identical to the return type defined by the <code class="highlighter-rouge">TableSource.getReturnType()</code> method. The <code class="highlighter-rouge">DataStream</code> can by created using a regular <a href="//flink-china.org/doc/blink/dev/datastream_api.html#data-sources">data source</a>) of the DataStream API. Commonly, a <code class="highlighter-rouge">BatchTableSource</code> is implemented by wrapping a <code class="highlighter-rouge">InputFormat</code> or a finite <a href="//flink-china.org/doc/blink/dev/connectors/">stream connector</a>.</li>
+</ul>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="defining-a-streamtablesource">Defining a StreamTableSource</h3>
+
+<p>The <code class="highlighter-rouge">StreamTableSource</code> interface extends the <code class="highlighter-rouge">TableSource</code> interface and defines one additional method:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">StreamTableSource</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">TableSource</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="n">DataStream</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">getDataStream</span><span class="o">(</span><span class="n">StreamExecutionEnvironment</span> <span class="n">execEnv</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="nc">StreamTableSource</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">extends</span> <span class="nc">TableSource</span> <span class="o">{</span>
+
+  <span class="k">def</span> <span class="n">getDataStream</span><span class="o">(</span><span class="n">execEnv</span><span class="k">:</span> <span class="kt">StreamExecutionEnvironment</span><span class="o">)</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+</div>
+
+<ul>
+  <li><code class="highlighter-rouge">getDataStream(execEnv)</code>: Returns a <code class="highlighter-rouge">DataStream</code> with the data of the table. The type of the <code class="highlighter-rouge">DataStream</code> must be identical to the return type defined by the <code class="highlighter-rouge">TableSource.getReturnType()</code> method. The <code class="highlighter-rouge">DataStream</code> can by created using a regular <a href="//flink-china.org/doc/blink/dev/datastream_api.html#data-sources">data source</a> of the DataStream API. Commonly, a <code class="highlighter-rouge">StreamTableSource</code> is implemented by wrapping a <code class="highlighter-rouge">SourceFunction</code> or a <a href="//flink-china.org/doc/blink/dev/connectors/">stream connector</a>.</li>
+</ul>
+
+<h3 id="defining-a-tablesource-with-time-attributes">Defining a TableSource with Time Attributes</h3>
+
+<p>Time-based operations of streaming <a href="tableApi.html#group-windows">Table API</a> and <a href="sql.html#group-windows">SQL</a> queries, such as windowed aggregations or joins, require explicitly specified <a href="//flink-china.org/doc/blink/dev/table/streaming.html#time-attributes">time attributes</a>.</p>
+
+<p>A <code class="highlighter-rouge">TableSource</code> defines a time attribute as a field of type <code class="highlighter-rouge">DataTypes.ROWTIME_INDICATOR</code> or <code class="highlighter-rouge">DataTypes.PROCTIME_INDICATOR</code> in its table schema. In contrast to all regular fields in the schema, a time attribute must not be matched to a physical field in the return type of the table source. Instead, a <code class="highlighter-rouge">TableSource</code> defines a time attribute by implementing a certain interface.</p>
+
+<h4 id="defining-a-processing-time-attribute">Defining a Processing Time Attribute</h4>
+
+<p>A <code class="highlighter-rouge">TableSource</code> defines a <a href="streaming.html#processing-time">processing time attribute</a> by implementing the <code class="highlighter-rouge">DefinedProctimeAttribute</code> interface. The interface looks as follows:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DefinedProctimeAttribute</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getProctimeAttribute</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="nc">DefinedProctimeAttribute</span> <span class="o">{</span>
+
+  <span class="k">def</span> <span class="n">getProctimeAttribute</span><span class="k">:</span> <span class="kt">String</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+</div>
+
+<ul>
+  <li><code class="highlighter-rouge">getProctimeAttribute()</code>: Returns the name of the processing time attribute. The specified attribute must be defined of type <code class="highlighter-rouge">DataTypes.PROCTIME_INDICATOR</code> in the table schema and can be used in time-based operations. A <code class="highlighter-rouge">DefinedProctimeAttribute</code> table source can define no processing time attribute by returning <code class="highlighter-rouge">null</code>.</li>
+</ul>
+
+<p><strong>Note</strong> Both <code class="highlighter-rouge">StreamTableSource</code> and <code class="highlighter-rouge">BatchTableSource</code> can implement <code class="highlighter-rouge">DefinedProctimeAttribute</code> and define a processing time attribute. In case of a <code class="highlighter-rouge">BatchTableSource</code> the processing time field is initialized with the current timestamp during the table scan.</p>
+
+<h4 id="defining-a-rowtime-attribute">Defining a Rowtime Attribute</h4>
+
+<p>A <code class="highlighter-rouge">TableSource</code> defines a <a href="streaming.html#event-time">rowtime attribute</a> by implementing the <code class="highlighter-rouge">DefinedRowtimeAttributes</code> interface. The interface looks as follows:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">DefinedRowtimeAttributes</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">RowtimeAttributeDescriptor</span><span class="o">&gt;</span> <span class="nf">getRowtimeAttributeDescriptors</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="nc">DefinedRowtimeAttributes</span> <span class="o">{</span>
+
+  <span class="k">def</span> <span class="n">getRowtimeAttributeDescriptors</span><span class="k">:</span> <span class="kt">util.List</span><span class="o">[</span><span class="kt">RowtimeAttributeDescriptor</span><span class="o">]</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+</div>
+
+<ul>
+  <li><code class="highlighter-rouge">getRowtimeAttributeDescriptors()</code>: Returns a list of <code class="highlighter-rouge">RowtimeAttributeDescriptor</code>. A <code class="highlighter-rouge">RowtimeAttributeDescriptor</code> describes a rowtime attribute with the following properties:
+    <ul>
+      <li><code class="highlighter-rouge">attributeName</code>: The name of the rowtime attribute in the table schema. The field must be defined with type <code class="highlighter-rouge">DataTypes.ROWTIME_INDICATOR</code>.</li>
+      <li><code class="highlighter-rouge">timestampExtractor</code>: The timestamp extractor extracts the timestamp from a record with the return type. For example, it can convert convert a Long field into a timestamp or parse a String-encoded timestamp. Flink comes with a set of built-in <code class="highlighter-rouge">TimestampExtractor</code> implementation for common use cases. It is also possible to provide a custom implementation.</li>
+      <li><code class="highlighter-rouge">watermarkStrategy</code>: The watermark strategy defines how watermarks are generated for the rowtime attribute. Flink comes with a set of built-in <code class="highlighter-rouge">WatermarkStrategy</code> implementations for common use cases. It is also possible to provide a custom implementation.</li>
+    </ul>
+  </li>
+  <li><strong>Note</strong> Although the <code class="highlighter-rouge">getRowtimeAttributeDescriptors()</code> method returns a list of descriptors, only a single rowtime attribute is support at the moment. We plan to remove this restriction in the future and support tables with more than one rowtime attribute.</li>
+</ul>
+
+<p><strong>IMPORTANT</strong> Both, <code class="highlighter-rouge">StreamTableSource</code> and <code class="highlighter-rouge">BatchTableSource</code>, can implement <code class="highlighter-rouge">DefinedRowtimeAttributes</code> and define a rowtime attribute. In either case, the rowtime field is extracted using the <code class="highlighter-rouge">TimestampExtractor</code>. Hence, a <code class="highlighter-rouge">TableSource</code> that implements <code class="highlighter-rouge">StreamTableSource</code> and <code class="highlighter-rouge">BatchTableSource</code> and defines a rowtime attribute provides exactly the same data to streaming and batch queries.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="defining-a-tablesource-with-projection-push-down">Defining a TableSource with Projection Push-Down</h3>
+
+<p>A <code class="highlighter-rouge">TableSource</code> supports projection push-down by implementing the <code class="highlighter-rouge">ProjectableTableSource</code> interface. The interface defines a single method:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">ProjectableTableSource</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="n">TableSource</span> <span class="nf">projectFields</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">fields</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="nc">ProjectableTableSource</span> <span class="o">{</span>
+
+  <span class="k">def</span> <span class="n">projectFields</span><span class="o">(</span><span class="n">fields</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span><span class="k">:</span> <span class="kt">TableSource</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+</div>
+
+<ul>
+  <li><code class="highlighter-rouge">projectFields(fields)</code>: Returns a <em>copy</em> of the <code class="highlighter-rouge">TableSource</code> with adjusted physical return type. The <code class="highlighter-rouge">fields</code> parameter provides the indexes of the fields that must be provided by the <code class="highlighter-rouge">TableSource</code>. The indexes relate to the <code class="highlighter-rouge">DataType</code> of the physical return type, <em>not</em> to the logical table schema. The copied <code class="highlighter-rouge">TableSource</code> must adjust its return type and the returned <code class="highlighter-rouge">DataStream</code>. The <code class="highlighter-rouge">TableSchema</code> of the copied <code class="highlighter-rouge">TableSource</code> must not be changed, i.e, it must be the same as the original <code class="highlighter-rouge">TableSource</code>. If the <code class="highlighter-rouge">TableSource</code> implements the <code class="highlighter-rouge">DefinedFieldMapping</code> interface, the field mapping must be adjusted to the new return type.</li>
+</ul>
+
+<p>The <code class="highlighter-rouge">ProjectableTableSource</code> adds support to project flat fields. If the <code class="highlighter-rouge">TableSource</code> defines a table with nested schema, it can implement the <code class="highlighter-rouge">NestedFieldsProjectableTableSource</code> to extend the projection to nested fields. The <code class="highlighter-rouge">NestedFieldsProjectableTableSource</code> is defined as follows:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">NestedFieldsProjectableTableSource</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="n">TableSource</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">projectNestedFields</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">fields</span><span class="o">,</span> <span class="n">String</span><span class="o">[][]</span> <span class="n">nestedFields</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="nc">NestedFieldsProjectableTableSource</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="o">{</span>
+
+  <span class="k">def</span> <span class="n">projectNestedFields</span><span class="o">(</span><span class="n">fields</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">Int</span><span class="o">],</span> <span class="n">nestedFields</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">]])</span><span class="k">:</span> <span class="kt">TableSource</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+</div>
+
+<ul>
+  <li><code class="highlighter-rouge">projectNestedField(fields, nestedFields)</code>: Returns a <em>copy</em> of the <code class="highlighter-rouge">TableSource</code> with adjusted physical return type. Fields of the physical return type may be removed or reordered but their type must not be changed. The contract of this method is essentially the same as for the <code class="highlighter-rouge">ProjectableTableSource.projectFields()</code> method. In addition, the <code class="highlighter-rouge">nestedFields</code> parameter contains for each field index in the <code class="highlighter-rouge">fields</code> list, a list of paths to all nested fields that are accessed by the query. All other nested fields do not need to be read, parsed, and set in the records that are produced by the <code class="highlighter-rouge">TableSource</code>. <strong>IMPORTANT</strong> the types of the projected fields must not be changed but unused fields may be set to null or to a default value.</li>
+</ul>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="defining-a-tablesource-with-filter-push-down">Defining a TableSource with Filter Push-Down</h3>
+
+<p>The <code class="highlighter-rouge">FilterableTableSource</code> interface adds support for filter push-down to a <code class="highlighter-rouge">TableSource</code>. A <code class="highlighter-rouge">TableSource</code> extending this interface is able to filter records such that the returned <code class="highlighter-rouge">DataStream</code> returns fewer records.</p>
+
+<p>The interface looks as follows:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">FilterableTableSource</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="n">TableSource</span> <span class="nf">applyPredicate</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Expression</span><span class="o">&gt;</span> <span class="n">predicates</span><span class="o">);</span>
+
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isFilterPushedDown</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="nc">FilterableTableSource</span> <span class="o">{</span>
+
+  <span class="k">def</span> <span class="n">applyPredicate</span><span class="o">(</span><span class="n">predicates</span><span class="k">:</span> <span class="kt">java.util.List</span><span class="o">[</span><span class="kt">Expression</span><span class="o">])</span><span class="k">:</span> <span class="kt">TableSource</span>
+
+  <span class="k">def</span> <span class="n">isFilterPushedDown</span><span class="k">:</span> <span class="kt">Boolean</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+</div>
+
+<ul>
+  <li><code class="highlighter-rouge">applyPredicate(predicates)</code>: Returns a <em>copy</em> of the <code class="highlighter-rouge">TableSource</code> with added predicates. The <code class="highlighter-rouge">predicates</code> parameter is a mutable list of conjunctive predicates that are “offered” to the <code class="highlighter-rouge">TableSource</code>. The <code class="highlighter-rouge">TableSource</code> accepts to evaluate a predicate by removing it from the list. Predicates that are left in the list will be evaluated by a subsequent filter operator.</li>
+  <li><code class="highlighter-rouge">isFilterPushedDown()</code>: Returns true if the <code class="highlighter-rouge">applyPredicate()</code> method was called before. Hence, <code class="highlighter-rouge">isFilterPushedDown()</code> must return true for all <code class="highlighter-rouge">TableSource</code> instances returned from a <code class="highlighter-rouge">applyPredicate()</code> call.</li>
+</ul>
+
+<h3 id="defining-a-tablesource-with-lookupable">Defining a TableSource with lookupable</h3>
+
+<p>The <code class="highlighter-rouge">LookupableTableSource</code> interface adds support for the table to be accessed via key column(s) in a lookup fashion. This is very useful when used as a dimension table to be joined with the main stream to extend columns. If want to use the TableSource in lookup mode, you should use <a href="streaming/joins.html">temporal table join syntax</a>.</p>
+
+<p><span class="label label-danger">Attention</span> Currently, a <code class="highlighter-rouge">LookupableTableSource</code> must also implement <code class="highlighter-rouge">StreamTableSource</code> or <code class="highlighter-rouge">BatchTableSource</code>. If the table source doesn’t need to support scan, the <code class="highlighter-rouge">getDataStream</code> and <code class="highlighter-rouge">getBoundedStream</code> can throw an exception.</p>
+
+<p>The interface looks as follows:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">LookupableTableSource</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">TableSource</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="n">TableFunction</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">getLookupFunction</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">lookupkeys</span><span class="o">);</span>
+
+  <span class="kd">public</span> <span class="n">AsyncTableFunction</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">getAsyncLookupFunction</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">lookupkeys</span><span class="o">);</span>
+
+  <span class="kd">public</span> <span class="n">LookupConfig</span> <span class="nf">getLookupConfig</span><span class="o">();</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="nc">LookupableTableSource</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">extends</span> <span class="nc">TableSource</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="o">{</span>
+
+  <span class="k">def</span> <span class="n">getLookupFunction</span><span class="o">(</span><span class="n">lookupKeys</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span><span class="k">:</span> <span class="kt">TableFunction</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span>
+
+  <span class="k">def</span> <span class="n">getAsyncLookupFunction</span><span class="o">(</span><span class="n">lookupKeys</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span><span class="k">:</span> <span class="kt">AsyncTableFunction</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span>
+
+  <span class="k">def</span> <span class="n">getLookupConfig</span><span class="k">:</span> <span class="kt">LookupConfig</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+</div>
+
+<ul>
+  <li><code class="highlighter-rouge">TableSource.getTableSchema()</code>: Should defines additional primary key or unique key or index on the schema. Flink will choose one of the primary key and unique key and index and tell the TableSource when <code class="highlighter-rouge">getLookupFunction</code> or <code class="highlighter-rouge">getAsyncLookupFunction</code>. If none is defined, then an exception will be thrown.</li>
+  <li><code class="highlighter-rouge">getLookupFunction(lookupkeys)</code>: Returns a <code class="highlighter-rouge">TableFunction</code> which used to lookup the matched row(s) via lookup keys. The lookupkeys is one of the defined primary key or unique key or index in TableSchema. The eval method parameters are the lookup keys in the order which <code class="highlighter-rouge">lookupkeys</code> defined. The return type of the <code class="highlighter-rouge">TableFunction</code> must be identical to the return type defined by the TableSource.getReturnType() method.</li>
+  <li><code class="highlighter-rouge">getAsyncLookupFunction(lookupkeys)</code>: Optional. Similar to <code class="highlighter-rouge">getLookupFunction</code>, but the <code class="highlighter-rouge">AsyncLookupFunction</code> lookups the matched row(s) asynchronously. The underlying of <code class="highlighter-rouge">AsyncLookupFunction</code> will be called via <a href="/dev/stream/operators/asyncio.html">Async I/O</a>.</li>
+  <li><code class="highlighter-rouge">getLookupConfig()</code>: Optional. Returns a LookupConfig which defines whether use AsyncLookupFunction and some async parameters such as async buffer capacity and async timeout.</li>
+</ul>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h2 id="define-a-tablesink">Define a TableSink</h2>
+
+<p>A <code class="highlighter-rouge">TableSink</code> specifies how to emit a <code class="highlighter-rouge">Table</code> to an external system or location. The interface is generic such that it can support different storage locations and formats. There are different table sinks for batch tables and streaming tables.</p>
+
+<p>The general interface looks as follows:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">TableSink</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="n">DataType</span> <span class="nf">getOutputType</span><span class="o">();</span>
+
+  <span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">getFieldNames</span><span class="o">();</span>
+
+  <span class="kd">public</span> <span class="n">DataType</span><span class="o">[]</span> <span class="nf">getFieldTypes</span><span class="o">();</span>
+
+  <span class="kd">public</span> <span class="n">TableSink</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">configure</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">fieldNames</span><span class="o">,</span> <span class="n">DataType</span><span class="o">[]</span> <span class="n">fieldTypes</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="nc">TableSink</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="o">{</span>
+
+  <span class="k">def</span> <span class="n">getOutputType</span><span class="k">:</span> <span class="kt">DataType</span>
+
+  <span class="k">def</span> <span class="n">getFieldNames</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span>
+
+  <span class="k">def</span> <span class="n">getFieldTypes</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">DataType</span><span class="o">]</span>
+
+  <span class="k">def</span> <span class="n">configure</span><span class="o">(</span><span class="n">fieldNames</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">],</span> <span class="n">fieldTypes</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">DataType</span><span class="o">])</span><span class="k">:</span> <span class="kt">TableSink</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p>The <code class="highlighter-rouge">TableSink#configure</code> method is called to pass the schema of the Table (field names and types) to emit to the <code class="highlighter-rouge">TableSink</code>. The method must return a new instance of the TableSink which is configured to emit the provided Table schema.</p>
+
+<h3 id="batchtablesink">BatchTableSink</h3>
+
+<p>Defines an external <code class="highlighter-rouge">TableSink</code> to emit a batch table.</p>
+
+<p>The interface looks as follows:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">BatchTableSink</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">TableSink</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="n">DataStreamSink</span><span class="o">&lt;?&gt;</span> <span class="n">emitBoundedStream</span><span class="o">(</span><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">boundedStream</span><span class="o">,</span>
+    <span class="n">TableConfig</span> <span class="n">tableConfig</span><span class="o">,</span>
+    <span class="n">ExecutionConfig</span> <span class="n">executionConfig</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="nc">BatchTableSink</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">extends</span> <span class="nc">TableSink</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="o">{</span>
+
+  <span class="k">def</span> <span class="n">emitDataSet</span><span class="o">(</span><span class="n">boundedStream</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[</span><span class="kt">T</span><span class="o">],</span>
+    <span class="n">tableConfig</span><span class="k">:</span> <span class="kt">TableConfig</span><span class="o">,</span>
+    <span class="n">executionConfig</span><span class="k">:</span> <span class="kt">ExecutionConfig</span><span class="o">)</span><span class="k">:</span> <span class="kt">DataStreamSink</span><span class="o">[</span><span class="k">_</span><span class="o">]</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="appendstreamtablesink">AppendStreamTableSink</h3>
+
+<p>Defines an external <code class="highlighter-rouge">TableSink</code> to emit a streaming table with only insert changes.</p>
+
+<p>The interface looks as follows:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">AppendStreamTableSink</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">TableSink</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">emitDataStream</span><span class="o">(</span><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">dataStream</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="nc">AppendStreamTableSink</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">extends</span> <span class="nc">TableSink</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="o">{</span>
+
+  <span class="k">def</span> <span class="n">emitDataStream</span><span class="o">(</span><span class="n">dataStream</span><span class="k">:</span> <span class="kt">DataStream&lt;T&gt;</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p>If the table is also modified by update or delete changes, a <code class="highlighter-rouge">TableException</code> will be thrown.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="retractstreamtablesink">RetractStreamTableSink</h3>
+
+<p>Defines an external <code class="highlighter-rouge">TableSink</code> to emit a streaming table with insert, update, and delete changes.</p>
+
+<p>The interface looks as follows:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">RetractStreamTableSink</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">TableSink</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="n">DataType</span> <span class="nf">getRecordType</span><span class="o">();</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">emitDataStream</span><span class="o">(</span><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;&gt;</span> <span class="n">dataStream</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="nc">RetractStreamTableSink</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">extends</span> <span class="nc">TableSink</span><span class="o">[</span><span class="kt">Tuple2</span><span class="o">[</span><span class="kt">Boolean</span>, <span class="kt">T</span><span class="o">]]</span> <span class="o">{</span>
+
+  <span class="k">def</span> <span class="n">getRecordType</span><span class="k">:</span> <span class="kt">DataType</span>
+
+  <span class="k">def</span> <span class="n">emitDataStream</span><span class="o">(</span><span class="n">dataStream</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[</span><span class="kt">Tuple2</span><span class="o">[</span><span class="kt">Boolean</span>, <span class="kt">T</span><span class="o">]])</span><span class="k">:</span> <span class="kt">Unit</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p>The table will be converted into a stream of accumulate and retraction messages which are encoded as Java <code class="highlighter-rouge">Tuple2</code>. The first field is a boolean flag to indicate the message type (<code class="highlighter-rouge">true</code> indicates insert, <code class="highlighter-rouge">false</code> indicates delete). The second field holds the record of the requested type <code class="highlighter-rouge">T</code>.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="upsertstreamtablesink">UpsertStreamTableSink</h3>
+
+<p>Defines an external <code class="highlighter-rouge">TableSink</code> to emit a streaming table with insert, update, and delete changes.</p>
+
+<p>The interface looks as follows:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">UpsertStreamTableSink</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">TableSink</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setKeyFields</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">keys</span><span class="o">);</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setIsAppendOnly</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">isAppendOnly</span><span class="o">);</span>
+
+  <span class="kd">public</span> <span class="n">DataType</span> <span class="nf">getRecordType</span><span class="o">();</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">emitDataStream</span><span class="o">(</span><span class="n">DataStream</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;&gt;</span> <span class="n">dataStream</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="nc">UpsertStreamTableSink</span><span class="o">[</span><span class="kt">T</span><span class="o">]</span> <span class="k">extends</span> <span class="nc">TableSink</span><span class="o">[</span><span class="kt">Tuple2</span><span class="o">[</span><span class="kt">Boolean</span>, <span class="kt">T</span><span class="o">]]</span> <span class="o">{</span>
+
+  <span class="k">def</span> <span class="n">setKeyFields</span><span class="o">(</span><span class="n">keys</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span><span class="k">:</span> <span class="kt">Unit</span>
+
+  <span class="k">def</span> <span class="n">setIsAppendOnly</span><span class="o">(</span><span class="n">isAppendOnly</span><span class="k">:</span> <span class="kt">Boolean</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span>
+
+  <span class="k">def</span> <span class="n">getRecordType</span><span class="k">:</span> <span class="kt">DataType</span>
+
+  <span class="k">def</span> <span class="n">emitDataStream</span><span class="o">(</span><span class="n">dataStream</span><span class="k">:</span> <span class="kt">DataStream</span><span class="o">[</span><span class="kt">Tuple2</span><span class="o">[</span><span class="kt">Boolean</span>, <span class="kt">T</span><span class="o">]])</span><span class="k">:</span> <span class="kt">Unit</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p>The table must be have unique key fields (atomic or composite) or be append-only. If the table does not have a unique key and is not append-only, a <code class="highlighter-rouge">TableException</code> will be thrown. The unique key of the table is configured by the <code class="highlighter-rouge">UpsertStreamTableSink#setKeyFields()</code> method.</p>
+
+<p>The table will be converted into a stream of upsert and delete messages which are encoded as a Java <code class="highlighter-rouge">Tuple2</code>. The first field is a boolean flag to indicate the message type. The second field holds the record of the requested type <code class="highlighter-rouge">T</code>.</p>
+
+<p>A message with true boolean field is an upsert message for the configured key. A message with false flag is a delete message for the configured key. If the table is append-only, all messages will have a true flag and must be interpreted as insertions.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+
+
+        </div>
+      </div>
+    </div><!-- /.container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//flink-china.org/doc/blink/page/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.0/anchor.min.js"></script>
+    <script src="//flink-china.org/doc/blink/page/js/flink.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-52545728-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- Disqus -->
+    
+  </body>
+</html>

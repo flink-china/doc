@@ -1,0 +1,4119 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Apache Flink 1.5.1 Documentation: Amazon Web Services (AWS)</title>
+    <link rel="shortcut icon" href="//flink-china.org/doc/blink/page/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="//flink-china.org/doc/blink/page/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/flink.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/syntax.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/codetabs.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/font-awesome/css/font-awesome.min.css">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    
+
+    <!-- Main content. -->
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-lg-3" id="sidenavcol">
+          
+
+
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="sidenav-logo">
+  <p><a href="//flink-china.org/doc/blink"><img class="bottom" alt="Apache Flink" src="//flink-china.org/doc/blink/page/img/navbar-brand-logo.jpg"></a> v1.5.1</p>
+</div>
+<ul id="sidenav">
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/"><i class="fa fa-home title" aria-hidden="true"></i> Home</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-2" data-toggle="collapse"><i class="fa fa-map-o title appetizer" aria-hidden="true"></i> Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-2"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/concepts/programming-model.html">Programming Model</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/concepts/runtime.html">Distributed Runtime</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-6" data-toggle="collapse"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-6"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-7" data-toggle="collapse">API Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-7"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/datastream_api.html">DataStream API</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-10" data-toggle="collapse">Setup Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-10"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/local_setup.html">Local Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/setup_quickstart.html"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-16" data-toggle="collapse"><i class="fa fa-file-code-o title appetizer" aria-hidden="true"></i> Examples <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-16"><ul>
+  <li><a href="//flink-china.org/doc/blink/examples/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/examples.html">DataStream Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/examples.html">DataSet Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/stream_sql_quickstart.html">Stream SQL Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/batch_sql_quickstart.html">Batch SQL Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/scala_shell_quickstart.html">Scala Shell Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/zeppelin_quickstart.html">Flink on Zeppelin Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/examples.html">Flink-Hive Examples</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-25" data-toggle="collapse"><i class="fa fa-cogs title maindish" aria-hidden="true"></i> Project Setup <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-25"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/java_api_quickstart.html">Project Template for Java</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/scala_api_quickstart.html">Project Template for Scala</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/dependencies.html">Configuring Dependencies, Connectors, Libraries</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/ide_setup.html">IDE Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/scala_shell.html">Scala Shell</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/building.html">Building Flink from Source</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-34" data-toggle="collapse"><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-34"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-35" data-toggle="collapse">Basic API Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-35"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/api_concepts.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/scala_api_extensions.html">Scala API Extensions</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/java8.html">Java 8</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-39" data-toggle="collapse">Streaming (DataStream API) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-39"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/datastream_api.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-40" data-toggle="collapse">Event Time <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-40"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/event_time.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/event_timestamps_watermarks.html">Generating Timestamps / Watermarks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/event_timestamp_extractors.html">Pre-defined Timestamp Extractors / Watermark Emitters</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-44" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-44"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/stream/state/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/state.html">Working with State</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/broadcast_state.html">The Broadcast State Pattern</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/checkpointing.html">Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/queryable_state.html">Queryable State</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/custom_serialization.html">Custom Serialization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-52" data-toggle="collapse">Operators <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-52"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/stream/operators/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/windows.html">Windows</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/process_function.html">Process Function</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/asyncio.html">Async I/O</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-57" data-toggle="collapse">Connectors <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-57"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/connectors/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/guarantees.html">Fault Tolerance Guarantees</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/kafka.html">Kafka</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/cassandra.html">Cassandra</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/kinesis.html">Kinesis</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/elasticsearch.html">Elasticsearch</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/filesystem_sink.html">Rolling File Sink</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/rabbitmq.html">RabbitMQ</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/nifi.html">NiFi</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/twitter.html">Twitter</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/side_output.html">Side Outputs</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/testing.html">Testing</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/experimental.html">Experimental Features</a></li>
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-73" data-toggle="collapse">Batch (DataSet API) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-73"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/batch/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/dataset_transformations.html">Transformations</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/fault_tolerance.html">Fault Tolerance</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/zip_elements_guide.html">Zipping Elements</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/iterations.html">Iterations</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/connectors.html">Connectors</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/hadoop_compatibility.html">Hadoop Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/local_execution.html">Local Execution</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/cluster_execution.html">Cluster Execution</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-84" data-toggle="collapse">Table API & SQL <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-84"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/table/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/common.html">Concepts & Common API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/hive_compatibility.html">Hive Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-87" data-toggle="collapse">Streaming Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-87"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/table/streaming/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/dynamic_tables.html">Dynamic Tables</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/time_attributes.html">Time Attributes</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/joins.html">Joins in Continuous Queries</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/temporal_tables.html">Temporal Tables</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/match_recognize.html">Detecting Patterns</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/query_configuration.html">Query Configuration</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/tableApi.html">Table API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sql.html">SQL</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/supported_ddl.html">SQL Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sourceSinks.html">Table Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/udfs.html">User-defined Functions</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sqlClient.html">SQL Client</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/resource.html">SQL Resource</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/catalog.html">Catalog</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming_optimization.html">Streaming Aggregation Optimization</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/multiple_tablesink_optimization.html">Multiple TableSink Optimization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-106" data-toggle="collapse">Data Types & Serialization <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-106"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/types_serialization.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/custom_serializers.html">Custom Serializers</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-109" data-toggle="collapse">Managing Execution <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-109"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/execution_configuration.html">Execution Configuration</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/packaging.html">Program Packaging</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/parallel.html">Parallel Execution</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/execution_plans.html">Execution Plans</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/restart_strategies.html">Restart Strategies</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-116" data-toggle="collapse">Libraries <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-116"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/cep.html">Event Processing (CEP)</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-118" data-toggle="collapse">Graphs: Gelly <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-118"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/libs/gelly/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_api.html">Graph API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/iterative_graph_processing.html">Iterative Graph Processing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/library_methods.html">Library Methods</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_algorithms.html">Graph Algorithms</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_generators.html">Graph Generators</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/bipartite_graph.html">Bipartite Graph</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-126" data-toggle="collapse">Machine Learning <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-126"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/libs/ml/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/quickstart.html">Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/contribution_guide.html">How to Contribute</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/cross_validation.html">Cross Validation</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/distance_metrics.html">Distance Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/knn.html">k-Nearest Neighbors Join</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/min_max_scaler.html">MinMax Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/multiple_linear_regression.html">Multiple Linear Regression</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/pipelines.html">Pipelines</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/polynomial_features.html">Polynomial Features</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/sos.html">Stochastic Outlier Selection</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/standard_scaler.html">Standard Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/als.html">ALS</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/svm.html">SVM using CoCoA</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/best_practices.html">Best Practices</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/migration.html">API Migration Guides</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-145" data-toggle="collapse" class="active"><i class="fa fa-sliders title maindish" aria-hidden="true"></i> Deployment & Operations</a><div class="collapse in" id="collapse-145"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-146" data-toggle="collapse" class="active">Clusters & Deployment</a><div class="collapse in" id="collapse-146"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/cluster_setup.html">Standalone Cluster</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/yarn_setup.html">YARN</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/mesos.html">Mesos</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/kubernetes.html">Kubernetes</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/docker.html">Docker</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/aws.html" class="active">AWS</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/gce_setup.html">Google Compute Engine</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/mapr_setup.html">MapR</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/hadoop.html">Hadoop Integration</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-157" data-toggle="collapse">High Availability (HA) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-157"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/ha/jobmanager_high_availability.html">JobManager High Availability (HA)</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/ha/jobmanager_failover.html">JobManager Failover</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-161" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-161"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/checkpoints.html">Checkpoints</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/savepoints.html">Savepoints</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/large_state_tuning.html">Tuning Checkpoints and Large State</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/ops/config.html">Configuration</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/production_ready.html">Production Readiness Checklist</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/cli.html">CLI</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/security-kerberos.html">Kerberos</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/security-ssl.html">SSL Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/zeppelin.html">Flink on Zeppelin</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/upgrading.html">Upgrading Applications and Flink Versions</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-176" data-toggle="collapse"><i class="fa fa-bug title maindish" aria-hidden="true"></i> Debugging & Monitoring <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-176"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/metrics.html">Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/logging.html">Logging</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/historyserver.html">History Server</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/checkpoint_monitoring.html">Monitoring Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/back_pressure.html">Monitoring Back Pressure</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/rest_api.html">Monitoring REST API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_event_time.html">Debugging Windows & Event Time</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_classloading.html">Debugging Classloading</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/application_profiling.html">Application Profiling</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_job_resources.html">Debugging Job Resources</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-188" data-toggle="collapse"><i class="fa fa-book title dessert" aria-hidden="true"></i> Internals <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-188"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/components.html">Component Stack</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/stream_checkpointing.html">Fault Tolerance for Data Streaming</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/job_scheduling.html">Jobs and Scheduling</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/task_lifecycle.html">Task Lifecycle</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/taskmanager_resource.html">TaskManager Resource</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+</ul>
+
+<div class="sidenav-search-box">
+  <form class="navbar-form" role="search" action="//flink-china.org/doc/blink/search-results.html">
+    <div class="form-group">
+      <input type="text" class="form-control" size="16px" name="q" placeholder="Search">
+    </div>
+    <button type="submit" class="btn btn-default">Go</button>
+  </form>
+</div>
+
+<div class="sidenav-versions">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Pick Docs Version
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.4">v1.4</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.3">v1.3</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.2">v1.2</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.1">v1.1</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.0">v1.0</a></li>
+      
+    </ul>
+  </div>
+</div>
+
+        </div>
+        <div class="col-lg-9 content" id="contentcol">
+          
+
+          
+
+
+
+
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+
+
+
+<ol class="breadcrumb">
+
+  
+  
+    <li><i class="fa fa-sliders title maindish" aria-hidden="true"></i> Deployment & Operations</li>
+  
+
+  
+  
+    <li>Clusters & Deployment</li>
+  
+
+  
+  
+    <li class="active">AWS</li>
+  
+
+</ol>
+
+<h1>Amazon Web Services (AWS)</h1>
+
+
+
+
+<p>Amazon Web Services offers cloud computing services on which you can run Flink.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#emr-elastic-mapreduce" id="markdown-toc-emr-elastic-mapreduce">EMR: Elastic MapReduce</a>    <ul>
+      <li><a href="#standard-emr-installation" id="markdown-toc-standard-emr-installation">Standard EMR Installation</a></li>
+      <li><a href="#custom-emr-installation" id="markdown-toc-custom-emr-installation">Custom EMR Installation</a></li>
+    </ul>
+  </li>
+  <li><a href="#s3-simple-storage-service" id="markdown-toc-s3-simple-storage-service">S3: Simple Storage Service</a>    <ul>
+      <li><a href="#shaded-hadooppresto-s3-file-systems-recommended" id="markdown-toc-shaded-hadooppresto-s3-file-systems-recommended">Shaded Hadoop/Presto S3 file systems (recommended)</a></li>
+      <li><a href="#hadoop-provided-s3-file-systems---manual-setup" id="markdown-toc-hadoop-provided-s3-file-systems---manual-setup">Hadoop-provided S3 file systems - manual setup</a></li>
+    </ul>
+  </li>
+  <li><a href="#common-issues" id="markdown-toc-common-issues">Common Issues</a>    <ul>
+      <li><a href="#missing-s3-filesystem-configuration" id="markdown-toc-missing-s3-filesystem-configuration">Missing S3 FileSystem Configuration</a></li>
+      <li><a href="#aws-access-key-id-and-secret-access-key-not-specified" id="markdown-toc-aws-access-key-id-and-secret-access-key-not-specified">AWS Access Key ID and Secret Access Key Not Specified</a></li>
+      <li><a href="#classnotfoundexception-natives3filesystems3afilesystem-not-found" id="markdown-toc-classnotfoundexception-natives3filesystems3afilesystem-not-found">ClassNotFoundException: NativeS3FileSystem/S3AFileSystem Not Found</a></li>
+      <li><a href="#ioexception-400-bad-request" id="markdown-toc-ioexception-400-bad-request">IOException: <code class="highlighter-rouge">400: Bad Request</code></a></li>
+      <li><a href="#nullpointerexception-at-orgapachehadoopfslocaldirallocator" id="markdown-toc-nullpointerexception-at-orgapachehadoopfslocaldirallocator">NullPointerException at org.apache.hadoop.fs.LocalDirAllocator</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="emr-elastic-mapreduce">EMR: Elastic MapReduce</h2>
+
+<p><a href="https://aws.amazon.com/elasticmapreduce/">Amazon Elastic MapReduce</a> (Amazon EMR) is a web service that makes it easy to  quickly setup a Hadoop cluster. This is the <strong>recommended way</strong> to run Flink on AWS as it takes care of setting up everything.</p>
+
+<h3 id="standard-emr-installation">Standard EMR Installation</h3>
+
+<p>Flink is a supported application on Amazon EMR. <a href="http://docs.aws.amazon.com/emr/latest/ReleaseGuide/emr-flink.html">Amazon’s documentation</a>
+describes configuring Flink, creating and monitoring a cluster, and working with jobs.</p>
+
+<h3 id="custom-emr-installation">Custom EMR Installation</h3>
+
+<p>Amazon EMR services are regularly updated to new releases but a version of Flink which is not available
+can be manually installed in a stock EMR cluster.</p>
+
+<p><strong>Create EMR Cluster</strong></p>
+
+<p>The EMR documentation contains <a href="http://docs.aws.amazon.com/ElasticMapReduce/latest/ManagementGuide/emr-gs-launch-sample-cluster.html">examples showing how to start an EMR cluster</a>. You can follow that guide and install any EMR release. You don’t need to install the <em>All Applications</em> part of the EMR release, but can stick to <em>Core Hadoop</em>.</p>
+
+<p><span class="label label-danger">Note</span>
+Access to S3 buckets requires
+<a href="http://docs.aws.amazon.com/ElasticMapReduce/latest/ManagementGuide/emr-iam-roles.html">configuration of IAM roles</a>
+when creating an EMR cluster.</p>
+
+<p><strong>Install Flink on EMR Cluster</strong></p>
+
+<p>After creating your cluster, you can <a href="http://docs.aws.amazon.com/ElasticMapReduce/latest/ManagementGuide/emr-connect-master-node.html">connect to the master node</a> and install Flink:</p>
+
+<ol>
+  <li>Go the <a href="http://flink.apache.org/downloads.html">Downloads Page</a> and <strong>download a binary version of Flink matching the Hadoop version</strong> of your EMR cluster, e.g. Hadoop 2.7 for EMR releases 4.3.0, 4.4.0, or 4.5.0.</li>
+  <li>Extract the Flink distribution and you are ready to deploy <a href="yarn_setup.html">Flink jobs via YARN</a> after <strong>setting the Hadoop config directory</strong>:</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">HADOOP_CONF_DIR</span><span class="o">=</span>/etc/hadoop/conf ./bin/flink run <span class="nt">-m</span> yarn-cluster <span class="nt">-yn</span> 1 examples/streaming/WordCount.jar</code></pre></figure>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h2 id="s3-simple-storage-service">S3: Simple Storage Service</h2>
+
+<p><a href="http://aws.amazon.com/s3/">Amazon Simple Storage Service</a> (Amazon S3) provides cloud object storage for a variety of use cases. You can use S3 with Flink for <strong>reading</strong> and <strong>writing data</strong> as well in conjunction with the <a href="//flink-china.org/doc/blink/ops/state/state_backends.html">streaming <strong>state backends</strong></a> or even as a YARN object storage.</p>
+
+<p>You can use S3 objects like regular files by specifying paths in the following format:</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">s3://&lt;your-bucket&gt;/&lt;endpoint&gt;</code></pre></figure>
+
+<p>The endpoint can either be a single file or a directory, for example:</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// Read from S3 bucket</span>
+<span class="n">env</span><span class="o">.</span><span class="na">readTextFile</span><span class="o">(</span><span class="s">"s3://&lt;bucket&gt;/&lt;endpoint&gt;"</span><span class="o">);</span>
+
+<span class="c1">// Write to S3 bucket</span>
+<span class="n">stream</span><span class="o">.</span><span class="na">writeAsText</span><span class="o">(</span><span class="s">"s3://&lt;bucket&gt;/&lt;endpoint&gt;"</span><span class="o">);</span>
+
+<span class="c1">// Use S3 as FsStatebackend</span>
+<span class="n">env</span><span class="o">.</span><span class="na">setStateBackend</span><span class="o">(</span><span class="k">new</span> <span class="n">FsStateBackend</span><span class="o">(</span><span class="s">"s3://&lt;your-bucket&gt;/&lt;endpoint&gt;"</span><span class="o">));</span></code></pre></figure>
+
+<p>Note that these examples are <em>not</em> exhaustive and you can use S3 in other places as well, including your <a href="../ha/jobmanager_high_availability.html">high availability setup</a> or the <a href="//flink-china.org/doc/blink/ops/state/state_backends.html#the-rocksdbstatebackend">RocksDBStateBackend</a>; everywhere that Flink expects a FileSystem URI.</p>
+
+<p>For most use cases, you may use one of our shaded <code class="highlighter-rouge">flink-s3-fs-hadoop</code> and <code class="highlighter-rouge">flink-s3-fs-presto</code> S3
+filesystem wrappers which are fairly easy to set up. For some cases, however, e.g. for using S3 as
+YARN’s resource storage dir, it may be necessary to set up a specific Hadoop S3 FileSystem
+implementation. Both ways are described below.</p>
+
+<h3 id="shaded-hadooppresto-s3-file-systems-recommended">Shaded Hadoop/Presto S3 file systems (recommended)</h3>
+
+<div class="panel panel-default"><div class="panel-body"><strong>Note:</strong> You don’t have to configure this manually if you are running <a href="#emr-elastic-mapreduce">Flink on EMR</a>.</div></div>
+
+<p>To use either <code class="highlighter-rouge">flink-s3-fs-hadoop</code> or <code class="highlighter-rouge">flink-s3-fs-presto</code>, copy the respective JAR file from the
+<code class="highlighter-rouge">opt</code> directory to the <code class="highlighter-rouge">lib</code> directory of your Flink distribution before starting Flink, e.g.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cp</span> ./opt/flink-s3-fs-presto-1.5.1.jar ./lib/</code></pre></figure>
+
+<h4 id="configure-access-credentials">Configure Access Credentials</h4>
+
+<p>After setting up the S3 FileSystem wrapper, you need to make sure that Flink is allowed to access your S3 buckets.</p>
+
+<h5 id="identity-and-access-management-iam-recommended">Identity and Access Management (IAM) (Recommended)</h5>
+
+<p>The recommended way of setting up credentials on AWS is via <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html">Identity and Access Management (IAM)</a>. You can use IAM features to securely give Flink instances the credentials that they need in order to access S3 buckets. Details about how to do this are beyond the scope of this documentation. Please refer to the AWS user guide. What you are looking for are <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html">IAM Roles</a>.</p>
+
+<p>If you set this up correctly, you can manage access to S3 within AWS and don’t need to distribute any access keys to Flink.</p>
+
+<h5 id="access-keys-discouraged">Access Keys (Discouraged)</h5>
+
+<p>Access to S3 can be granted via your <strong>access and secret key pair</strong>. Please note that this is discouraged since the <a href="https://blogs.aws.amazon.com/security/post/Tx1XG3FX6VMU6O5/A-safer-way-to-distribute-AWS-credentials-to-EC2">introduction of IAM roles</a>.</p>
+
+<p>You need to configure both <code class="highlighter-rouge">s3.access-key</code> and <code class="highlighter-rouge">s3.secret-key</code>  in Flink’s  <code class="highlighter-rouge">flink-conf.yaml</code>:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">s3.access-key</span><span class="pi">:</span> <span class="s">your-access-key</span>
+<span class="s">s3.secret-key</span><span class="pi">:</span> <span class="s">your-secret-key</span></code></pre></figure>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="hadoop-provided-s3-file-systems---manual-setup">Hadoop-provided S3 file systems - manual setup</h3>
+
+<div class="panel panel-default"><div class="panel-body"><strong>Note:</strong> You don’t have to configure this manually if you are running <a href="#emr-elastic-mapreduce">Flink on EMR</a>.</div></div>
+
+<p>This setup is a bit more complex and we recommend using our shaded Hadoop/Presto file systems
+instead (see above) unless required otherwise, e.g. for using S3 as YARN’s resource storage dir
+via the <code class="highlighter-rouge">fs.defaultFS</code> configuration property in Hadoop’s <code class="highlighter-rouge">core-site.xml</code>.</p>
+
+<h4 id="set-s3-filesystem">Set S3 FileSystem</h4>
+
+<p>Interaction with S3 happens via one of <a href="https://wiki.apache.org/hadoop/AmazonS3">Hadoop’s S3 FileSystem clients</a>:</p>
+
+<ol>
+  <li><code class="highlighter-rouge">S3AFileSystem</code> (<strong>recommended</strong> for Hadoop 2.7 and later): file system for reading and writing regular files using Amazon’s SDK internally. No maximum file size and works with IAM roles.</li>
+  <li><code class="highlighter-rouge">NativeS3FileSystem</code> (for Hadoop 2.6 and earlier): file system for reading and writing regular files. Maximum object size is 5GB and does not work with IAM roles.</li>
+</ol>
+
+<h5 id="s3afilesystem-recommended"><code class="highlighter-rouge">S3AFileSystem</code> (Recommended)</h5>
+
+<p>This is the recommended S3 FileSystem implementation to use. It uses Amazon’s SDK internally and works with IAM roles (see <a href="#configure-access-credentials-1">Configure Access Credentials</a>).</p>
+
+<p>You need to point Flink to a valid Hadoop configuration, which contains the following properties in <code class="highlighter-rouge">core-site.xml</code>:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;configuration&gt;</span>
+
+<span class="nt">&lt;property&gt;</span>
+  <span class="nt">&lt;name&gt;</span>fs.s3.impl<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;value&gt;</span>org.apache.hadoop.fs.s3a.S3AFileSystem<span class="nt">&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+
+<span class="c">&lt;!-- Comma separated list of local directories used to buffer
+     large results prior to transmitting them to S3. --&gt;</span>
+<span class="nt">&lt;property&gt;</span>
+  <span class="nt">&lt;name&gt;</span>fs.s3a.buffer.dir<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;value&gt;</span>/tmp<span class="nt">&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+
+<span class="nt">&lt;/configuration&gt;</span></code></pre></figure>
+
+<p>This registers <code class="highlighter-rouge">S3AFileSystem</code> as the default FileSystem for URIs with the <code class="highlighter-rouge">s3a://</code> scheme.</p>
+
+<h5 id="natives3filesystem"><code class="highlighter-rouge">NativeS3FileSystem</code></h5>
+
+<p>This file system is limited to files up to 5GB in size and it does not work with IAM roles (see <a href="#configure-access-credentials-1">Configure Access Credentials</a>), meaning that you have to manually configure your AWS credentials in the Hadoop config file.</p>
+
+<p>You need to point Flink to a valid Hadoop configuration, which contains the following property in <code class="highlighter-rouge">core-site.xml</code>:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;property&gt;</span>
+  <span class="nt">&lt;name&gt;</span>fs.s3.impl<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;value&gt;</span>org.apache.hadoop.fs.s3native.NativeS3FileSystem<span class="nt">&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span></code></pre></figure>
+
+<p>This registers <code class="highlighter-rouge">NativeS3FileSystem</code> as the default FileSystem for URIs with the <code class="highlighter-rouge">s3://</code> scheme.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h4 id="hadoop-configuration">Hadoop Configuration</h4>
+
+<p>You can specify the <a href="../config.html#hdfs">Hadoop configuration</a> in various ways pointing Flink to
+the path of the Hadoop configuration directory, for example</p>
+<ul>
+  <li>by setting the environment variable <code class="highlighter-rouge">HADOOP_CONF_DIR</code>, or</li>
+  <li>by setting the <code class="highlighter-rouge">fs.hdfs.hadoopconf</code> configuration option in <code class="highlighter-rouge">flink-conf.yaml</code>:</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">fs.hdfs.hadoopconf</span><span class="pi">:</span> <span class="s">/path/to/etc/hadoop</span></code></pre></figure>
+
+<p>This registers <code class="highlighter-rouge">/path/to/etc/hadoop</code> as Hadoop’s configuration directory with Flink. Flink will look for the <code class="highlighter-rouge">core-site.xml</code> and <code class="highlighter-rouge">hdfs-site.xml</code> files in the specified directory.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h4 id="configure-access-credentials-1">Configure Access Credentials</h4>
+
+<div class="panel panel-default"><div class="panel-body"><strong>Note:</strong> You don’t have to configure this manually if you are running <a href="#emr-elastic-mapreduce">Flink on EMR</a>.</div></div>
+
+<p>After setting up the S3 FileSystem, you need to make sure that Flink is allowed to access your S3 buckets.</p>
+
+<h5 id="identity-and-access-management-iam-recommended-1">Identity and Access Management (IAM) (Recommended)</h5>
+
+<p>When using <code class="highlighter-rouge">S3AFileSystem</code>, the recommended way of setting up credentials on AWS is via <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html">Identity and Access Management (IAM)</a>. You can use IAM features to securely give Flink instances the credentials that they need in order to access S3 buckets. Details about how to do this are beyond the scope of this documentation. Please refer to the AWS user guide. What you are looking for are <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html">IAM Roles</a>.</p>
+
+<p>If you set this up correctly, you can manage access to S3 within AWS and don’t need to distribute any access keys to Flink.</p>
+
+<p>Note that this only works with <code class="highlighter-rouge">S3AFileSystem</code> and not <code class="highlighter-rouge">NativeS3FileSystem</code>.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h5 id="access-keys-with-s3afilesystem-discouraged">Access Keys with <code class="highlighter-rouge">S3AFileSystem</code> (Discouraged)</h5>
+
+<p>Access to S3 can be granted via your <strong>access and secret key pair</strong>. Please note that this is discouraged since the <a href="https://blogs.aws.amazon.com/security/post/Tx1XG3FX6VMU6O5/A-safer-way-to-distribute-AWS-credentials-to-EC2">introduction of IAM roles</a>.</p>
+
+<p>For <code class="highlighter-rouge">S3AFileSystem</code> you need to configure both <code class="highlighter-rouge">fs.s3a.access.key</code> and <code class="highlighter-rouge">fs.s3a.secret.key</code>  in Hadoop’s  <code class="highlighter-rouge">core-site.xml</code>:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;property&gt;</span>
+  <span class="nt">&lt;name&gt;</span>fs.s3a.access.key<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;value&gt;&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+
+<span class="nt">&lt;property&gt;</span>
+  <span class="nt">&lt;name&gt;</span>fs.s3a.secret.key<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;value&gt;&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span></code></pre></figure>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h5 id="access-keys-with-natives3filesystem-discouraged">Access Keys with <code class="highlighter-rouge">NativeS3FileSystem</code> (Discouraged)</h5>
+
+<p>Access to S3 can be granted via your <strong>access and secret key pair</strong>. But this is discouraged and you should use <code class="highlighter-rouge">S3AFileSystem</code> <a href="https://blogs.aws.amazon.com/security/post/Tx1XG3FX6VMU6O5/A-safer-way-to-distribute-AWS-credentials-to-EC2">with the required IAM roles</a>.</p>
+
+<p>For <code class="highlighter-rouge">NativeS3FileSystem</code> you need to configure both <code class="highlighter-rouge">fs.s3.awsAccessKeyId</code> and <code class="highlighter-rouge">fs.s3.awsSecretAccessKey</code>  in Hadoop’s  <code class="highlighter-rouge">core-site.xml</code>:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;property&gt;</span>
+  <span class="nt">&lt;name&gt;</span>fs.s3.awsAccessKeyId<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;value&gt;&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span>
+
+<span class="nt">&lt;property&gt;</span>
+  <span class="nt">&lt;name&gt;</span>fs.s3.awsSecretAccessKey<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;value&gt;&lt;/value&gt;</span>
+<span class="nt">&lt;/property&gt;</span></code></pre></figure>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h4 id="provide-s3-filesystem-dependency">Provide S3 FileSystem Dependency</h4>
+
+<div class="panel panel-default"><div class="panel-body"><strong>Note:</strong> You don’t have to configure this manually if you are running <a href="#emr-elastic-mapreduce">Flink on EMR</a>.</div></div>
+
+<p>Hadoop’s S3 FileSystem clients are packaged in the <code class="highlighter-rouge">hadoop-aws</code> artifact (Hadoop version 2.6 and later). This JAR and all its dependencies need to be added to Flink’s classpath, i.e. the class path of both Job and TaskManagers. Depending on which FileSystem implementation and which Flink and Hadoop version you use, you need to provide different dependencies (see below).</p>
+
+<p>There are multiple ways of adding JARs to Flink’s class path, the easiest being simply to drop the JARs in Flink’s <code class="highlighter-rouge">lib</code> folder. You need to copy the <code class="highlighter-rouge">hadoop-aws</code> JAR with all its dependencies. You can also export the directory containing these JARs as part of the <code class="highlighter-rouge">HADOOP_CLASSPATH</code> environment variable on all machines.</p>
+
+<h5 id="flink-for-hadoop-27">Flink for Hadoop 2.7</h5>
+
+<p>Depending on which file system you use, please add the following dependencies. You can find these as part of the Hadoop binaries in <code class="highlighter-rouge">hadoop-2.7/share/hadoop/tools/lib</code>:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">S3AFileSystem</code>:
+    <ul>
+      <li><code class="highlighter-rouge">hadoop-aws-2.7.3.jar</code></li>
+      <li><code class="highlighter-rouge">aws-java-sdk-s3-1.11.183.jar</code> and its dependencies:
+        <ul>
+          <li><code class="highlighter-rouge">aws-java-sdk-core-1.11.183.jar</code></li>
+          <li><code class="highlighter-rouge">aws-java-sdk-kms-1.11.183.jar</code></li>
+          <li><code class="highlighter-rouge">jackson-annotations-2.6.7.jar</code></li>
+          <li><code class="highlighter-rouge">jackson-core-2.6.7.jar</code></li>
+          <li><code class="highlighter-rouge">jackson-databind-2.6.7.jar</code></li>
+          <li><code class="highlighter-rouge">joda-time-2.8.1.jar</code></li>
+          <li><code class="highlighter-rouge">httpcore-4.4.4.jar</code></li>
+          <li><code class="highlighter-rouge">httpclient-4.5.3.jar</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">NativeS3FileSystem</code>:
+    <ul>
+      <li><code class="highlighter-rouge">hadoop-aws-2.7.3.jar</code></li>
+      <li><code class="highlighter-rouge">guava-11.0.2.jar</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p>Note that <code class="highlighter-rouge">hadoop-common</code> is available as part of Flink, but Guava is shaded by Flink.</p>
+
+<h5 id="flink-for-hadoop-26">Flink for Hadoop 2.6</h5>
+
+<p>Depending on which file system you use, please add the following dependencies. You can find these as part of the Hadoop binaries in <code class="highlighter-rouge">hadoop-2.6/share/hadoop/tools/lib</code>:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">S3AFileSystem</code>:
+    <ul>
+      <li><code class="highlighter-rouge">hadoop-aws-2.6.4.jar</code></li>
+      <li><code class="highlighter-rouge">aws-java-sdk-1.7.4.jar</code> and its dependencies:
+        <ul>
+          <li><code class="highlighter-rouge">jackson-annotations-2.1.1.jar</code></li>
+          <li><code class="highlighter-rouge">jackson-core-2.1.1.jar</code></li>
+          <li><code class="highlighter-rouge">jackson-databind-2.1.1.jar</code></li>
+          <li><code class="highlighter-rouge">joda-time-2.2.jar</code></li>
+          <li><code class="highlighter-rouge">httpcore-4.2.5.jar</code></li>
+          <li><code class="highlighter-rouge">httpclient-4.2.5.jar</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">NativeS3FileSystem</code>:
+    <ul>
+      <li><code class="highlighter-rouge">hadoop-aws-2.6.4.jar</code></li>
+      <li><code class="highlighter-rouge">guava-11.0.2.jar</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p>Note that <code class="highlighter-rouge">hadoop-common</code> is available as part of Flink, but Guava is shaded by Flink.</p>
+
+<h5 id="flink-for-hadoop-24-and-earlier">Flink for Hadoop 2.4 and earlier</h5>
+
+<p>These Hadoop versions only have support for <code class="highlighter-rouge">NativeS3FileSystem</code>. This comes pre-packaged with Flink for Hadoop 2 as part of <code class="highlighter-rouge">hadoop-common</code>. You don’t need to add anything to the classpath.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h2 id="common-issues">Common Issues</h2>
+
+<p>The following sections lists common issues when working with Flink on AWS.</p>
+
+<h3 id="missing-s3-filesystem-configuration">Missing S3 FileSystem Configuration</h3>
+
+<p>If your job submission fails with an Exception message noting that <code class="highlighter-rouge">No file system found with scheme s3</code> this means that no FileSystem has been configured for S3. Please check out the configuration sections for our <a href="#shaded-hadooppresto-s3-file-systems-recommended">shaded Hadoop/Presto</a> or <a href="#set-s3-filesystem">generic Hadoop</a> file systems for details on how to configure this properly.</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">org.apache.flink.client.program.ProgramInvocationException: The program execution failed:
+  Failed to submit job cd927567a81b62d7da4c18eaa91c3c39 (WordCount Example) [...]
+Caused by: org.apache.flink.runtime.JobException: Creating the input splits caused an error:
+  No file system found with scheme s3, referenced in file URI 's3://&lt;bucket&gt;/&lt;endpoint&gt;'. [...]
+Caused by: java.io.IOException: No file system found with scheme s3,
+  referenced in file URI 's3://&lt;bucket&gt;/&lt;endpoint&gt;'.
+    at o.a.f.core.fs.FileSystem.get(FileSystem.java:296)
+    at o.a.f.core.fs.Path.getFileSystem(Path.java:311)
+    at o.a.f.api.common.io.FileInputFormat.createInputSplits(FileInputFormat.java:450)
+    at o.a.f.api.common.io.FileInputFormat.createInputSplits(FileInputFormat.java:57)
+    at o.a.f.runtime.executiongraph.ExecutionJobVertex.&lt;init&gt;(ExecutionJobVertex.java:156)</code></pre></figure>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="aws-access-key-id-and-secret-access-key-not-specified">AWS Access Key ID and Secret Access Key Not Specified</h3>
+
+<p>If you see your job failing with an Exception noting that the <code class="highlighter-rouge">AWS Access Key ID and Secret Access Key must be specified as the username or password</code>, your access credentials have not been set up properly. Please refer to the access credential section for our <a href="#configure-access-credentials">shaded Hadoop/Presto</a> or <a href="#configure-access-credentials-1">generic Hadoop</a> file systems for details on how to configure this.</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">org.apache.flink.client.program.ProgramInvocationException: The program execution failed:
+  Failed to submit job cd927567a81b62d7da4c18eaa91c3c39 (WordCount Example) [...]
+Caused by: java.io.IOException: The given file URI (s3://&lt;bucket&gt;/&lt;endpoint&gt;) points to the
+  HDFS NameNode at &lt;bucket&gt;, but the File System could not be initialized with that address:
+  AWS Access Key ID and Secret Access Key must be specified as the username or password
+  (respectively) of a s3n URL, or by setting the fs.s3n.awsAccessKeyId
+  or fs.s3n.awsSecretAccessKey properties (respectively) [...]
+Caused by: java.lang.IllegalArgumentException: AWS Access Key ID and Secret Access Key must
+  be specified as the username or password (respectively) of a s3 URL, or by setting
+  the fs.s3n.awsAccessKeyId or fs.s3n.awsSecretAccessKey properties (respectively) [...]
+    at o.a.h.fs.s3.S3Credentials.initialize(S3Credentials.java:70)
+    at o.a.h.fs.s3native.Jets3tNativeFileSystemStore.initialize(Jets3tNativeFileSystemStore.java:80)
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:606)
+    at o.a.h.io.retry.RetryInvocationHandler.invokeMethod(RetryInvocationHandler.java:187)
+    at o.a.h.io.retry.RetryInvocationHandler.invoke(RetryInvocationHandler.java:102)
+    at o.a.h.fs.s3native.$Proxy6.initialize(Unknown Source)
+    at o.a.h.fs.s3native.NativeS3FileSystem.initialize(NativeS3FileSystem.java:330)
+    at o.a.f.runtime.fs.hdfs.HadoopFileSystem.initialize(HadoopFileSystem.java:321)</code></pre></figure>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="classnotfoundexception-natives3filesystems3afilesystem-not-found">ClassNotFoundException: NativeS3FileSystem/S3AFileSystem Not Found</h3>
+
+<p>If you see this Exception, the S3 FileSystem is not part of the class path of Flink. Please refer to <a href="#provide-s3-filesystem-dependency">S3 FileSystem dependency section</a> for details on how to configure this properly.</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">Caused by: java.lang.RuntimeException: java.lang.RuntimeException: java.lang.ClassNotFoundException: Class org.apache.hadoop.fs.s3native.NativeS3FileSystem not found
+  at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:2186)
+  at org.apache.flink.runtime.fs.hdfs.HadoopFileSystem.getHadoopWrapperClassNameForFileSystem(HadoopFileSystem.java:460)
+  at org.apache.flink.core.fs.FileSystem.getHadoopWrapperClassNameForFileSystem(FileSystem.java:352)
+  at org.apache.flink.core.fs.FileSystem.get(FileSystem.java:280)
+  at org.apache.flink.core.fs.Path.getFileSystem(Path.java:311)
+  at org.apache.flink.api.common.io.FileInputFormat.createInputSplits(FileInputFormat.java:450)
+  at org.apache.flink.api.common.io.FileInputFormat.createInputSplits(FileInputFormat.java:57)
+  at org.apache.flink.runtime.executiongraph.ExecutionJobVertex.&lt;init&gt;(ExecutionJobVertex.java:156)
+  ... 25 more
+Caused by: java.lang.RuntimeException: java.lang.ClassNotFoundException: Class org.apache.hadoop.fs.s3native.NativeS3FileSystem not found
+  at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:2154)
+  at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:2178)
+  ... 32 more
+Caused by: java.lang.ClassNotFoundException: Class org.apache.hadoop.fs.s3native.NativeS3FileSystem not found
+  at org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:2060)
+  at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:2152)
+  ... 33 more</code></pre></figure>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="ioexception-400-bad-request">IOException: <code class="highlighter-rouge">400: Bad Request</code></h3>
+
+<p>If you have configured everything properly, but get a <code class="highlighter-rouge">Bad Request</code> Exception <strong>and</strong> your S3 bucket is located in region <code class="highlighter-rouge">eu-central-1</code>, you might be running an S3 client, which does not support <a href="http://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html">Amazon’s signature version 4</a>.</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">[...]
+Caused by: java.io.IOException: s3://&lt;bucket-in-eu-central-1&gt;/&lt;endpoint&gt; : 400 : Bad Request [...]
+Caused by: org.jets3t.service.impl.rest.HttpException [...]</code></pre></figure>
+
+<p>or</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">com.amazonaws.services.s3.model.AmazonS3Exception: Status Code: 400, AWS Service: Amazon S3, AWS Request ID: [...], AWS Error Code: null, AWS Error Message: Bad Request, S3 Extended Request ID: [...]</code></pre></figure>
+
+<p>This should not apply to our shaded Hadoop/Presto S3 file systems but can occur for Hadoop-provided
+S3 file systems. In particular, all Hadoop versions up to 2.7.2 running <code class="highlighter-rouge">NativeS3FileSystem</code> (which
+depend on <code class="highlighter-rouge">JetS3t 0.9.0</code> instead of a version <a href="http://www.jets3t.org/RELEASE_NOTES.html">&gt;= 0.9.4</a>)
+are affected but users also reported this happening with the <code class="highlighter-rouge">S3AFileSystem</code>.</p>
+
+<p>Except for changing the bucket region, you may also be able to solve this by
+<a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#specify-signature-version">requesting signature version 4 for request authentication</a>,
+e.g. by adding this to Flink’s JVM options in <code class="highlighter-rouge">flink-conf.yaml</code> (see
+<a href="../config.html#common-options">configuration</a>):</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">env.java.opts</span><span class="pi">:</span> <span class="s">-Dcom.amazonaws.services.s3.enableV4</span></code></pre></figure>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="nullpointerexception-at-orgapachehadoopfslocaldirallocator">NullPointerException at org.apache.hadoop.fs.LocalDirAllocator</h3>
+
+<p>This Exception is usually caused by skipping the local buffer directory configuration <code class="highlighter-rouge">fs.s3a.buffer.dir</code> for the <code class="highlighter-rouge">S3AFileSystem</code>. Please refer to the <a href="#s3afilesystem-recommended">S3AFileSystem configuration</a> section to see how to configure the <code class="highlighter-rouge">S3AFileSystem</code> properly.</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">[...]
+Caused by: java.lang.NullPointerException at
+o.a.h.fs.LocalDirAllocator$AllocatorPerContext.confChanged(LocalDirAllocator.java:268) at
+o.a.h.fs.LocalDirAllocator$AllocatorPerContext.getLocalPathForWrite(LocalDirAllocator.java:344) at
+o.a.h.fs.LocalDirAllocator$AllocatorPerContext.createTmpFileForWrite(LocalDirAllocator.java:416) at
+o.a.h.fs.LocalDirAllocator.createTmpFileForWrite(LocalDirAllocator.java:198) at
+o.a.h.fs.s3a.S3AOutputStream.&lt;init&gt;(S3AOutputStream.java:87) at
+o.a.h.fs.s3a.S3AFileSystem.create(S3AFileSystem.java:410) at
+o.a.h.fs.FileSystem.create(FileSystem.java:907) at
+o.a.h.fs.FileSystem.create(FileSystem.java:888) at
+o.a.h.fs.FileSystem.create(FileSystem.java:785) at
+o.a.f.runtime.fs.hdfs.HadoopFileSystem.create(HadoopFileSystem.java:404) at
+o.a.f.runtime.fs.hdfs.HadoopFileSystem.create(HadoopFileSystem.java:48) at
+... 25 more</code></pre></figure>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+
+        </div>
+      </div>
+    </div><!-- /.container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//flink-china.org/doc/blink/page/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.0/anchor.min.js"></script>
+    <script src="//flink-china.org/doc/blink/page/js/flink.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-52545728-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- Disqus -->
+    
+  </body>
+</html>

@@ -1,0 +1,6220 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Apache Flink 1.5.1 Documentation: Configuration</title>
+    <link rel="shortcut icon" href="//flink-china.org/doc/blink/page/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="//flink-china.org/doc/blink/page/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/flink.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/syntax.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/codetabs.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/font-awesome/css/font-awesome.min.css">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    
+
+    <!-- Main content. -->
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-lg-3" id="sidenavcol">
+          
+
+
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="sidenav-logo">
+  <p><a href="//flink-china.org/doc/blink"><img class="bottom" alt="Apache Flink" src="//flink-china.org/doc/blink/page/img/navbar-brand-logo.jpg"></a> v1.5.1</p>
+</div>
+<ul id="sidenav">
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/"><i class="fa fa-home title" aria-hidden="true"></i> Home</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-2" data-toggle="collapse"><i class="fa fa-map-o title appetizer" aria-hidden="true"></i> Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-2"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/concepts/programming-model.html">Programming Model</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/concepts/runtime.html">Distributed Runtime</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-6" data-toggle="collapse"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-6"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-7" data-toggle="collapse">API Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-7"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/datastream_api.html">DataStream API</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-10" data-toggle="collapse">Setup Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-10"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/local_setup.html">Local Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/setup_quickstart.html"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-16" data-toggle="collapse"><i class="fa fa-file-code-o title appetizer" aria-hidden="true"></i> Examples <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-16"><ul>
+  <li><a href="//flink-china.org/doc/blink/examples/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/examples.html">DataStream Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/examples.html">DataSet Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/stream_sql_quickstart.html">Stream SQL Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/batch_sql_quickstart.html">Batch SQL Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/scala_shell_quickstart.html">Scala Shell Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/zeppelin_quickstart.html">Flink on Zeppelin Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/examples.html">Flink-Hive Examples</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-25" data-toggle="collapse"><i class="fa fa-cogs title maindish" aria-hidden="true"></i> Project Setup <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-25"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/java_api_quickstart.html">Project Template for Java</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/scala_api_quickstart.html">Project Template for Scala</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/dependencies.html">Configuring Dependencies, Connectors, Libraries</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/ide_setup.html">IDE Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/scala_shell.html">Scala Shell</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/building.html">Building Flink from Source</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-34" data-toggle="collapse"><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-34"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-35" data-toggle="collapse">Basic API Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-35"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/api_concepts.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/scala_api_extensions.html">Scala API Extensions</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/java8.html">Java 8</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-39" data-toggle="collapse">Streaming (DataStream API) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-39"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/datastream_api.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-40" data-toggle="collapse">Event Time <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-40"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/event_time.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/event_timestamps_watermarks.html">Generating Timestamps / Watermarks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/event_timestamp_extractors.html">Pre-defined Timestamp Extractors / Watermark Emitters</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-44" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-44"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/stream/state/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/state.html">Working with State</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/broadcast_state.html">The Broadcast State Pattern</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/checkpointing.html">Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/queryable_state.html">Queryable State</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/custom_serialization.html">Custom Serialization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-52" data-toggle="collapse">Operators <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-52"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/stream/operators/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/windows.html">Windows</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/process_function.html">Process Function</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/asyncio.html">Async I/O</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-57" data-toggle="collapse">Connectors <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-57"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/connectors/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/guarantees.html">Fault Tolerance Guarantees</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/kafka.html">Kafka</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/cassandra.html">Cassandra</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/kinesis.html">Kinesis</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/elasticsearch.html">Elasticsearch</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/filesystem_sink.html">Rolling File Sink</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/rabbitmq.html">RabbitMQ</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/nifi.html">NiFi</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/twitter.html">Twitter</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/side_output.html">Side Outputs</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/testing.html">Testing</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/experimental.html">Experimental Features</a></li>
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-73" data-toggle="collapse">Batch (DataSet API) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-73"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/batch/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/dataset_transformations.html">Transformations</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/fault_tolerance.html">Fault Tolerance</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/zip_elements_guide.html">Zipping Elements</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/iterations.html">Iterations</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/connectors.html">Connectors</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/hadoop_compatibility.html">Hadoop Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/local_execution.html">Local Execution</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/cluster_execution.html">Cluster Execution</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-84" data-toggle="collapse">Table API & SQL <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-84"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/table/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/common.html">Concepts & Common API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/hive_compatibility.html">Hive Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-87" data-toggle="collapse">Streaming Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-87"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/table/streaming/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/dynamic_tables.html">Dynamic Tables</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/time_attributes.html">Time Attributes</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/joins.html">Joins in Continuous Queries</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/temporal_tables.html">Temporal Tables</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/match_recognize.html">Detecting Patterns</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/query_configuration.html">Query Configuration</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/tableApi.html">Table API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sql.html">SQL</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/supported_ddl.html">SQL Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sourceSinks.html">Table Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/udfs.html">User-defined Functions</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sqlClient.html">SQL Client</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/resource.html">SQL Resource</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/catalog.html">Catalog</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming_optimization.html">Streaming Aggregation Optimization</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/multiple_tablesink_optimization.html">Multiple TableSink Optimization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-106" data-toggle="collapse">Data Types & Serialization <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-106"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/types_serialization.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/custom_serializers.html">Custom Serializers</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-109" data-toggle="collapse">Managing Execution <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-109"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/execution_configuration.html">Execution Configuration</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/packaging.html">Program Packaging</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/parallel.html">Parallel Execution</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/execution_plans.html">Execution Plans</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/restart_strategies.html">Restart Strategies</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-116" data-toggle="collapse">Libraries <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-116"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/cep.html">Event Processing (CEP)</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-118" data-toggle="collapse">Graphs: Gelly <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-118"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/libs/gelly/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_api.html">Graph API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/iterative_graph_processing.html">Iterative Graph Processing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/library_methods.html">Library Methods</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_algorithms.html">Graph Algorithms</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_generators.html">Graph Generators</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/bipartite_graph.html">Bipartite Graph</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-126" data-toggle="collapse">Machine Learning <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-126"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/libs/ml/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/quickstart.html">Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/contribution_guide.html">How to Contribute</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/cross_validation.html">Cross Validation</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/distance_metrics.html">Distance Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/knn.html">k-Nearest Neighbors Join</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/min_max_scaler.html">MinMax Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/multiple_linear_regression.html">Multiple Linear Regression</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/pipelines.html">Pipelines</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/polynomial_features.html">Polynomial Features</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/sos.html">Stochastic Outlier Selection</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/standard_scaler.html">Standard Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/als.html">ALS</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/svm.html">SVM using CoCoA</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/best_practices.html">Best Practices</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/migration.html">API Migration Guides</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-145" data-toggle="collapse" class="active"><i class="fa fa-sliders title maindish" aria-hidden="true"></i> Deployment & Operations</a><div class="collapse in" id="collapse-145"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-146" data-toggle="collapse">Clusters & Deployment <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-146"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/cluster_setup.html">Standalone Cluster</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/yarn_setup.html">YARN</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/mesos.html">Mesos</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/kubernetes.html">Kubernetes</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/docker.html">Docker</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/aws.html">AWS</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/gce_setup.html">Google Compute Engine</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/mapr_setup.html">MapR</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/hadoop.html">Hadoop Integration</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-157" data-toggle="collapse">High Availability (HA) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-157"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/ha/jobmanager_high_availability.html">JobManager High Availability (HA)</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/ha/jobmanager_failover.html">JobManager Failover</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-161" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-161"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/checkpoints.html">Checkpoints</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/savepoints.html">Savepoints</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/large_state_tuning.html">Tuning Checkpoints and Large State</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/ops/config.html" class="active">Configuration</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/production_ready.html">Production Readiness Checklist</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/cli.html">CLI</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/security-kerberos.html">Kerberos</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/security-ssl.html">SSL Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/zeppelin.html">Flink on Zeppelin</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/upgrading.html">Upgrading Applications and Flink Versions</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-176" data-toggle="collapse"><i class="fa fa-bug title maindish" aria-hidden="true"></i> Debugging & Monitoring <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-176"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/metrics.html">Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/logging.html">Logging</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/historyserver.html">History Server</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/checkpoint_monitoring.html">Monitoring Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/back_pressure.html">Monitoring Back Pressure</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/rest_api.html">Monitoring REST API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_event_time.html">Debugging Windows & Event Time</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_classloading.html">Debugging Classloading</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/application_profiling.html">Application Profiling</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_job_resources.html">Debugging Job Resources</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-188" data-toggle="collapse"><i class="fa fa-book title dessert" aria-hidden="true"></i> Internals <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-188"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/components.html">Component Stack</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/stream_checkpointing.html">Fault Tolerance for Data Streaming</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/job_scheduling.html">Jobs and Scheduling</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/task_lifecycle.html">Task Lifecycle</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/taskmanager_resource.html">TaskManager Resource</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+</ul>
+
+<div class="sidenav-search-box">
+  <form class="navbar-form" role="search" action="//flink-china.org/doc/blink/search-results.html">
+    <div class="form-group">
+      <input type="text" class="form-control" size="16px" name="q" placeholder="Search">
+    </div>
+    <button type="submit" class="btn btn-default">Go</button>
+  </form>
+</div>
+
+<div class="sidenav-versions">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Pick Docs Version
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.4">v1.4</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.3">v1.3</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.2">v1.2</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.1">v1.1</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.0">v1.0</a></li>
+      
+    </ul>
+  </div>
+</div>
+
+        </div>
+        <div class="col-lg-9 content" id="contentcol">
+          
+
+          
+
+
+
+
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+
+
+
+<ol class="breadcrumb">
+
+  
+  
+    <li><i class="fa fa-sliders title maindish" aria-hidden="true"></i> Deployment & Operations</li>
+  
+
+  
+  
+    <li class="active">Configuration</li>
+  
+
+</ol>
+
+<h1>Configuration</h1>
+
+
+
+
+<p><strong>For single-node setups Flink is ready to go out of the box and you don’t need to change the default configuration to get started.</strong></p>
+
+<p>The out of the box configuration will use your default Java installation. You can manually set the environment variable <code class="highlighter-rouge">JAVA_HOME</code> or the configuration key <code class="highlighter-rouge">env.java.home</code> in <code class="highlighter-rouge">conf/flink-conf.yaml</code> if you want to manually override the Java runtime to use.</p>
+
+<p>This page lists the most common options that are typically needed to set up a well performing (distributed) installation. In addition a full list of all available configuration parameters is listed here.</p>
+
+<p>All configuration is done in <code class="highlighter-rouge">conf/flink-conf.yaml</code>, which is expected to be a flat collection of <a href="http://www.yaml.org/spec/1.2/spec.html">YAML key value pairs</a> with format <code class="highlighter-rouge">key: value</code>.</p>
+
+<p>The system and run scripts parse the config at startup time. Changes to the configuration file require restarting the Flink JobManager and TaskManagers.</p>
+
+<p>The configuration files for the TaskManagers can be different, Flink does not assume uniform machines in the cluster.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#common-options" id="markdown-toc-common-options">Common Options</a></li>
+  <li><a href="#advanced-options" id="markdown-toc-advanced-options">Advanced Options</a>    <ul>
+      <li><a href="#compute" id="markdown-toc-compute">Compute</a></li>
+      <li><a href="#managed-memory" id="markdown-toc-managed-memory">Managed Memory</a></li>
+      <li><a href="#memory-and-performance-debugging" id="markdown-toc-memory-and-performance-debugging">Memory and Performance Debugging</a></li>
+      <li><a href="#kerberos-based-security" id="markdown-toc-kerberos-based-security">Kerberos-based Security</a></li>
+      <li><a href="#other" id="markdown-toc-other">Other</a></li>
+    </ul>
+  </li>
+  <li><a href="#full-reference" id="markdown-toc-full-reference">Full Reference</a>    <ul>
+      <li><a href="#hdfs" id="markdown-toc-hdfs">HDFS</a></li>
+      <li><a href="#core" id="markdown-toc-core">Core</a></li>
+      <li><a href="#jobmanager" id="markdown-toc-jobmanager">JobManager</a></li>
+      <li><a href="#taskmanager" id="markdown-toc-taskmanager">TaskManager</a></li>
+      <li><a href="#distributed-coordination-via-akka" id="markdown-toc-distributed-coordination-via-akka">Distributed Coordination (via Akka)</a></li>
+      <li><a href="#rest" id="markdown-toc-rest">REST</a></li>
+      <li><a href="#blob-server" id="markdown-toc-blob-server">Blob Server</a></li>
+      <li><a href="#heartbeat-manager" id="markdown-toc-heartbeat-manager">Heartbeat Manager</a></li>
+      <li><a href="#ssl-settings" id="markdown-toc-ssl-settings">SSL Settings</a></li>
+      <li><a href="#network-communication-via-netty" id="markdown-toc-network-communication-via-netty">Network communication (via Netty)</a></li>
+      <li><a href="#web-frontend" id="markdown-toc-web-frontend">Web Frontend</a></li>
+      <li><a href="#file-systems" id="markdown-toc-file-systems">File Systems</a></li>
+      <li><a href="#compileroptimizer" id="markdown-toc-compileroptimizer">Compiler/Optimizer</a></li>
+      <li><a href="#runtime-algorithms" id="markdown-toc-runtime-algorithms">Runtime Algorithms</a></li>
+      <li><a href="#resource-manager" id="markdown-toc-resource-manager">Resource Manager</a></li>
+      <li><a href="#yarn" id="markdown-toc-yarn">YARN</a></li>
+      <li><a href="#mesos" id="markdown-toc-mesos">Mesos</a></li>
+      <li><a href="#kubernetes" id="markdown-toc-kubernetes">Kubernetes</a></li>
+      <li><a href="#high-availability-ha" id="markdown-toc-high-availability-ha">High Availability (HA)</a></li>
+      <li><a href="#zookeeper-security" id="markdown-toc-zookeeper-security">ZooKeeper Security</a></li>
+      <li><a href="#kerberos-based-security-1" id="markdown-toc-kerberos-based-security-1">Kerberos-based Security</a></li>
+      <li><a href="#environment" id="markdown-toc-environment">Environment</a></li>
+      <li><a href="#checkpointing" id="markdown-toc-checkpointing">Checkpointing</a></li>
+      <li><a href="#queryable-state" id="markdown-toc-queryable-state">Queryable State</a></li>
+      <li><a href="#metrics" id="markdown-toc-metrics">Metrics</a></li>
+      <li><a href="#history-server" id="markdown-toc-history-server">History Server</a></li>
+      <li><a href="#slot-manager" id="markdown-toc-slot-manager">Slot Manager</a></li>
+    </ul>
+  </li>
+  <li><a href="#legacy" id="markdown-toc-legacy">Legacy</a></li>
+  <li><a href="#background" id="markdown-toc-background">Background</a>    <ul>
+      <li><a href="#configuring-the-network-buffers" id="markdown-toc-configuring-the-network-buffers">Configuring the Network Buffers</a></li>
+      <li><a href="#configuring-temporary-io-directories-and-threads" id="markdown-toc-configuring-temporary-io-directories-and-threads">Configuring Temporary I/O Directories and Threads</a></li>
+      <li><a href="#configuring-taskmanager-processing-slots" id="markdown-toc-configuring-taskmanager-processing-slots">Configuring TaskManager processing slots</a></li>
+      <li><a href="#configure-the-jobs-using-external-shuffle-services" id="markdown-toc-configure-the-jobs-using-external-shuffle-services">Configure the jobs using external shuffle services</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="common-options">Common Options</h2>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">env.java.home</code>: The path to the Java installation to use (DEFAULT: system’s default Java installation, if found). Needs to be specified if the startup scripts fail to automatically resolve the java home directory. Can be specified to point to a specific java installation or version. If this option is not specified, the startup scripts also evaluate the <code class="highlighter-rouge">$JAVA_HOME</code> environment variable.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">env.java.opts</code>: Set custom JVM options. This value is respected by Flink’s start scripts, both JobManager and
+TaskManager, and Flink’s YARN client. This can be used to set different garbage collectors or to include remote
+debuggers into the JVMs running Flink’s services. Enclosing options in double quotes delays parameter substitution
+allowing access to variables from Flink’s startup scripts. Use <code class="highlighter-rouge">env.java.opts.jobmanager</code> and <code class="highlighter-rouge">env.java.opts.taskmanager</code>
+for JobManager or TaskManager-specific options, respectively.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">env.java.opts.jobmanager</code>: JobManager-specific JVM options. These are used in addition to the regular <code class="highlighter-rouge">env.java.opts</code>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">env.java.opts.taskmanager</code>: TaskManager-specific JVM options. These are used in addition to the regular <code class="highlighter-rouge">env.java.opts</code>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">jobmanager.rpc.address</code>: The external address of the JobManager, which is the master/coordinator of the distributed system (DEFAULT: localhost). <strong>Note:</strong> The address (host name or IP) should be accessible by all nodes including the client.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">jobmanager.rpc.port</code>: The port number of the JobManager (DEFAULT: 6123).</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">jobmanager.heap.mb</code>: JVM heap size (in megabytes) for the JobManager. You may have to increase the heap size for the JobManager if you are running very large applications (with many operators), or if you are keeping a long history of them.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">taskmanager.heap.mb</code>: JVM heap size (in megabytes) for the TaskManagers, which are the parallel workers of the system. In contrast to Hadoop, Flink runs operators (e.g., join, aggregate) and user-defined functions (e.g., Map, Reduce, CoGroup) inside the TaskManager (including sorting/hashing/caching), so this value should be as large as possible. If the cluster is exclusively running Flink, the total amount of available memory per machine minus some memory for the operating system (maybe 1-2 GB) is a good value. On YARN setups, this value is automatically configured to the size of the TaskManager’s YARN container, minus a certain tolerance value.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">taskmanager.numberOfTaskSlots</code>: The number of parallel operator or user function instances that a single TaskManager can run (DEFAULT: 1). If this value is larger than 1, a single TaskManager takes multiple instances of a function or operator. That way, the TaskManager can utilize multiple CPU cores, but at the same time, the available memory is divided between the different operator or function instances. This value is typically proportional to the number of physical CPU cores that the TaskManager’s machine has (e.g., equal to the number of cores, or half the number of cores). <a href="config.html#configuring-taskmanager-processing-slots">More about task slots</a>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">parallelism.default</code>: The default parallelism to use for programs that have no parallelism specified. (DEFAULT: 1). For setups that have no concurrent jobs running, setting this value to NumTaskManagers * NumSlotsPerTaskManager will cause the system to use all available execution resources for the program’s execution. <strong>Note</strong>: The default parallelism can be overwritten for an entire job by calling <code class="highlighter-rouge">setParallelism(int parallelism)</code> on the <code class="highlighter-rouge">ExecutionEnvironment</code> or by passing <code class="highlighter-rouge">-p &lt;parallelism&gt;</code> to the Flink Command-line frontend. It can be overwritten for single transformations by calling <code class="highlighter-rouge">setParallelism(int
+parallelism)</code> on an operator. See <a href="//flink-china.org/doc/blink/dev/parallel.html">Parallel Execution</a> for more information about parallelism.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">fs.default-scheme</code>: The default filesystem scheme to be used, with the necessary authority to contact, e.g. the host:port of the NameNode in the case of HDFS (if needed).
+By default, this is set to <code class="highlighter-rouge">file:///</code> which points to the local filesystem. This means that the local
+filesystem is going to be used to search for user-specified files <strong>without</strong> an explicit scheme
+definition. As another example, if this is set to <code class="highlighter-rouge">hdfs://localhost:9000/</code>, then a user-specified file path
+without explicit scheme definition, such as <code class="highlighter-rouge">/user/USERNAME/in.txt</code>, is going to be transformed into
+<code class="highlighter-rouge">hdfs://localhost:9000/user/USERNAME/in.txt</code>. This scheme is used <strong>ONLY</strong> if no other scheme is specified (explicitly) in the user-provided <code class="highlighter-rouge">URI</code>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">classloader.resolve-order</code>: Whether Flink should use a child-first <code class="highlighter-rouge">ClassLoader</code> when loading
+user-code classes or a parent-first <code class="highlighter-rouge">ClassLoader</code>. Can be one of <code class="highlighter-rouge">parent-first</code> or <code class="highlighter-rouge">child-first</code>. (default: <code class="highlighter-rouge">child-first</code>)</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">classloader.parent-first-patterns.default</code>: A (semicolon-separated) list of patterns that specifies which
+classes should always be resolved through the parent <code class="highlighter-rouge">ClassLoader</code> first. A pattern is a simple
+prefix that is checked against the fully qualified class name. By default, this is set to
+<code class="highlighter-rouge">"java.;scala.;org.apache.flink.;com.esotericsoftware.kryo;org.apache.hadoop.;javax.annotation.;org.slf4j;org.apache.log4j;org.apache.logging.log4j;ch.qos.logback"</code>.
+To extend this list beyond the default it is recommended to configure <code class="highlighter-rouge">classloader.parent-first-patterns.additional</code> instead of modifying this setting directly.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">classloader.parent-first-patterns.additional</code>: A (semicolon-separated) list of patterns that specifies which
+classes should always be resolved through the parent <code class="highlighter-rouge">ClassLoader</code> first. A pattern is a simple
+prefix that is checked against the fully qualified class name.
+This list is appended to <code class="highlighter-rouge">classloader.parent-first-patterns.default</code>.</p>
+  </li>
+</ul>
+
+<h2 id="advanced-options">Advanced Options</h2>
+
+<h3 id="compute">Compute</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">taskmanager.compute.numa</code>: When enabled a TaskManager is started on each NUMA node for each worker listed in <em>conf/slaves</em> (DEFAULT: false). Note: only supported when deploying Flink as a standalone cluster.</li>
+</ul>
+
+<h3 id="managed-memory">Managed Memory</h3>
+
+<p>Managed memory helps Flink to run the batch operators efficiently. It prevents <code class="highlighter-rouge">OutOfMemoryException</code>s because Flink knows how much memory it can use to execute operations. If Flink runs out of managed memory, it utilizes disk space. Using managed memory, some operations can be performed directly on the raw data without having to deserialize the data to convert it into Java objects. All in all, managed memory improves the robustness and speed of the system.</p>
+
+<p>In session mode, Flink does not allocate any byte for its managed memory. It could be configured by <code class="highlighter-rouge">taskmanager.managed.memory.size</code> parameter. In per-job mode, the managed memory of each TaskManager will be calculated by resources of all slots which are located on this TaskManager. Navigate to <a href="../internals/taskmanager_resource.html">TaskManager Resource</a> to know how to set resources for each operator. If resources of all operators are not specified in per-job mode, a fraction of 0.7 of the free memory(total jvm memory minus memory used for network buffers) will be used. If desired, the managed memory may be allocated outside the JVM heap. This may improve performance in setups with large memory sizes.</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">taskmanager.managed.memory.size</code>: The amount of memory (in megabytes) that the task manager reserves on-heap or off-heap (depending on <code class="highlighter-rouge">taskmanager.memory.off-heap</code>) for sorting, hash tables, and caching of intermediate results. If unspecified (-1), the memory manager will take a fixed ratio with respect to the size of the task manager JVM as specified by <code class="highlighter-rouge">taskmanager.memory.fraction</code>. (DEFAULT: -1)</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">taskmanager.memory.fraction</code>: The relative amount of memory (with respect to <code class="highlighter-rouge">taskmanager.heap.mb</code>, after subtracting the amount of memory used by network buffers) that the task manager reserves for sorting, hash tables, and caching of intermediate results. For example, a value of <code class="highlighter-rouge">0.8</code> means that a task manager reserves 80% of its memory (on-heap or off-heap depending on <code class="highlighter-rouge">taskmanager.memory.off-heap</code>) for internal data buffers, leaving 20% of free memory for the task manager’s heap for objects created by user-defined functions. (DEFAULT: 0.7) This parameter is only evaluated, if <code class="highlighter-rouge">taskmanager.memory.size</code> is not set.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">taskmanager.memory.off-heap</code>: If set to <code class="highlighter-rouge">true</code>, the task manager allocates memory which is used for sorting, hash tables, and caching of intermediate results outside of the JVM heap. For setups with larger quantities of memory, this can improve the efficiency of the operations performed on the memory (DEFAULT: false).</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">taskmanager.memory.segment-size</code>: The size of memory buffers used by the memory manager and the network stack in bytes (DEFAULT: 32768 (= 32 KiBytes)).</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">taskmanager.memory.preallocate</code>: Can be either of <code class="highlighter-rouge">true</code> or <code class="highlighter-rouge">false</code>. Specifies whether task managers should allocate all managed memory when starting up. (DEFAULT: false). When <code class="highlighter-rouge">taskmanager.memory.off-heap</code> is set to <code class="highlighter-rouge">true</code>, then it is advised that this configuration is also set to <code class="highlighter-rouge">true</code>.  If this configuration is set to <code class="highlighter-rouge">false</code> cleaning up of the allocated offheap memory happens only when the configured JVM parameter MaxDirectMemorySize is reached by triggering a full GC. <strong>Note:</strong> For streaming setups, we highly recommend to set this value to <code class="highlighter-rouge">false</code> as the core state backends currently do not use the managed memory.</p>
+  </li>
+</ul>
+
+<h3 id="memory-and-performance-debugging">Memory and Performance Debugging</h3>
+
+<p>These options are useful for debugging a Flink application for memory and garbage collection related issues, such as performance and out-of-memory process kills or exceptions.</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">taskmanager.debug.memory.startLogThread</code>: Causes the TaskManagers to periodically log memory and Garbage collection statistics. The statistics include current heap-, off-heap, and other memory pool utilization, as well as the time spent on garbage collection, by heap memory pool.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">taskmanager.debug.memory.logIntervalMs</code>: The interval (in milliseconds) in which the TaskManagers log the memory and garbage collection statistics. Only has an effect, if <code class="highlighter-rouge">taskmanager.debug.memory.startLogThread</code> is set to true.</p>
+  </li>
+</ul>
+
+<h3 id="kerberos-based-security">Kerberos-based Security</h3>
+
+<p>Flink supports Kerberos authentication for the following services:</p>
+
+<ul>
+  <li>Hadoop Components, such as HDFS, YARN, or HBase <em>(version 2.6.1 and above; all other versions have critical bugs which might fail the Flink job unexpectedly)</em>.</li>
+  <li>Kafka Connectors <em>(version 0.9+ and above)</em>.</li>
+  <li>Zookeeper</li>
+</ul>
+
+<p>Configuring Flink for Kerberos security involves three aspects, explained separately in the following sub-sections.</p>
+
+<h5 id="1-providing-the-cluster-with-a-kerberos-credential-ie-a-keytab-or-a-ticket-via-kinit">1. Providing the cluster with a Kerberos credential (i.e. a keytab or a ticket via <code class="highlighter-rouge">kinit</code>)</h5>
+
+<p>To provide the cluster with a Kerberos credential, Flink supports using a Kerberos keytab file or ticket caches managed by <code class="highlighter-rouge">kinit</code>.</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">security.kerberos.login.use-ticket-cache</code>: Indicates whether to read from your Kerberos ticket cache (default: <code class="highlighter-rouge">true</code>).</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">security.kerberos.login.keytab</code>: Absolute path to a Kerberos keytab file that contains the user credentials.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">security.kerberos.login.principal</code>: Kerberos principal name associated with the keytab.</p>
+  </li>
+</ul>
+
+<p>If both <code class="highlighter-rouge">security.kerberos.login.keytab</code> and <code class="highlighter-rouge">security.kerberos.login.principal</code> have values provided, keytabs will be used for authentication.
+It is preferable to use keytabs for long-running jobs, to avoid ticket expiration issues.   If you prefer to use the ticket cache,
+talk to your administrator about increasing the Hadoop delegation token lifetime.</p>
+
+<p>Note that authentication using ticket caches is only supported when deploying Flink as a standalone cluster or on YARN.</p>
+
+<h5 id="2-making-the-kerberos-credential-available-to-components-and-connectors-as-needed">2. Making the Kerberos credential available to components and connectors as needed</h5>
+
+<p>For Hadoop components, Flink will automatically detect if the configured Kerberos credentials should be used when connecting to HDFS, HBase, and other Hadoop components depending on whether Hadoop security is enabled (in <code class="highlighter-rouge">core-site.xml</code>).</p>
+
+<p>For any connector or component that uses a JAAS configuration file, make the Kerberos credentials available to them by configuring JAAS login contexts for each one respectively, using the following configuration:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">security.kerberos.login.contexts</code>: A comma-separated list of login contexts to provide the Kerberos credentials to (for example, <code class="highlighter-rouge">Client,KafkaClient</code> to use the credentials for ZooKeeper authentication and for Kafka authentication).</li>
+</ul>
+
+<p>This allows enabling Kerberos authentication for different connectors or components independently. For example, you can enable Hadoop security without necessitating the use of Kerberos for ZooKeeper, or vice versa.</p>
+
+<p>You may also provide a static JAAS configuration file using the mechanisms described in the <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/jgss/tutorials/LoginConfigFile.html">Java SE Documentation</a>, whose entries will override those produced by the above configuration option.</p>
+
+<h5 id="3-configuring-the-component-andor-connector-to-use-kerberos-authentication">3. Configuring the component and/or connector to use Kerberos authentication</h5>
+
+<p>Finally, be sure to configure the connector within your Flink program or component as necessary to use Kerberos authentication.</p>
+
+<p>Below is a list of currently first-class supported connectors or components by Flink for Kerberos authentication:</p>
+
+<ul>
+  <li>
+    <p>Kafka: see <a href="//flink-china.org/doc/blink/dev/connectors/kafka.html#enabling-kerberos-authentication-for-versions-above-09-only">here</a> for details on configuring the Kafka connector to use Kerberos authentication.</p>
+  </li>
+  <li>
+    <p>Zookeeper (for HA): see <a href="//flink-china.org/doc/blink/ops/ha/jobmanager_high_availability.html#configuring-for-zookeeper-security">here</a> for details on Zookeeper security configuration to work with the Kerberos-based security configurations mentioned here.</p>
+  </li>
+</ul>
+
+<p>For more information on how Flink security internally setups Kerberos authentication, please see <a href="//flink-china.org/doc/blink/ops/security-kerberos.html">here</a>.</p>
+
+<h3 id="other">Other</h3>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">taskmanager.tmp.dirs</code>: The directory for temporary files, or a list of directories separated by the system’s directory delimiter (for example ‘:’ (colon) on Linux/Unix). If multiple directories are specified, then the temporary files will be distributed across the directories in a round-robin fashion. The I/O manager component will spawn one reading and one writing thread per directory. A directory may be listed multiple times to have the I/O manager use multiple threads for it (for example if it is physically stored on a very fast disc or RAID) (DEFAULT: The system’s tmp dir).</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">taskmanager.log.path</code>: The config parameter defining the taskmanager log file location</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">jobmanager.web.address</code>: Address of the JobManager’s web interface (DEFAULT: anyLocalAddress()).</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">jobmanager.web.port</code>: Port of the JobManager’s web interface (DEFAULT: 8081).</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">jobmanager.web.tmpdir</code>: This configuration parameter allows defining the Flink web directory to be used by the web interface. The web interface
+will copy its static files into the directory. Also uploaded job jars are stored in the directory if not overridden. By default, the temporary directory is used.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">jobmanager.web.upload.dir</code>: The config parameter defining the directory for uploading the job jars. If not specified a dynamic directory
+will be used under the directory specified by jobmanager.web.tmpdir.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">fs.overwrite-files</code>: Specifies whether file output writers should overwrite existing files by default. Set to <em>true</em> to overwrite by default, <em>false</em> otherwise. (DEFAULT: false)</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">fs.output.always-create-directory</code>: File writers running with a parallelism larger than one create a directory for the output file path and put the different result files (one per parallel writer task) into that directory. If this option is set to <em>true</em>, writers with a parallelism of 1 will also create a directory and place a single result file into it. If the option is set to <em>false</em>, the writer will directly create the file directly at the output path, without creating a containing directory. (DEFAULT: false)</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">taskmanager.network.memory.fraction</code>: Fraction of JVM memory to use for network buffers. This determines how many streaming data exchange channels a TaskManager can have at the same time and how well buffered the channels are. If a job is rejected or you get a warning that the system has not enough buffers available, increase this value or the min/max values below. (DEFAULT: 0.1)</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">taskmanager.network.memory.min</code>: Minimum memory size for network buffers in bytes (DEFAULT: 64 MB)</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">taskmanager.network.memory.max</code>: Maximum memory size for network buffers in bytes (DEFAULT: 1 GB)</p>
+  </li>
+  <li><code class="highlighter-rouge">state.backend</code>: The backend that will be used to store operator state checkpoints if checkpointing is enabled. Supported backends:
+    <ul>
+      <li><code class="highlighter-rouge">jobmanager</code>: In-memory state, backup to JobManager’s/ZooKeeper’s memory. Should be used only for minimal state (Kafka offsets) or testing and local debugging.</li>
+      <li><code class="highlighter-rouge">filesystem</code>: State is in-memory on the TaskManagers, and state snapshots are stored in a file system. Supported are all filesystems supported by Flink, for example HDFS, S3, …</li>
+      <li><code class="highlighter-rouge">rocksdb</code>: State in rocksDB on the TaskManagers, and state snapshots are stored in a file system. Should be used for large state.</li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">state.checkpoints.dir</code>: The target directory for meta data of <a href="//flink-china.org/doc/blink/ops/state/checkpoints.html#externalized-checkpoints">externalized checkpoints</a>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">state.checkpoints.num-retained</code>: The number of completed checkpoint instances to retain. Having more than one allows recovery fallback to an earlier checkpoints if the latest checkpoint is corrupt. (Default: 1)</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">high-availability.zookeeper.storageDir</code>: Required for HA. Directory for storing JobManager metadata; this is persisted in the state backend and only a pointer to this state is stored in ZooKeeper. Exactly like the checkpoint directory it must be accessible from the JobManager and a local filesystem should only be used for local deployments. Previously this key was named <code class="highlighter-rouge">recovery.zookeeper.storageDir</code>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">blob.storage.directory</code>: Directory for storing blobs (such as user JARs) on the TaskManagers.
+If not set or empty, Flink will fall back to <code class="highlighter-rouge">taskmanager.tmp.dirs</code> and select one temp directory
+at random.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">blob.service.cleanup.interval</code>: Cleanup interval (in seconds) of transient blobs at server and caches as well as permanent blobs at the caches (DEFAULT: 1 hour).
+Whenever a job is not referenced at the cache anymore, we set a TTL for its permanent blob files and
+let the periodic cleanup task (executed every <code class="highlighter-rouge">blob.service.cleanup.interval</code> seconds) remove them
+after this TTL has passed. We do the same for transient blob files at both server and caches but
+immediately after accessing them, i.e. an put or get operation.
+This means that a blob will be retained at most <tt>2 * <code class="highlighter-rouge">blob.service.cleanup.interval</code></tt> seconds after
+not being referenced anymore (permanent blobs) or their last access (transient blobs). For permanent blobs,
+this means that a recovery still has the chance to use existing files rather downloading them again.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">blob.server.port</code>: Port definition for the blob server (serving user JARs) on the TaskManagers. By default the port is set to 0, which means that the operating system is picking an ephemeral port. Flink also accepts a list of ports (“50100,50101”), ranges (“50100-50200”) or a combination of both. It is recommended to set a range of ports to avoid collisions when multiple JobManagers are running on the same machine.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">blob.service.ssl.enabled</code>: Flag to enable ssl for the blob client/server communication. This is applicable only when the global ssl flag security.ssl.enabled is set to true (DEFAULT: true).</p>
+  </li>
+  <li><code class="highlighter-rouge">restart-strategy</code>: Default <a href="//flink-china.org/doc/blink/dev/restart_strategies.html">restart strategy</a> to use in case no
+restart strategy has been specified for the job.
+The options are:
+    <ul>
+      <li>fixed delay strategy: <code class="highlighter-rouge">fixed-delay</code>.</li>
+      <li>failure rate strategy: <code class="highlighter-rouge">failure-rate</code>.</li>
+      <li>no restarts: <code class="highlighter-rouge">none</code></li>
+    </ul>
+
+    <p>Default value is <code class="highlighter-rouge">none</code> unless checkpointing is enabled for the job in which case the default is <code class="highlighter-rouge">fixed-delay</code> with <code class="highlighter-rouge">Integer.MAX_VALUE</code> restart attempts and <code class="highlighter-rouge">10s</code> delay.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">restart-strategy.fixed-delay.attempts</code>: Number of restart attempts, used if the default restart strategy is set to “fixed-delay”.
+Default value is 1, unless “fixed-delay” was activated by enabling checkpoints, in which case the default is <code class="highlighter-rouge">Integer.MAX_VALUE</code>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">restart-strategy.fixed-delay.delay</code>: Delay between restart attempts, used if the default restart strategy is set to “fixed-delay”. (default: <code class="highlighter-rouge">1 s</code>)</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">restart-strategy.failure-rate.max-failures-per-interval</code>: Maximum number of restarts in given time interval before failing a job in “failure-rate” strategy.
+Default value is 1.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">restart-strategy.failure-rate.failure-rate-interval</code>: Time interval for measuring failure rate in “failure-rate” strategy.
+Default value is <code class="highlighter-rouge">1 minute</code>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">restart-strategy.failure-rate.delay</code>: Delay between restart attempts, used if the default restart strategy is set to “failure-rate”.
+Default value is the <code class="highlighter-rouge">akka.ask.timeout</code>.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">jobstore.cache-size</code>: The job store cache size in bytes which is used to keep completed jobs in memory (DEFAULT: <code class="highlighter-rouge">52428800</code> (<code class="highlighter-rouge">50</code> MB)).</p>
+  </li>
+  <li><code class="highlighter-rouge">jobstore.expiration-time</code>: The time in seconds after which a completed job expires and is purged from the job store (DEFAULT: <code class="highlighter-rouge">3600</code>).</li>
+</ul>
+
+<h2 id="full-reference">Full Reference</h2>
+
+<h3 id="hdfs">HDFS</h3>
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> These keys are deprecated and it is recommended to configure the Hadoop path with the environment variable <code>HADOOP_CONF_DIR</code> instead.
+</div>
+
+<p>These parameters configure the default HDFS used by Flink. Setups that do not specify a HDFS configuration have to specify the full path to HDFS files (<code class="highlighter-rouge">hdfs://address:port/path/to/files</code>) Files will also be written with default HDFS parameters (block size, replication factor).</p>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">fs.hdfs.hadoopconf</code>: The absolute path to the Hadoop File System’s (HDFS) configuration <strong>directory</strong> (OPTIONAL VALUE). Specifying this value allows programs to reference HDFS files using short URIs (<code class="highlighter-rouge">hdfs:///path/to/files</code>, without including the address and port of the NameNode in the file URI). Without this option, HDFS files can be accessed, but require fully qualified URIs like <code class="highlighter-rouge">hdfs://address:port/path/to/files</code>. This option also causes file writers to pick up the HDFS’s default values for block sizes and replication factors. Flink will look for the “core-site.xml” and “hdfs-site.xml” files in the specified directory.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">fs.hdfs.hdfsdefault</code>: The absolute path of Hadoop’s own configuration file “hdfs-default.xml” (DEFAULT: null).</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">fs.hdfs.hdfssite</code>: The absolute path of Hadoop’s own configuration file “hdfs-site.xml” (DEFAULT: null).</p>
+  </li>
+</ul>
+
+<h3 id="core">Core</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>chain.eagerly.enabled</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Whether operators are chained more eagerly when the parallelism is one</td>
+        </tr>
+        <tr>
+            <td><h5>classloader.parent-first-patterns.additional</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>A (semicolon-separated) list of patterns that specifies which classes should always be resolved through the parent ClassLoader first. A pattern is a simple prefix that is checked against the fully qualified class name. These patterns are appended to "classloader.parent-first-patterns.default".</td>
+        </tr>
+        <tr>
+            <td><h5>classloader.parent-first-patterns.default</h5></td>
+            <td style="word-wrap: break-word;">"java.;<wbr />scala.;<wbr />org.apache.flink.;<wbr />com.esotericsoftware.kryo;<wbr />org.apache.hadoop.;<wbr />javax.annotation.;<wbr />org.slf4j;<wbr />org.apache.log4j;<wbr />org.apache.logging;<wbr />org.apache.commons.logging;<wbr />ch.qos.logback"</td>
+            <td>A (semicolon-separated) list of patterns that specifies which classes should always be resolved through the parent ClassLoader first. A pattern is a simple prefix that is checked against the fully qualified class name. This setting should generally not be modified. To add another pattern we recommend to use "classloader.parent-first-patterns.additional" instead.</td>
+        </tr>
+        <tr>
+            <td><h5>classloader.resolve-order</h5></td>
+            <td style="word-wrap: break-word;">"child-first"</td>
+            <td>Defines the class resolution strategy when loading classes from user code, meaning whether to first check the user code jar ("child-first") or the application classpath ("parent-first"). The default settings indicate to load classes first from the user code jar, which means that user code jars can include and load different dependencies than Flink uses (transitively).</td>
+        </tr>
+        <tr>
+            <td><h5>io.tmp.dirs</h5></td>
+            <td style="word-wrap: break-word;">System.<wbr />getProperty("java.<wbr />io.<wbr />tmpdir")</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>mode</h5></td>
+            <td style="word-wrap: break-word;">"new"</td>
+            <td>Switch to select the execution mode. Possible values are 'new' and 'legacy'.</td>
+        </tr>
+        <tr>
+            <td><h5>parallelism.default</h5></td>
+            <td style="word-wrap: break-word;">1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>partitioner.default</h5></td>
+            <td style="word-wrap: break-word;">"REBALANCE"</td>
+            <td>The default stream partitioner, used when the upstream and downstream parallelisms are not equal and partitioner is not specified. Possible values are 'RESCALE' and 'REBALANCE'.</td>
+        </tr>
+        <tr>
+            <td><h5>resource.cpu.cores.default</h5></td>
+            <td style="word-wrap: break-word;">0.01</td>
+            <td>CPU cores for operators, use double so we can specify cpu like 0.1.</td>
+        </tr>
+        <tr>
+            <td><h5>resource.heap.mb.default</h5></td>
+            <td style="word-wrap: break-word;">16</td>
+            <td>Java heap size (in megabytes) for operators.</td>
+        </tr>
+        <tr>
+            <td><h5>user-jars.upload.disabled</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="jobmanager">JobManager</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>jobmanager.archive.fs.dir</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>jobmanager.execution.attempts-history-size</h5></td>
+            <td style="word-wrap: break-word;">16</td>
+            <td>The maximum number of prior execution attempts kept in history.</td>
+        </tr>
+        <tr>
+            <td><h5>jobmanager.execution.failover-strategy</h5></td>
+            <td style="word-wrap: break-word;">"full"</td>
+            <td>The strategy to handle task failures. 'full' failover strategy will restart all tasks in the job. 'region' failover strategy will restart the tasks in the same region with the failed task. Regions are PIPELINED connected task groups in a job.</td>
+        </tr>
+        <tr>
+            <td><h5>jobmanager.execution.failover-strategy.region.attempts</h5></td>
+            <td style="word-wrap: break-word;">100</td>
+            <td>The maximum number that a region can attempt to restart before triggering job failures. This only works with 'region' failover strategy.</td>
+        </tr>
+        <tr>
+            <td><h5>jobmanager.execution.graph-manager-plugin</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The class name of the graph manager plugin.</td>
+        </tr>
+        <tr>
+            <td><h5>jobmanager.failover.operation-log-flush-interval</h5></td>
+            <td style="word-wrap: break-word;">3000</td>
+            <td>The operation log store flush interval in ms.</td>
+        </tr>
+        <tr>
+            <td><h5>jobmanager.failover.operation-log-store</h5></td>
+            <td style="word-wrap: break-word;">"none"</td>
+            <td>The operation log store type for job master failover.</td>
+        </tr>
+        <tr>
+            <td><h5>jobmanager.failover.reconcile-timeout</h5></td>
+            <td style="word-wrap: break-word;">60</td>
+            <td>The timeout for job master to reconcile with task executors for recovering the execution status.</td>
+        </tr>
+        <tr>
+            <td><h5>jobmanager.heap.mb</h5></td>
+            <td style="word-wrap: break-word;">1024</td>
+            <td>JVM heap size (in megabytes) for the JobManager.</td>
+        </tr>
+        <tr>
+            <td><h5>jobmanager.resourcemanager.reconnect-interval</h5></td>
+            <td style="word-wrap: break-word;">2000</td>
+            <td>This option specifies the interval in order to trigger a resource manager reconnection if the connection to the resource manager has been lost. This option is only intended for internal use.</td>
+        </tr>
+        <tr>
+            <td><h5>jobmanager.rpc.address</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The config parameter defining the network address to connect to for communication with the job manager. This value is only interpreted in setups where a single JobManager with static name or address exists (simple standalone setups, or container setups with dynamic service name resolution). It is not used in many high-availability setups, when a leader-election service (like ZooKeeper) is used to elect and discover the JobManager leader from potentially multiple standby JobManagers.</td>
+        </tr>
+        <tr>
+            <td><h5>jobmanager.rpc.port</h5></td>
+            <td style="word-wrap: break-word;">6123</td>
+            <td>The config parameter defining the network port to connect to for communication with the job manager. Like jobmanager.rpc.address, this value is only interpreted in setups where a single JobManager with static name/address and port exists (simple standalone setups, or container setups with dynamic service name resolution). This config option is not used in many high-availability setups, when a leader-election service (like ZooKeeper) is used to elect and discover the JobManager leader from potentially multiple standby JobManagers.</td>
+        </tr>
+        <tr>
+            <td><h5>jobmanager.update-partition-info.send-interval</h5></td>
+            <td style="word-wrap: break-word;">10</td>
+            <td>The interval of send update-partition-info message.</td>
+        </tr>
+        <tr>
+            <td><h5>jobstore.cache-size</h5></td>
+            <td style="word-wrap: break-word;">52428800</td>
+            <td>The job store cache size in bytes which is used to keep completed jobs in memory.</td>
+        </tr>
+        <tr>
+            <td><h5>jobstore.expiration-time</h5></td>
+            <td style="word-wrap: break-word;">3600</td>
+            <td>The time in seconds after which a completed job expires and is purged from the job store.</td>
+        </tr>
+        <tr>
+            <td><h5>slot.enable-shared-slot</h5></td>
+            <td style="word-wrap: break-word;">true</td>
+            <td>Whether to enable slot sharing group when allocating slots in Slot Pool.</td>
+        </tr>
+        <tr>
+            <td><h5>slot.idle.timeout</h5></td>
+            <td style="word-wrap: break-word;">50000</td>
+            <td>The timeout in milliseconds for a idle slot in Slot Pool.</td>
+        </tr>
+        <tr>
+            <td><h5>slot.request.timeout</h5></td>
+            <td style="word-wrap: break-word;">300000</td>
+            <td>The timeout in milliseconds for requesting a slot from Slot Pool.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="taskmanager">TaskManager</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>io.manager.async.num-read-write-thread</h5></td>
+            <td style="word-wrap: break-word;">-1</td>
+            <td>The number of async read write thread. If not positive, it will be adjusted to max(1, number of temp dirs) for TM shuffle and max(2, 2 * number of disks) for YARN shuffle.</td>
+        </tr>
+        <tr>
+            <td><h5>io.manager.buffered.read.size</h5></td>
+            <td style="word-wrap: break-word;">-1</td>
+            <td>The buffer size of io manager buffered read, -1 mean not use buffered read, this will reduce random IO, but will result in more than one copy.</td>
+        </tr>
+        <tr>
+            <td><h5>io.manager.buffered.write.size</h5></td>
+            <td style="word-wrap: break-word;">-1</td>
+            <td>The buffer size of io manager buffered write, -1 mean not use buffered write, this will reduce random IO, but will result in more than one copy.</td>
+        </tr>
+        <tr>
+            <td><h5>task.blocking.shuffle.type</h5></td>
+            <td style="word-wrap: break-word;">"TM"</td>
+            <td>The type of shuffle service used for blocking edge. Currently it can be configured to TM or YARN.</td>
+        </tr>
+        <tr>
+            <td><h5>task.cancellation.interval</h5></td>
+            <td style="word-wrap: break-word;">30000</td>
+            <td>Time interval between two successive task cancellation attempts in milliseconds.</td>
+        </tr>
+        <tr>
+            <td><h5>task.cancellation.timeout</h5></td>
+            <td style="word-wrap: break-word;">180000</td>
+            <td>Timeout in milliseconds after which a task cancellation times out and leads to a fatal TaskManager error. A value of 0 deactivates the watch dog.</td>
+        </tr>
+        <tr>
+            <td><h5>task.cancellation.timers.timeout</h5></td>
+            <td style="word-wrap: break-word;">7500</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>task.checkpoint.alignment.max-size</h5></td>
+            <td style="word-wrap: break-word;">-1</td>
+            <td>The maximum number of bytes that a checkpoint alignment may buffer. If the checkpoint alignment buffers more than the configured amount of data, the checkpoint is aborted (skipped). A value of -1 indicates that there is no limit.</td>
+        </tr>
+        <tr>
+            <td><h5>task.external.shuffle.compression.buffer-size</h5></td>
+            <td style="word-wrap: break-word;">65536</td>
+            <td>The max buffer size to compress external shuffle data.</td>
+        </tr>
+        <tr>
+            <td><h5>task.external.shuffle.compression.codec</h5></td>
+            <td style="word-wrap: break-word;">"lz4"</td>
+            <td>The codec to use when compress or decompress external shuffle data. Currently supported codecs are lz4, bzip2, gzip. User can also implement interface BlockCompressionFactory and set its class to specify other codecs.</td>
+        </tr>
+        <tr>
+            <td><h5>task.external.shuffle.compression.enable</h5></td>
+            <td style="word-wrap: break-word;">true</td>
+            <td>Whether to enable compress shuffle data when using external shuffle.</td>
+        </tr>
+        <tr>
+            <td><h5>task.external.shuffle.consumed-partition-ttl-in-seconds</h5></td>
+            <td style="word-wrap: break-word;">3600</td>
+            <td>The time interval to delete the fully consumed shuffle data directories since they become inactive.</td>
+        </tr>
+        <tr>
+            <td><h5>task.external.shuffle.max-concurrent-requests</h5></td>
+            <td style="word-wrap: break-word;">2000</td>
+            <td>The maximum number of concurrent requests in the reduce-side tasks.</td>
+        </tr>
+        <tr>
+            <td><h5>task.external.shuffle.partial-consumed-partition-ttl-in-seconds</h5></td>
+            <td style="word-wrap: break-word;">43200</td>
+            <td>The time interval to delete the partially consumed shuffle data directories since they become inactive.</td>
+        </tr>
+        <tr>
+            <td><h5>task.external.shuffle.unconsumed-partition-ttl-in-seconds</h5></td>
+            <td style="word-wrap: break-word;">43200</td>
+            <td>TThe time interval to delete the unconsumed shuffle data directories since they are ready to consume.</td>
+        </tr>
+        <tr>
+            <td><h5>task.external.shuffle.unfinished-partition-ttl-in-seconds</h5></td>
+            <td style="word-wrap: break-word;">3600</td>
+            <td>The time interval to delete the writing shuffle data directories since the last writing.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.capacity.cpu.core</h5></td>
+            <td style="word-wrap: break-word;">-1.0</td>
+            <td>The overall cpu cores allocated to the task manager.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.capacity.memory.mb</h5></td>
+            <td style="word-wrap: break-word;">-1</td>
+            <td>The overall memory in MB that allocated to the task manager.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.cpu.core</h5></td>
+            <td style="word-wrap: break-word;">1.0</td>
+            <td>How many physical cpu cores a task manager will supply for user</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.data.port</h5></td>
+            <td style="word-wrap: break-word;">0</td>
+            <td>The task manager’s port used for data exchange operations.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.data.ssl.enabled</h5></td>
+            <td style="word-wrap: break-word;">true</td>
+            <td>Enable SSL support for the taskmanager data transport. This is applicable only when the global ssl flag security.ssl.enabled is set to true</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.debug.memory.log</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Flag indicating whether to start a thread, which repeatedly logs the memory usage of the JVM.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.debug.memory.log-interval</h5></td>
+            <td style="word-wrap: break-word;">5000</td>
+            <td>The interval (in ms) for the log thread to log the current memory usage.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.direct.memory.mb</h5></td>
+            <td style="word-wrap: break-word;">0</td>
+            <td>How many direct memory (in megabytes) a task manager will supply for user.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.exit-on-fatal-akka-error</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Whether the quarantine monitor for task managers shall be started. The quarantine monitor shuts down the actor system if it detects that it has quarantined another actor system or if it has been quarantined by another actor system.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.extended.resources</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Extended resources will supply for user. Specified as resource-type:value pairs separated by commas. such as GPU:1,FPGA:1.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.floating.memory.size</h5></td>
+            <td style="word-wrap: break-word;">0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.heap.mb</h5></td>
+            <td style="word-wrap: break-word;">1024</td>
+            <td>How many heap memory (in megabytes) a task manager will supply for user, not including managed memory.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.host</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The hostname of the network interface that the TaskManager binds to. By default, the TaskManager searches for network interfaces that can connect to the JobManager and other TaskManagers. This option can be used to define a hostname if that strategy fails for some reason. Because different TaskManagers need different values for this option, it usually is specified in an additional non-shared TaskManager-specific config file.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.jvm-exit-on-oom</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Whether to kill the TaskManager when the task thread throws an OutOfMemoryError.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.jvm.memory.dynamic.young.ratio</h5></td>
+            <td style="word-wrap: break-word;">0.25</td>
+            <td>Ratio of young generation for dynamic memory in task manager.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.jvm.memory.persistent.young.ratio</h5></td>
+            <td style="word-wrap: break-word;">0.1</td>
+            <td>Ratio of young generation for persistent memory in task manager.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.managed.memory.size</h5></td>
+            <td style="word-wrap: break-word;">-1</td>
+            <td>Amount of memory to be allocated by the task manager's memory manager (in megabytes). If not set, a relative fraction will be allocated.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.memory.fraction</h5></td>
+            <td style="word-wrap: break-word;">0.7</td>
+            <td>The relative amount of memory (after subtracting the amount of memory used by network buffers) that the task manager reserves for sorting, hash tables, and caching of intermediate results. For example, a value of `0.8` means that a task manager reserves 80% of its memory for internal data buffers, leaving 20% of free memory for the task manager's heap for objects created by user-defined functions. This parameter is only evaluated, if taskmanager.managed.memory.size is not set.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.memory.off-heap</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Memory allocation method (JVM heap or off-heap), used for managed memory of the TaskManager as well as the network buffers.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.memory.preallocate</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Whether TaskManager managed memory should be pre-allocated when the TaskManager is starting.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.memory.segment-size</h5></td>
+            <td style="word-wrap: break-word;">32768</td>
+            <td>Size of memory buffers used by the network stack and the memory manager (in bytes).</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.multi-slots.max.cpu.core</h5></td>
+            <td style="word-wrap: break-word;">1.0</td>
+            <td>Cpu core limitation, used to decide how many slots can be placed on a taskmanager.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.multi-slots.max.extended-resources</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Extended resources limitation, used to decide how many slots can be placed on a taskmanger. String format is like "GPU=10,FPGA=12".</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.multi-slots.max.memory.mb</h5></td>
+            <td style="word-wrap: break-word;">32768</td>
+            <td>Memory (in megabytes) limitation, used to decide how many slots can be placed on a taskmanager.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.multi-slots.min.cpu.core</h5></td>
+            <td style="word-wrap: break-word;">1.0</td>
+            <td>Min cpu core for a taskmanager.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.multi-slots.min.memory.mb</h5></td>
+            <td style="word-wrap: break-word;">1024</td>
+            <td>Min memory (in megabytes) for taskmanager.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.native.memory.mb</h5></td>
+            <td style="word-wrap: break-word;">0</td>
+            <td>How many native memory (in megabytes) a task manager will supply for user.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.check-partition-producer-state</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Boolean flag indicates whether to check partition producer state if the task requests a partition failed and wants to re-trigger the partition request. The task will re-trigger the partition request if the producer is healthy or fail otherwise.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.detailed-metrics</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Boolean flag to enable/disable more detailed metrics about inbound/outbound network queue lengths.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.memory.buffers-per-channel</h5></td>
+            <td style="word-wrap: break-word;">2</td>
+            <td>Maximum number of network buffers to use for each outgoing/incoming channel (subpartition/input channel).In credit-based flow control mode, this indicates how many credits are exclusive in each input channel. It should be configured at least 2 for good performance. 1 buffer is for receiving in-flight data in the subpartition and 1 buffer is for parallel serialization.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.memory.buffers-per-external-blocking-channel</h5></td>
+            <td style="word-wrap: break-word;">16</td>
+            <td>The number of buffers available for each external blocking channel.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.memory.buffers-per-subpartition</h5></td>
+            <td style="word-wrap: break-word;">2</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.memory.floating-buffers-per-external-blocking-gate</h5></td>
+            <td style="word-wrap: break-word;">0</td>
+            <td>taskmanager.network.memory.floating-buffers-per-external-blocking-gate</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.memory.floating-buffers-per-gate</h5></td>
+            <td style="word-wrap: break-word;">8</td>
+            <td>Number of extra network buffers to use for each outgoing/incoming gate (result partition/input gate). In credit-based flow control mode, this indicates how many floating credits are shared among all the input channels. The floating buffers are distributed based on backlog (real-time output buffers in the subpartition) feedback, and can help relieve back-pressure caused by unbalanced data distribution among the subpartitions. This value should be increased in case of higher round trip times between nodes and/or larger number of machines in the cluster.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.memory.fraction</h5></td>
+            <td style="word-wrap: break-word;">0.1</td>
+            <td>Fraction of JVM memory to use for network buffers. This determines how many streaming data exchange channels a TaskManager can have at the same time and how well buffered the channels are. If a job is rejected or you get a warning that the system has not enough buffers available, increase this value or the min/max values below. Also note, that "taskmanager.network.memory.min"` and "taskmanager.network.memory.max" may override this fraction.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.memory.max</h5></td>
+            <td style="word-wrap: break-word;">1073741824</td>
+            <td>Maximum memory size for network buffers (in bytes).</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.memory.min</h5></td>
+            <td style="word-wrap: break-word;">67108864</td>
+            <td>Minimum memory size for network buffers (in bytes).</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.request-backoff.initial</h5></td>
+            <td style="word-wrap: break-word;">100</td>
+            <td>Minimum backoff for partition requests of input channels.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.request-backoff.max</h5></td>
+            <td style="word-wrap: break-word;">10000</td>
+            <td>Maximum backoff for partition requests of input channels.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.numberOfTaskSlots</h5></td>
+            <td style="word-wrap: break-word;">1</td>
+            <td>The number of parallel operator or user function instances that a single TaskManager can run. If this value is larger than 1, a single TaskManager takes multiple instances of a function or operator. That way, the TaskManager can utilize multiple CPU cores, but at the same time, the available memory is divided between the different operator or function instances. This value is typically proportional to the number of physical CPU cores that the TaskManager's machine has (e.g., equal to the number of cores, or half the number of cores).</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.output.hash.max-subpartitions</h5></td>
+            <td style="word-wrap: break-word;">200</td>
+            <td>The maximum number of subpartitions supported by the hash writer.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.output.local-disk.type</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The disk type preferred to write the shuffle data. If not specified, all the root directories are feasible. If specified, only directories with the configured type are feasible.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.output.local-output-dirs</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The available directories for the external shuffle service. It will be configured automatically and should not be configured manually.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.output.memory.mb</h5></td>
+            <td style="word-wrap: break-word;">200</td>
+            <td>The write buffer size for each output in a task.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.output.merge.enable-async-merge</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Whether to start merge while writing has not been finished.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.output.merge.factor</h5></td>
+            <td style="word-wrap: break-word;">64</td>
+            <td>The maximum number of files to merge at once when using the merge writer.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.output.merge.merge-to-one-file</h5></td>
+            <td style="word-wrap: break-word;">true</td>
+            <td>Whether to merge to one file finally when using the merge writer. If not, the merge stops once the number of files are less than taskmanager.output.merge.factor.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.process.heap.memory.mb</h5></td>
+            <td style="word-wrap: break-word;">128</td>
+            <td>The heap memory (in megabytes) used for task manager process.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.process.native.memory.mb</h5></td>
+            <td style="word-wrap: break-word;">0</td>
+            <td>The native memory (in megabytes) used for task manager process.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.process.netty.memory.mb</h5></td>
+            <td style="word-wrap: break-word;">64</td>
+            <td>The direct memory (in megabytes) used for netty framework in the task manager process.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.reconnection.timeout</h5></td>
+            <td style="word-wrap: break-word;">"1 min"</td>
+            <td>Defines the maximum time it can take for the TaskManager reconnection. If the duration is exceeded without a successful reconnection, then disassociate from JM.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.registration.initial-backoff</h5></td>
+            <td style="word-wrap: break-word;">"500 ms"</td>
+            <td>The initial registration backoff between two consecutive registration attempts. The backoff is doubled for each new registration attempt until it reaches the maximum registration backoff.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.registration.max-backoff</h5></td>
+            <td style="word-wrap: break-word;">"30 s"</td>
+            <td>The maximum registration backoff between two consecutive registration attempts. The max registration backoff requires a time unit specifier (ms/s/min/h/d).</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.registration.refused-backoff</h5></td>
+            <td style="word-wrap: break-word;">"10 s"</td>
+            <td>The backoff after a registration has been refused by the job manager before retrying to connect.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.registration.timeout</h5></td>
+            <td style="word-wrap: break-word;">"5 min"</td>
+            <td>Defines the timeout for the TaskManager registration. If the duration is exceeded without a successful registration, then the TaskManager terminates.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.resourceProfile</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The resource profile of a slot in a task executor.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.rpc.port</h5></td>
+            <td style="word-wrap: break-word;">"0"</td>
+            <td>The task manager’s IPC port. Accepts a list of ports (“50100,50101”), ranges (“50100-50200”) or a combination of both. It is recommended to set a range of ports to avoid collisions when multiple TaskManagers are running on the same machine.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.total.resourceProfile</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The total resource profile of all the slots in a task executor.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="distributed-coordination-via-akka">Distributed Coordination (via Akka)</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>akka.ask.timeout</h5></td>
+            <td style="word-wrap: break-word;">"10 s"</td>
+            <td>Timeout used for all futures and blocking Akka calls. If Flink fails due to timeouts then you should try to increase this value. Timeouts can be caused by slow machines or a congested network. The timeout value requires a time-unit specifier (ms/s/min/h/d).</td>
+        </tr>
+        <tr>
+            <td><h5>akka.client.timeout</h5></td>
+            <td style="word-wrap: break-word;">"60 s"</td>
+            <td>Timeout for all blocking calls on the client side.</td>
+        </tr>
+        <tr>
+            <td><h5>akka.framesize</h5></td>
+            <td style="word-wrap: break-word;">"10485760b"</td>
+            <td>Maximum size of messages which are sent between the JobManager and the TaskManagers. If Flink fails because messages exceed this limit, then you should increase it. The message size requires a size-unit specifier.</td>
+        </tr>
+        <tr>
+            <td><h5>akka.jvm-exit-on-fatal-error</h5></td>
+            <td style="word-wrap: break-word;">true</td>
+            <td>Exit JVM on fatal Akka errors.</td>
+        </tr>
+        <tr>
+            <td><h5>akka.log.lifecycle.events</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Turns on the Akka’s remote logging of events. Set this value to ‘true’ in case of debugging.</td>
+        </tr>
+        <tr>
+            <td><h5>akka.lookup.timeout</h5></td>
+            <td style="word-wrap: break-word;">"10 s"</td>
+            <td>Timeout used for the lookup of the JobManager. The timeout value has to contain a time-unit specifier (ms/s/min/h/d).</td>
+        </tr>
+        <tr>
+            <td><h5>akka.retry-gate-closed-for</h5></td>
+            <td style="word-wrap: break-word;">50</td>
+            <td>Milliseconds a gate should be closed for after a remote connection was disconnected.</td>
+        </tr>
+        <tr>
+            <td><h5>akka.ssl.enabled</h5></td>
+            <td style="word-wrap: break-word;">true</td>
+            <td>Turns on SSL for Akka’s remote communication. This is applicable only when the global ssl flag security.ssl.enabled is set to true.</td>
+        </tr>
+        <tr>
+            <td><h5>akka.startup-timeout</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Timeout after which the startup of a remote component is considered being failed.</td>
+        </tr>
+        <tr>
+            <td><h5>akka.tcp.timeout</h5></td>
+            <td style="word-wrap: break-word;">"20 s"</td>
+            <td>Timeout for all outbound connections. If you should experience problems with connecting to a TaskManager due to a slow network, you should increase this value.</td>
+        </tr>
+        <tr>
+            <td><h5>akka.throughput</h5></td>
+            <td style="word-wrap: break-word;">15</td>
+            <td>Number of messages that are processed in a batch before returning the thread to the pool. Low values denote a fair scheduling whereas high values can increase the performance at the cost of unfairness.</td>
+        </tr>
+        <tr>
+            <td><h5>akka.transport.heartbeat.interval</h5></td>
+            <td style="word-wrap: break-word;">"1000 s"</td>
+            <td>Heartbeat interval for Akka’s transport failure detector. Since Flink uses TCP, the detector is not necessary. Therefore, the detector is disabled by setting the interval to a very high value. In case you should need the transport failure detector, set the interval to some reasonable value. The interval value requires a time-unit specifier (ms/s/min/h/d).</td>
+        </tr>
+        <tr>
+            <td><h5>akka.transport.heartbeat.pause</h5></td>
+            <td style="word-wrap: break-word;">"6000 s"</td>
+            <td>Acceptable heartbeat pause for Akka’s transport failure detector. Since Flink uses TCP, the detector is not necessary. Therefore, the detector is disabled by setting the pause to a very high value. In case you should need the transport failure detector, set the pause to some reasonable value. The pause value requires a time-unit specifier (ms/s/min/h/d).</td>
+        </tr>
+        <tr>
+            <td><h5>akka.transport.threshold</h5></td>
+            <td style="word-wrap: break-word;">300.0</td>
+            <td>Threshold for the transport failure detector. Since Flink uses TCP, the detector is not necessary and, thus, the threshold is set to a high value.</td>
+        </tr>
+        <tr>
+            <td><h5>akka.watch.heartbeat.interval</h5></td>
+            <td style="word-wrap: break-word;">"10 s"</td>
+            <td>Heartbeat interval for Akka’s DeathWatch mechanism to detect dead TaskManagers. If TaskManagers are wrongly marked dead because of lost or delayed heartbeat messages, then you should decrease this value or increase akka.watch.heartbeat.pause. A thorough description of Akka’s DeathWatch can be found &#60;a href="http://doc.akka.io/docs/akka/snapshot/scala/remoting.html#failure-detector"&#62;here&#60;/a&#62;.</td>
+        </tr>
+        <tr>
+            <td><h5>akka.watch.heartbeat.pause</h5></td>
+            <td style="word-wrap: break-word;">"60 s"</td>
+            <td>Acceptable heartbeat pause for Akka’s DeathWatch mechanism. A low value does not allow an irregular heartbeat. If TaskManagers are wrongly marked dead because of lost or delayed heartbeat messages, then you should increase this value or decrease akka.watch.heartbeat.interval. Higher value increases the time to detect a dead TaskManager. A thorough description of Akka’s DeathWatch can be found &#60;a href="http://doc.akka.io/docs/akka/snapshot/scala/remoting.html#failure-detector"&#62;here&#60;/a&#62;.</td>
+        </tr>
+        <tr>
+            <td><h5>akka.watch.threshold</h5></td>
+            <td style="word-wrap: break-word;">12</td>
+            <td>Threshold for the DeathWatch failure detector. A low value is prone to false positives whereas a high value increases the time to detect a dead TaskManager. A thorough description of Akka’s DeathWatch can be found &#60;a href="http://doc.akka.io/docs/akka/snapshot/scala/remoting.html#failure-detector"&#62;here&#60;/a&#62;.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="rest">REST</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>rest.address</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The address that should be used by clients to connect to the server.</td>
+        </tr>
+        <tr>
+            <td><h5>rest.await-leader-timeout</h5></td>
+            <td style="word-wrap: break-word;">30000</td>
+            <td>The time in ms that the client waits for the leader address, e.g., Dispatcher or WebMonitorEndpoint</td>
+        </tr>
+        <tr>
+            <td><h5>rest.bind-address</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The address that the server binds itself.</td>
+        </tr>
+        <tr>
+            <td><h5>rest.client.max-content-length</h5></td>
+            <td style="word-wrap: break-word;">104857600</td>
+            <td>The maximum content length in bytes that the client will handle.</td>
+        </tr>
+        <tr>
+            <td><h5>rest.connection-timeout</h5></td>
+            <td style="word-wrap: break-word;">15000</td>
+            <td>The maximum time in ms for the client to establish a TCP connection.</td>
+        </tr>
+        <tr>
+            <td><h5>rest.poll.wait-strategy.max-interval</h5></td>
+            <td style="word-wrap: break-word;">2000</td>
+            <td>The max waited milliseconds of retries to poll the asynchronously created resource if the resource is not completed.</td>
+        </tr>
+        <tr>
+            <td><h5>rest.port</h5></td>
+            <td style="word-wrap: break-word;">8081</td>
+            <td>The port that the server listens on / the client connects to.</td>
+        </tr>
+        <tr>
+            <td><h5>rest.retry.delay</h5></td>
+            <td style="word-wrap: break-word;">3000</td>
+            <td>The time in ms that the client waits between retries (See also `rest.retry.max-attempts`).</td>
+        </tr>
+        <tr>
+            <td><h5>rest.retry.max-attempts</h5></td>
+            <td style="word-wrap: break-word;">20</td>
+            <td>The number of retries the client will attempt if a retryable operations fails.</td>
+        </tr>
+        <tr>
+            <td><h5>rest.server.max-content-length</h5></td>
+            <td style="word-wrap: break-word;">104857600</td>
+            <td>The maximum content length in bytes that the server will handle.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="blob-server">Blob Server</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>blob.fetch.backlog</h5></td>
+            <td style="word-wrap: break-word;">1000</td>
+            <td>The config parameter defining the backlog of BLOB fetches on the JobManager.</td>
+        </tr>
+        <tr>
+            <td><h5>blob.fetch.num-concurrent</h5></td>
+            <td style="word-wrap: break-word;">50</td>
+            <td>The config parameter defining the maximum number of concurrent BLOB fetches that the JobManager serves.</td>
+        </tr>
+        <tr>
+            <td><h5>blob.fetch.retries</h5></td>
+            <td style="word-wrap: break-word;">5</td>
+            <td>The config parameter defining number of retires for failed BLOB fetches.</td>
+        </tr>
+        <tr>
+            <td><h5>blob.offload.minsize</h5></td>
+            <td style="word-wrap: break-word;">1048576</td>
+            <td>The minimum size for messages to be offloaded to the BlobServer.</td>
+        </tr>
+        <tr>
+            <td><h5>blob.server.port</h5></td>
+            <td style="word-wrap: break-word;">"0"</td>
+            <td>The config parameter defining the server port of the blob service.</td>
+        </tr>
+        <tr>
+            <td><h5>blob.service.cleanup.interval</h5></td>
+            <td style="word-wrap: break-word;">3600</td>
+            <td>Cleanup interval of the blob caches at the task managers (in seconds).</td>
+        </tr>
+        <tr>
+            <td><h5>blob.service.ssl.enabled</h5></td>
+            <td style="word-wrap: break-word;">true</td>
+            <td>Flag to override ssl support for the blob service transport.</td>
+        </tr>
+        <tr>
+            <td><h5>blob.storage.directory</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The config parameter defining the storage directory to be used by the blob server.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="heartbeat-manager">Heartbeat Manager</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>heartbeat.interval</h5></td>
+            <td style="word-wrap: break-word;">10000</td>
+            <td>Time interval for requesting heartbeat from sender side.</td>
+        </tr>
+        <tr>
+            <td><h5>heartbeat.timeout</h5></td>
+            <td style="word-wrap: break-word;">50000</td>
+            <td>Timeout for requesting and receiving heartbeat for both sender and receiver sides.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="ssl-settings">SSL Settings</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>security.ssl.algorithms</h5></td>
+            <td style="word-wrap: break-word;">"TLS_RSA_WITH_AES_128_CBC_SHA"</td>
+            <td>The comma separated list of standard SSL algorithms to be supported. Read more &#60;a href="http://docs.oracle.com/javase/8/docs/technotes/guides/security/StandardNames.html#ciphersuites"&#62;here&#60;/a&#62;.</td>
+        </tr>
+        <tr>
+            <td><h5>security.ssl.enabled</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Turns on SSL for internal network communication. This can be optionally overridden by flags defined in different transport modules.</td>
+        </tr>
+        <tr>
+            <td><h5>security.ssl.key-password</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The secret to decrypt the server key in the keystore.</td>
+        </tr>
+        <tr>
+            <td><h5>security.ssl.keystore</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The Java keystore file to be used by the flink endpoint for its SSL Key and Certificate.</td>
+        </tr>
+        <tr>
+            <td><h5>security.ssl.keystore-password</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The secret to decrypt the keystore file.</td>
+        </tr>
+        <tr>
+            <td><h5>security.ssl.protocol</h5></td>
+            <td style="word-wrap: break-word;">"TLSv1.2"</td>
+            <td>The SSL protocol version to be supported for the ssl transport. Note that it doesn’t support comma separated list.</td>
+        </tr>
+        <tr>
+            <td><h5>security.ssl.truststore</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The truststore file containing the public CA certificates to be used by flink endpoints to verify the peer’s certificate.</td>
+        </tr>
+        <tr>
+            <td><h5>security.ssl.truststore-password</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The secret to decrypt the truststore.</td>
+        </tr>
+        <tr>
+            <td><h5>security.ssl.verify-hostname</h5></td>
+            <td style="word-wrap: break-word;">true</td>
+            <td>Flag to enable peer’s hostname verification during ssl handshake.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="network-communication-via-netty">Network communication (via Netty)</h3>
+
+<p>These parameters allow for advanced tuning. The default values are sufficient when running concurrent high-throughput jobs on a large cluster.</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>taskmanager.network.netty.client.connectTimeoutSec</h5></td>
+            <td style="word-wrap: break-word;">120</td>
+            <td>The Netty client connection timeout.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.netty.client.numThreads</h5></td>
+            <td style="word-wrap: break-word;">-1</td>
+            <td>The number of Netty client threads.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.netty.max-order</h5></td>
+            <td style="word-wrap: break-word;">9</td>
+            <td>The power of 2 of the number of pages in each chunk.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.netty.num-arenas</h5></td>
+            <td style="word-wrap: break-word;">-1</td>
+            <td>The number of Netty arenas.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.netty.sendReceiveBufferSize</h5></td>
+            <td style="word-wrap: break-word;">0</td>
+            <td>The Netty send and receive buffer size. This defaults to the system buffer size (cat /proc/sys/net/ipv4/tcp_[rw]mem) and is 4 MiB in modern Linux.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.netty.server.backlog</h5></td>
+            <td style="word-wrap: break-word;">0</td>
+            <td>The netty server connection backlog.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.netty.server.numThreads</h5></td>
+            <td style="word-wrap: break-word;">-1</td>
+            <td>The number of Netty server threads.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.network.netty.transport</h5></td>
+            <td style="word-wrap: break-word;">"nio"</td>
+            <td>The Netty transport type, either "nio" or "epoll"</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="web-frontend">Web Frontend</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>web.access-control-allow-origin</h5></td>
+            <td style="word-wrap: break-word;">"*"</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>web.address</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>web.backpressure.cleanup-interval</h5></td>
+            <td style="word-wrap: break-word;">600000</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>web.backpressure.delay-between-samples</h5></td>
+            <td style="word-wrap: break-word;">50</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>web.backpressure.num-samples</h5></td>
+            <td style="word-wrap: break-word;">100</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>web.backpressure.refresh-interval</h5></td>
+            <td style="word-wrap: break-word;">60000</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>web.checkpoints.history</h5></td>
+            <td style="word-wrap: break-word;">10</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>web.history</h5></td>
+            <td style="word-wrap: break-word;">5</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>web.log.path</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>web.refresh-interval</h5></td>
+            <td style="word-wrap: break-word;">3000</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>web.ssl.enabled</h5></td>
+            <td style="word-wrap: break-word;">true</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>web.submit.enable</h5></td>
+            <td style="word-wrap: break-word;">true</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>web.timeout</h5></td>
+            <td style="word-wrap: break-word;">10000</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>web.tmpdir</h5></td>
+            <td style="word-wrap: break-word;">System.<wbr />getProperty("java.<wbr />io.<wbr />tmpdir")</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>web.upload.dir</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="file-systems">File Systems</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>fs.default-scheme</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The default filesystem scheme, used for paths that do not declare a scheme explicitly. May contain an authority, e.g. host:port in case of a HDFS NameNode.</td>
+        </tr>
+        <tr>
+            <td><h5>fs.output.always-create-directory</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>File writers running with a parallelism larger than one create a directory for the output file path and put the different result files (one per parallel writer task) into that directory. If this option is set to "true", writers with a parallelism of 1 will also create a directory and place a single result file into it. If the option is set to "false", the writer will directly create the file directly at the output path, without creating a containing directory.</td>
+        </tr>
+        <tr>
+            <td><h5>fs.overwrite-files</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Specifies whether file output writers should overwrite existing files by default. Set to "true" to overwrite by default,"false" otherwise.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="compileroptimizer">Compiler/Optimizer</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>compiler.delimited-informat.max-line-samples</h5></td>
+            <td style="word-wrap: break-word;">10</td>
+            <td>he maximum number of line samples taken by the compiler for delimited inputs. The samples are used to estimate the number of records. This value can be overridden for a specific input with the input format’s parameters.</td>
+        </tr>
+        <tr>
+            <td><h5>compiler.delimited-informat.max-sample-len</h5></td>
+            <td style="word-wrap: break-word;">2097152</td>
+            <td>The maximal length of a line sample that the compiler takes for delimited inputs. If the length of a single sample exceeds this value (possible because of misconfiguration of the parser), the sampling aborts. This value can be overridden for a specific input with the input format’s parameters.</td>
+        </tr>
+        <tr>
+            <td><h5>compiler.delimited-informat.min-line-samples</h5></td>
+            <td style="word-wrap: break-word;">2</td>
+            <td>The minimum number of line samples taken by the compiler for delimited inputs. The samples are used to estimate the number of records. This value can be overridden for a specific input with the input format’s parameters</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="runtime-algorithms">Runtime Algorithms</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>taskmanager.runtime.hashjoin-bloom-filters</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Flag to activate/deactivate bloom filters in the hybrid hash join implementation. In cases where the hash join needs to spill to disk (datasets larger than the reserved fraction of memory), these bloom filters can greatly reduce the number of spilled records, at the cost some CPU cycles.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.runtime.max-fan</h5></td>
+            <td style="word-wrap: break-word;">128</td>
+            <td>The maximal fan-in for external merge joins and fan-out for spilling hash tables. Limits the number of file handles per operator, but may cause intermediate merging/partitioning, if set too small.</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.runtime.sort-spilling-threshold</h5></td>
+            <td style="word-wrap: break-word;">0.8</td>
+            <td>A sort operation starts spilling when this fraction of its memory budget is full.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="resource-manager">Resource Manager</h3>
+
+<p>The configuration keys in this section are independent of the used resource management framework (YARN, Mesos, Standalone, …)</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>containerized.heap-cutoff-min</h5></td>
+            <td style="word-wrap: break-word;">600</td>
+            <td>Minimum amount of heap memory to remove in containers, as a safety margin. This config option will not take effect in all session mode of Yarn/Kubernetes/Standalone. Please use fine-grained config option instead. (taskmanager.process.heap.memory.mb,taskmanager.process.netty.memory.mb,taskmanager.process.native.memory.mb)</td>
+        </tr>
+        <tr>
+            <td><h5>containerized.heap-cutoff-ratio</h5></td>
+            <td style="word-wrap: break-word;">0.25</td>
+            <td>Percentage of heap space to remove from containers (YARN / Mesos), to compensate for other JVM memory usage. This config option will not take effect in all session mode of Yarn/Kubernetes/Standalone. Please use fine-grained config option instead. (taskmanager.process.heap.memory.mb,taskmanager.process.netty.memory.mb,taskmanager.process.native.memory.mb)</td>
+        </tr>
+        <tr>
+            <td><h5>local.number-resourcemanager</h5></td>
+            <td style="word-wrap: break-word;">1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>resourcemanager.job.timeout</h5></td>
+            <td style="word-wrap: break-word;">"5 minutes"</td>
+            <td>Timeout for jobs which don't have a job manager as leader assigned.</td>
+        </tr>
+        <tr>
+            <td><h5>resourcemanager.rpc.port</h5></td>
+            <td style="word-wrap: break-word;">0</td>
+            <td>Defines the network port to connect to for communication with the resource manager. By default, the port of the JobManager, because the same ActorSystem is used. Its not possible to use this configuration key to define port ranges.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="yarn">YARN</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>job.app-master-core</h5></td>
+            <td style="word-wrap: break-word;">1</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>yarn.application-attempts</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Number of ApplicationMaster restarts. Note that that the entire Flink cluster will restart and the YARN Client will lose the connection. Also, the JobManager address will change and you’ll need to set the JM host:port manually. It is recommended to leave this option at 1.</td>
+        </tr>
+        <tr>
+            <td><h5>yarn.application-master.port</h5></td>
+            <td style="word-wrap: break-word;">"0"</td>
+            <td>With this configuration option, users can specify a port, a range of ports or a list of ports for the Application Master (and JobManager) RPC port. By default we recommend using the default value (0) to let the operating system choose an appropriate port. In particular when multiple AMs are running on the same physical host, fixed port assignments prevent the AM from starting. For example when running Flink on YARN on an environment with a restrictive firewall, this option allows specifying a range of allowed ports.</td>
+        </tr>
+        <tr>
+            <td><h5>yarn.appmaster.rpc.address</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The hostname or address where the application master RPC system is listening.</td>
+        </tr>
+        <tr>
+            <td><h5>yarn.appmaster.rpc.port</h5></td>
+            <td style="word-wrap: break-word;">-1</td>
+            <td>The port where the application master RPC system is listening.</td>
+        </tr>
+        <tr>
+            <td><h5>yarn.container-launcher-number</h5></td>
+            <td style="word-wrap: break-word;">10</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>yarn.container-register-timeout</h5></td>
+            <td style="word-wrap: break-word;">120</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>yarn.heartbeat-delay</h5></td>
+            <td style="word-wrap: break-word;">5</td>
+            <td>Time between heartbeats with the ResourceManager in seconds.</td>
+        </tr>
+        <tr>
+            <td><h5>yarn.maximum-failed-containers</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Maximum number of containers the system is going to reallocate in case of a failure.</td>
+        </tr>
+        <tr>
+            <td><h5>yarn.per-job-cluster.include-user-jar</h5></td>
+            <td style="word-wrap: break-word;">"ORDER"</td>
+            <td>Defines whether user-jars are included in the system class path for per-job-clusters as well as their positioning in the path. They can be positioned at the beginning ("FIRST"), at the end ("LAST"), or be positioned based on their name ("ORDER"). Setting this parameter to "DISABLED" causes the jar to be included in the user class path instead.</td>
+        </tr>
+        <tr>
+            <td><h5>yarn.properties-file.location</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>When a Flink job is submitted to YARN, the JobManager’s host and the number of available processing slots is written into a properties file, so that the Flink client is able to pick those details up. This configuration parameter allows changing the default location of that file (for example for environments sharing a Flink installation between users).</td>
+        </tr>
+        <tr>
+            <td><h5>yarn.tags</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>A comma-separated list of tags to apply to the Flink YARN application.</td>
+        </tr>
+        <tr>
+            <td><h5>yarn.vcore-ratio</h5></td>
+            <td style="word-wrap: break-word;">1</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="mesos">Mesos</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>mesos.failover-timeout</h5></td>
+            <td style="word-wrap: break-word;">600</td>
+            <td>The failover timeout in seconds for the Mesos scheduler, after which running tasks are automatically shut down.</td>
+        </tr>
+        <tr>
+            <td><h5>mesos.initial-tasks</h5></td>
+            <td style="word-wrap: break-word;">0</td>
+            <td>The initial workers to bring up when the master starts</td>
+        </tr>
+        <tr>
+            <td><h5>mesos.master</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The Mesos master URL. The value should be in one of the following forms: "host:port", "zk://host1:port1,host2:port2,.../path", "zk://username:password@host1:port1,host2:port2,.../path" or "file:///path/to/file"</td>
+        </tr>
+        <tr>
+            <td><h5>mesos.maximum-failed-tasks</h5></td>
+            <td style="word-wrap: break-word;">-1</td>
+            <td>The maximum number of failed workers before the cluster fails. May be set to -1 to disable this feature</td>
+        </tr>
+        <tr>
+            <td><h5>mesos.resourcemanager.artifactserver.port</h5></td>
+            <td style="word-wrap: break-word;">0</td>
+            <td>The config parameter defining the Mesos artifact server port to use. Setting the port to 0 will let the OS choose an available port.</td>
+        </tr>
+        <tr>
+            <td><h5>mesos.resourcemanager.artifactserver.ssl.enabled</h5></td>
+            <td style="word-wrap: break-word;">true</td>
+            <td>Enables SSL for the Flink artifact server. Note that security.ssl.enabled also needs to be set to true encryption to enable encryption.</td>
+        </tr>
+        <tr>
+            <td><h5>mesos.resourcemanager.framework.name</h5></td>
+            <td style="word-wrap: break-word;">"Flink"</td>
+            <td>Mesos framework name</td>
+        </tr>
+        <tr>
+            <td><h5>mesos.resourcemanager.framework.principal</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Mesos framework principal</td>
+        </tr>
+        <tr>
+            <td><h5>mesos.resourcemanager.framework.role</h5></td>
+            <td style="word-wrap: break-word;">"*"</td>
+            <td>Mesos framework role definition</td>
+        </tr>
+        <tr>
+            <td><h5>mesos.resourcemanager.framework.secret</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Mesos framework secret</td>
+        </tr>
+        <tr>
+            <td><h5>mesos.resourcemanager.framework.user</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Mesos framework user</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4 id="mesos-taskmanager">Mesos TaskManager</h4>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>mesos.constraints.hard.hostattribute</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Constraints for task placement on mesos.</td>
+        </tr>
+        <tr>
+            <td><h5>mesos.resourcemanager.tasks.bootstrap-cmd</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>mesos.resourcemanager.tasks.container.docker.parameters</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Custom parameters to be passed into docker run command when using the docker containerizer. Comma separated list of "key=value" pairs. The "value" may contain '='.</td>
+        </tr>
+        <tr>
+            <td><h5>mesos.resourcemanager.tasks.container.image.name</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Image name to use for the container.</td>
+        </tr>
+        <tr>
+            <td><h5>mesos.resourcemanager.tasks.container.type</h5></td>
+            <td style="word-wrap: break-word;">"mesos"</td>
+            <td>Type of the containerization used: “mesos” or “docker”.</td>
+        </tr>
+        <tr>
+            <td><h5>mesos.resourcemanager.tasks.container.volumes</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>A comma separated list of [host_path:]container_path[:RO|RW]. This allows for mounting additional volumes into your container.</td>
+        </tr>
+        <tr>
+            <td><h5>mesos.resourcemanager.tasks.cpus</h5></td>
+            <td style="word-wrap: break-word;">0.0</td>
+            <td>CPUs to assign to the Mesos workers.</td>
+        </tr>
+        <tr>
+            <td><h5>mesos.resourcemanager.tasks.gpus</h5></td>
+            <td style="word-wrap: break-word;">0</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>mesos.resourcemanager.tasks.hostname</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>mesos.resourcemanager.tasks.mem</h5></td>
+            <td style="word-wrap: break-word;">1024</td>
+            <td>Memory to assign to the Mesos workers in MB.</td>
+        </tr>
+        <tr>
+            <td><h5>mesos.resourcemanager.tasks.taskmanager-cmd</h5></td>
+            <td style="word-wrap: break-word;">"$FLINK_HOME/bin/mesos-taskmanager.<wbr />sh"</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.numberOfTaskSlots</h5></td>
+            <td style="word-wrap: break-word;">1</td>
+            <td>The number of parallel operator or user function instances that a single TaskManager can run. If this value is larger than 1, a single TaskManager takes multiple instances of a function or operator. That way, the TaskManager can utilize multiple CPU cores, but at the same time, the available memory is divided between the different operator or function instances. This value is typically proportional to the number of physical CPU cores that the TaskManager's machine has (e.g., equal to the number of cores, or half the number of cores).</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="kubernetes">Kubernetes</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>kubernetes.cluster-id</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The custom name for the Flink cluster on Kubernetes. It could be specified by -nm argument. If it's not set, the client will generate a random UUID name</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.connection.retry.interval.ms</h5></td>
+            <td style="word-wrap: break-word;">1000</td>
+            <td>The retry interval in milliseconds for RM talking to kubernetes.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.connection.retry.times</h5></td>
+            <td style="word-wrap: break-word;">120</td>
+            <td>The max retry attempts for RM talking to kubernetes.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.container-start-command-template</h5></td>
+            <td style="word-wrap: break-word;">"%java% %classpath% %jvmmem% %jvmopts% %logging% %class%"</td>
+            <td>Template for the kubernetes container start invocation</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.container.files</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Files to be used for Flink containers, will be transferred to flink conf directory and appended to classpath in containers.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.container.image</h5></td>
+            <td style="word-wrap: break-word;">"flink-k8s:latest"</td>
+            <td>Container image to use for Flink containers. Individual container types (e.g. jobmanager or taskmanager) can also be configured to use different images if desired, by setting the container type-specific image name.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.container.image.pullPolicy</h5></td>
+            <td style="word-wrap: break-word;">"IfNotPresent"</td>
+            <td>Kubernetes image pull policy. Valid values are Always, Never, and IfNotPresent.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.destroy-perjob-cluster.after-job-finished</h5></td>
+            <td style="word-wrap: break-word;">true</td>
+            <td>Whether to kill perjob-cluster on kubernetes after job finished.If you want to check logs and view dashboard after job finished, set this to false.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.flink.conf.dir</h5></td>
+            <td style="word-wrap: break-word;">"/etc/flink/conf"</td>
+            <td>The conf dir will be mounted in pod.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.jobmanager.container.image</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Container image to use for the jobmanager.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.jobmanager.container.name</h5></td>
+            <td style="word-wrap: break-word;">"flink-kubernetes-jobmanager"</td>
+            <td>Name of the jobmanager container.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.jobmanager.cpu</h5></td>
+            <td style="word-wrap: break-word;">1.0</td>
+            <td>The number of cpu used by job manager</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.jobmanager.pod.name</h5></td>
+            <td style="word-wrap: break-word;">"jobmanager"</td>
+            <td>Name of the jobmanager pod.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.jobmanager.service-account</h5></td>
+            <td style="word-wrap: break-word;">"default"</td>
+            <td>Service account that is used by jobmanager within kubernetes cluster. The job manager uses this service account when requesting taskmanager pods from the API server.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.master.url</h5></td>
+            <td style="word-wrap: break-word;">"localhost:8080"</td>
+            <td>The kubernetes master url.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.namespace</h5></td>
+            <td style="word-wrap: break-word;">"default"</td>
+            <td>The namespace that will be used for running the jobmanager and taskmanager pods.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.program.args</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Arguments specified for user program.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.program.entrypoint.class</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Class with the program entry point ("main" method or "getPlan()" method. Only needed if the JAR file does not specify the class in its manifest.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.service.exposed.type</h5></td>
+            <td style="word-wrap: break-word;">"CLUSTER_IP"</td>
+            <td>It could be CLUSTER_IP(default)/NODE_PORT/LOAD_BALANCER/EXTERNAL_NAME.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.service.external.address</h5></td>
+            <td style="word-wrap: break-word;">"localhost"</td>
+            <td>The exposed address of kubernetes service to submit job and view dashboard.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.taskmanager.count</h5></td>
+            <td style="word-wrap: break-word;">1</td>
+            <td>The task manager count for session cluster.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.taskmanager.register-timeout</h5></td>
+            <td style="word-wrap: break-word;">120</td>
+            <td>The register timeout for a task manager before released by resource manager. In seconds.In case of a task manager took very long time to be launched.</td>
+        </tr>
+        <tr>
+            <td><h5>kubernetes.workernode.max-failed-attempts</h5></td>
+            <td style="word-wrap: break-word;">100</td>
+            <td>The max failed attempts for work node.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="high-availability-ha">High Availability (HA)</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>high-availability</h5></td>
+            <td style="word-wrap: break-word;">"NONE"</td>
+            <td>Defines high-availability mode used for the cluster execution. To enable high-availability, set this mode to "FILESYSTEM" or "ZOOKEEPER".</td>
+        </tr>
+        <tr>
+            <td><h5>high-availability.cluster-id</h5></td>
+            <td style="word-wrap: break-word;">"/default"</td>
+            <td>The ID of the Flink cluster, used to separate multiple Flink clusters from each other. Needs to be set for standalone clusters but is automatically inferred in YARN and Mesos.</td>
+        </tr>
+        <tr>
+            <td><h5>high-availability.filesystem.path.jobgraphs</h5></td>
+            <td style="word-wrap: break-word;">"/tmp/jobgraphs"</td>
+            <td>FileSystem root path for job graphs.</td>
+        </tr>
+        <tr>
+            <td><h5>high-availability.job.delay</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The time before a JobManager after a fail over recovers the current jobs.</td>
+        </tr>
+        <tr>
+            <td><h5>high-availability.jobmanager.port</h5></td>
+            <td style="word-wrap: break-word;">"0"</td>
+            <td>Optional port (range) used by the job manager in high-availability mode.</td>
+        </tr>
+        <tr>
+            <td><h5>high-availability.storageDir</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>File system path (URI) where Flink persists metadata in high-availability setups.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4 id="zookeeper-based-ha-mode">ZooKeeper-based HA Mode</h4>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>high-availability.zookeeper.client.acl</h5></td>
+            <td style="word-wrap: break-word;">"open"</td>
+            <td>Defines the ACL (open|creator) to be configured on ZK node. The configuration value can be set to “creator” if the ZooKeeper server configuration has the “authProvider” property mapped to use SASLAuthenticationProvider and the cluster is configured to run in secure mode (Kerberos).</td>
+        </tr>
+        <tr>
+            <td><h5>high-availability.zookeeper.client.connection-timeout</h5></td>
+            <td style="word-wrap: break-word;">15000</td>
+            <td>Defines the connection timeout for ZooKeeper in ms.</td>
+        </tr>
+        <tr>
+            <td><h5>high-availability.zookeeper.client.max-retry-attempts</h5></td>
+            <td style="word-wrap: break-word;">3</td>
+            <td>Defines the number of connection retries before the client gives up.</td>
+        </tr>
+        <tr>
+            <td><h5>high-availability.zookeeper.client.retry-wait</h5></td>
+            <td style="word-wrap: break-word;">5000</td>
+            <td>Defines the pause between consecutive retries in ms.</td>
+        </tr>
+        <tr>
+            <td><h5>high-availability.zookeeper.client.session-timeout</h5></td>
+            <td style="word-wrap: break-word;">60000</td>
+            <td>Defines the session timeout for the ZooKeeper session in ms.</td>
+        </tr>
+        <tr>
+            <td><h5>high-availability.zookeeper.path.checkpoint-counter</h5></td>
+            <td style="word-wrap: break-word;">"/checkpoint-counter"</td>
+            <td>ZooKeeper root path (ZNode) for checkpoint counters.</td>
+        </tr>
+        <tr>
+            <td><h5>high-availability.zookeeper.path.checkpoints</h5></td>
+            <td style="word-wrap: break-word;">"/checkpoints"</td>
+            <td>ZooKeeper root path (ZNode) for completed checkpoints.</td>
+        </tr>
+        <tr>
+            <td><h5>high-availability.zookeeper.path.jobgraphs</h5></td>
+            <td style="word-wrap: break-word;">"/jobgraphs"</td>
+            <td>ZooKeeper root path (ZNode) for job graphs</td>
+        </tr>
+        <tr>
+            <td><h5>high-availability.zookeeper.path.latch</h5></td>
+            <td style="word-wrap: break-word;">"/leaderlatch"</td>
+            <td>Defines the znode of the leader latch which is used to elect the leader.</td>
+        </tr>
+        <tr>
+            <td><h5>high-availability.zookeeper.path.leader</h5></td>
+            <td style="word-wrap: break-word;">"/leader"</td>
+            <td>Defines the znode of the leader which contains the URL to the leader and the current leader session ID.</td>
+        </tr>
+        <tr>
+            <td><h5>high-availability.zookeeper.path.mesos-workers</h5></td>
+            <td style="word-wrap: break-word;">"/mesos-workers"</td>
+            <td>ZooKeeper root path (ZNode) for Mesos workers.</td>
+        </tr>
+        <tr>
+            <td><h5>high-availability.zookeeper.path.root</h5></td>
+            <td style="word-wrap: break-word;">"/flink"</td>
+            <td>The root path under which Flink stores its entries in ZooKeeper.</td>
+        </tr>
+        <tr>
+            <td><h5>high-availability.zookeeper.path.running-registry</h5></td>
+            <td style="word-wrap: break-word;">"/running_job_registry/"</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>high-availability.zookeeper.quorum</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The ZooKeeper quorum to use, when running Flink in a high-availability mode with ZooKeeper.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4 id="filesystem-based-ha-mode">FileSystem-based HA Mode</h4>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>high-availability.filesystem.path.jobgraphs</h5></td>
+            <td style="word-wrap: break-word;">"/tmp/jobgraphs"</td>
+            <td>FileSystem root path for job graphs.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="zookeeper-security">ZooKeeper Security</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>zookeeper.sasl.disable</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>zookeeper.sasl.login-context-name</h5></td>
+            <td style="word-wrap: break-word;">"Client"</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>zookeeper.sasl.service-name</h5></td>
+            <td style="word-wrap: break-word;">"zookeeper"</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="kerberos-based-security-1">Kerberos-based Security</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>security.kerberos.login.contexts</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>A comma-separated list of login contexts to provide the Kerberos credentials to (for example, `Client,KafkaClient` to use the credentials for ZooKeeper authentication and for Kafka authentication)</td>
+        </tr>
+        <tr>
+            <td><h5>security.kerberos.login.keytab</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Absolute path to a Kerberos keytab file that contains the user credentials.</td>
+        </tr>
+        <tr>
+            <td><h5>security.kerberos.login.principal</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Kerberos principal name associated with the keytab.</td>
+        </tr>
+        <tr>
+            <td><h5>security.kerberos.login.use-ticket-cache</h5></td>
+            <td style="word-wrap: break-word;">true</td>
+            <td>Indicates whether to read from your Kerberos ticket cache.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="environment">Environment</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>env.java.opts</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>env.java.opts.jobmanager</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>env.java.opts.taskmanager</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>env.log.dir</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Defines the directory where the Flink logs are saved. It has to be an absolute path. (Defaults to the log directory under Flink’s home)</td>
+        </tr>
+        <tr>
+            <td><h5>env.log.max</h5></td>
+            <td style="word-wrap: break-word;">5</td>
+            <td>The maximum number of old log files to keep.</td>
+        </tr>
+        <tr>
+            <td><h5>env.ssh.opts</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Additional command line options passed to SSH clients when starting or stopping JobManager, TaskManager, and Zookeeper services (start-cluster.sh, stop-cluster.sh, start-zookeeper-quorum.sh, stop-zookeeper-quorum.sh).</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="checkpointing">Checkpointing</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>state.backend</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The state backend to be used to store and checkpoint state. Supported values are 'jobmanager' for MemoryStateBackend, 'filesystem' for FsStateBackend, and 'rocksdb' for RocksDBStateBackend.</td>
+        </tr>
+        <tr>
+            <td><h5>state.backend.async</h5></td>
+            <td style="word-wrap: break-word;">true</td>
+            <td>Option whether the state backend should use an asynchronous snapshot method where possible and configurable. Some state backends may not support asynchronous snapshots, or only support asynchronous snapshots, and ignore this option.</td>
+        </tr>
+        <tr>
+            <td><h5>state.backend.fs.memory-threshold</h5></td>
+            <td style="word-wrap: break-word;">1024</td>
+            <td>The minimum size of state data files. All state chunks smaller than that are stored inline in the root checkpoint metadata file.</td>
+        </tr>
+        <tr>
+            <td><h5>state.backend.incremental</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Option whether the state backend should create incremental checkpoints, if possible. For an incremental checkpoint, only a diff from the previous checkpoint is stored, rather than the complete checkpoint state. Some state backends may not support incremental checkpoints and ignore this option.</td>
+        </tr>
+        <tr>
+            <td><h5>state.backend.local-recovery</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>state.backend.rocksdb.localdir</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The local directory (on the TaskManager) where RocksDB puts its files.</td>
+        </tr>
+        <tr>
+            <td><h5>state.backend.working-dirs</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The working directories for file-based state backend.</td>
+        </tr>
+        <tr>
+            <td><h5>state.checkpoints.create-subdirs</h5></td>
+            <td style="word-wrap: break-word;">true</td>
+            <td>Whether to create sub-directories with specific jobId to store the data files and meta data of checkpoints. The default value is true to enable user could run several jobs with the same checkpoint directory simultaneously, if this value is set to false, pay attention to not run several jobs with the same directory simultaneously.</td>
+        </tr>
+        <tr>
+            <td><h5>state.checkpoints.dir</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The default directory used for storing the data files and meta data of checkpoints in a Flink supported filesystem. The storage path must be accessible from all participating processes/nodes(i.e. all TaskManagers and JobManagers).</td>
+        </tr>
+        <tr>
+            <td><h5>state.checkpoints.num-retained</h5></td>
+            <td style="word-wrap: break-word;">1</td>
+            <td>The maximum number of completed checkpoints to retain.</td>
+        </tr>
+        <tr>
+            <td><h5>state.savepoints.dir</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The default directory for savepoints. Used by the state backends that write savepoints to file systems (MemoryStateBackend, FsStateBackend, RocksDBStateBackend).</td>
+        </tr>
+        <tr>
+            <td><h5>taskmanager.state.local.root-dirs</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="queryable-state">Queryable State</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>query.client.network-threads</h5></td>
+            <td style="word-wrap: break-word;">0</td>
+            <td>Number of network (Netty's event loop) Threads for queryable state client.</td>
+        </tr>
+        <tr>
+            <td><h5>query.proxy.network-threads</h5></td>
+            <td style="word-wrap: break-word;">0</td>
+            <td>Number of network (Netty's event loop) Threads for queryable state proxy.</td>
+        </tr>
+        <tr>
+            <td><h5>query.proxy.ports</h5></td>
+            <td style="word-wrap: break-word;">"9069"</td>
+            <td>The port range of the queryable state proxy. The specified range can be a single port: "9123", a range of ports: "50100-50200", or a list of ranges and ports: "50100-50200,50300-50400,51234".</td>
+        </tr>
+        <tr>
+            <td><h5>query.proxy.query-threads</h5></td>
+            <td style="word-wrap: break-word;">0</td>
+            <td>Number of query Threads for queryable state proxy. Uses the number of slots if set to 0.</td>
+        </tr>
+        <tr>
+            <td><h5>query.server.network-threads</h5></td>
+            <td style="word-wrap: break-word;">0</td>
+            <td>Number of network (Netty's event loop) Threads for queryable state server.</td>
+        </tr>
+        <tr>
+            <td><h5>query.server.ports</h5></td>
+            <td style="word-wrap: break-word;">"9067"</td>
+            <td>The port range of the queryable state server. The specified range can be a single port: "9123", a range of ports: "50100-50200", or a list of ranges and ports: "50100-50200,50300-50400,51234".</td>
+        </tr>
+        <tr>
+            <td><h5>query.server.query-threads</h5></td>
+            <td style="word-wrap: break-word;">0</td>
+            <td>Number of query Threads for queryable state server. Uses the number of slots if set to 0.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="metrics">Metrics</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>metrics.latency.history-size</h5></td>
+            <td style="word-wrap: break-word;">128</td>
+            <td>Defines the number of measured latencies to maintain at each operator.</td>
+        </tr>
+        <tr>
+            <td><h5>metrics.reporter.&#60;name&#62;.&#60;parameter&#62;</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Configures the parameter &#60;parameter&#62; for the reporter named &#60;name&#62;.</td>
+        </tr>
+        <tr>
+            <td><h5>metrics.reporter.&#60;name&#62;.class</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The reporter class to use for the reporter named &#60;name&#62;.</td>
+        </tr>
+        <tr>
+            <td><h5>metrics.reporter.&#60;name&#62;.interval</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>The reporter interval to use for the reporter named &#60;name&#62;.</td>
+        </tr>
+        <tr>
+            <td><h5>metrics.reporters</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>metrics.scope.delimiter</h5></td>
+            <td style="word-wrap: break-word;">".<wbr />"</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>metrics.scope.jm</h5></td>
+            <td style="word-wrap: break-word;">"&#60;host&#62;.<wbr />jobmanager"</td>
+            <td>Defines the scope format string that is applied to all metrics scoped to a JobManager.</td>
+        </tr>
+        <tr>
+            <td><h5>metrics.scope.jm.job</h5></td>
+            <td style="word-wrap: break-word;">"&#60;host&#62;.<wbr />jobmanager.<wbr />&#60;job_name&#62;"</td>
+            <td>Defines the scope format string that is applied to all metrics scoped to a job on a JobManager.</td>
+        </tr>
+        <tr>
+            <td><h5>metrics.scope.operator</h5></td>
+            <td style="word-wrap: break-word;">"&#60;host&#62;.<wbr />taskmanager.<wbr />&#60;tm_id&#62;.<wbr />&#60;job_name&#62;.<wbr />&#60;operator_name&#62;.<wbr />&#60;subtask_index&#62;"</td>
+            <td>Defines the scope format string that is applied to all metrics scoped to an operator.</td>
+        </tr>
+        <tr>
+            <td><h5>metrics.scope.task</h5></td>
+            <td style="word-wrap: break-word;">"&#60;host&#62;.<wbr />taskmanager.<wbr />&#60;tm_id&#62;.<wbr />&#60;job_name&#62;.<wbr />&#60;task_name&#62;.<wbr />&#60;subtask_index&#62;"</td>
+            <td>Defines the scope format string that is applied to all metrics scoped to a task.</td>
+        </tr>
+        <tr>
+            <td><h5>metrics.scope.tm</h5></td>
+            <td style="word-wrap: break-word;">"&#60;host&#62;.<wbr />taskmanager.<wbr />&#60;tm_id&#62;"</td>
+            <td>Defines the scope format string that is applied to all metrics scoped to a TaskManager.</td>
+        </tr>
+        <tr>
+            <td><h5>metrics.scope.tm.job</h5></td>
+            <td style="word-wrap: break-word;">"&#60;host&#62;.<wbr />taskmanager.<wbr />&#60;tm_id&#62;.<wbr />&#60;job_name&#62;"</td>
+            <td>Defines the scope format string that is applied to all metrics scoped to a job on a TaskManager.</td>
+        </tr>
+        <tr>
+            <td><h5>metrics.tracing.sample.count-interval</h5></td>
+            <td style="word-wrap: break-word;">100</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="history-server">History Server</h3>
+
+<p>You have to configure <code class="highlighter-rouge">jobmanager.archive.fs.dir</code> in order to archive terminated jobs and add it to the list of monitored directories via <code class="highlighter-rouge">historyserver.archive.fs.dir</code> if you want to display them via the HistoryServer’s web frontend.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">jobmanager.archive.fs.dir</code>: Directory to upload information about terminated jobs to. You have to add this directory to the list of monitored directories of the history server via <code class="highlighter-rouge">historyserver.archive.fs.dir</code>.</li>
+</ul>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>historyserver.archive.fs.dir</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Comma separated list of directories to fetch archived jobs from. The history server will monitor these directories for archived jobs. You can configure the JobManager to archive jobs to a directory via `jobmanager.archive.fs.dir`.</td>
+        </tr>
+        <tr>
+            <td><h5>historyserver.archive.fs.refresh-interval</h5></td>
+            <td style="word-wrap: break-word;">10000</td>
+            <td>Interval in milliseconds for refreshing the archived job directories.</td>
+        </tr>
+        <tr>
+            <td><h5>historyserver.web.address</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Address of the HistoryServer's web interface.</td>
+        </tr>
+        <tr>
+            <td><h5>historyserver.web.port</h5></td>
+            <td style="word-wrap: break-word;">8082</td>
+            <td>Port of the HistoryServers's web interface.</td>
+        </tr>
+        <tr>
+            <td><h5>historyserver.web.refresh-interval</h5></td>
+            <td style="word-wrap: break-word;">10000</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>historyserver.web.ssl.enabled</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Enable HTTPs access to the HistoryServer web frontend. This is applicable only when the global SSL flag security.ssl.enabled is set to true.</td>
+        </tr>
+        <tr>
+            <td><h5>historyserver.web.tmpdir</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>This configuration parameter allows defining the Flink web directory to be used by the history server web interface. The web interface will copy its static files into the directory.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="slot-manager">Slot Manager</h3>
+
+<p>The configuration keys in this section are relevant for the SlotManager running in the ResourceManager</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 65%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>slotmanager.request-timeout</h5></td>
+            <td style="word-wrap: break-word;">600000</td>
+            <td>The timeout for a slot request to be discarded.</td>
+        </tr>
+        <tr>
+            <td><h5>slotmanager.slot-placement-policy</h5></td>
+            <td style="word-wrap: break-word;">"RANDOM"</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><h5>slotmanager.taskmanager-timeout</h5></td>
+            <td style="word-wrap: break-word;">30000</td>
+            <td>The timeout for an idle task manager to be released.</td>
+        </tr>
+        <tr>
+            <td><h5>slotmanager.taskmanager.checker-initial-delay</h5></td>
+            <td style="word-wrap: break-word;">180000</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="legacy">Legacy</h2>
+
+<ul>
+  <li><code class="highlighter-rouge">mode</code>: Execution mode of Flink. Possible values are <code class="highlighter-rouge">legacy</code> and <code class="highlighter-rouge">new</code>. In order to start the legacy components, you have to specify <code class="highlighter-rouge">legacy</code> (DEFAULT: <code class="highlighter-rouge">new</code>).</li>
+</ul>
+
+<h2 id="background">Background</h2>
+
+<h3 id="configuring-the-network-buffers">Configuring the Network Buffers</h3>
+
+<p>If you ever see the Exception <code class="highlighter-rouge">java.io.IOException: Insufficient number of network buffers</code>, you
+need to adapt the amount of memory used for network buffers in order for your program to run on your
+task managers.</p>
+
+<p>Network buffers are a critical resource for the communication layers. They are used to buffer
+records before transmission over a network, and to buffer incoming data before dissecting it into
+records and handing them to the application. A sufficient number of network buffers is critical to
+achieve a good throughput.</p>
+
+<div class="alert alert-info">
+Since Flink 1.3, you may follow the idiom "more is better" without any penalty on the latency (we
+prevent excessive buffering in each outgoing and incoming channel, i.e. *buffer bloat*, by limiting
+the actual number of buffers used by each channel).
+</div>
+
+<p>In general, configure the task manager to have enough buffers that each logical network connection
+you expect to be open at the same time has a dedicated buffer. A logical network connection exists
+for each point-to-point exchange of data over the network, which typically happens at
+repartitioning or broadcasting steps (shuffle phase). In those, each parallel task inside the
+TaskManager has to be able to talk to all other parallel tasks.</p>
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> Since Flink 1.5, network buffers will always be allocated off-heap, i.e. outside of the JVM heap, irrespective of the value of <code>taskmanager.memory.off-heap</code>. This way, we can pass these buffers directly to the underlying network stack layers.
+</div>
+
+<h4 id="setting-memory-fractions">Setting Memory Fractions</h4>
+
+<p>Previously, the number of network buffers was set manually which became a quite error-prone task
+(see below). Since Flink 1.3, it is possible to define a fraction of memory that is being used for
+network buffers with the following configuration parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">taskmanager.network.memory.fraction</code>: Fraction of JVM memory to use for network buffers (DEFAULT: 0.1),</li>
+  <li><code class="highlighter-rouge">taskmanager.network.memory.min</code>: Minimum memory size for network buffers in bytes (DEFAULT: 64 MB),</li>
+  <li><code class="highlighter-rouge">taskmanager.network.memory.max</code>: Maximum memory size for network buffers in bytes (DEFAULT: 1 GB), and</li>
+  <li><code class="highlighter-rouge">taskmanager.memory.segment-size</code>: Size of memory buffers used by the memory manager and the
+network stack in bytes (DEFAULT: 32768 (= 32 KiBytes)).</li>
+</ul>
+
+<h4 id="setting-the-number-of-network-buffers-directly">Setting the Number of Network Buffers directly</h4>
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> This way of configuring the amount of memory used for network buffers is deprecated. Please consider using the method above by defining a fraction of memory to use.
+</div>
+
+<p>The required number of buffers on a task manager is
+<em>total-degree-of-parallelism</em> (number of targets) * <em>intra-node-parallelism</em> (number of sources in one task manager) * <em>n</em>
+with <em>n</em> being a constant that defines how many repartitioning-/broadcasting steps you expect to be
+active at the same time. Since the <em>intra-node-parallelism</em> is typically the number of cores, and
+more than 4 repartitioning or broadcasting channels are rarely active in parallel, it frequently
+boils down to</p>
+
+<figure class="highlight"><pre><code class="language-plain" data-lang="plain">#slots-per-TM^2 * #TMs * 4</code></pre></figure>
+
+<p>Where <code class="highlighter-rouge">#slots per TM</code> are the <a href="#configuring-taskmanager-processing-slots">number of slots per TaskManager</a> and <code class="highlighter-rouge">#TMs</code> are the total number of task managers.</p>
+
+<p>To support, for example, a cluster of 20 8-slot machines, you should use roughly 5000 network
+buffers for optimal throughput.</p>
+
+<p>Each network buffer has by default a size of 32 KiBytes. In the example above, the system would thus
+allocate roughly 300 MiBytes for network buffers.</p>
+
+<p>The number and size of network buffers can be configured with the following parameters:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">taskmanager.network.numberOfBuffers</code>, and</li>
+  <li><code class="highlighter-rouge">taskmanager.memory.segment-size</code>.</li>
+</ul>
+
+<h3 id="configuring-temporary-io-directories-and-threads">Configuring Temporary I/O Directories and Threads</h3>
+
+<p>Although Flink aims to process as much data in main memory as possible, it is not uncommon that more data needs to be processed than memory is available. Flink’s runtime is designed to write temporary data to disk to handle these situations.</p>
+
+<p>The <code class="highlighter-rouge">taskmanager.tmp.dirs</code> parameter specifies a list of directories into which Flink writes temporary files. The paths of the directories need to be separated by ‘:’ (colon character). The <code class="highlighter-rouge">io.manager.async.num-read-write-thread</code> parameter specifies the number of IO threads. Flink will concurrently write (or read) one or more temporary files to (from) each configured directory. Each file will be bound to a directory and an IO thread. The directories and threads will be selected in a roundrobin way. This way, temporary I/O can be evenly distributed over multiple independent I/O devices such as hard disks to improve performance. To leverage fast I/O devices (e.g., SSD, RAID, NAS), it is possible to specify a directory multiple times.</p>
+
+<p>If the <code class="highlighter-rouge">taskmanager.tmp.dirs</code> parameter is not explicitly specified, Flink writes temporary data to the temporary directory of the operating system, such as <em>/tmp</em> in Linux systems. And the default value of <code class="highlighter-rouge">io.manager.async.num-read-write-thread</code> is 1.</p>
+
+<h3 id="configuring-taskmanager-processing-slots">Configuring TaskManager processing slots</h3>
+
+<p>Flink executes a program in parallel by splitting it into subtasks and scheduling these subtasks to processing slots.</p>
+
+<p>Each Flink TaskManager provides processing slots in the cluster. The number of slots is typically proportional to the number of available CPU cores <strong>of each</strong> TaskManager. As a general recommendation, the number of available CPU cores is a good default for <code class="highlighter-rouge">taskmanager.numberOfTaskSlots</code>.</p>
+
+<p>When starting a Flink application, users can supply the default number of slots to use for that job. The command line value therefore is called <code class="highlighter-rouge">-p</code> (for parallelism). In addition, it is possible to <a href="//flink-china.org/doc/blink/dev/parallel.html">set the number of slots in the programming APIs</a> for the whole application and for individual operators.</p>
+
+<p><img src="//flink-china.org/doc/blink/fig/slots_parallelism.svg" class="img-responsive" /></p>
+
+<h3 id="configure-the-jobs-using-external-shuffle-services">Configure the jobs using external shuffle services</h3>
+
+<div class="alert alert-warning">
+  <strong>Note:</strong> The jobs using the external shuffle services should run in the corresponding environments. For example, the jobs using the YARN shuffle service should be <a href="deployment/yarn_setup.html">submitted to a YARN cluster</a>.
+</div>
+
+<p>External shuffle services provide alternative mechanism to shuffle intermediate data for batch jobs. To declare batch jobs with the Table API, the following configuration need to be set:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">sql.exec.data-exchange-mode.all-batch</code>: When set to <code class="highlighter-rouge">true</code>, the job will be executed in batch mode (DEFAULT: <code class="highlighter-rouge">false</code>).</li>
+</ul>
+
+<p>By default batch jobs will use TaskManager to shuffle the intermediate data. To use the External shuffle service, add the following configuration:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">task.blocking.shuffle.type</code>: Currently only <code class="highlighter-rouge">TM</code> or <code class="highlighter-rouge">YARN</code> are supported (DEFAULT: <code class="highlighter-rouge">TM</code>).</li>
+</ul>
+
+<h4 id="configure-the-disk-type-preferred">Configure the disk type preferred</h4>
+
+<p>If there are multiple available root directories, by default Flink will randomly choose one from them to write the shuffle data. If you want to only use directories on specific type of disks, you can configure</p>
+
+<ul>
+  <li><code class="highlighter-rouge">taskmanager.output.local-disk.type</code>: The disk type preferred to write the shuffle data. The corresponding shuffle services should be configured to be aware of the disk types, like the one described in <a href="//flink-china.org/doc/blink/ops/deployment/yarn_setup.html#configure-the-root-directories">Configure the root directories</a> for the YARN shuffle service.</li>
+</ul>
+
+<h4 id="configure-the-map-side-tasks">Configure the map-side tasks</h4>
+
+<p>For the map-side tasks, the intermediate data can be write to the disks with either the hash writer or the merge writer. The hash writer writes the data to different reduce-side tasks to separate files. It is suitable when the number of reduce-side tasks is limited and there are enough write buffers to open all the files concurrently:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">taskmanager.output.hash.max-subpartitions</code>: The maximum number of subpartitions supported by the hash ​writer.</li>
+  <li><code class="highlighter-rouge">taskmanager.output.memory.mb</code>: The write buffer size for each output edge.​</li>
+</ul>
+
+<p>The merge writer writes the data to different reduce-side tasks to the same files and data to each reduce task is continuous in each file. These files will be merged if the number of files is larger than the threshold:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">taskmanager.output.merge.factor</code>: The maximum number of files to merge at once.</li>
+  <li><code class="highlighter-rouge">taskmanager.output.merge.merge-to-one-file</code>: Whether to merge to one file finally. If not, the merge stops once the number of files are less than <code class="highlighter-rouge">taskmanager.output.merge.factor</code>.</li>
+  <li><code class="highlighter-rouge">taskmanager.output.merge.enable-async-merge</code>: Whether to merge while writing has not been finished.</li>
+</ul>
+
+<h4 id="configure-the-reduce-side-tasks">Configure the reduce side tasks</h4>
+
+<p>For the reduce-side tasks, it is better to limit the number of concurrent request to assign more receive buffers to a single request. This is because the shuffle service stops serving a request once it has no receive buffers, a large receive buffer will reduce the number of switches and increase the overall throughput. For the reduce-side tasks:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">task.external.shuffle.max-concurrent-requests</code>: The maximum number of concurrent requests.</li>
+  <li><code class="highlighter-rouge">taskmanager.network.memory.buffers-per-external-blocking-channel</code>: The number of buffers for each request. The size of buffers is configure by <code class="highlighter-rouge">taskmanager.memory.segment-size</code> (DEFAULT: <code class="highlighter-rouge">32768</code>).</li>
+</ul>
+
+<h4 id="compression">Compression</h4>
+
+<p>Compression is supported to decrease the data written to disks and sent by network.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">task.external.shuffle.compression.enable</code>: Whether to enable compression (DEFAULT: false).</li>
+  <li><code class="highlighter-rouge">task.external.shuffle.compression.codec</code>: ​The compression algorithm to use. Currently supported codecs are <code class="highlighter-rouge">lz4</code>, <code class="highlighter-rouge">bzip2</code>,<code class="highlighter-rouge">gzip</code> (DEFAULT: <code class="highlighter-rouge">lz4</code>).</li>
+</ul>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+
+        </div>
+      </div>
+    </div><!-- /.container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//flink-china.org/doc/blink/page/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.0/anchor.min.js"></script>
+    <script src="//flink-china.org/doc/blink/page/js/flink.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-52545728-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- Disqus -->
+    
+  </body>
+</html>

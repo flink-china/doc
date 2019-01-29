@@ -1,0 +1,4272 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Apache Flink 1.5.1 Documentation: SQL Client</title>
+    <link rel="shortcut icon" href="//flink-china.org/doc/blink/page/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="//flink-china.org/doc/blink/page/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/flink.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/syntax.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/codetabs.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/font-awesome/css/font-awesome.min.css">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    
+
+    <!-- Main content. -->
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-lg-3" id="sidenavcol">
+          
+
+
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="sidenav-logo">
+  <p><a href="//flink-china.org/doc/blink"><img class="bottom" alt="Apache Flink" src="//flink-china.org/doc/blink/page/img/navbar-brand-logo.jpg"></a> v1.5.1</p>
+</div>
+<ul id="sidenav">
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/"><i class="fa fa-home title" aria-hidden="true"></i> Home</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-2" data-toggle="collapse"><i class="fa fa-map-o title appetizer" aria-hidden="true"></i> Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-2"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/concepts/programming-model.html">Programming Model</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/concepts/runtime.html">Distributed Runtime</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-6" data-toggle="collapse"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-6"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-7" data-toggle="collapse">API Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-7"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/datastream_api.html">DataStream API</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-10" data-toggle="collapse">Setup Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-10"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/local_setup.html">Local Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/setup_quickstart.html"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-16" data-toggle="collapse"><i class="fa fa-file-code-o title appetizer" aria-hidden="true"></i> Examples <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-16"><ul>
+  <li><a href="//flink-china.org/doc/blink/examples/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/examples.html">DataStream Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/examples.html">DataSet Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/stream_sql_quickstart.html">Stream SQL Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/batch_sql_quickstart.html">Batch SQL Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/scala_shell_quickstart.html">Scala Shell Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/zeppelin_quickstart.html">Flink on Zeppelin Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/examples.html">Flink-Hive Examples</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-25" data-toggle="collapse"><i class="fa fa-cogs title maindish" aria-hidden="true"></i> Project Setup <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-25"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/java_api_quickstart.html">Project Template for Java</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/scala_api_quickstart.html">Project Template for Scala</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/dependencies.html">Configuring Dependencies, Connectors, Libraries</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/ide_setup.html">IDE Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/scala_shell.html">Scala Shell</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/building.html">Building Flink from Source</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-34" data-toggle="collapse" class="active"><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development</a><div class="collapse in" id="collapse-34"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-35" data-toggle="collapse">Basic API Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-35"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/api_concepts.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/scala_api_extensions.html">Scala API Extensions</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/java8.html">Java 8</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-39" data-toggle="collapse">Streaming (DataStream API) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-39"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/datastream_api.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-40" data-toggle="collapse">Event Time <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-40"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/event_time.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/event_timestamps_watermarks.html">Generating Timestamps / Watermarks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/event_timestamp_extractors.html">Pre-defined Timestamp Extractors / Watermark Emitters</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-44" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-44"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/stream/state/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/state.html">Working with State</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/broadcast_state.html">The Broadcast State Pattern</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/checkpointing.html">Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/queryable_state.html">Queryable State</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/custom_serialization.html">Custom Serialization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-52" data-toggle="collapse">Operators <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-52"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/stream/operators/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/windows.html">Windows</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/process_function.html">Process Function</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/asyncio.html">Async I/O</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-57" data-toggle="collapse">Connectors <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-57"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/connectors/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/guarantees.html">Fault Tolerance Guarantees</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/kafka.html">Kafka</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/cassandra.html">Cassandra</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/kinesis.html">Kinesis</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/elasticsearch.html">Elasticsearch</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/filesystem_sink.html">Rolling File Sink</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/rabbitmq.html">RabbitMQ</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/nifi.html">NiFi</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/twitter.html">Twitter</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/side_output.html">Side Outputs</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/testing.html">Testing</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/experimental.html">Experimental Features</a></li>
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-73" data-toggle="collapse">Batch (DataSet API) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-73"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/batch/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/dataset_transformations.html">Transformations</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/fault_tolerance.html">Fault Tolerance</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/zip_elements_guide.html">Zipping Elements</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/iterations.html">Iterations</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/connectors.html">Connectors</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/hadoop_compatibility.html">Hadoop Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/local_execution.html">Local Execution</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/cluster_execution.html">Cluster Execution</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-84" data-toggle="collapse" class="active">Table API & SQL</a><div class="collapse in" id="collapse-84"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/table/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/common.html">Concepts & Common API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/hive_compatibility.html">Hive Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-87" data-toggle="collapse">Streaming Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-87"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/table/streaming/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/dynamic_tables.html">Dynamic Tables</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/time_attributes.html">Time Attributes</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/joins.html">Joins in Continuous Queries</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/temporal_tables.html">Temporal Tables</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/match_recognize.html">Detecting Patterns</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/query_configuration.html">Query Configuration</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/tableApi.html">Table API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sql.html">SQL</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/supported_ddl.html">SQL Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sourceSinks.html">Table Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/udfs.html">User-defined Functions</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sqlClient.html" class="active">SQL Client</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/resource.html">SQL Resource</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/catalog.html">Catalog</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming_optimization.html">Streaming Aggregation Optimization</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/multiple_tablesink_optimization.html">Multiple TableSink Optimization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-106" data-toggle="collapse">Data Types & Serialization <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-106"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/types_serialization.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/custom_serializers.html">Custom Serializers</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-109" data-toggle="collapse">Managing Execution <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-109"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/execution_configuration.html">Execution Configuration</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/packaging.html">Program Packaging</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/parallel.html">Parallel Execution</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/execution_plans.html">Execution Plans</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/restart_strategies.html">Restart Strategies</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-116" data-toggle="collapse">Libraries <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-116"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/cep.html">Event Processing (CEP)</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-118" data-toggle="collapse">Graphs: Gelly <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-118"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/libs/gelly/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_api.html">Graph API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/iterative_graph_processing.html">Iterative Graph Processing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/library_methods.html">Library Methods</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_algorithms.html">Graph Algorithms</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_generators.html">Graph Generators</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/bipartite_graph.html">Bipartite Graph</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-126" data-toggle="collapse">Machine Learning <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-126"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/libs/ml/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/quickstart.html">Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/contribution_guide.html">How to Contribute</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/cross_validation.html">Cross Validation</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/distance_metrics.html">Distance Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/knn.html">k-Nearest Neighbors Join</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/min_max_scaler.html">MinMax Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/multiple_linear_regression.html">Multiple Linear Regression</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/pipelines.html">Pipelines</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/polynomial_features.html">Polynomial Features</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/sos.html">Stochastic Outlier Selection</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/standard_scaler.html">Standard Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/als.html">ALS</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/svm.html">SVM using CoCoA</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/best_practices.html">Best Practices</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/migration.html">API Migration Guides</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-145" data-toggle="collapse"><i class="fa fa-sliders title maindish" aria-hidden="true"></i> Deployment & Operations <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-145"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-146" data-toggle="collapse">Clusters & Deployment <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-146"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/cluster_setup.html">Standalone Cluster</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/yarn_setup.html">YARN</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/mesos.html">Mesos</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/kubernetes.html">Kubernetes</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/docker.html">Docker</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/aws.html">AWS</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/gce_setup.html">Google Compute Engine</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/mapr_setup.html">MapR</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/hadoop.html">Hadoop Integration</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-157" data-toggle="collapse">High Availability (HA) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-157"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/ha/jobmanager_high_availability.html">JobManager High Availability (HA)</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/ha/jobmanager_failover.html">JobManager Failover</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-161" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-161"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/checkpoints.html">Checkpoints</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/savepoints.html">Savepoints</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/large_state_tuning.html">Tuning Checkpoints and Large State</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/ops/config.html">Configuration</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/production_ready.html">Production Readiness Checklist</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/cli.html">CLI</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/security-kerberos.html">Kerberos</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/security-ssl.html">SSL Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/zeppelin.html">Flink on Zeppelin</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/upgrading.html">Upgrading Applications and Flink Versions</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-176" data-toggle="collapse"><i class="fa fa-bug title maindish" aria-hidden="true"></i> Debugging & Monitoring <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-176"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/metrics.html">Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/logging.html">Logging</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/historyserver.html">History Server</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/checkpoint_monitoring.html">Monitoring Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/back_pressure.html">Monitoring Back Pressure</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/rest_api.html">Monitoring REST API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_event_time.html">Debugging Windows & Event Time</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_classloading.html">Debugging Classloading</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/application_profiling.html">Application Profiling</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_job_resources.html">Debugging Job Resources</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-188" data-toggle="collapse"><i class="fa fa-book title dessert" aria-hidden="true"></i> Internals <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-188"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/components.html">Component Stack</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/stream_checkpointing.html">Fault Tolerance for Data Streaming</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/job_scheduling.html">Jobs and Scheduling</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/task_lifecycle.html">Task Lifecycle</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/taskmanager_resource.html">TaskManager Resource</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+</ul>
+
+<div class="sidenav-search-box">
+  <form class="navbar-form" role="search" action="//flink-china.org/doc/blink/search-results.html">
+    <div class="form-group">
+      <input type="text" class="form-control" size="16px" name="q" placeholder="Search">
+    </div>
+    <button type="submit" class="btn btn-default">Go</button>
+  </form>
+</div>
+
+<div class="sidenav-versions">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Pick Docs Version
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.4">v1.4</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.3">v1.3</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.2">v1.2</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.1">v1.1</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.0">v1.0</a></li>
+      
+    </ul>
+  </div>
+</div>
+
+        </div>
+        <div class="col-lg-9 content" id="contentcol">
+          
+
+          
+
+
+
+
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+
+
+
+<ol class="breadcrumb">
+
+  
+  
+    <li><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development</li>
+  
+
+  
+  
+    <li><a href="//flink-china.org/doc/blink/dev/table/">Table API & SQL</a></li>
+  
+
+  
+  
+    <li class="active">SQL Client</li>
+  
+
+</ol>
+
+<h1>SQL Client <span class="beta">Beta</span></h1>
+
+
+
+
+<p>Flink’s Table &amp; SQL API makes it possible to work with queries written in the SQL language, but these queries need to be embedded within a table program that is written in either Java or Scala. Moreover, these programs need to be packaged with a build tool before being submitted to a cluster. This more or less limits the usage of Flink to Java/Scala programmers.</p>
+
+<p>The <em>SQL Client</em> aims to provide an easy way of writing, debugging, and submitting table programs to a Flink cluster without a single line of Java or Scala code. The <em>SQL Client CLI</em> allows for retrieving and visualizing real-time results from the running distributed application on the command line.</p>
+
+<p><a href="//flink-china.org/doc/blink/fig/sql_client_demo.gif"><img class="offset" src="//flink-china.org/doc/blink/fig/sql_client_demo.gif" alt="Animated demo of the Flink SQL Client CLI running table programs on a cluster" width="80%" /></a></p>
+
+<p><span class="label label-danger">Attention</span> The SQL Client is in an early developement phase. Even though the application is not production-ready yet, it can be a quite useful tool for prototyping and playing around with Flink SQL. In the future, the community plans to extend its functionality by providing a REST-based <a href="sqlClient.html#limitations--future">SQL Client Gateway</a>.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#getting-started" id="markdown-toc-getting-started">Getting Started</a>    <ul>
+      <li><a href="#starting-the-sql-client-cli" id="markdown-toc-starting-the-sql-client-cli">Starting the SQL Client CLI</a></li>
+      <li><a href="#running-sql-queries" id="markdown-toc-running-sql-queries">Running SQL Queries</a></li>
+      <li><a href="#sql-language-supports" id="markdown-toc-sql-language-supports">SQL language supports</a></li>
+    </ul>
+  </li>
+  <li><a href="#configuration" id="markdown-toc-configuration">Configuration</a>    <ul>
+      <li><a href="#environment-files" id="markdown-toc-environment-files">Environment Files</a></li>
+      <li><a href="#dependencies" id="markdown-toc-dependencies">Dependencies</a></li>
+    </ul>
+  </li>
+  <li><a href="#table-sources" id="markdown-toc-table-sources">Table Sources</a>    <ul>
+      <li><a href="#schema-properties" id="markdown-toc-schema-properties">Schema Properties</a></li>
+      <li><a href="#connector-properties" id="markdown-toc-connector-properties">Connector Properties</a></li>
+      <li><a href="#format-properties" id="markdown-toc-format-properties">Format Properties</a></li>
+    </ul>
+  </li>
+  <li><a href="#catalogs" id="markdown-toc-catalogs">Catalogs</a></li>
+  <li><a href="#limitations--future" id="markdown-toc-limitations--future">Limitations &amp; Future</a></li>
+</ul>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>This section describes how to setup and run your first Flink SQL program from the command-line.</p>
+
+<p>The SQL Client is bundled in the regular Flink distribution and thus runnable out-of-the-box. It requires only a running Flink cluster where table programs can be executed. For more information about setting up a Flink cluster see the <a href="//flink-china.org/doc/blink/ops/deployment/cluster_setup.html">Cluster &amp; Deployment</a> part. If you simply want to try out the SQL Client, you can also start a local cluster with one worker using the following command:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">./bin/start-cluster.sh</code></pre></figure>
+
+<h3 id="starting-the-sql-client-cli">Starting the SQL Client CLI</h3>
+
+<p>The SQL Client scripts are also located in the binary directory of Flink. <a href="sqlClient.html#limitations--future">In the future</a>, a user will have two possiblities of starting the SQL Client CLI either by starting an embedded standalone process or by connecting to a remote SQL Client Gateway. At the moment only the <code class="highlighter-rouge">embedded</code> mode is supported. You can start the CLI by calling:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">./bin/sql-client.sh embedded</code></pre></figure>
+
+<p>By default, the SQL Client will read its configuration from the environment file located in <code class="highlighter-rouge">./conf/sql-client-defaults.yaml</code>. See the <a href="sqlClient.html#environment-files">configuration part</a> for more information about the structure of environment files.</p>
+
+<h3 id="running-sql-queries">Running SQL Queries</h3>
+
+<p>Once the CLI has been started, you can use the <code class="highlighter-rouge">HELP</code> command to list all available SQL statements. For validating your setup and cluster connection, you can enter your first SQL query and press the <code class="highlighter-rouge">Enter</code> key to execute it:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="s1">'Hello World'</span><span class="p">;</span></code></pre></figure>
+
+<p>This query requires no table source and produces a single row result. The CLI will retrieve results from the cluster and visualize them. You can close the result view by pressing the <code class="highlighter-rouge">Q</code> key.</p>
+
+<p>The CLI supports <strong>two execution modes</strong> (batch or streaming) for queries. Which you can specify in the <a href="sqlClient.html##environment-files">configuration file</a></p>
+
+<p>In streaming execution mode, the CLI supports <strong>two modes</strong> for maintaining and visualizing results.</p>
+
+<p>The <strong>table mode</strong> materializes results in memory and visualizes them in a regular, paginated table representation. It can be enabled by executing the following command in the CLI:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">SET execution.result-mode=table;</code></pre></figure>
+
+<p>The <strong>changelog mode</strong> does not materialize results and visualizes the result stream that is produced by a <a href="streaming.html#dynamic-tables--continuous-queries">continuous query</a> consisting of insertions (<code class="highlighter-rouge">+</code>) and retractions (<code class="highlighter-rouge">-</code>).</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">SET execution.result-mode=changelog;</code></pre></figure>
+
+<p>You can use the following query to see both result modes in action:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">name</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">cnt</span> <span class="k">FROM</span> <span class="p">(</span><span class="k">VALUES</span> <span class="p">(</span><span class="s1">'Bob'</span><span class="p">),</span> <span class="p">(</span><span class="s1">'Alice'</span><span class="p">),</span> <span class="p">(</span><span class="s1">'Greg'</span><span class="p">),</span> <span class="p">(</span><span class="s1">'Bob'</span><span class="p">))</span> <span class="k">AS</span> <span class="n">NameTable</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">name</span><span class="p">;</span></code></pre></figure>
+
+<p>This query performs a bounded word count example.</p>
+
+<p>In <em>changelog mode</em>, the visualized changelog should be similar to:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">+ Bob, 1
++ Alice, 1
++ Greg, 1
+- Bob, 1
++ Bob, 2</code></pre></figure>
+
+<p>In <em>table mode</em>, the visualized result table is continuously updated until the table program ends with:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">Bob, 2
+Alice, 1
+Greg, 1</code></pre></figure>
+
+<p>The <a href="sqlClient.html#configuration">configuration section</a> explains how to read from table sources and configure other table program properties.</p>
+
+<h3 id="sql-language-supports">SQL language supports</h3>
+
+<p>Currently Flink has a preliminary supports for SQL language(include DDL, Query and DML features). See <a href="//flink-china.org/doc/blink/dev/table/sql.html">SQL</a></p>
+
+<p>SQL CLI provides a CREATE TABLE command to replace the table definitions in YAML configuation file. SQL users pass a SQL DDL description text to SQL CLI, it will be passed into table objects and registered to the tableEnvironment, then following SQL Querys can access these tables directly (we would reuse the tableEnvironment in a session).</p>
+
+<p><span class="label label-danger">Attention</span> We strongly suggest everyone use DDL syntax to define a Table, and use DML to query or update the Table.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>The SQL Client can be started with the following optional CLI commands. They are discussed in detail in the subsequent paragraphs.</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">./bin/sql-client.sh embedded --help
+
+Mode "embedded" submits Flink jobs from the local machine.
+
+  Syntax: embedded [OPTIONS]
+  "embedded" mode options:
+     -d,--defaults &lt;environment file&gt;      The environment properties with which
+                                           every new session is initialized.
+                                           Properties might be overwritten by
+                                           session properties.
+     -e,--environment &lt;environment file&gt;   The environment properties to be
+                                           imported into the session. It might
+                                           overwrite default environment
+                                           properties.
+     -h,--help                             Show the help message with
+                                           descriptions of all options.
+     -j,--jar &lt;JAR file&gt;                   A JAR file to be imported into the
+                                           session. The file might contain
+                                           user-defined classes needed for the
+                                           execution of statements such as
+                                           functions, table sources, or sinks.
+                                           Can be used multiple times.
+     -l,--library &lt;JAR directory&gt;          A JAR file directory with which every
+                                           new session is initialized. The files
+                                           might contain user-defined classes
+                                           needed for the execution of
+                                           statements such as functions, table
+                                           sources, or sinks. Can be used
+                                           multiple times.
+     -s,--session &lt;session identifier&gt;     The identifier for a session.
+                                           'default' is the default identifier.</code></pre></figure>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="environment-files">Environment Files</h3>
+
+<p>A SQL query needs a configuration environment in which it is executed. The so-called <em>environment files</em> define available table sources and sinks, catalogs, user-defined functions, and other properties required for execution and deployment.</p>
+
+<p>Every environment file is a regular <a href="http://yaml.org/">YAML file</a>. An example of such a file is presented below.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># Define table sources here.</span>
+
+<span class="na">tables</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">MyTableName</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">source</span>
+    <span class="na">schema</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">MyField1</span>
+        <span class="na">type</span><span class="pi">:</span> <span class="s">INT</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">MyField2</span>
+        <span class="na">type</span><span class="pi">:</span> <span class="s">VARCHAR</span>
+    <span class="na">connector</span><span class="pi">:</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">filesystem</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/path/to/something.csv"</span>
+    <span class="na">format</span><span class="pi">:</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">csv</span>
+      <span class="na">fields</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">MyField1</span>
+          <span class="na">type</span><span class="pi">:</span> <span class="s">INT</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">MyField2</span>
+          <span class="na">type</span><span class="pi">:</span> <span class="s">VARCHAR</span>
+      <span class="na">line-delimiter</span><span class="pi">:</span> <span class="s2">"</span><span class="se">\n</span><span class="s">"</span>
+      <span class="na">comment-prefix</span><span class="pi">:</span> <span class="s2">"</span><span class="s">#"</span>
+
+<span class="c1"># Execution properties allow for changing the behavior of a table program.</span>
+
+<span class="na">execution</span><span class="pi">:</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">streaming</span>
+  <span class="na">time-characteristic</span><span class="pi">:</span> <span class="s">event-time</span>
+  <span class="na">parallelism</span><span class="pi">:</span> <span class="s">1</span>
+  <span class="na">max-parallelism</span><span class="pi">:</span> <span class="s">16</span>
+  <span class="na">min-idle-state-retention</span><span class="pi">:</span> <span class="s">0</span>
+  <span class="na">max-idle-state-retention</span><span class="pi">:</span> <span class="s">0</span>
+  <span class="na">result-mode</span><span class="pi">:</span> <span class="s">table</span>
+
+<span class="c1"># Deployment properties allow for describing the cluster to which table programs are submitted to.</span>
+
+<span class="na">deployment</span><span class="pi">:</span>
+  <span class="na">response-timeout</span><span class="pi">:</span> <span class="s">5000</span>
+
+<span class="c1"># Catalogs</span>
+
+<span class="na">catalogs</span><span class="pi">:</span>
+   <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">MyHive_1</span>
+     <span class="na">catalog</span><span class="pi">:</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">hive</span>
+      <span class="na">connector</span><span class="pi">:</span>
+        <span class="s">hive.metastore.uris</span><span class="pi">:</span> <span class="s">thrift://localhost:9083</span>
+      <span class="na">is-default</span><span class="pi">:</span> <span class="no">false</span>
+      <span class="na">default-database</span><span class="pi">:</span> <span class="s">mydb_1</span>
+   <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">MyHive_2</span>
+     <span class="na">catalog</span><span class="pi">:</span>
+       <span class="na">type</span><span class="pi">:</span> <span class="s">hive</span>
+       <span class="na">connector</span><span class="pi">:</span>
+         <span class="s">hive.metastore.uris</span><span class="pi">:</span> <span class="s">thrift://localhost:9084</span>
+       <span class="na">default-database</span><span class="pi">:</span> <span class="s">mydb_2</span></code></pre></figure>
+
+<p>This configuration:</p>
+
+<ul>
+  <li>defines an environment with a table source <code class="highlighter-rouge">MyTableName</code> that reads from a CSV file,</li>
+  <li>specifies a parallelism of 1 for queries executed in this environment,</li>
+  <li>specifies an even-time characteristic, and</li>
+  <li>runs queries in the <code class="highlighter-rouge">table</code> result mode.</li>
+  <li>creates two <code class="highlighter-rouge">HiveCatalog</code> (type: hive) named with their own default databases</li>
+</ul>
+
+<p>Depending on the use case, a configuration can be split into multiple files. Therefore, environment files can be created for general purposes (<em>defaults environment file</em> using <code class="highlighter-rouge">--defaults</code>) as well as on a per-session basis (<em>session environment file</em> using <code class="highlighter-rouge">--environment</code>). Every CLI session is initialized with the default properties followed by the session properties. For example, the defaults environment file could specify all table sources that should be available for querying in every session whereas the session environment file only declares a specific state retention time and parallelism. Both default and session environment files can be passed when starting the CLI application. If no default environment file has been specified, the SQL Client searches for <code class="highlighter-rouge">./conf/sql-client-defaults.yaml</code> in Flink’s configuration directory.</p>
+
+<p><span class="label label-danger">Attention</span> Properties that have been set within a CLI session (e.g. using the <code class="highlighter-rouge">SET</code> command) have highest precedence:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">CLI commands &gt; session environment file &gt; defaults environment file</code></pre></figure>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="dependencies">Dependencies</h3>
+
+<p>The SQL Client does not require to setup a Java project using Maven or SBT. Instead, you can pass the dependencies as regular JAR files that get submitted to the cluster. You can either specify each JAR file separately (using <code class="highlighter-rouge">--jar</code>) or define entire library directories (using <code class="highlighter-rouge">--library</code>). For connectors to external systems (such as Apache Kafka) and corresponding data formats (such as JSON), Flink provides <strong>ready-to-use JAR bundles</strong>. These JAR files are suffixed with <code class="highlighter-rouge">sql-jar</code> and can be downloaded for each release from the Maven central repository.</p>
+
+<h4 id="connectors">Connectors</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: left">Version</th>
+      <th style="text-align: left">Download</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Filesystem</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">Built-in</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Apache Kafka</td>
+      <td style="text-align: left">0.11</td>
+      <td style="text-align: left"><a href="http://central.maven.org/maven2/org/apache/flink/flink-connector-kafka-0.11_2.11/1.5.1/flink-connector-kafka-0.11_2.11-1.5.1-sql-jar.jar">Download</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="formats">Formats</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Name</th>
+      <th style="text-align: left">Download</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">CSV</td>
+      <td style="text-align: left">Built-in</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">JSON</td>
+      <td style="text-align: left"><a href="http://central.maven.org/maven2/org/apache/flink/flink-json/1.5.1/flink-json-1.5.1-sql-jar.jar">Download</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h2 id="table-sources">Table Sources</h2>
+
+<p>Sources are defined using a set of <a href="http://yaml.org/">YAML properties</a>. Similar to a SQL <code class="highlighter-rouge">CREATE TABLE</code> statement you define the name of the table, the final schema of the table, connector, and a data format if necessary. Additionally, you have to specify its type (source, sink, or both).</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">name</span><span class="pi">:</span> <span class="s">MyTable</span>     <span class="c1"># required: string representing the table name</span>
+<span class="na">type</span><span class="pi">:</span> <span class="s">source</span>      <span class="c1"># required: currently only 'source' is supported</span>
+<span class="na">schema</span><span class="pi">:</span> <span class="s">...</span>       <span class="c1"># required: final table schema</span>
+<span class="na">connector</span><span class="pi">:</span> <span class="s">...</span>    <span class="c1"># required: connector configuration</span>
+<span class="na">format</span><span class="pi">:</span> <span class="s">...</span>       <span class="c1"># optional: format that depends on the connector</span></code></pre></figure>
+
+<p><span class="label label-danger">Attention</span> Not every combination of connector and format is supported. Internally, your YAML file is translated into a set of string-based properties by which the SQL Client tries to resolve a matching table source. If a table source can be resolved also depends on the JAR files available in the classpath.</p>
+
+<p>The following example shows an environment file that defines a table source reading JSON data from Apache Kafka. All properties are explained in the following subsections.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">tables</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">TaxiRides</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">source</span>
+    <span class="na">schema</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">rideId</span>
+        <span class="na">type</span><span class="pi">:</span> <span class="s">LONG</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">lon</span>
+        <span class="na">type</span><span class="pi">:</span> <span class="s">FLOAT</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">lat</span>
+        <span class="na">type</span><span class="pi">:</span> <span class="s">FLOAT</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">rowTime</span>
+        <span class="na">type</span><span class="pi">:</span> <span class="s">TIMESTAMP</span>
+        <span class="na">rowtime</span><span class="pi">:</span>
+          <span class="na">timestamps</span><span class="pi">:</span>
+            <span class="na">type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">from-field"</span>
+            <span class="na">from</span><span class="pi">:</span> <span class="s2">"</span><span class="s">rideTime"</span>
+          <span class="na">watermarks</span><span class="pi">:</span>
+            <span class="na">type</span><span class="pi">:</span> <span class="s2">"</span><span class="s">periodic-bounded"</span>
+            <span class="na">delay</span><span class="pi">:</span> <span class="s2">"</span><span class="s">60000"</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">procTime</span>
+        <span class="na">type</span><span class="pi">:</span> <span class="s">TIMESTAMP</span>
+        <span class="na">proctime</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">connector</span><span class="pi">:</span>
+      <span class="na">property-version</span><span class="pi">:</span> <span class="s">1</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">kafka</span>
+      <span class="na">version</span><span class="pi">:</span> <span class="s">0.11</span>
+      <span class="na">topic</span><span class="pi">:</span> <span class="s">TaxiRides</span>
+      <span class="na">startup-mode</span><span class="pi">:</span> <span class="s">earliest-offset</span>
+      <span class="na">properties</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">key</span><span class="pi">:</span> <span class="s">zookeeper.connect</span>
+          <span class="na">value</span><span class="pi">:</span> <span class="s">localhost:2181</span>
+        <span class="pi">-</span> <span class="na">key</span><span class="pi">:</span> <span class="s">bootstrap.servers</span>
+          <span class="na">value</span><span class="pi">:</span> <span class="s">localhost:9092</span>
+        <span class="pi">-</span> <span class="na">key</span><span class="pi">:</span> <span class="s">group.id</span>
+          <span class="na">value</span><span class="pi">:</span> <span class="s">testGroup</span>
+    <span class="na">format</span><span class="pi">:</span>
+      <span class="na">property-version</span><span class="pi">:</span> <span class="s">1</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">json</span>
+      <span class="na">schema</span><span class="pi">:</span> <span class="s2">"</span><span class="s">ROW(rideId</span><span class="nv"> </span><span class="s">LONG,</span><span class="nv"> </span><span class="s">lon</span><span class="nv"> </span><span class="s">FLOAT,</span><span class="nv"> </span><span class="s">lat</span><span class="nv"> </span><span class="s">FLOAT,</span><span class="nv"> </span><span class="s">rideTime</span><span class="nv"> </span><span class="s">TIMESTAMP)"</span></code></pre></figure>
+
+<p>The resulting schema of the <code class="highlighter-rouge">TaxiRide</code> table contains most of the fields of the JSON schema. Furthermore, it adds a rowtime attribute <code class="highlighter-rouge">rowTime</code> and processing-time attribute <code class="highlighter-rouge">procTime</code>. Both <code class="highlighter-rouge">connector</code> and <code class="highlighter-rouge">format</code> allow to define a property version (which is currently version <code class="highlighter-rouge">1</code>) for future backwards compatibility.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="schema-properties">Schema Properties</h3>
+
+<p>The schema allows for describing the final appearance of a table. It specifies the final name, final type, and the origin of a field. The origin of a field might be important if the name of the field should differ from the input format. For instance, a field <code class="highlighter-rouge">name&amp;field</code> should reference <code class="highlighter-rouge">nameField</code> from an Avro format.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">schema</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">MyField1</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">...</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">MyField2</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">...</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">MyField3</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">...</span></code></pre></figure>
+
+<p>For <em>each field</em>, the following properties can be used:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">name</span><span class="pi">:</span> <span class="s">...</span>         <span class="c1"># required: final name of the field</span>
+<span class="na">type</span><span class="pi">:</span> <span class="s">...</span>         <span class="c1"># required: final type of the field represented as a type string</span>
+<span class="na">proctime</span><span class="pi">:</span> <span class="s">...</span>     <span class="c1"># optional: boolean flag whether this field should be a processing-time attribute</span>
+<span class="na">rowtime</span><span class="pi">:</span> <span class="s">...</span>      <span class="c1"># optional: wether this field should be a event-time attribute</span>
+<span class="na">from</span><span class="pi">:</span> <span class="s">...</span>         <span class="c1"># optional: original field in the input that is referenced/aliased by this field</span></code></pre></figure>
+
+<h4 id="type-strings">Type Strings</h4>
+
+<p>The following type strings are supported for being defined in an environment file:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">VARCHAR</span>
+<span class="s">BOOLEAN</span>
+<span class="s">TINYINT</span>
+<span class="s">SMALLINT</span>
+<span class="s">INT</span>
+<span class="s">BIGINT</span>
+<span class="s">FLOAT</span>
+<span class="s">DOUBLE</span>
+<span class="s">DECIMAL</span>
+<span class="s">DATE</span>
+<span class="s">TIME</span>
+<span class="s">TIMESTAMP</span>
+<span class="s">ROW(fieldtype, ...)</span>              <span class="c1"># unnamed row; e.g. ROW(VARCHAR, INT) that is mapped to Flink's RowTypeInfo</span>
+                                 <span class="c1"># with indexed fields names f0, f1, ...</span>
+<span class="s">ROW(fieldname fieldtype, ...)</span>    <span class="c1"># named row; e.g., ROW(myField VARCHAR, myOtherField INT) that</span>
+                                 <span class="c1"># is mapped to Flink's RowTypeInfo</span>
+<span class="s">POJO(class)</span>                      <span class="c1"># e.g., POJO(org.mycompany.MyPojoClass) that is mapped to Flink's PojoTypeInfo</span>
+<span class="s">ANY(class)</span>                       <span class="c1"># e.g., ANY(org.mycompany.MyClass) that is mapped to Flink's GenericTypeInfo</span>
+<span class="s">ANY(class, serialized)</span>           <span class="c1"># used for type information that is not supported by Flink's Table &amp; SQL API</span></code></pre></figure>
+
+<h4 id="rowtime-properties">Rowtime Properties</h4>
+
+<p>In order to control the event-time behavior for table sources, the SQL Client provides predefined timestamp extractors and watermark strategies. For more information about time handling in Flink and especially event-time, we recommend the general <a href="streaming.html#time-attributes">event-time section</a>.</p>
+
+<p>The following timestamp extractors are supported:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># Converts an existing BIGINT or TIMESTAMP field in the input into the rowtime attribute.</span>
+<span class="na">rowtime</span><span class="pi">:</span>
+  <span class="na">timestamps</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">from-field</span>
+    <span class="na">from</span><span class="pi">:</span> <span class="s">...</span>                 <span class="c1"># required: original field name in the input</span>
+
+<span class="c1"># Converts the assigned timestamps from a DataStream API record into the rowtime attribute </span>
+<span class="c1"># and thus preserves the assigned timestamps from the source.</span>
+<span class="na">rowtime</span><span class="pi">:</span>
+  <span class="na">timestamps</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">from-source</span></code></pre></figure>
+
+<p>The following watermark strategies are supported:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># Sets a watermark strategy for ascending rowtime attributes. Emits a watermark of the maximum </span>
+<span class="c1"># observed timestamp so far minus 1. Rows that have a timestamp equal to the max timestamp</span>
+<span class="c1"># are not late.</span>
+<span class="na">rowtime</span><span class="pi">:</span>
+  <span class="na">watermarks</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">periodic-ascending</span>
+
+<span class="c1"># Sets a built-in watermark strategy for rowtime attributes which are out-of-order by a bounded time interval.</span>
+<span class="c1"># Emits watermarks which are the maximum observed timestamp minus the specified delay.</span>
+<span class="na">rowtime</span><span class="pi">:</span>
+  <span class="na">watermarks</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">periodic-bounded</span>
+    <span class="na">delay</span><span class="pi">:</span> <span class="s">...</span>                <span class="c1"># required: delay in milliseconds</span>
+
+<span class="c1"># Sets a built-in watermark strategy which indicates the watermarks should be preserved from the</span>
+<span class="c1"># underlying DataStream API and thus preserves the assigned watermarks from the source.</span>
+<span class="na">rowtime</span><span class="pi">:</span>
+  <span class="na">watermarks</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">from-source</span></code></pre></figure>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="connector-properties">Connector Properties</h3>
+
+<p>Flink provides a set of connectors that can be defined in the environment file.</p>
+
+<p><span class="label label-danger">Attention</span> Currently, connectors can only be used as table sources not sinks.</p>
+
+<h4 id="filesystem-connector">Filesystem Connector</h4>
+
+<p>The filesystem connector allows for reading from a local or distributed filesystem. A filesystem can be defined as:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">connector</span><span class="pi">:</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">filesystem</span>
+  <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">file:///path/to/whatever"</span>       <span class="c1"># required</span></code></pre></figure>
+
+<p>Currently, only files with CSV format can be read from a filesystem. The filesystem connector is included in Flink and does not require an additional JAR file.</p>
+
+<h4 id="kafka-connector">Kafka Connector</h4>
+
+<p>The Kafka connector allows for reading from a Apache Kafka topic. It can be defined as follows:</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">connector</span><span class="pi">:</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">kafka</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="s">0.11</span>       <span class="c1"># required: valid connector versions are "0.8", "0.9", "0.10", and "0.11"</span>
+  <span class="na">topic</span><span class="pi">:</span> <span class="s">...</span>          <span class="c1"># required: topic name from which the table is read</span>
+  <span class="na">startup-mode</span><span class="pi">:</span> <span class="s">...</span>   <span class="c1"># optional: valid modes are "earliest-offset", "latest-offset",</span>
+                      <span class="c1"># "group-offsets", or "specific-offsets"</span>
+  <span class="na">specific-offsets</span><span class="pi">:</span>   <span class="c1"># optional: used in case of startup mode with specific offsets</span>
+    <span class="pi">-</span> <span class="na">partition</span><span class="pi">:</span> <span class="s">0</span>
+      <span class="na">offset</span><span class="pi">:</span> <span class="s">42</span>
+    <span class="pi">-</span> <span class="na">partition</span><span class="pi">:</span> <span class="s">1</span>
+      <span class="na">offset</span><span class="pi">:</span> <span class="s">300</span>
+  <span class="na">properties</span><span class="pi">:</span>         <span class="c1"># optional: connector specific properties</span>
+    <span class="pi">-</span> <span class="na">key</span><span class="pi">:</span> <span class="s">zookeeper.connect</span>
+      <span class="na">value</span><span class="pi">:</span> <span class="s">localhost:2181</span>
+    <span class="pi">-</span> <span class="na">key</span><span class="pi">:</span> <span class="s">bootstrap.servers</span>
+      <span class="na">value</span><span class="pi">:</span> <span class="s">localhost:9092</span>
+    <span class="pi">-</span> <span class="na">key</span><span class="pi">:</span> <span class="s">group.id</span>
+      <span class="na">value</span><span class="pi">:</span> <span class="s">testGroup</span></code></pre></figure>
+
+<p>Make sure to download the <a href="sqlClient.html#dependencies">Kafka SQL JAR</a> file and pass it to the SQL Client.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h3 id="format-properties">Format Properties</h3>
+
+<p>Flink provides a set of formats that can be defined in the environment file.</p>
+
+<h4 id="csv-format">CSV Format</h4>
+
+<p>The CSV format allows to read comma-separated rows. Currently, this is only supported for the filesystem connector.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">format</span><span class="pi">:</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">csv</span>
+  <span class="na">fields</span><span class="pi">:</span>                    <span class="c1"># required: format fields</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">field1</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">VARCHAR</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">field2</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">TIMESTAMP</span>
+  <span class="na">field-delimiter</span><span class="pi">:</span> <span class="s2">"</span><span class="s">,"</span>      <span class="c1"># optional: string delimiter "," by default </span>
+  <span class="na">line-delimiter</span><span class="pi">:</span> <span class="s2">"</span><span class="se">\n</span><span class="s">"</span>       <span class="c1"># optional: string delimiter "\n" by default </span>
+  <span class="na">quote-character</span><span class="pi">:</span> <span class="s1">'</span><span class="s">"'</span>       <span class="c1"># optional: single character for string values, empty by default</span>
+  <span class="na">comment-prefix</span><span class="pi">:</span> <span class="s1">'</span><span class="s">#'</span>        <span class="c1"># optional: string to indicate comments, empty by default</span>
+  <span class="na">ignore-first-line</span><span class="pi">:</span> <span class="no">false</span>   <span class="c1"># optional: boolean flag to ignore the first line, by default it is not skipped</span>
+  <span class="na">ignore-parse-errors</span><span class="pi">:</span> <span class="no">true</span>  <span class="c1"># optional: skip records with parse error instead to fail by default</span></code></pre></figure>
+
+<p>The CSV format is included in Flink and does not require an additional JAR file.</p>
+
+<h4 id="json-format">JSON Format</h4>
+
+<p>The JSON format allows to read JSON data that corresponds to a given format schema. The format schema can be defined either as a Flink <a href="sqlClient.html#type-strings">type string</a>, as a JSON schema, or derived from the desired table schema. A type string enables a more SQL-like definition and mapping to the corresponding SQL data types. The JSON schema allows for more complex and nested structures.</p>
+
+<p>If the format schema is equal to the table schema, the schema can also be automatically derived. This allows for defining schema information only once. The names, types, and field order of the format are determined by the table’s schema. Time attributes are ignored. A <code class="highlighter-rouge">from</code> definition in the table schema is interpreted as a field renaming in the format.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">format</span><span class="pi">:</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">json</span>
+  <span class="na">fail-on-missing-field</span><span class="pi">:</span> <span class="no">true</span>   <span class="c1"># optional: flag whether to fail if a field is missing or not </span>
+
+  <span class="c1"># required: define the schema either by using a type string which parses numbers to corresponding types</span>
+  <span class="na">schema</span><span class="pi">:</span> <span class="s2">"</span><span class="s">ROW(lon</span><span class="nv"> </span><span class="s">FLOAT,</span><span class="nv"> </span><span class="s">rideTime</span><span class="nv"> </span><span class="s">TIMESTAMP)"</span>
+
+  <span class="c1"># or by using a JSON schema which parses to DECIMAL and TIMESTAMP</span>
+  <span class="na">json-schema</span><span class="pi">:</span> <span class="pi">&gt;</span>
+    <span class="no">{</span>
+      <span class="no">type: 'object',</span>
+      <span class="no">properties: {</span>
+        <span class="no">lon: {</span>
+          <span class="no">type: 'number'</span>
+        <span class="no">},</span>
+        <span class="no">rideTime: {</span>
+          <span class="no">type: 'string',</span>
+          <span class="no">format: 'date-time'</span>
+        <span class="no">}</span>
+      <span class="no">}</span>
+    <span class="no">}</span>
+
+  <span class="c1"># or use the tables schema</span>
+  <span class="na">derive-schema</span><span class="pi">:</span> <span class="no">true</span></code></pre></figure>
+
+<p>Currently, Flink supports only a subset of the <a href="http://json-schema.org/">JSON schema specification</a> <code class="highlighter-rouge">draft-07</code>. Union types (as well as <code class="highlighter-rouge">allOf</code>, <code class="highlighter-rouge">anyOf</code>, <code class="highlighter-rouge">not</code>) are not supported yet. <code class="highlighter-rouge">oneOf</code> and arrays of types are only supported for specifying nullability.</p>
+
+<p>Simple references that link to a common definition in the document are supported as shown in the more complex example below:</p>
+
+<figure class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"definitions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"street_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"street_address"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"billing_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"$ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/definitions/address"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"shipping_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"$ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/definitions/address"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"optional_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"oneOf"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"null"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"$ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/definitions/address"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>Make sure to download the <a href="sqlClient.html#dependencies">JSON SQL JAR</a> file and pass it to the SQL Client.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h2 id="catalogs">Catalogs</h2>
+
+<p>Catalogs can be defined as a set of yaml properties and are automatically registered to the environment upon starting SQL Cli.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">catalogs</span><span class="pi">:</span>
+   <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">MyHive_1</span>
+     <span class="na">catalog</span><span class="pi">:</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">hive</span>
+      <span class="na">connector</span><span class="pi">:</span>
+        <span class="s">hive.metastore.uris</span><span class="pi">:</span> <span class="s">thrift://localhost:9083</span>
+      <span class="na">is-default</span><span class="pi">:</span> <span class="no">false</span>
+      <span class="na">default-database</span><span class="pi">:</span> <span class="s">mydb_1</span>
+   <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">MyHive_2</span>
+     <span class="na">catalog</span><span class="pi">:</span>
+       <span class="na">type</span><span class="pi">:</span> <span class="s">hive</span>
+       <span class="na">connector</span><span class="pi">:</span>
+         <span class="s">hive.metastore.uris</span><span class="pi">:</span> <span class="s">thrift://localhost:9084</span>
+       <span class="na">default-database</span><span class="pi">:</span> <span class="s">mydb_2</span></code></pre></figure>
+
+<p>Currently Flink supports two types of catalog - <code class="highlighter-rouge">FlinkInMemoryCatalog</code> and <code class="highlighter-rouge">HiveCatalog</code>.</p>
+
+<p>For more information about integration with Hive metastore, see <a href="//flink-china.org/doc/blink/dev/table/catalog.html">Catalogs</a> and <a href="//flink-china.org/doc/blink/dev/batch/hive_compatibility.html">Hive Compatibility</a></p>
+
+<h2 id="limitations--future">Limitations &amp; Future</h2>
+
+<p>The current SQL Client implementation is in a very early development stage and might change in the future as part of the bigger Flink Improvement Proposal 24 (<a href="https://cwiki.apache.org/confluence/display/FLINK/FLIP-24+-+SQL+Client">FLIP-24</a>). Feel free to join the discussion and open issue about bugs and features that you find useful.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+
+        </div>
+      </div>
+    </div><!-- /.container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//flink-china.org/doc/blink/page/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.0/anchor.min.js"></script>
+    <script src="//flink-china.org/doc/blink/page/js/flink.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-52545728-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- Disqus -->
+    
+  </body>
+</html>

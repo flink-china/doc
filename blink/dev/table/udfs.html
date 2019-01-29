@@ -1,0 +1,4565 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Apache Flink 1.5.1 Documentation: User-defined Functions</title>
+    <link rel="shortcut icon" href="//flink-china.org/doc/blink/page/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="//flink-china.org/doc/blink/page/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/flink.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/syntax.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/codetabs.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/font-awesome/css/font-awesome.min.css">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    
+
+    <!-- Main content. -->
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-lg-3" id="sidenavcol">
+          
+
+
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="sidenav-logo">
+  <p><a href="//flink-china.org/doc/blink"><img class="bottom" alt="Apache Flink" src="//flink-china.org/doc/blink/page/img/navbar-brand-logo.jpg"></a> v1.5.1</p>
+</div>
+<ul id="sidenav">
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/"><i class="fa fa-home title" aria-hidden="true"></i> Home</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-2" data-toggle="collapse"><i class="fa fa-map-o title appetizer" aria-hidden="true"></i> Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-2"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/concepts/programming-model.html">Programming Model</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/concepts/runtime.html">Distributed Runtime</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-6" data-toggle="collapse"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-6"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-7" data-toggle="collapse">API Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-7"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/datastream_api.html">DataStream API</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-10" data-toggle="collapse">Setup Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-10"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/local_setup.html">Local Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/setup_quickstart.html"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-16" data-toggle="collapse"><i class="fa fa-file-code-o title appetizer" aria-hidden="true"></i> Examples <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-16"><ul>
+  <li><a href="//flink-china.org/doc/blink/examples/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/examples.html">DataStream Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/examples.html">DataSet Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/stream_sql_quickstart.html">Stream SQL Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/batch_sql_quickstart.html">Batch SQL Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/scala_shell_quickstart.html">Scala Shell Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/zeppelin_quickstart.html">Flink on Zeppelin Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/examples.html">Flink-Hive Examples</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-25" data-toggle="collapse"><i class="fa fa-cogs title maindish" aria-hidden="true"></i> Project Setup <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-25"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/java_api_quickstart.html">Project Template for Java</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/scala_api_quickstart.html">Project Template for Scala</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/dependencies.html">Configuring Dependencies, Connectors, Libraries</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/ide_setup.html">IDE Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/scala_shell.html">Scala Shell</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/building.html">Building Flink from Source</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-34" data-toggle="collapse" class="active"><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development</a><div class="collapse in" id="collapse-34"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-35" data-toggle="collapse">Basic API Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-35"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/api_concepts.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/scala_api_extensions.html">Scala API Extensions</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/java8.html">Java 8</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-39" data-toggle="collapse">Streaming (DataStream API) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-39"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/datastream_api.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-40" data-toggle="collapse">Event Time <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-40"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/event_time.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/event_timestamps_watermarks.html">Generating Timestamps / Watermarks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/event_timestamp_extractors.html">Pre-defined Timestamp Extractors / Watermark Emitters</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-44" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-44"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/stream/state/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/state.html">Working with State</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/broadcast_state.html">The Broadcast State Pattern</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/checkpointing.html">Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/queryable_state.html">Queryable State</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/custom_serialization.html">Custom Serialization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-52" data-toggle="collapse">Operators <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-52"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/stream/operators/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/windows.html">Windows</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/process_function.html">Process Function</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/asyncio.html">Async I/O</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-57" data-toggle="collapse">Connectors <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-57"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/connectors/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/guarantees.html">Fault Tolerance Guarantees</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/kafka.html">Kafka</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/cassandra.html">Cassandra</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/kinesis.html">Kinesis</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/elasticsearch.html">Elasticsearch</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/filesystem_sink.html">Rolling File Sink</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/rabbitmq.html">RabbitMQ</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/nifi.html">NiFi</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/twitter.html">Twitter</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/side_output.html">Side Outputs</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/testing.html">Testing</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/experimental.html">Experimental Features</a></li>
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-73" data-toggle="collapse">Batch (DataSet API) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-73"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/batch/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/dataset_transformations.html">Transformations</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/fault_tolerance.html">Fault Tolerance</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/zip_elements_guide.html">Zipping Elements</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/iterations.html">Iterations</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/connectors.html">Connectors</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/hadoop_compatibility.html">Hadoop Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/local_execution.html">Local Execution</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/cluster_execution.html">Cluster Execution</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-84" data-toggle="collapse" class="active">Table API & SQL</a><div class="collapse in" id="collapse-84"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/table/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/common.html">Concepts & Common API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/hive_compatibility.html">Hive Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-87" data-toggle="collapse">Streaming Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-87"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/table/streaming/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/dynamic_tables.html">Dynamic Tables</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/time_attributes.html">Time Attributes</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/joins.html">Joins in Continuous Queries</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/temporal_tables.html">Temporal Tables</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/match_recognize.html">Detecting Patterns</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/query_configuration.html">Query Configuration</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/tableApi.html">Table API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sql.html">SQL</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/supported_ddl.html">SQL Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sourceSinks.html">Table Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/udfs.html" class="active">User-defined Functions</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sqlClient.html">SQL Client</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/resource.html">SQL Resource</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/catalog.html">Catalog</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming_optimization.html">Streaming Aggregation Optimization</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/multiple_tablesink_optimization.html">Multiple TableSink Optimization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-106" data-toggle="collapse">Data Types & Serialization <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-106"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/types_serialization.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/custom_serializers.html">Custom Serializers</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-109" data-toggle="collapse">Managing Execution <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-109"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/execution_configuration.html">Execution Configuration</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/packaging.html">Program Packaging</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/parallel.html">Parallel Execution</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/execution_plans.html">Execution Plans</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/restart_strategies.html">Restart Strategies</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-116" data-toggle="collapse">Libraries <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-116"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/cep.html">Event Processing (CEP)</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-118" data-toggle="collapse">Graphs: Gelly <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-118"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/libs/gelly/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_api.html">Graph API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/iterative_graph_processing.html">Iterative Graph Processing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/library_methods.html">Library Methods</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_algorithms.html">Graph Algorithms</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_generators.html">Graph Generators</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/bipartite_graph.html">Bipartite Graph</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-126" data-toggle="collapse">Machine Learning <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-126"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/libs/ml/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/quickstart.html">Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/contribution_guide.html">How to Contribute</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/cross_validation.html">Cross Validation</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/distance_metrics.html">Distance Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/knn.html">k-Nearest Neighbors Join</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/min_max_scaler.html">MinMax Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/multiple_linear_regression.html">Multiple Linear Regression</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/pipelines.html">Pipelines</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/polynomial_features.html">Polynomial Features</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/sos.html">Stochastic Outlier Selection</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/standard_scaler.html">Standard Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/als.html">ALS</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/svm.html">SVM using CoCoA</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/best_practices.html">Best Practices</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/migration.html">API Migration Guides</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-145" data-toggle="collapse"><i class="fa fa-sliders title maindish" aria-hidden="true"></i> Deployment & Operations <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-145"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-146" data-toggle="collapse">Clusters & Deployment <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-146"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/cluster_setup.html">Standalone Cluster</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/yarn_setup.html">YARN</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/mesos.html">Mesos</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/kubernetes.html">Kubernetes</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/docker.html">Docker</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/aws.html">AWS</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/gce_setup.html">Google Compute Engine</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/mapr_setup.html">MapR</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/hadoop.html">Hadoop Integration</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-157" data-toggle="collapse">High Availability (HA) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-157"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/ha/jobmanager_high_availability.html">JobManager High Availability (HA)</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/ha/jobmanager_failover.html">JobManager Failover</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-161" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-161"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/checkpoints.html">Checkpoints</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/savepoints.html">Savepoints</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/large_state_tuning.html">Tuning Checkpoints and Large State</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/ops/config.html">Configuration</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/production_ready.html">Production Readiness Checklist</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/cli.html">CLI</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/security-kerberos.html">Kerberos</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/security-ssl.html">SSL Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/zeppelin.html">Flink on Zeppelin</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/upgrading.html">Upgrading Applications and Flink Versions</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-176" data-toggle="collapse"><i class="fa fa-bug title maindish" aria-hidden="true"></i> Debugging & Monitoring <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-176"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/metrics.html">Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/logging.html">Logging</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/historyserver.html">History Server</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/checkpoint_monitoring.html">Monitoring Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/back_pressure.html">Monitoring Back Pressure</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/rest_api.html">Monitoring REST API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_event_time.html">Debugging Windows & Event Time</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_classloading.html">Debugging Classloading</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/application_profiling.html">Application Profiling</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_job_resources.html">Debugging Job Resources</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-188" data-toggle="collapse"><i class="fa fa-book title dessert" aria-hidden="true"></i> Internals <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-188"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/components.html">Component Stack</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/stream_checkpointing.html">Fault Tolerance for Data Streaming</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/job_scheduling.html">Jobs and Scheduling</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/task_lifecycle.html">Task Lifecycle</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/taskmanager_resource.html">TaskManager Resource</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+</ul>
+
+<div class="sidenav-search-box">
+  <form class="navbar-form" role="search" action="//flink-china.org/doc/blink/search-results.html">
+    <div class="form-group">
+      <input type="text" class="form-control" size="16px" name="q" placeholder="Search">
+    </div>
+    <button type="submit" class="btn btn-default">Go</button>
+  </form>
+</div>
+
+<div class="sidenav-versions">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Pick Docs Version
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.4">v1.4</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.3">v1.3</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.2">v1.2</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.1">v1.1</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.0">v1.0</a></li>
+      
+    </ul>
+  </div>
+</div>
+
+        </div>
+        <div class="col-lg-9 content" id="contentcol">
+          
+
+          
+
+
+
+
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+
+
+
+<ol class="breadcrumb">
+
+  
+  
+    <li><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development</li>
+  
+
+  
+  
+    <li><a href="//flink-china.org/doc/blink/dev/table/">Table API & SQL</a></li>
+  
+
+  
+  
+    <li class="active">User-defined Functions</li>
+  
+
+</ol>
+
+<h1>User-defined Functions</h1>
+
+
+
+
+<p>User-defined functions are an important feature, because they significantly extend the expressiveness of queries.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#register-user-defined-functions" id="markdown-toc-register-user-defined-functions">Register User-Defined Functions</a></li>
+  <li><a href="#scalar-functions" id="markdown-toc-scalar-functions">Scalar Functions</a></li>
+  <li><a href="#table-functions" id="markdown-toc-table-functions">Table Functions</a></li>
+  <li><a href="#aggregation-functions" id="markdown-toc-aggregation-functions">Aggregation Functions</a>    <ul>
+      <li><a href="#aggregatefunction" id="markdown-toc-aggregatefunction">AggregateFunction</a></li>
+      <li><a href="#declarativeaggregatefunction" id="markdown-toc-declarativeaggregatefunction">DeclarativeAggregateFunction</a></li>
+      <li><a href="#aggregatefunction-vs-declarativeaggregatefunction" id="markdown-toc-aggregatefunction-vs-declarativeaggregatefunction">AggregateFunction VS DeclarativeAggregateFunction</a></li>
+    </ul>
+  </li>
+  <li><a href="#best-practices-for-implementing-udfs" id="markdown-toc-best-practices-for-implementing-udfs">Best Practices for Implementing UDFs</a></li>
+  <li><a href="#integrating-udfs-with-the-runtime" id="markdown-toc-integrating-udfs-with-the-runtime">Integrating UDFs with the Runtime</a></li>
+</ul>
+
+<h2 id="register-user-defined-functions">Register User-Defined Functions</h2>
+<p>In most cases, a user-defined function must be registered before it can be used in an query. It is not necessary to register functions for the Scala Table API.</p>
+
+<p>Functions are registered at the <code class="highlighter-rouge">TableEnvironment</code> by calling a <code class="highlighter-rouge">registerFunction()</code> method. When a user-defined function is registered, it is inserted into the function catalog of the <code class="highlighter-rouge">TableEnvironment</code> such that the Table API or SQL parser can recognize and properly translate it.</p>
+
+<p>Please find detailed examples of how to register and how to call each type of user-defined function 
+(<code class="highlighter-rouge">ScalarFunction</code>, <code class="highlighter-rouge">TableFunction</code>, and <code class="highlighter-rouge">AggregateFunction</code>) in the following sub-sessions.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h2 id="scalar-functions">Scalar Functions</h2>
+
+<p>If a required scalar function is not contained in the built-in functions, it is possible to define custom, user-defined scalar functions for both the Table API and SQL. A user-defined scalar functions maps zero, one, or multiple scalar values to a new scalar value.</p>
+
+<p>In order to define a scalar function one has to extend the base class <code class="highlighter-rouge">ScalarFunction</code> in <code class="highlighter-rouge">org.apache.flink.table.functions</code> and implement (one or more) evaluation methods. The behavior of a scalar function is determined by the evaluation method. An evaluation method must be declared publicly and named <code class="highlighter-rouge">eval</code>. The parameter types and return type of the evaluation method also determine the parameter and return types of the scalar function. Evaluation methods can also be overloaded by implementing multiple methods named <code class="highlighter-rouge">eval</code>. Evaluation methods can also support variable arguments, such as <code class="highlighter-rouge">eval(String... strs)</code>.</p>
+
+<p>The following example shows how to define your own hash code function, register it in the TableEnvironment, and call it in a query. Note that you can configure your scalar function via a constructor before it is registered:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HashCode</span> <span class="kd">extends</span> <span class="n">ScalarFunction</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">factor</span> <span class="o">=</span> <span class="mi">12</span><span class="o">;</span>
+  
+  <span class="kd">public</span> <span class="nf">HashCode</span><span class="o">(</span><span class="kt">int</span> <span class="n">factor</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">factor</span> <span class="o">=</span> <span class="n">factor</span><span class="o">;</span>
+  <span class="o">}</span>
+  
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">eval</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">hashCode</span><span class="o">()</span> <span class="o">*</span> <span class="n">factor</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">BatchTableEnvironment</span> <span class="n">tableEnv</span> <span class="o">=</span> <span class="n">TableEnvironment</span><span class="o">.</span><span class="na">getTableEnvironment</span><span class="o">(</span><span class="n">env</span><span class="o">);</span>
+
+<span class="c1">// register the function</span>
+<span class="n">tableEnv</span><span class="o">.</span><span class="na">registerFunction</span><span class="o">(</span><span class="s">"hashCode"</span><span class="o">,</span> <span class="k">new</span> <span class="n">HashCode</span><span class="o">(</span><span class="mi">10</span><span class="o">));</span>
+
+<span class="c1">// use the function in Java Table API</span>
+<span class="n">myTable</span><span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="s">"string, string.hashCode(), hashCode(string)"</span><span class="o">);</span>
+
+<span class="c1">// use the function in SQL API</span>
+<span class="n">tableEnv</span><span class="o">.</span><span class="na">sqlQuery</span><span class="o">(</span><span class="s">"SELECT string, HASHCODE(string) FROM MyTable"</span><span class="o">);</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="c1">// must be defined in static/object context
+</span><span class="k">class</span> <span class="nc">HashCode</span><span class="o">(</span><span class="n">factor</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">ScalarFunction</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">eval</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">hashCode</span><span class="o">()</span> <span class="o">*</span> <span class="n">factor</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="k">val</span> <span class="n">tableEnv</span> <span class="k">=</span> <span class="nc">TableEnvironment</span><span class="o">.</span><span class="n">getTableEnvironment</span><span class="o">(</span><span class="n">env</span><span class="o">)</span>
+
+<span class="c1">// use the function in Scala Table API
+</span><span class="k">val</span> <span class="n">hashCode</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">HashCode</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
+<span class="n">myTable</span><span class="o">.</span><span class="n">select</span><span class="o">(</span><span class="ss">'string,</span> <span class="n">hashCode</span><span class="o">(</span><span class="ss">'string)</span><span class="o">)</span>
+
+<span class="c1">// register and use the function in SQL
+</span><span class="n">tableEnv</span><span class="o">.</span><span class="n">registerFunction</span><span class="o">(</span><span class="s">"hashCode"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">HashCode</span><span class="o">(</span><span class="mi">10</span><span class="o">))</span>
+<span class="n">tableEnv</span><span class="o">.</span><span class="n">sqlQuery</span><span class="o">(</span><span class="s">"SELECT string, HASHCODE(string) FROM MyTable"</span><span class="o">)</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p>By default the result type of an evaluation method is determined by Flink’s type extraction facilities. This is sufficient for basic types or simple POJOs but might be wrong for more complex, custom, or composite types. In these cases <code class="highlighter-rouge">DataType</code> of the result type can be manually defined by overriding <code class="highlighter-rouge">ScalarFunction#getResultType()</code>.</p>
+
+<p>The following example shows an advanced example which takes the internal timestamp representation and also returns the internal timestamp representation as a long value. By overriding <code class="highlighter-rouge">ScalarFunction#getResultType()</code> we define that the returned long value should be interpreted as a <code class="highlighter-rouge">DataTypes.TIMESTAMP</code> by the code generation.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">TimestampModifier</span> <span class="kd">extends</span> <span class="n">ScalarFunction</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">long</span> <span class="nf">eval</span><span class="o">(</span><span class="kt">long</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">t</span> <span class="o">%</span> <span class="mi">1000</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="n">DataType</span> <span class="nf">getResultType</span><span class="o">(</span><span class="n">Object</span><span class="o">[]</span> <span class="n">arguments</span><span class="o">,</span> <span class="n">Class</span><span class="o">[]</span> <span class="n">argTypes</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">TIMESTAMP</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">object</span> <span class="nc">TimestampModifier</span> <span class="k">extends</span> <span class="nc">ScalarFunction</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">eval</span><span class="o">(</span><span class="n">t</span><span class="k">:</span> <span class="kt">Long</span><span class="o">)</span><span class="k">:</span> <span class="kt">Long</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="n">t</span> <span class="o">%</span> <span class="mi">1000</span>
+  <span class="o">}</span>
+
+  <span class="k">override</span> <span class="k">def</span> <span class="n">getResultType</span><span class="o">(</span><span class="n">arguments</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">Object</span><span class="o">],</span> <span class="n">signature</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">Class</span><span class="o">[</span><span class="k">_</span><span class="o">]])</span><span class="k">:</span> <span class="kt">DataType</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">TIMESTAMP</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h2 id="table-functions">Table Functions</h2>
+
+<p>Similar to a user-defined scalar function, a user-defined table function takes zero, one, or multiple scalar values as input parameters. However in contrast to a scalar function, it can return an arbitrary number of rows as output instead of a single value. The returned rows may consist of one or more columns.</p>
+
+<p>In order to define a table function one has to extend the base class <code class="highlighter-rouge">TableFunction</code> in <code class="highlighter-rouge">org.apache.flink.table.functions</code> and implement (one or more) evaluation methods. The behavior of a table function is determined by its evaluation methods. An evaluation method must be declared <code class="highlighter-rouge">public</code> and named <code class="highlighter-rouge">eval</code>. The <code class="highlighter-rouge">TableFunction</code> can be overloaded by implementing multiple methods named <code class="highlighter-rouge">eval</code>. The parameter types of the evaluation methods determine all valid parameters of the table function. Evaluation methods can also support variable arguments, such as <code class="highlighter-rouge">eval(String... strs)</code>. The type of the returned table is determined by the generic type of <code class="highlighter-rouge">TableFunction</code>. Evaluation methods emit output rows using the protected <code class="highlighter-rouge">collect(T)</code> method.</p>
+
+<p>In the Table API, a table function is used with <code class="highlighter-rouge">.join(Table)</code> or <code class="highlighter-rouge">.leftOuterJoin(Table)</code>. The <code class="highlighter-rouge">join</code> operator (cross) joins each row from the outer table (table on the left of the operator) with all rows produced by the table-valued function (which is on the right side of the operator). The <code class="highlighter-rouge">leftOuterJoin</code> operator joins each row from the outer table (table on the left of the operator) with all rows produced by the table-valued function (which is on the right side of the operator) and preserves outer rows for which the table function returns an empty table. In SQL use <code class="highlighter-rouge">LATERAL TABLE(&lt;TableFunction&gt;)</code> with CROSS JOIN and LEFT JOIN with an ON TRUE join condition (see examples below).</p>
+
+<p>The following example shows how to define table-valued function, register it in the TableEnvironment, and call it in a query. Note that you can configure your table function via a constructor before it is registered:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// The generic type "Tuple2&lt;String, Integer&gt;" determines the schema of the returned table as (String, Integer).</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Split</span> <span class="kd">extends</span> <span class="n">TableFunction</span><span class="o">&lt;</span><span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;&gt;</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">separator</span> <span class="o">=</span> <span class="s">" "</span><span class="o">;</span>
+    
+    <span class="kd">public</span> <span class="nf">Split</span><span class="o">(</span><span class="n">String</span> <span class="n">separator</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">separator</span> <span class="o">=</span> <span class="n">separator</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">eval</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">s</span> <span class="o">:</span> <span class="n">str</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="n">separator</span><span class="o">))</span> <span class="o">{</span>
+            <span class="c1">// use collect(...) to emit a row</span>
+            <span class="n">collect</span><span class="o">(</span><span class="k">new</span> <span class="n">Tuple2</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;(</span><span class="n">s</span><span class="o">,</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">()));</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">BatchTableEnvironment</span> <span class="n">tableEnv</span> <span class="o">=</span> <span class="n">TableEnvironment</span><span class="o">.</span><span class="na">getBatchTableEnvironment</span><span class="o">(</span><span class="n">env</span><span class="o">);</span>
+<span class="c1">// or</span>
+<span class="c1">// StreamTableEnvironment tableEnv = TableEnvironment.getTableEnvironment(env);</span>
+<span class="n">Table</span> <span class="n">myTable</span> <span class="o">=</span> <span class="o">...</span>         <span class="c1">// table schema: [a: String]</span>
+
+<span class="c1">// Register the function.</span>
+<span class="n">tableEnv</span><span class="o">.</span><span class="na">registerFunction</span><span class="o">(</span><span class="s">"split"</span><span class="o">,</span> <span class="k">new</span> <span class="n">Split</span><span class="o">(</span><span class="s">"#"</span><span class="o">));</span>
+
+<span class="c1">// Use the table function in the Java Table API. "as" specifies the field names of the table.</span>
+<span class="n">myTable</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="k">new</span> <span class="n">Table</span><span class="o">(</span><span class="n">tableEnv</span><span class="o">,</span> <span class="s">"split(a) as (word, length)"</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="s">"a, word, length"</span><span class="o">);</span>
+<span class="n">myTable</span><span class="o">.</span><span class="na">leftOuterJoin</span><span class="o">(</span><span class="k">new</span> <span class="n">Table</span><span class="o">(</span><span class="n">tableEnv</span><span class="o">,</span> <span class="s">"split(a) as (word, length)"</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="s">"a, word, length"</span><span class="o">);</span>
+
+<span class="c1">// Use the table function in SQL with LATERAL and TABLE keywords.</span>
+<span class="c1">// CROSS JOIN a table function (equivalent to "join" in Table API).</span>
+<span class="n">tableEnv</span><span class="o">.</span><span class="na">sqlQuery</span><span class="o">(</span><span class="s">"SELECT a, word, length FROM MyTable, LATERAL TABLE(split(a)) as T(word, length)"</span><span class="o">);</span>
+<span class="c1">// LEFT JOIN a table function (equivalent to "leftOuterJoin" in Table API).</span>
+<span class="n">tableEnv</span><span class="o">.</span><span class="na">sqlQuery</span><span class="o">(</span><span class="s">"SELECT a, word, length FROM MyTable LEFT JOIN LATERAL TABLE(split(a)) as T(word, length) ON TRUE"</span><span class="o">);</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="c1">// The generic type "(String, Int)" determines the schema of the returned table as (String, Integer).
+</span><span class="k">class</span> <span class="nc">Split</span><span class="o">(</span><span class="n">separator</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">TableFunction</span><span class="o">[(</span><span class="kt">String</span>, <span class="kt">Int</span><span class="o">)]</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">eval</span><span class="o">(</span><span class="n">str</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="c1">// use collect(...) to emit a row.
+</span>    <span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="n">separator</span><span class="o">).</span><span class="n">foreach</span><span class="o">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">collect</span><span class="o">((</span><span class="n">x</span><span class="o">,</span> <span class="n">x</span><span class="o">.</span><span class="n">length</span><span class="o">))</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="k">val</span> <span class="n">tableEnv</span> <span class="k">=</span> <span class="nc">TableEnvironment</span><span class="o">.</span><span class="n">getBatchTableEnvironment</span><span class="o">(</span><span class="n">env</span><span class="o">)</span>
+<span class="c1">// or
+// val tableEnv = TableEnvironment.getTableEnvironment(env)
+</span><span class="k">val</span> <span class="n">myTable</span> <span class="k">=</span> <span class="o">...</span>         <span class="c1">// table schema: [a: String]
+</span>
+<span class="c1">// Use the table function in the Scala Table API (Note: No registration required in Scala Table API).
+</span><span class="k">val</span> <span class="n">split</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Split</span><span class="o">(</span><span class="s">"#"</span><span class="o">)</span>
+<span class="c1">// "as" specifies the field names of the generated table.
+</span><span class="n">myTable</span><span class="o">.</span><span class="n">join</span><span class="o">(</span><span class="n">split</span><span class="o">(</span><span class="ss">'a)</span> <span class="n">as</span> <span class="o">(</span><span class="ss">'word,</span> <span class="ss">'length)</span><span class="o">).</span><span class="n">select</span><span class="o">(</span><span class="ss">'a,</span> <span class="ss">'word,</span> <span class="ss">'length)</span>
+<span class="n">myTable</span><span class="o">.</span><span class="n">leftOuterJoin</span><span class="o">(</span><span class="n">split</span><span class="o">(</span><span class="ss">'a)</span> <span class="n">as</span> <span class="o">(</span><span class="ss">'word,</span> <span class="ss">'length)</span><span class="o">).</span><span class="n">select</span><span class="o">(</span><span class="ss">'a,</span> <span class="ss">'word,</span> <span class="ss">'length)</span>
+
+<span class="c1">// Register the table function to use it in SQL queries.
+</span><span class="n">tableEnv</span><span class="o">.</span><span class="n">registerFunction</span><span class="o">(</span><span class="s">"split"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Split</span><span class="o">(</span><span class="s">"#"</span><span class="o">))</span>
+
+<span class="c1">// Use the table function in SQL with LATERAL and TABLE keywords.
+// CROSS JOIN a table function (equivalent to "join" in Table API)
+</span><span class="n">tableEnv</span><span class="o">.</span><span class="n">sqlQuery</span><span class="o">(</span><span class="s">"SELECT a, word, length FROM MyTable, LATERAL TABLE(split(a)) as T(word, length)"</span><span class="o">)</span>
+<span class="c1">// LEFT JOIN a table function (equivalent to "leftOuterJoin" in Table API)
+</span><span class="n">tableEnv</span><span class="o">.</span><span class="n">sqlQuery</span><span class="o">(</span><span class="s">"SELECT a, word, length FROM MyTable LEFT JOIN TABLE(split(a)) as T(word, length) ON TRUE"</span><span class="o">)</span></code></pre></figure>
+
+    <p><strong>IMPORTANT:</strong> Do not implement TableFunction as a Scala object. Scala object is a singleton and will cause concurrency issues.</p>
+  </div>
+</div>
+
+<p>Please note that POJO types do not have a deterministic field order. Therefore, you cannot rename the fields of POJO returned by a table function using <code class="highlighter-rouge">AS</code>.</p>
+
+<p>By default the result type of a <code class="highlighter-rouge">TableFunction</code> is determined by Flink’s automatic type extraction facilities. This works well for basic types and simple POJOs but might be wrong for more complex, custom, or composite types. In such a case, the type of the result can be manually specified by overriding <code class="highlighter-rouge">TableFunction#getResultType()</code> which returns its <code class="highlighter-rouge">DataType</code>.</p>
+
+<p>The following example shows an example of a <code class="highlighter-rouge">TableFunction</code> that returns a <code class="highlighter-rouge">Row</code> type which requires explicit data type. We define the returned table type by overriding <code class="highlighter-rouge">TableFunction#getResultType()</code>.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomTypeSplit</span> <span class="kd">extends</span> <span class="n">TableFunction</span><span class="o">&lt;</span><span class="n">Row</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">eval</span><span class="o">(</span><span class="n">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">s</span> <span class="o">:</span> <span class="n">str</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">" "</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">Row</span> <span class="n">row</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Row</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
+            <span class="n">row</span><span class="o">.</span><span class="na">setField</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">s</span><span class="o">);</span>
+            <span class="n">row</span><span class="o">.</span><span class="na">setField</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+            <span class="n">collect</span><span class="o">(</span><span class="n">row</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">DataType</span> <span class="nf">getResultType</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">createRowType</span><span class="o">(</span><span class="n">DataTypes</span><span class="o">.</span><span class="na">STRING</span><span class="o">,</span> <span class="n">DataTypes</span><span class="o">.</span><span class="na">INT</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">class</span> <span class="nc">CustomTypeSplit</span> <span class="k">extends</span> <span class="nc">TableFunction</span><span class="o">[</span><span class="kt">Row</span><span class="o">]</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">eval</span><span class="o">(</span><span class="n">str</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">" "</span><span class="o">).</span><span class="n">foreach</span><span class="o">({</span> <span class="n">s</span> <span class="k">=&gt;</span>
+      <span class="k">val</span> <span class="n">row</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Row</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+      <span class="n">row</span><span class="o">.</span><span class="n">setField</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">s</span><span class="o">)</span>
+      <span class="n">row</span><span class="o">.</span><span class="n">setField</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">s</span><span class="o">.</span><span class="n">length</span><span class="o">)</span>
+      <span class="n">collect</span><span class="o">(</span><span class="n">row</span><span class="o">)</span>
+    <span class="o">})</span>
+  <span class="o">}</span>
+
+  <span class="k">override</span> <span class="k">def</span> <span class="n">getResultType</span><span class="k">:</span> <span class="kt">DataType</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="nc">DataTypes</span><span class="o">.</span><span class="n">createRowType</span><span class="o">(</span><span class="nc">DataTypes</span><span class="o">.</span><span class="nc">STRING</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">INT</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h2 id="aggregation-functions">Aggregation Functions</h2>
+
+<p>User-Defined Aggregate Functions (UDAGGs) aggregate a table (one or more rows with one or more attributes) to a scalar value.</p>
+
+<center>
+<img alt="UDAGG mechanism" src="//flink-china.org/doc/blink/fig/udagg-mechanism.png" width="80%" />
+</center>
+
+<p>The above figure shows an example of an aggregation. Assume you have a table that contains data about beverages. The table consists of three columns, <code class="highlighter-rouge">id</code>, <code class="highlighter-rouge">name</code> and <code class="highlighter-rouge">price</code> and 5 rows. Imagine you need to find the highest price of all beverages in the table, i.e., perform a <code class="highlighter-rouge">max()</code> aggregation. You would need to check each of the 5 rows and the result would be a single numeric value.</p>
+
+<p>User-defined aggregation functions are implemented by extending the <code class="highlighter-rouge">AggregateFunction</code> class or <code class="highlighter-rouge">DeclarativeAggregateFunction</code> class.</p>
+
+<h3 id="aggregatefunction">AggregateFunction</h3>
+
+<p>An <code class="highlighter-rouge">AggregateFunction</code> works as follows. First, it needs an <code class="highlighter-rouge">accumulator</code>, which is the data structure that holds the intermediate result of the aggregation. An empty accumulator is created by calling the <code class="highlighter-rouge">createAccumulator()</code> method of the <code class="highlighter-rouge">AggregateFunction</code>. Subsequently, the <code class="highlighter-rouge">accumulate()</code> method of the function is called for each input row to update the accumulator. Once all rows have been processed, the <code class="highlighter-rouge">getValue()</code> method of the function is called to compute and return the final result.</p>
+
+<p><strong>The following methods are mandatory for each <code class="highlighter-rouge">AggregateFunction</code>:</strong></p>
+
+<ul>
+  <li><code class="highlighter-rouge">createAccumulator()</code></li>
+  <li><code class="highlighter-rouge">accumulate()</code></li>
+  <li><code class="highlighter-rouge">getValue()</code></li>
+</ul>
+
+<p>Flink’s type extraction facilities can fail to identify complex data types, e.g., if they are not basic types or simple POJOs. So similar to <code class="highlighter-rouge">ScalarFunction</code> and <code class="highlighter-rouge">TableFunction</code>, <code class="highlighter-rouge">AggregateFunction</code> provides methods to specify the <code class="highlighter-rouge">DataType</code> of the result type (through 
+ <code class="highlighter-rouge">AggregateFunction#getResultType()</code>) and the type of the accumulator (through <code class="highlighter-rouge">AggregateFunction#getAccumulatorType()</code>).</p>
+
+<p>Besides the above methods, there are a few contracted methods that can be 
+optionally implemented. While some of these methods allow the system more efficient query execution, others are mandatory for certain use cases. For instance, the <code class="highlighter-rouge">merge()</code> method is mandatory if the aggregation function should be applied in the context of a session group window (the accumulators of two session windows need to be joined when a row is observed that “connects” them).</p>
+
+<p><strong>The following methods of <code class="highlighter-rouge">AggregateFunction</code> are required depending on the use case:</strong></p>
+
+<ul>
+  <li><code class="highlighter-rouge">retract()</code> is required for aggregations on bounded <code class="highlighter-rouge">OVER</code> windows.</li>
+  <li><code class="highlighter-rouge">merge()</code> is required for many batch aggregations and session window aggregations.</li>
+  <li><code class="highlighter-rouge">resetAccumulator()</code> is required for many batch aggregations.</li>
+</ul>
+
+<p>All methods of <code class="highlighter-rouge">AggregateFunction</code> must be declared as <code class="highlighter-rouge">public</code>, not <code class="highlighter-rouge">static</code> and named exactly as the names mentioned above. The methods <code class="highlighter-rouge">createAccumulator</code>, <code class="highlighter-rouge">getValue</code>, <code class="highlighter-rouge">getResultType</code>, and <code class="highlighter-rouge">getAccumulatorType</code> are defined in the <code class="highlighter-rouge">AggregateFunction</code> abstract class, while others are contracted methods. In order to define a aggregate function, one has to extend the base class <code class="highlighter-rouge">org.apache.flink.table.api.functions.AggregateFunction</code> and implement one (or more) <code class="highlighter-rouge">accumulate</code> methods. The method <code class="highlighter-rouge">accumulate</code> can be overloaded with different parameter types and supports variable arguments.</p>
+
+<p>Detailed documentation for all methods of <code class="highlighter-rouge">AggregateFunction</code> is given below.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="cm">/**
+  * Base class for aggregation functions. 
+  *
+  * @param &lt;T&gt;   the type of the aggregation result
+  * @param &lt;ACC&gt; the type of the aggregation accumulator. The accumulator is used to keep the
+  *             aggregated values which are needed to compute an aggregation result.
+  *             AggregateFunction represents its state using accumulator, thereby the state of the
+  *             AggregateFunction must be put into the accumulator.
+  */</span>
+<span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">AggregateFunction</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">ACC</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">UserDefinedFunction</span> <span class="o">{</span>
+
+  <span class="cm">/**
+    * Creates and init the Accumulator for this [[AggregateFunction]].
+    *
+    * @return the accumulator with the initial value
+    */</span>
+  <span class="kd">public</span> <span class="n">ACC</span> <span class="nf">createAccumulator</span><span class="o">();</span> <span class="c1">// MANDATORY</span>
+
+  <span class="cm">/** Processes the input values and update the provided accumulator instance. The method
+    * accumulate can be overloaded with different custom types and arguments. An AggregateFunction
+    * requires at least one accumulate() method.
+    *
+    * @param accumulator           the accumulator which contains the current aggregated results
+    * @param [user defined inputs] the input value (usually obtained from a new arrived data).
+    */</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">accumulate</span><span class="o">(</span><span class="n">ACC</span> <span class="n">accumulator</span><span class="o">,</span> <span class="o">[</span><span class="n">user</span> <span class="n">defined</span> <span class="n">inputs</span><span class="o">]);</span> <span class="c1">// MANDATORY</span>
+
+  <span class="cm">/**
+    * Retracts the input values from the accumulator instance. The current design assumes the
+    * inputs are the values that have been previously accumulated. The method retract can be
+    * overloaded with different custom types and arguments. This function must be implemented for
+    * datastream bounded over aggregate.
+    *
+    * @param accumulator           the accumulator which contains the current aggregated results
+    * @param [user defined inputs] the input value (usually obtained from a new arrived data).
+    */</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">retract</span><span class="o">(</span><span class="n">ACC</span> <span class="n">accumulator</span><span class="o">,</span> <span class="o">[</span><span class="n">user</span> <span class="n">defined</span> <span class="n">inputs</span><span class="o">]);</span> <span class="c1">// OPTIONAL</span>
+
+  <span class="cm">/**
+    * Merges a group of accumulator instances into one accumulator instance. This function must be
+    * implemented for datastream session window grouping aggregate and dataset grouping aggregate.
+    *
+    * @param accumulator  the accumulator which will keep the merged aggregate results. It should
+    *                     be noted that the accumulator may contain the previous aggregated
+    *                     results. Therefore user should not replace or clean this instance in the
+    *                     custom merge method.
+    * @param its          an [[java.lang.Iterable]] pointed to a group of accumulators that will be
+    *                     merged.
+    */</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">merge</span><span class="o">(</span><span class="n">ACC</span> <span class="n">accumulator</span><span class="o">,</span> <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">Iterable</span><span class="o">&lt;</span><span class="n">ACC</span><span class="o">&gt;</span> <span class="n">its</span><span class="o">);</span> <span class="c1">// OPTIONAL</span>
+
+  <span class="cm">/**
+    * Called every time when an aggregation result should be materialized.
+    * The returned value could be either an early and incomplete result
+    * (periodically emitted as data arrive) or the final result of the
+    * aggregation.
+    *
+    * @param accumulator the accumulator which contains the current
+    *                    aggregated results
+    * @return the aggregation result
+    */</span>
+  <span class="kd">public</span> <span class="n">T</span> <span class="nf">getValue</span><span class="o">(</span><span class="n">ACC</span> <span class="n">accumulator</span><span class="o">);</span> <span class="c1">// MANDATORY</span>
+
+  <span class="cm">/**
+    * Resets the accumulator for this [[AggregateFunction]]. This function must be implemented for
+    * dataset grouping aggregate.
+    *
+    * @param accumulator  the accumulator which needs to be reset
+    */</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">resetAccumulator</span><span class="o">(</span><span class="n">ACC</span> <span class="n">accumulator</span><span class="o">);</span> <span class="c1">// OPTIONAL</span>
+
+  <span class="cm">/**
+    * Returns true if this AggregateFunction can only be applied in an OVER window.
+    *
+    * @return true if the AggregateFunction requires an OVER window, false otherwise.
+    */</span>
+  <span class="kd">public</span> <span class="n">Boolean</span> <span class="n">requiresOver</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span> <span class="c1">// PRE-DEFINED</span>
+
+  <span class="cm">/**
+    * Returns the DataType of the AggregateFunction's result.
+    *
+    * @return The DataType of the AggregateFunction's result or null if the result type
+    *         should be automatically inferred.
+    */</span>
+  <span class="kd">public</span> <span class="n">DataType</span> <span class="n">getResultType</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// PRE-DEFINED</span>
+
+  <span class="cm">/**
+    * Returns the DataType of the AggregateFunction's accumulator.
+    *
+    * @return The DataType of the AggregateFunction's accumulator or null if the
+    *         accumulator type should be automatically inferred.
+    */</span>
+  <span class="kd">public</span> <span class="n">DataType</span> <span class="n">getAccumulatorType</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// PRE-DEFINED</span>
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="cm">/**
+  * Base class for aggregation functions. 
+  *
+  * @tparam T   the type of the aggregation result
+  * @tparam ACC the type of the aggregation accumulator. The accumulator is used to keep the
+  *             aggregated values which are needed to compute an aggregation result.
+  *             AggregateFunction represents its state using accumulator, thereby the state of the
+  *             AggregateFunction must be put into the accumulator.
+  */</span>
+<span class="k">abstract</span> <span class="k">class</span> <span class="nc">AggregateFunction</span><span class="o">[</span><span class="kt">T</span>, <span class="kt">ACC</span><span class="o">]</span> <span class="nc">extends</span> <span class="nc">UserDefinedFunction</span> <span class="o">{</span>
+  <span class="cm">/**
+    * Creates and init the Accumulator for this [[AggregateFunction]].
+    *
+    * @return the accumulator with the initial value
+    */</span>
+  <span class="k">def</span> <span class="n">createAccumulator</span><span class="o">()</span><span class="k">:</span> <span class="kt">ACC</span> <span class="c1">// MANDATORY
+</span>
+  <span class="cm">/**
+    * Processes the input values and update the provided accumulator instance. The method
+    * accumulate can be overloaded with different custom types and arguments. An AggregateFunction
+    * requires at least one accumulate() method.
+    *
+    * @param accumulator           the accumulator which contains the current aggregated results
+    * @param [user defined inputs] the input value (usually obtained from a new arrived data).
+    */</span>
+  <span class="k">def</span> <span class="n">accumulate</span><span class="o">(</span><span class="n">accumulator</span><span class="k">:</span> <span class="kt">ACC</span><span class="o">,</span> <span class="o">[</span><span class="kt">user</span> <span class="kt">defined</span> <span class="kt">inputs</span><span class="o">])</span><span class="k">:</span> <span class="kt">Unit</span> <span class="c1">// MANDATORY
+</span>
+  <span class="cm">/**
+    * Retracts the input values from the accumulator instance. The current design assumes the
+    * inputs are the values that have been previously accumulated. The method retract can be
+    * overloaded with different custom types and arguments. This function must be implemented for
+    * datastream bounded over aggregate.
+    *
+    * @param accumulator           the accumulator which contains the current aggregated results
+    * @param [user defined inputs] the input value (usually obtained from a new arrived data).
+    */</span>
+  <span class="k">def</span> <span class="n">retract</span><span class="o">(</span><span class="n">accumulator</span><span class="k">:</span> <span class="kt">ACC</span><span class="o">,</span> <span class="o">[</span><span class="kt">user</span> <span class="kt">defined</span> <span class="kt">inputs</span><span class="o">])</span><span class="k">:</span> <span class="kt">Unit</span> <span class="c1">// OPTIONAL
+</span>
+  <span class="cm">/**
+    * Merges a group of accumulator instances into one accumulator instance. This function must be
+    * implemented for datastream session window grouping aggregate and dataset grouping aggregate.
+    *
+    * @param accumulator  the accumulator which will keep the merged aggregate results. It should
+    *                     be noted that the accumulator may contain the previous aggregated
+    *                     results. Therefore user should not replace or clean this instance in the
+    *                     custom merge method.
+    * @param its          an [[java.lang.Iterable]] pointed to a group of accumulators that will be
+    *                     merged.
+    */</span>
+  <span class="k">def</span> <span class="n">merge</span><span class="o">(</span><span class="n">accumulator</span><span class="k">:</span> <span class="kt">ACC</span><span class="o">,</span> <span class="n">its</span><span class="k">:</span> <span class="kt">java.lang.Iterable</span><span class="o">[</span><span class="kt">ACC</span><span class="o">])</span><span class="k">:</span> <span class="kt">Unit</span> <span class="c1">// OPTIONAL
+</span>  
+  <span class="cm">/**
+    * Called every time when an aggregation result should be materialized.
+    * The returned value could be either an early and incomplete result
+    * (periodically emitted as data arrive) or the final result of the
+    * aggregation.
+    *
+    * @param accumulator the accumulator which contains the current
+    *                    aggregated results
+    * @return the aggregation result
+    */</span>
+  <span class="k">def</span> <span class="n">getValue</span><span class="o">(</span><span class="n">accumulator</span><span class="k">:</span> <span class="kt">ACC</span><span class="o">)</span><span class="k">:</span> <span class="kt">T</span> <span class="c1">// MANDATORY
+</span>
+  <span class="n">h</span><span class="cm">/**
+    * Resets the accumulator for this [[AggregateFunction]]. This function must be implemented for
+    * dataset grouping aggregate.
+    *
+    * @param accumulator  the accumulator which needs to be reset
+    */</span>
+  <span class="k">def</span> <span class="n">resetAccumulator</span><span class="o">(</span><span class="n">accumulator</span><span class="k">:</span> <span class="kt">ACC</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span> <span class="c1">// OPTIONAL
+</span>
+  <span class="cm">/**
+    * Returns true if this AggregateFunction can only be applied in an OVER window.
+    *
+    * @return true if the AggregateFunction requires an OVER window, false otherwise.
+    */</span>
+  <span class="k">def</span> <span class="n">requiresOver</span><span class="k">:</span> <span class="kt">Boolean</span> <span class="o">=</span> <span class="kc">false</span> <span class="c1">// PRE-DEFINED
+</span>
+  <span class="cm">/**
+    * Returns the DataType of the AggregateFunction's result.
+    *
+    * @return The DataType of the AggregateFunction's result or null if the result type
+    *         should be automatically inferred.
+    */</span>
+  <span class="k">def</span> <span class="n">getResultType</span><span class="k">:</span> <span class="kt">DataType</span> <span class="o">=</span> <span class="kc">null</span> <span class="c1">// PRE-DEFINED
+</span>
+  <span class="cm">/**
+    * Returns the DataType of the AggregateFunction's accumulator.
+    *
+    * @return The DataType of the AggregateFunction's accumulator or null if the
+    *         accumulator type should be automatically inferred.
+    */</span>
+  <span class="k">def</span> <span class="n">getAccumulatorType</span><span class="k">:</span> <span class="kt">DataType</span> <span class="o">=</span> <span class="kc">null</span> <span class="c1">// PRE-DEFINED
+</span><span class="o">}</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p>The following example shows how to</p>
+
+<ul>
+  <li>define an <code class="highlighter-rouge">AggregateFunction</code> that calculates the weighted average on a given column,</li>
+  <li>register the function in the <code class="highlighter-rouge">TableEnvironment</code>, and</li>
+  <li>use the function in a query.</li>
+</ul>
+
+<p>To calculate a weighted average value, the accumulator needs to store the weighted sum and count of all the data that has been accumulated. In our example we define a class <code class="highlighter-rouge">WeightedAvgAccum</code> to be the accumulator. Accumulators are automatically backup-ed by Flink’s checkpointing mechanism and restored in case of a failure to ensure exactly-once semantics.</p>
+
+<p>The <code class="highlighter-rouge">accumulate()</code> method of our <code class="highlighter-rouge">WeightedAvg</code> <code class="highlighter-rouge">AggregateFunction</code> has three inputs. The first one is the <code class="highlighter-rouge">WeightedAvgAccum</code> accumulator, the other two are user-defined inputs: input value <code class="highlighter-rouge">ivalue</code> and weight of the input <code class="highlighter-rouge">iweight</code>. Although the <code class="highlighter-rouge">retract()</code>, <code class="highlighter-rouge">merge()</code>, and <code class="highlighter-rouge">resetAccumulator()</code> methods are not mandatory for most aggregation types, we provide them below as examples. Please note that we used Java primitive types and defined <code class="highlighter-rouge">getResultType()</code> and <code class="highlighter-rouge">getAccumulatorType()</code> methods in the Scala example because Flink type extraction does not work very well for Scala types.</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="cm">/**
+ * Accumulator for WeightedAvg.
+ */</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">WeightedAvgAccum</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+ * Weighted Average user-defined aggregate function.
+ */</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">WeightedAvg</span> <span class="kd">extends</span> <span class="n">AggregateFunction</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">,</span> <span class="n">WeightedAvgAccum</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">WeightedAvgAccum</span> <span class="nf">createAccumulator</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">WeightedAvgAccum</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Long</span> <span class="nf">getValue</span><span class="o">(</span><span class="n">WeightedAvgAccum</span> <span class="n">acc</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">acc</span><span class="o">.</span><span class="na">count</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">acc</span><span class="o">.</span><span class="na">sum</span> <span class="o">/</span> <span class="n">acc</span><span class="o">.</span><span class="na">count</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">accumulate</span><span class="o">(</span><span class="n">WeightedAvgAccum</span> <span class="n">acc</span><span class="o">,</span> <span class="kt">long</span> <span class="n">iValue</span><span class="o">,</span> <span class="kt">int</span> <span class="n">iWeight</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">acc</span><span class="o">.</span><span class="na">sum</span> <span class="o">+=</span> <span class="n">iValue</span> <span class="o">*</span> <span class="n">iWeight</span><span class="o">;</span>
+        <span class="n">acc</span><span class="o">.</span><span class="na">count</span> <span class="o">+=</span> <span class="n">iWeight</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">retract</span><span class="o">(</span><span class="n">WeightedAvgAccum</span> <span class="n">acc</span><span class="o">,</span> <span class="kt">long</span> <span class="n">iValue</span><span class="o">,</span> <span class="kt">int</span> <span class="n">iWeight</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">acc</span><span class="o">.</span><span class="na">sum</span> <span class="o">-=</span> <span class="n">iValue</span> <span class="o">*</span> <span class="n">iWeight</span><span class="o">;</span>
+        <span class="n">acc</span><span class="o">.</span><span class="na">count</span> <span class="o">-=</span> <span class="n">iWeight</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">merge</span><span class="o">(</span><span class="n">WeightedAvgAccum</span> <span class="n">acc</span><span class="o">,</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">WeightedAvgAccum</span><span class="o">&gt;</span> <span class="n">it</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">WeightedAvgAccum</span><span class="o">&gt;</span> <span class="n">iter</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">iter</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">WeightedAvgAccum</span> <span class="n">a</span> <span class="o">=</span> <span class="n">iter</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+            <span class="n">acc</span><span class="o">.</span><span class="na">count</span> <span class="o">+=</span> <span class="n">a</span><span class="o">.</span><span class="na">count</span><span class="o">;</span>
+            <span class="n">acc</span><span class="o">.</span><span class="na">sum</span> <span class="o">+=</span> <span class="n">a</span><span class="o">.</span><span class="na">sum</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">resetAccumulator</span><span class="o">(</span><span class="n">WeightedAvgAccum</span> <span class="n">acc</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">acc</span><span class="o">.</span><span class="na">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="n">acc</span><span class="o">.</span><span class="na">sum</span> <span class="o">=</span> <span class="mi">0L</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// register function</span>
+<span class="n">StreamTableEnvironment</span> <span class="n">tEnv</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">tEnv</span><span class="o">.</span><span class="na">registerFunction</span><span class="o">(</span><span class="s">"wAvg"</span><span class="o">,</span> <span class="k">new</span> <span class="n">WeightedAvg</span><span class="o">());</span>
+
+<span class="c1">// use function</span>
+<span class="n">tEnv</span><span class="o">.</span><span class="na">sqlQuery</span><span class="o">(</span><span class="s">"SELECT user, wAvg(points, level) AS avgPoints FROM userScores GROUP BY user"</span><span class="o">);</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">java.lang.</span><span class="o">{</span><span class="nc">Long</span> <span class="k">=&gt;</span> <span class="nc">JLong</span><span class="o">,</span> <span class="nc">Integer</span> <span class="k">=&gt;</span> <span class="nc">JInteger</span><span class="o">}</span>
+<span class="k">import</span> <span class="nn">org.apache.flink.api.java.tuple.</span><span class="o">{</span><span class="nc">Tuple1</span> <span class="k">=&gt;</span> <span class="nc">JTuple1</span><span class="o">}</span>
+<span class="k">import</span> <span class="nn">org.apache.flink.api.java.typeutils.TupleTypeInfo</span>
+<span class="k">import</span> <span class="nn">org.apache.flink.table.api.Types</span>
+<span class="k">import</span> <span class="nn">org.apache.flink.table.api.functions.AggregateFunction</span>
+
+<span class="cm">/**
+ * Accumulator for WeightedAvg.
+ */</span>
+<span class="k">class</span> <span class="nc">WeightedAvgAccum</span> <span class="k">extends</span> <span class="nc">JTuple1</span><span class="o">[</span><span class="kt">JLong</span>, <span class="kt">JInteger</span><span class="o">]</span> <span class="o">{</span>
+  <span class="n">sum</span> <span class="k">=</span> <span class="mi">0L</span>
+  <span class="n">count</span> <span class="k">=</span> <span class="mi">0</span>
+<span class="o">}</span>
+
+<span class="cm">/**
+ * Weighted Average user-defined aggregate function.
+ */</span>
+<span class="k">class</span> <span class="nc">WeightedAvg</span> <span class="k">extends</span> <span class="nc">AggregateFunction</span><span class="o">[</span><span class="kt">JLong</span>, <span class="kt">CountAccumulator</span><span class="o">]</span> <span class="o">{</span>
+
+  <span class="k">override</span> <span class="k">def</span> <span class="n">createAccumulator</span><span class="o">()</span><span class="k">:</span> <span class="kt">WeightedAvgAccum</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="k">new</span> <span class="nc">WeightedAvgAccum</span>
+  <span class="o">}</span>
+  
+  <span class="k">override</span> <span class="k">def</span> <span class="n">getValue</span><span class="o">(</span><span class="n">acc</span><span class="k">:</span> <span class="kt">WeightedAvgAccum</span><span class="o">)</span><span class="k">:</span> <span class="kt">JLong</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">acc</span><span class="o">.</span><span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kc">null</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">acc</span><span class="o">.</span><span class="n">sum</span> <span class="o">/</span> <span class="n">acc</span><span class="o">.</span><span class="n">count</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  
+  <span class="k">def</span> <span class="n">accumulate</span><span class="o">(</span><span class="n">acc</span><span class="k">:</span> <span class="kt">WeightedAvgAccum</span><span class="o">,</span> <span class="n">iValue</span><span class="k">:</span> <span class="kt">JLong</span><span class="o">,</span> <span class="n">iWeight</span><span class="k">:</span> <span class="kt">JInteger</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="n">acc</span><span class="o">.</span><span class="n">sum</span> <span class="o">+=</span> <span class="n">iValue</span> <span class="o">*</span> <span class="n">iWeight</span>
+    <span class="n">acc</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="n">iWeight</span>
+  <span class="o">}</span>
+
+  <span class="k">def</span> <span class="n">retract</span><span class="o">(</span><span class="n">acc</span><span class="k">:</span> <span class="kt">WeightedAvgAccum</span><span class="o">,</span> <span class="n">iValue</span><span class="k">:</span> <span class="kt">JLong</span><span class="o">,</span> <span class="n">iWeight</span><span class="k">:</span> <span class="kt">JInteger</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="n">acc</span><span class="o">.</span><span class="n">sum</span> <span class="o">-=</span> <span class="n">iValue</span> <span class="o">*</span> <span class="n">iWeight</span>
+    <span class="n">acc</span><span class="o">.</span><span class="n">count</span> <span class="o">-=</span> <span class="n">iWeight</span>
+  <span class="o">}</span>
+    
+  <span class="k">def</span> <span class="n">merge</span><span class="o">(</span><span class="n">acc</span><span class="k">:</span> <span class="kt">WeightedAvgAccum</span><span class="o">,</span> <span class="n">it</span><span class="k">:</span> <span class="kt">java.lang.Iterable</span><span class="o">[</span><span class="kt">WeightedAvgAccum</span><span class="o">])</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="n">iter</span> <span class="k">=</span> <span class="n">it</span><span class="o">.</span><span class="n">iterator</span><span class="o">()</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">iter</span><span class="o">.</span><span class="n">hasNext</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">val</span> <span class="n">a</span> <span class="k">=</span> <span class="n">iter</span><span class="o">.</span><span class="n">next</span><span class="o">()</span>
+      <span class="n">acc</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="n">a</span><span class="o">.</span><span class="n">count</span>
+      <span class="n">acc</span><span class="o">.</span><span class="n">sum</span> <span class="o">+=</span> <span class="n">a</span><span class="o">.</span><span class="n">sum</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="k">def</span> <span class="n">resetAccumulator</span><span class="o">(</span><span class="n">acc</span><span class="k">:</span> <span class="kt">WeightedAvgAccum</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="n">acc</span><span class="o">.</span><span class="n">count</span> <span class="k">=</span> <span class="mi">0</span>
+    <span class="n">acc</span><span class="o">.</span><span class="n">sum</span> <span class="k">=</span> <span class="mi">0L</span>
+  <span class="o">}</span>
+
+  <span class="k">override</span> <span class="k">def</span> <span class="n">getAccumulatorType</span><span class="k">:</span> <span class="kt">DataType</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="nc">DataTypes</span><span class="o">.</span><span class="n">of</span><span class="o">(</span><span class="k">new</span> <span class="nc">TupleTypeInfo</span><span class="o">(</span><span class="n">classOf</span><span class="o">[</span><span class="kt">WeightedAvgAccum</span><span class="o">],</span> <span class="nc">Types</span><span class="o">.</span><span class="nc">LONG</span><span class="o">,</span> <span class="nc">Types</span><span class="o">.</span><span class="nc">INT</span><span class="o">))</span>
+  <span class="o">}</span>
+
+  <span class="k">override</span> <span class="k">def</span> <span class="n">getResultType</span><span class="k">:</span> <span class="kt">DataType</span> <span class="o">=</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">LONG</span>
+<span class="o">}</span>
+
+<span class="c1">// register function
+</span><span class="k">val</span> <span class="n">tEnv</span><span class="k">:</span> <span class="kt">StreamTableEnvironment</span> <span class="o">=</span> <span class="o">???</span>
+<span class="n">tEnv</span><span class="o">.</span><span class="n">registerFunction</span><span class="o">(</span><span class="s">"wAvg"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">WeightedAvg</span><span class="o">())</span>
+
+<span class="c1">// use function
+</span><span class="n">tEnv</span><span class="o">.</span><span class="n">sqlQuery</span><span class="o">(</span><span class="s">"SELECT user, wAvg(points, level) AS avgPoints FROM userScores GROUP BY user"</span><span class="o">)</span></code></pre></figure>
+
+  </div>
+</div>
+
+<h3 id="declarativeaggregatefunction">DeclarativeAggregateFunction</h3>
+
+<p>DeclarativeAggregationFunction expresses in terms of <code class="highlighter-rouge">Expression</code> of Flink Table API, which will be used while generating the code of aggregation operator for queries.</p>
+
+<p>When implementing a new expression-based aggregate function, you should firstly decide how many operands your function will have by implementing <code class="highlighter-rouge">inputCount</code> method. And then you can use <code class="highlighter-rouge">operands</code> fields to represent your operand, like <code class="highlighter-rouge">operands(0)</code>, <code class="highlighter-rouge">operands(2)</code>. Then you should declare all agg buffer attributes by implementing <code class="highlighter-rouge">aggBufferAttributes</code>. Agg buffer is used to cache the status of the Agg like <code class="highlighter-rouge">Accumulator</code> in <code class="highlighter-rouge">AggregateFunction</code>. You should declare all buffer attributes as <code class="highlighter-rouge">UnresolvedAggBufferReference</code>, and make sure the name of your attributes is unique within the function. You can implement <code class="highlighter-rouge">initialValuesExpressions</code> to define initial value of the agg buffers and <code class="highlighter-rouge">accumulateExpressions</code> to update the agg buffers by accumulate the input <code class="highlighter-rouge">operands</code>. <code class="highlighter-rouge">mergeExpressions</code> is used to merge the agg buffers from partial aggs. <code class="highlighter-rouge">getValueExpression</code> is used to get the final value of the Agg like <code class="highlighter-rouge">getValue</code> in <code class="highlighter-rouge">AggregationFunction</code>.</p>
+
+<p>Detailed documentation for all methods of DeclarativeAggregateFunction is given below.</p>
+
+<div class="codetabs">
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="cm">/**
+ * API for aggregation functions that are expressed in terms of expressions.
+ */</span>
+<span class="k">trait</span> <span class="nc">DeclarativeAggregateFunction</span> <span class="k">extends</span> <span class="nc">UserDefinedFunction</span> <span class="o">{</span>
+
+  <span class="cm">/**
+   * How many inputs your function will deal with.
+   */</span>
+  <span class="k">def</span> <span class="n">inputCount</span><span class="k">:</span> <span class="kt">Int</span>
+
+  <span class="cm">/**
+   * All fields of the aggregate buffer.
+   */</span>
+  <span class="k">def</span> <span class="n">aggBufferAttributes</span><span class="k">:</span> <span class="kt">Seq</span><span class="o">[</span><span class="kt">UnresolvedAggBufferReference</span><span class="o">]</span>
+
+  <span class="cm">/**
+   * The result type of the function
+   */</span>
+  <span class="k">def</span> <span class="n">getResultType</span><span class="k">:</span> <span class="kt">InternalType</span>
+
+  <span class="cm">/**
+   * Expressions for initializing empty aggregation buffers.
+   */</span>
+  <span class="k">def</span> <span class="n">initialValuesExpressions</span><span class="k">:</span> <span class="kt">Seq</span><span class="o">[</span><span class="kt">Expression</span><span class="o">]</span>
+
+  <span class="cm">/**
+   * Expressions for accumulating the mutable aggregation buffer based on an input row.
+   */</span>
+  <span class="k">def</span> <span class="n">accumulateExpressions</span><span class="k">:</span> <span class="kt">Seq</span><span class="o">[</span><span class="kt">Expression</span><span class="o">]</span>
+
+  <span class="cm">/**
+    * Expressions for retracting the mutable aggregation buffer based on an input row.
+    */</span>
+  <span class="k">def</span> <span class="n">retractExpressions</span><span class="k">:</span> <span class="kt">Seq</span><span class="o">[</span><span class="kt">Expression</span><span class="o">]</span> <span class="k">=</span> <span class="o">???</span>
+
+  <span class="cm">/**
+   * A sequence of expressions for merging two aggregation buffers together. When defining these
+   * expressions, you can use the syntax `attributeName.left` and `attributeName.right` to refer
+   * to the attributes corresponding to each of the buffers being merged (this magic is enabled
+   * by the [[RichAggregateBufferAttribute]] implicit class).
+   */</span>
+  <span class="k">def</span> <span class="n">mergeExpressions</span><span class="k">:</span> <span class="kt">Seq</span><span class="o">[</span><span class="kt">Expression</span><span class="o">]</span>
+
+  <span class="cm">/**
+   * An expression which returns the final value for this aggregate function.
+   */</span>
+  <span class="k">def</span> <span class="n">getValueExpression</span><span class="k">:</span> <span class="kt">Expression</span>
+
+<span class="o">}</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p>The following is an example of DeclarativeAggregateFunction which has the same function with the <code class="highlighter-rouge">WeightedAvg</code> example above.</p>
+<div class="codetabs">
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">class</span> <span class="nc">WeightedAvg</span> <span class="k">extends</span> <span class="nc">DeclarativeAggregateFunction</span> <span class="o">{</span>
+
+  <span class="k">protected</span> <span class="k">lazy</span> <span class="k">val</span> <span class="n">sum</span> <span class="k">=</span> <span class="nc">UnresolvedAggBufferReference</span><span class="o">(</span><span class="s">"sum"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">LONG</span><span class="o">)</span>
+  <span class="k">protected</span> <span class="k">lazy</span> <span class="k">val</span> <span class="n">count</span> <span class="k">=</span> <span class="nc">UnresolvedAggBufferReference</span><span class="o">(</span><span class="s">"count"</span><span class="o">,</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">INT</span><span class="o">)</span>
+
+  <span class="k">override</span> <span class="k">def</span> <span class="n">inputCount</span> <span class="k">=</span> <span class="mi">2</span>
+
+  <span class="k">override</span> <span class="k">def</span> <span class="n">aggBufferAttributes</span> <span class="k">=</span> <span class="nc">Seq</span><span class="o">(</span><span class="n">sum</span><span class="o">,</span> <span class="n">count</span><span class="o">)</span>
+
+  <span class="k">override</span> <span class="k">def</span> <span class="n">getResultType</span> <span class="k">=</span> <span class="nc">DataTypes</span><span class="o">.</span><span class="nc">DOUBLE</span>
+
+  <span class="k">override</span> <span class="k">def</span> <span class="n">initialValuesExpressions</span> <span class="k">=</span> <span class="nc">Seq</span><span class="o">(</span><span class="nc">Literal</span><span class="o">(</span><span class="mi">0L</span><span class="o">),</span> <span class="nc">Literal</span><span class="o">(</span><span class="mi">0L</span><span class="o">))</span>
+
+  <span class="k">override</span> <span class="k">def</span> <span class="n">accumulateExpressions</span> <span class="k">=</span> <span class="nc">Seq</span><span class="o">(</span>
+    <span class="cm">/* sum = */</span> <span class="nc">IsNull</span><span class="o">(</span><span class="n">operands</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span> <span class="o">?</span> <span class="o">(</span><span class="n">sum</span><span class="o">,</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">operands</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">*</span> <span class="n">operands</span><span class="o">(</span><span class="mi">1</span><span class="o">)),</span>
+    <span class="cm">/* count = */</span> <span class="nc">IsNull</span><span class="o">(</span><span class="n">operands</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span> <span class="o">?</span> <span class="o">(</span><span class="n">count</span><span class="o">,</span> <span class="n">count</span> <span class="o">+</span> <span class="n">operands</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+  <span class="o">)</span>
+
+  <span class="k">override</span> <span class="k">def</span> <span class="n">retractExpressions</span><span class="k">:</span> <span class="kt">Seq</span><span class="o">[</span><span class="kt">Expression</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Seq</span><span class="o">(</span>
+    <span class="cm">/* sum = */</span> <span class="nc">IsNull</span><span class="o">(</span><span class="n">operands</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span> <span class="o">?</span> <span class="o">(</span><span class="n">sum</span><span class="o">,</span> <span class="n">sum</span> <span class="o">-</span> <span class="n">operands</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">*</span> <span class="n">operands</span><span class="o">(</span><span class="mi">1</span><span class="o">)),</span>
+    <span class="cm">/* count = */</span> <span class="nc">IsNull</span><span class="o">(</span><span class="n">operands</span><span class="o">(</span><span class="mi">0</span><span class="o">))</span> <span class="o">?</span> <span class="o">(</span><span class="n">count</span><span class="o">,</span> <span class="n">count</span> <span class="o">-</span> <span class="n">operands</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+
+  <span class="o">)</span>
+
+  <span class="k">override</span> <span class="k">def</span> <span class="n">mergeExpressions</span> <span class="k">=</span> <span class="nc">Seq</span><span class="o">(</span>
+    <span class="cm">/* sum = */</span> <span class="n">sum</span><span class="o">.</span><span class="n">left</span> <span class="o">+</span> <span class="n">sum</span><span class="o">.</span><span class="n">right</span><span class="o">,</span>
+    <span class="cm">/* count = */</span> <span class="n">count</span><span class="o">.</span><span class="n">left</span> <span class="o">+</span> <span class="n">count</span><span class="o">.</span><span class="n">right</span>
+  <span class="o">)</span>
+
+  <span class="k">override</span> <span class="k">def</span> <span class="n">getValueExpression</span> <span class="k">=</span>
+    <span class="nc">If</span><span class="o">(</span><span class="n">count</span> <span class="o">===</span> <span class="nc">Literal</span><span class="o">(</span><span class="mi">0L</span><span class="o">),</span> <span class="nc">Null</span><span class="o">(</span><span class="n">getResultType</span><span class="o">),</span> <span class="n">sum</span> <span class="o">/</span> <span class="n">count</span><span class="o">)</span>
+<span class="o">}</span>
+
+<span class="c1">// register function
+</span><span class="k">val</span> <span class="n">tEnv</span><span class="k">:</span> <span class="kt">StreamTableEnvironment</span> <span class="o">=</span> <span class="o">???</span>
+<span class="n">tEnv</span><span class="o">.</span><span class="n">registerFunction</span><span class="o">(</span><span class="s">"wAvg"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">WeightedAvg</span><span class="o">())</span>
+
+<span class="c1">// use function
+</span><span class="n">tEnv</span><span class="o">.</span><span class="n">sqlQuery</span><span class="o">(</span><span class="s">"SELECT user, wAvg(points, level) AS avgPoints FROM userScores GROUP BY user"</span><span class="o">)</span></code></pre></figure>
+
+  </div>
+</div>
+
+<h3 id="aggregatefunction-vs-declarativeaggregatefunction">AggregateFunction VS DeclarativeAggregateFunction</h3>
+
+<ol>
+  <li>In <code class="highlighter-rouge">DeclarativeAggregateFunction</code>, <code class="highlighter-rouge">Expression</code> is used to declare the logic of the AGG, so we can make use of the <a href="tableApi.html#built-in-functions">builtin scalar functions</a> of Flink table api. It also make it possible for the optimizer to reduce duplicate computation between different
+AGG functions.</li>
+  <li><code class="highlighter-rouge">AggregationFunction</code> we can use <code class="highlighter-rouge">DataView</code> to store complex states of the accumulator. <code class="highlighter-rouge">DataView</code> will be persisted in <code class="highlighter-rouge">State</code> which can cache a lot of data. That is needed by AGGs like DistinctCount.</li>
+</ol>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h2 id="best-practices-for-implementing-udfs">Best Practices for Implementing UDFs</h2>
+
+<p>The Table API and SQL code generation internally tries to work with primitive values as much as possible. A user-defined function can introduce much overhead through object creation, casting, and (un)boxing. Therefore, it is highly recommended to declare parameters and result types as primitive types instead of their boxed classes. <code class="highlighter-rouge">DataTypes.DATE</code> and <code class="highlighter-rouge">DataTypes.TIME</code> can also be represented as <code class="highlighter-rouge">int</code>. <code class="highlighter-rouge">DataTypes.TIMESTAMP</code> can be represented as <code class="highlighter-rouge">long</code>.</p>
+
+<p>We recommended that user-defined functions should be written by Java instead of Scala as Scala types pose a challenge for Flink’s type extractor.</p>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+<h2 id="integrating-udfs-with-the-runtime">Integrating UDFs with the Runtime</h2>
+
+<p>Sometimes it might be necessary for a user-defined function to get global runtime information or do some setup/clean-up work before the actual work. User-defined functions provide <code class="highlighter-rouge">open()</code> and <code class="highlighter-rouge">close()</code> methods that can be overridden and provide similar functionality as the methods in <code class="highlighter-rouge">RichFunction</code> of DataStream API.</p>
+
+<p>The <code class="highlighter-rouge">open()</code> method is called once before the evaluation method. The <code class="highlighter-rouge">close()</code> method after the last call to the evaluation method.</p>
+
+<p>The <code class="highlighter-rouge">open()</code> method provides a <code class="highlighter-rouge">FunctionContext</code> that contains information about the context in which user-defined functions are executed, such as the metric group, the distributed cache files, or the global job parameters.</p>
+
+<p>The following information can be obtained by calling the corresponding methods of <code class="highlighter-rouge">FunctionContext</code>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Method</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">getMetricGroup()</code></td>
+      <td style="text-align: left">Metric group for this parallel subtask.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">getCachedFile(name)</code></td>
+      <td style="text-align: left">Local temporary file copy of a distributed cache file.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">getJobParameter(name, defaultValue)</code></td>
+      <td style="text-align: left">Global job parameter value associated with given key.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The following example snippet shows how to use <code class="highlighter-rouge">FunctionContext</code> in a scalar function for accessing a global job parameter:</p>
+
+<div class="codetabs">
+  <div data-lang="java">
+
+    <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HashCode</span> <span class="kd">extends</span> <span class="n">ScalarFunction</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">factor</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">open</span><span class="o">(</span><span class="n">FunctionContext</span> <span class="n">context</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="c1">// access "hashcode_factor" parameter</span>
+        <span class="c1">// "12" would be the default value if parameter does not exist</span>
+        <span class="n">factor</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">context</span><span class="o">.</span><span class="na">getJobParameter</span><span class="o">(</span><span class="s">"hashcode_factor"</span><span class="o">,</span> <span class="s">"12"</span><span class="o">));</span> 
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">eval</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">hashCode</span><span class="o">()</span> <span class="o">*</span> <span class="n">factor</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">ExecutionEnvironment</span> <span class="n">env</span> <span class="o">=</span> <span class="n">ExecutionEnvironment</span><span class="o">.</span><span class="na">getExecutionEnvironment</span><span class="o">();</span>
+<span class="n">BatchTableEnvironment</span> <span class="n">tableEnv</span> <span class="o">=</span> <span class="n">TableEnvironment</span><span class="o">.</span><span class="na">getBatchTableEnvironment</span><span class="o">(</span><span class="n">env</span><span class="o">);</span>
+<span class="c1">// or</span>
+<span class="c1">// StreamTableEnvironment tableEnv = TableEnvironment.getTableEnvironment(env);</span>
+
+<span class="c1">// set job parameter</span>
+<span class="n">Configuration</span> <span class="n">conf</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">();</span>
+<span class="n">conf</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="s">"hashcode_factor"</span><span class="o">,</span> <span class="s">"31"</span><span class="o">);</span>
+<span class="n">env</span><span class="o">.</span><span class="na">getConfig</span><span class="o">().</span><span class="na">setGlobalJobParameters</span><span class="o">(</span><span class="n">conf</span><span class="o">);</span>
+
+<span class="c1">// register the function</span>
+<span class="n">tableEnv</span><span class="o">.</span><span class="na">registerFunction</span><span class="o">(</span><span class="s">"hashCode"</span><span class="o">,</span> <span class="k">new</span> <span class="n">HashCode</span><span class="o">());</span>
+
+<span class="c1">// use the function in Java Table API</span>
+<span class="n">myTable</span><span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="s">"string, string.hashCode(), hashCode(string)"</span><span class="o">);</span>
+
+<span class="c1">// use the function in SQL</span>
+<span class="n">tableEnv</span><span class="o">.</span><span class="na">sqlQuery</span><span class="o">(</span><span class="s">"SELECT string, HASHCODE(string) FROM MyTable"</span><span class="o">);</span></code></pre></figure>
+
+  </div>
+
+  <div data-lang="scala">
+
+    <figure class="highlight"><pre><code class="language-scala" data-lang="scala"><span class="k">object</span> <span class="nc">hashCode</span> <span class="k">extends</span> <span class="nc">ScalarFunction</span> <span class="o">{</span>
+
+  <span class="k">var</span> <span class="n">hashcode_factor</span> <span class="k">=</span> <span class="mi">12</span>
+
+  <span class="k">override</span> <span class="k">def</span> <span class="n">open</span><span class="o">(</span><span class="n">context</span><span class="k">:</span> <span class="kt">FunctionContext</span><span class="o">)</span><span class="k">:</span> <span class="kt">Unit</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="c1">// access "hashcode_factor" parameter
+</span>    <span class="c1">// "12" would be the default value if parameter does not exist
+</span>    <span class="n">hashcode_factor</span> <span class="k">=</span> <span class="n">context</span><span class="o">.</span><span class="n">getJobParameter</span><span class="o">(</span><span class="s">"hashcode_factor"</span><span class="o">,</span> <span class="s">"12"</span><span class="o">).</span><span class="n">toInt</span>
+  <span class="o">}</span>
+
+  <span class="k">def</span> <span class="n">eval</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">hashCode</span><span class="o">()</span> <span class="o">*</span> <span class="n">hashcode_factor</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="k">val</span> <span class="n">tableEnv</span> <span class="k">=</span> <span class="nc">TableEnvironment</span><span class="o">.</span><span class="n">getTableEnvironment</span><span class="o">(</span><span class="n">env</span><span class="o">)</span>
+
+<span class="c1">// use the function in Scala Table API
+</span><span class="n">myTable</span><span class="o">.</span><span class="n">select</span><span class="o">(</span><span class="ss">'string,</span> <span class="n">hashCode</span><span class="o">(</span><span class="ss">'string)</span><span class="o">)</span>
+
+<span class="c1">// register and use the function in SQL
+</span><span class="n">tableEnv</span><span class="o">.</span><span class="n">registerFunction</span><span class="o">(</span><span class="s">"hashCode"</span><span class="o">,</span> <span class="n">hashCode</span><span class="o">)</span>
+<span class="n">tableEnv</span><span class="o">.</span><span class="n">sqlQuery</span><span class="o">(</span><span class="s">"SELECT string, HASHCODE(string) FROM MyTable"</span><span class="o">)</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p><a href="#top" class="top pull-right"><span class="glyphicon glyphicon-chevron-up"></span> Back to top</a></p>
+
+
+
+        </div>
+      </div>
+    </div><!-- /.container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//flink-china.org/doc/blink/page/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.0/anchor.min.js"></script>
+    <script src="//flink-china.org/doc/blink/page/js/flink.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-52545728-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- Disqus -->
+    
+  </body>
+</html>

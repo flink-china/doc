@@ -1,0 +1,4766 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Apache Flink 1.5.1 Documentation: Detecting Patterns in Tables</title>
+    <link rel="shortcut icon" href="//flink-china.org/doc/blink/page/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="//flink-china.org/doc/blink/page/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/flink.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/syntax.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/css/codetabs.css">
+    <link rel="stylesheet" href="//flink-china.org/doc/blink/page/font-awesome/css/font-awesome.min.css">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    
+
+    <!-- Main content. -->
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-lg-3" id="sidenavcol">
+          
+
+
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+    
+  
+
+  
+    
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="sidenav-logo">
+  <p><a href="//flink-china.org/doc/blink"><img class="bottom" alt="Apache Flink" src="//flink-china.org/doc/blink/page/img/navbar-brand-logo.jpg"></a> v1.5.1</p>
+</div>
+<ul id="sidenav">
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/"><i class="fa fa-home title" aria-hidden="true"></i> Home</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-2" data-toggle="collapse"><i class="fa fa-map-o title appetizer" aria-hidden="true"></i> Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-2"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/concepts/programming-model.html">Programming Model</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/concepts/runtime.html">Distributed Runtime</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-6" data-toggle="collapse"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-6"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-7" data-toggle="collapse">API Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-7"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/datastream_api.html">DataStream API</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-10" data-toggle="collapse">Setup Tutorials <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-10"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/local_setup.html">Local Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/tutorials/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/setup_quickstart.html"><i class="fa fa-power-off title appetizer" aria-hidden="true"></i> Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-16" data-toggle="collapse"><i class="fa fa-file-code-o title appetizer" aria-hidden="true"></i> Examples <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-16"><ul>
+  <li><a href="//flink-china.org/doc/blink/examples/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/examples.html">DataStream Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/examples.html">DataSet Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/stream_sql_quickstart.html">Stream SQL Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/batch_sql_quickstart.html">Batch SQL Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/scala_shell_quickstart.html">Scala Shell Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/zeppelin_quickstart.html">Flink on Zeppelin Examples</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/examples.html">Flink-Hive Examples</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-25" data-toggle="collapse"><i class="fa fa-cogs title maindish" aria-hidden="true"></i> Project Setup <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-25"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/java_api_quickstart.html">Project Template for Java</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/quickstart/scala_api_quickstart.html">Project Template for Scala</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/dependencies.html">Configuring Dependencies, Connectors, Libraries</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/ide_setup.html">IDE Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/scala_shell.html">Scala Shell</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/flink_on_windows.html">Running Flink on Windows</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/start/building.html">Building Flink from Source</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-34" data-toggle="collapse" class="active"><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development</a><div class="collapse in" id="collapse-34"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-35" data-toggle="collapse">Basic API Concepts <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-35"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/api_concepts.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/scala_api_extensions.html">Scala API Extensions</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/java8.html">Java 8</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-39" data-toggle="collapse">Streaming (DataStream API) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-39"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/datastream_api.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-40" data-toggle="collapse">Event Time <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-40"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/event_time.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/event_timestamps_watermarks.html">Generating Timestamps / Watermarks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/event_timestamp_extractors.html">Pre-defined Timestamp Extractors / Watermark Emitters</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-44" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-44"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/stream/state/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/state.html">Working with State</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/broadcast_state.html">The Broadcast State Pattern</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/checkpointing.html">Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/queryable_state.html">Queryable State</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/state/custom_serialization.html">Custom Serialization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-52" data-toggle="collapse">Operators <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-52"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/stream/operators/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/windows.html">Windows</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/process_function.html">Process Function</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/operators/asyncio.html">Async I/O</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-57" data-toggle="collapse">Connectors <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-57"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/connectors/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/guarantees.html">Fault Tolerance Guarantees</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/kafka.html">Kafka</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/cassandra.html">Cassandra</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/kinesis.html">Kinesis</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/elasticsearch.html">Elasticsearch</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/filesystem_sink.html">Rolling File Sink</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/rabbitmq.html">RabbitMQ</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/nifi.html">NiFi</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/connectors/twitter.html">Twitter</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/side_output.html">Side Outputs</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/stream/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/testing.html">Testing</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/dev/stream/experimental.html">Experimental Features</a></li>
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-73" data-toggle="collapse">Batch (DataSet API) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-73"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/batch/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/dataset_transformations.html">Transformations</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/fault_tolerance.html">Fault Tolerance</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/zip_elements_guide.html">Zipping Elements</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/iterations.html">Iterations</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/python.html">Python API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/connectors.html">Connectors</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/batch/hadoop_compatibility.html">Hadoop Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/local_execution.html">Local Execution</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/cluster_execution.html">Cluster Execution</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-84" data-toggle="collapse" class="active">Table API & SQL</a><div class="collapse in" id="collapse-84"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/table/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/common.html">Concepts & Common API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/hive_compatibility.html">Hive Compatibility</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-87" data-toggle="collapse" class="active">Streaming Concepts</a><div class="collapse in" id="collapse-87"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/table/streaming/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/dynamic_tables.html">Dynamic Tables</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/time_attributes.html">Time Attributes</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/joins.html">Joins in Continuous Queries</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/temporal_tables.html">Temporal Tables</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/match_recognize.html" class="active">Detecting Patterns</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming/query_configuration.html">Query Configuration</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/tableApi.html">Table API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sql.html">SQL</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/supported_ddl.html">SQL Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sourceSinks.html">Table Sources & Sinks</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/udfs.html">User-defined Functions</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/sqlClient.html">SQL Client</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/resource.html">SQL Resource</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/catalog.html">Catalog</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/streaming_optimization.html">Streaming Aggregation Optimization</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/table/multiple_tablesink_optimization.html">Multiple TableSink Optimization</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-106" data-toggle="collapse">Data Types & Serialization <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-106"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/types_serialization.html">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/custom_serializers.html">Custom Serializers</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-109" data-toggle="collapse">Managing Execution <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-109"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/execution_configuration.html">Execution Configuration</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/packaging.html">Program Packaging</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/parallel.html">Parallel Execution</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/execution_plans.html">Execution Plans</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/restart_strategies.html">Restart Strategies</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-116" data-toggle="collapse">Libraries <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-116"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/cep.html">Event Processing (CEP)</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-118" data-toggle="collapse">Graphs: Gelly <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-118"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/libs/gelly/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_api.html">Graph API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/iterative_graph_processing.html">Iterative Graph Processing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/library_methods.html">Library Methods</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_algorithms.html">Graph Algorithms</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/graph_generators.html">Graph Generators</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/gelly/bipartite_graph.html">Bipartite Graph</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-126" data-toggle="collapse">Machine Learning <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-126"><ul>
+  <li><a href="//flink-china.org/doc/blink/dev/libs/ml/">Overview</a></li>
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/quickstart.html">Quickstart</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/contribution_guide.html">How to Contribute</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/cross_validation.html">Cross Validation</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/distance_metrics.html">Distance Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/knn.html">k-Nearest Neighbors Join</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/min_max_scaler.html">MinMax Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/multiple_linear_regression.html">Multiple Linear Regression</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/pipelines.html">Pipelines</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/polynomial_features.html">Polynomial Features</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/sos.html">Stochastic Outlier Selection</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/standard_scaler.html">Standard Scaler</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/als.html">ALS</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/libs/ml/svm.html">SVM using CoCoA</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/best_practices.html">Best Practices</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/dev/migration.html">API Migration Guides</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-145" data-toggle="collapse"><i class="fa fa-sliders title maindish" aria-hidden="true"></i> Deployment & Operations <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-145"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-146" data-toggle="collapse">Clusters & Deployment <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-146"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/cluster_setup.html">Standalone Cluster</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/yarn_setup.html">YARN</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/mesos.html">Mesos</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/kubernetes.html">Kubernetes</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/docker.html">Docker</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/aws.html">AWS</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/gce_setup.html">Google Compute Engine</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/mapr_setup.html">MapR</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/deployment/hadoop.html">Hadoop Integration</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-157" data-toggle="collapse">High Availability (HA) <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-157"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/ha/jobmanager_high_availability.html">JobManager High Availability (HA)</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/ha/jobmanager_failover.html">JobManager Failover</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-161" data-toggle="collapse">State & Fault Tolerance <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-161"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/checkpoints.html">Checkpoints</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/savepoints.html">Savepoints</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/state_backends.html">State Backends</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/state/large_state_tuning.html">Tuning Checkpoints and Large State</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+<li><a href="//flink-china.org/doc/blink/ops/config.html">Configuration</a></li>
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/production_ready.html">Production Readiness Checklist</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/cli.html">CLI</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/security-kerberos.html">Kerberos</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/security-ssl.html">SSL Setup</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/zeppelin.html">Flink on Zeppelin</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/ops/upgrading.html">Upgrading Applications and Flink Versions</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-176" data-toggle="collapse"><i class="fa fa-bug title maindish" aria-hidden="true"></i> Debugging & Monitoring <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-176"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/metrics.html">Metrics</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/logging.html">Logging</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/historyserver.html">History Server</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/checkpoint_monitoring.html">Monitoring Checkpointing</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/back_pressure.html">Monitoring Back Pressure</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/rest_api.html">Monitoring REST API</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_event_time.html">Debugging Windows & Event Time</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_classloading.html">Debugging Classloading</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/application_profiling.html">Application Profiling</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/monitoring/debugging_job_resources.html">Debugging Job Resources</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    <hr class="section-break"></hr>
+
+    
+    
+      
+      
+        
+        
+<li><a href="#collapse-188" data-toggle="collapse"><i class="fa fa-book title dessert" aria-hidden="true"></i> Internals <i class="fa fa-caret-down pull-right" aria-hidden="true" style="padding-top: 4px"></i></a><div class="collapse" id="collapse-188"><ul>
+  
+        
+        
+        
+
+        
+        
+      
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/components.html">Component Stack</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/stream_checkpointing.html">Fault Tolerance for Data Streaming</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/job_scheduling.html">Jobs and Scheduling</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/task_lifecycle.html">Task Lifecycle</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/taskmanager_resource.html">TaskManager Resource</a></li>
+    
+  
+
+  
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    
+<li><a href="//flink-china.org/doc/blink/internals/filesystems.html">File Systems</a></li>
+    
+  
+
+  
+    
+      
+      
+</li></ul></div>
+      
+      
+    
+  
+
+  
+    
+      
+</ul>
+
+<div class="sidenav-search-box">
+  <form class="navbar-form" role="search" action="//flink-china.org/doc/blink/search-results.html">
+    <div class="form-group">
+      <input type="text" class="form-control" size="16px" name="q" placeholder="Search">
+    </div>
+    <button type="submit" class="btn btn-default">Go</button>
+  </form>
+</div>
+
+<div class="sidenav-versions">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Pick Docs Version
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.4">v1.4</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.3">v1.3</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.2">v1.2</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.1">v1.1</a></li>
+      
+      <li><a href="http://ci.apache.org/projects/flink/flink-docs-release-1.0">v1.0</a></li>
+      
+    </ul>
+  </div>
+</div>
+
+        </div>
+        <div class="col-lg-9 content" id="contentcol">
+          
+
+          
+
+
+
+
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+      
+
+
+
+<ol class="breadcrumb">
+
+  
+  
+    <li><i class="fa fa-code title maindish" aria-hidden="true"></i> Application Development</li>
+  
+
+  
+  
+    <li><a href="//flink-china.org/doc/blink/dev/table/">Table API & SQL</a></li>
+  
+
+  
+  
+    <li><a href="//flink-china.org/doc/blink/dev/table/streaming/">Streaming Concepts</a></li>
+  
+
+  
+  
+    <li class="active">Detecting Patterns</li>
+  
+
+</ol>
+
+<h1>Detecting Patterns in Tables <span class="beta">Beta</span></h1>
+
+
+
+
+<p>It is a common use case to search for a set of event patterns, especially in case of data streams. Flink
+comes with a <a href="//flink-china.org/doc/blink/dev/libs/cep.html">complex event processing (CEP) library</a> which allows for pattern detection in event streams. Furthermore, Flink’s
+SQL API provides a relational way of expressing queries with a large set of built-in functions and rule-based optimizations that can be used out of the box.</p>
+
+<p>In December 2016, the International Organization for Standardization (ISO) released a new version of the SQL standard which includes <em>Row Pattern Recognition in SQL</em> (<a href="https://standards.iso.org/ittf/PubliclyAvailableStandards/c065143_ISO_IEC_TR_19075-5_2016.zip">ISO/IEC TR 19075-5:2016</a>). It allows Flink to consolidate CEP and SQL API using the <code class="highlighter-rouge">MATCH_RECOGNIZE</code> clause for complex event processing in SQL.</p>
+
+<p>A <code class="highlighter-rouge">MATCH_RECOGNIZE</code> clause enables the following tasks:</p>
+<ul>
+  <li>Logically partition and order the data that is used with the <code class="highlighter-rouge">PARTITION BY</code> and <code class="highlighter-rouge">ORDER BY</code> clauses.</li>
+  <li>Define patterns of rows to seek using the <code class="highlighter-rouge">PATTERN</code> clause. These patterns use a syntax similar to that of regular expressions.</li>
+  <li>The logical components of the row pattern variables are specified in the <code class="highlighter-rouge">DEFINE</code> clause.</li>
+  <li>Define measures, which are expressions usable in other parts of the SQL query, in the <code class="highlighter-rouge">MEASURES</code> clause.</li>
+</ul>
+
+<p>The following example illustrates the syntax for basic pattern recognition:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">T</span><span class="p">.</span><span class="n">aid</span><span class="p">,</span> <span class="n">T</span><span class="p">.</span><span class="n">bid</span><span class="p">,</span> <span class="n">T</span><span class="p">.</span><span class="n">cid</span>
+<span class="k">FROM</span> <span class="n">MyTable</span>
+    <span class="n">MATCH_RECOGNIZE</span> <span class="p">(</span>
+      <span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">userid</span>
+      <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">proctime</span>
+      <span class="n">MEASURES</span>
+        <span class="n">A</span><span class="p">.</span><span class="n">id</span> <span class="k">AS</span> <span class="n">aid</span><span class="p">,</span>
+        <span class="n">B</span><span class="p">.</span><span class="n">id</span> <span class="k">AS</span> <span class="n">bid</span><span class="p">,</span>
+        <span class="k">C</span><span class="p">.</span><span class="n">id</span> <span class="k">AS</span> <span class="n">cid</span>
+      <span class="n">PATTERN</span> <span class="p">(</span><span class="n">A</span> <span class="n">B</span> <span class="k">C</span><span class="p">)</span>
+      <span class="n">DEFINE</span>
+        <span class="n">A</span> <span class="k">AS</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">'a'</span><span class="p">,</span>
+        <span class="n">B</span> <span class="k">AS</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">'b'</span><span class="p">,</span>
+        <span class="k">C</span> <span class="k">AS</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">'c'</span>
+    <span class="p">)</span> <span class="k">AS</span> <span class="n">T</span></code></pre></figure>
+
+<p>This page will explain each keyword in more detail and will illustrate more complex examples.</p>
+
+<p><span class="label label-danger">Attention</span> Flink’s implementation of the <code class="highlighter-rouge">MATCH_RECOGNIZE</code> clause is a subset of the full standard. Only those features documented in the following sections are supported. Since the development is still in an early phase, please also take a look at the <a href="#known-limitations">known limitations</a>.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#introduction-and-examples" id="markdown-toc-introduction-and-examples">Introduction and Examples</a>    <ul>
+      <li><a href="#installation-guide" id="markdown-toc-installation-guide">Installation Guide</a></li>
+      <li><a href="#sql-semantics" id="markdown-toc-sql-semantics">SQL Semantics</a></li>
+      <li><a href="#examples" id="markdown-toc-examples">Examples</a></li>
+    </ul>
+  </li>
+  <li><a href="#partitioning" id="markdown-toc-partitioning">Partitioning</a></li>
+  <li><a href="#order-of-events" id="markdown-toc-order-of-events">Order of Events</a></li>
+  <li><a href="#define--measures" id="markdown-toc-define--measures">Define &amp; Measures</a>    <ul>
+      <li><a href="#aggregations" id="markdown-toc-aggregations">Aggregations</a></li>
+    </ul>
+  </li>
+  <li><a href="#defining-a-pattern" id="markdown-toc-defining-a-pattern">Defining a Pattern</a>    <ul>
+      <li><a href="#greedy--reluctant-quantifiers" id="markdown-toc-greedy--reluctant-quantifiers">Greedy &amp; Reluctant Quantifiers</a></li>
+      <li><a href="#time-constraint" id="markdown-toc-time-constraint">Time constraint</a></li>
+    </ul>
+  </li>
+  <li><a href="#output-mode" id="markdown-toc-output-mode">Output Mode</a></li>
+  <li><a href="#pattern-navigation" id="markdown-toc-pattern-navigation">Pattern Navigation</a>    <ul>
+      <li><a href="#pattern-variable-referencing" id="markdown-toc-pattern-variable-referencing">Pattern Variable Referencing</a></li>
+      <li><a href="#logical-offsets" id="markdown-toc-logical-offsets">Logical Offsets</a></li>
+    </ul>
+  </li>
+  <li><a href="#running-vs-final-semantics" id="markdown-toc-running-vs-final-semantics">RUNNING VS FINAL semantics</a></li>
+  <li><a href="#classifier" id="markdown-toc-classifier">Classifier</a></li>
+  <li><a href="#after-match-strategy" id="markdown-toc-after-match-strategy">After Match Strategy</a></li>
+  <li><a href="#controlling-memory-consumption" id="markdown-toc-controlling-memory-consumption">Controlling Memory Consumption</a></li>
+  <li><a href="#known-limitations" id="markdown-toc-known-limitations">Known Limitations</a></li>
+</ul>
+
+<h2 id="introduction-and-examples">Introduction and Examples</h2>
+
+<h3 id="installation-guide">Installation Guide</h3>
+
+<p>The pattern recognition feature uses the Apache Flink’s CEP library internally. In order to be able to use the <code class="highlighter-rouge">MATCH_RECOGNIZE</code> clause,
+the library needs to be added as a dependency to your Maven project.</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.alibaba.blink<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>flink-cep_2.11<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.5.1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span></code></pre></figure>
+
+<p>Alternatively, you can also add the dependency to the cluster classpath (see the <a href="//flink-china.org/doc/blink/projectsetup/dependencies.html">dependency section</a> for more information).</p>
+
+<p>If you want to use the <code class="highlighter-rouge">MATCH_RECOGNIZE</code> clause in the <a href="//flink-china.org/doc/blink/dev/table/sqlClient.html">SQL Client</a>,
+you don’t have to do anything as all the dependencies are included by default.</p>
+
+<h3 id="sql-semantics">SQL Semantics</h3>
+
+<p>Every <code class="highlighter-rouge">MATCH_RECOGNIZE</code> query consists of the following clauses:</p>
+
+<ul>
+  <li><a href="#partitioning">PARTITION BY</a> - defines the logical partitioning of the table; similar to a <code class="highlighter-rouge">GROUP BY</code> operation.</li>
+  <li><a href="#order-of-events">ORDER BY</a> - specifies how the incoming rows should be ordered; this is essential as patterns depend on an order.</li>
+  <li><a href="#define--measures">MEASURES</a> - defines output of the clause; similar to a <code class="highlighter-rouge">SELECT</code> clause.</li>
+  <li><a href="#output-mode">ONE ROW | ALL ROWS PER MATCH</a> - output mode which defines how many rows per match should be produced.</li>
+  <li><a href="#after-match-strategy">AFTER MATCH SKIP</a> - specifies where the next match should start; this is also a way to control how many distinct matches a single event can belong to.</li>
+  <li><a href="#defining-a-pattern">PATTERN</a> - allows constructing patterns that will be searched for using a <em>regular expression</em>-like syntax.</li>
+  <li><a href="#define--measures">DEFINE</a> - this section defines the conditions that the pattern variables must satisfy.</li>
+</ul>
+
+<p><span class="label label-danger">Attention</span> Currently, the <code class="highlighter-rouge">MATCH_RECOGNIZE</code> clause can only be applied to an <a href="dynamic_tables.html#update-and-append-queries">append table</a>. Furthermore, it always produces
+an append table as well.</p>
+
+<h3 id="examples">Examples</h3>
+
+<p>For our examples, we assume that a table <code class="highlighter-rouge">Ticker</code> has been registered. The table contains prices of stocks at a particular point in time.</p>
+
+<p>The table has a following schema:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">Ticker
+     |-- symbol: String                           # symbol of the stock
+     |-- price: Long                              # price of the stock
+     |-- tax: Long                                # tax liability of the stock
+     |-- rowtime: TimeIndicatorTypeInfo(rowtime)  # point in time when the change to those values happened</code></pre></figure>
+
+<p>For simplification, we only consider the incoming data for a single stock <code class="highlighter-rouge">ACME</code>. A ticker could look similar to the following table where rows are continuously appended.</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">symbol         rowtime         price    tax
+======  ====================  ======= =======
+'ACME'  '01-Apr-11 10:00:00'   12      1
+'ACME'  '01-Apr-11 10:00:01'   17      2
+'ACME'  '01-Apr-11 10:00:02'   19      1
+'ACME'  '01-Apr-11 10:00:03'   21      3
+'ACME'  '01-Apr-11 10:00:04'   25      2
+'ACME'  '01-Apr-11 10:00:05'   18      1
+'ACME'  '01-Apr-11 10:00:06'   15      1
+'ACME'  '01-Apr-11 10:00:07'   14      2
+'ACME'  '01-Apr-11 10:00:08'   24      2
+'ACME'  '01-Apr-11 10:00:09'   25      2
+'ACME'  '01-Apr-11 10:00:10'   19      1</code></pre></figure>
+
+<p>The task is now to find periods of a constantly decreasing price of a single ticker. For this, one could write a query like:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">Ticker</span>
+    <span class="n">MATCH_RECOGNIZE</span> <span class="p">(</span>
+        <span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">symbol</span>
+        <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">rowtime</span>
+        <span class="n">MEASURES</span>
+            <span class="n">START_ROW</span><span class="p">.</span><span class="n">rowtime</span> <span class="k">AS</span> <span class="n">start_tstamp</span><span class="p">,</span>
+            <span class="k">LAST</span><span class="p">(</span><span class="n">PRICE_DOWN</span><span class="p">.</span><span class="n">rowtime</span><span class="p">)</span> <span class="k">AS</span> <span class="n">bottom_tstamp</span><span class="p">,</span>
+            <span class="k">LAST</span><span class="p">(</span><span class="n">PRICE_UP</span><span class="p">.</span><span class="n">rowtime</span><span class="p">)</span> <span class="k">AS</span> <span class="n">end_tstamp</span>
+        <span class="n">ONE</span> <span class="k">ROW</span> <span class="n">PER</span> <span class="k">MATCH</span>
+        <span class="k">AFTER</span> <span class="k">MATCH</span> <span class="n">SKIP</span> <span class="k">TO</span> <span class="k">LAST</span> <span class="n">PRICE_UP</span>
+        <span class="n">PATTERN</span> <span class="p">(</span><span class="n">START_ROW</span> <span class="n">PRICE_DOWN</span><span class="o">+</span> <span class="n">PRICE_UP</span><span class="p">)</span>
+        <span class="n">DEFINE</span>
+            <span class="n">PRICE_DOWN</span> <span class="k">AS</span>
+                <span class="p">(</span><span class="k">LAST</span><span class="p">(</span><span class="n">PRICE_DOWN</span><span class="p">.</span><span class="n">price</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">IS</span> <span class="k">NULL</span> <span class="k">AND</span> <span class="n">PRICE_DOWN</span><span class="p">.</span><span class="n">price</span> <span class="o">&lt;</span> <span class="n">START_ROW</span><span class="p">.</span><span class="n">price</span><span class="p">)</span> <span class="k">OR</span>
+                    <span class="n">PRICE_DOWN</span><span class="p">.</span><span class="n">price</span> <span class="o">&lt;</span> <span class="k">LAST</span><span class="p">(</span><span class="n">PRICE_DOWN</span><span class="p">.</span><span class="n">price</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">PRICE_UP</span> <span class="k">AS</span>
+                <span class="n">PRICE_UP</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="k">LAST</span><span class="p">(</span><span class="n">PRICE_DOWN</span><span class="p">.</span><span class="n">price</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span> <span class="n">MR</span><span class="p">;</span></code></pre></figure>
+
+<p>The query partitions the <code class="highlighter-rouge">Ticker</code> table by the <code class="highlighter-rouge">symbol</code> column and orders it by the <code class="highlighter-rouge">rowtime</code> time attribute.</p>
+
+<p>The <code class="highlighter-rouge">PATTERN</code> clause specifies that we are interested in a pattern with a starting event <code class="highlighter-rouge">START_ROW</code> that is followed by one or more <code class="highlighter-rouge">PRICE_DOWN</code> events and concluded with a <code class="highlighter-rouge">PRICE_UP</code> event. If such a pattern can be found, the next pattern match will be seeked at the last <code class="highlighter-rouge">PRICE_UP</code> event as indicated by the <code class="highlighter-rouge">AFTER MATCH SKIP TO LAST</code> clause.</p>
+
+<p>The <code class="highlighter-rouge">DEFINE</code> clause specifies the conditions that need to be met for a <code class="highlighter-rouge">PRICE_DOWN</code> and <code class="highlighter-rouge">PRICE_UP</code> event. Although the <code class="highlighter-rouge">START_ROW</code> pattern variable is not present it has an implicit condition that is evaluated always as <code class="highlighter-rouge">TRUE</code>.</p>
+
+<p>A pattern variable <code class="highlighter-rouge">PRICE_DOWN</code> is defined as a row with a price that is smaller than the price of the last row that met the <code class="highlighter-rouge">PRICE_DOWN</code> condition. For the initial case or when there is no last row that met the <code class="highlighter-rouge">PRICE_DOWN</code> condition, the price of the row should be smaller than the price of the preceding row in the pattern (referenced by <code class="highlighter-rouge">START_ROW</code>).</p>
+
+<p>A pattern variable <code class="highlighter-rouge">PRICE_UP</code> is defined as a row with a price that is larger than the price of the last row that met the <code class="highlighter-rouge">PRICE_DOWN</code> condition.</p>
+
+<p>This query produces a summary row for each period in which the price of a stock was continuously decreasing.</p>
+
+<p>The exact representation of the output rows is defined in the <code class="highlighter-rouge">MEASURES</code> part of the query. The number of output rows is defined by the <code class="highlighter-rouge">ONE ROW PER MATCH</code> output mode.</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> symbol       start_tstamp       bottom_tstamp         end_tstamp
+=========  ==================  ==================  ==================
+ACME       01-APR-11 10:00:04  01-APR-11 10:00:07  01-APR-11 10:00:08</code></pre></figure>
+
+<p>The resulting row describes a period of falling prices that started at <code class="highlighter-rouge">01-APR-11 10:00:04</code> and
+achieved the lowest price at <code class="highlighter-rouge">01-APR-11 10:00:07</code> that increased again at <code class="highlighter-rouge">01-APR-11 10:00:08</code>.</p>
+
+<h2 id="partitioning">Partitioning</h2>
+
+<p>It is possible to look for patterns in partitioned data, e.g., trends for a single ticker or a particular user. This can be expressed using the <code class="highlighter-rouge">PARTITION BY</code> clause. The clause is similar to using <code class="highlighter-rouge">GROUP BY</code> for aggregations.</p>
+
+<p><span class="label label-danger">Attention</span> It is highly advised to partition the incoming data because otherwise the <code class="highlighter-rouge">MATCH_RECOGNIZE</code> clause will be translated
+into a non-parallel operator to ensure global ordering.</p>
+
+<h2 id="order-of-events">Order of Events</h2>
+
+<p>Apache Flink allows for searching for patterns based on time; either <a href="time_attributes.html">processing time or event time</a>.</p>
+
+<p>In case of event time, the events are sorted before they are passed to the internal pattern state machine. As a consequence, the
+produced output will be correct regardless of the order in which rows are appended to the table. Instead, the pattern is evaluated in the order specified by the time contained in each row.</p>
+
+<p>The <code class="highlighter-rouge">MATCH_RECOGNIZE</code> clause assumes a <a href="time_attributes.html">time attribute</a> with ascending ordering as the first argument to <code class="highlighter-rouge">ORDER BY</code> clause.</p>
+
+<p>For the example <code class="highlighter-rouge">Ticker</code> table, a definition like <code class="highlighter-rouge">ORDER BY rowtime ASC, price DESC</code> is valid but <code class="highlighter-rouge">ORDER BY price, rowtime</code> or <code class="highlighter-rouge">ORDER BY rowtime DESC, price ASC</code> is not.</p>
+
+<h2 id="define--measures">Define &amp; Measures</h2>
+
+<p>The <code class="highlighter-rouge">DEFINE</code> and <code class="highlighter-rouge">MEASURES</code> keywords have similar meanings to the <code class="highlighter-rouge">WHERE</code> and <code class="highlighter-rouge">SELECT</code> clauses in a simple SQL query.</p>
+
+<p>The <code class="highlighter-rouge">MEASURES</code> clause defines what will be included in the output of a matching pattern. It can project columns and define expressions for evaluation.
+The number of produced rows depends on the <a href="#output-mode">output mode</a> setting.</p>
+
+<p>The <code class="highlighter-rouge">DEFINE</code> clause specifies conditions that rows have to fulfill in order to be classified to a corresponding <a href="#defining-a-pattern">pattern variable</a>.
+If a condition is not defined for a pattern variable, a default condition will be used which evaluates to <code class="highlighter-rouge">true</code> for every row.</p>
+
+<p>For a more detailed explanation about expressions that can be used in those clauses, please have a look at the <a href="#pattern-navigation">event stream navigation</a> section.</p>
+
+<h3 id="aggregations">Aggregations</h3>
+
+<p>Aggregations can be used in <code class="highlighter-rouge">DEFINE</code> and <code class="highlighter-rouge">MEASURES</code> clauses. Both <a href="//flink-china.org/doc/blink/dev/table/sql.html#built-in-functions">built-in</a> and custom <a href="//flink-china.org/doc/blink/dev/table/udfs.html">user defined</a> functions are supported.</p>
+
+<p>Aggregate functions are applied to each subset of rows mapped to a match. In order to understand how those subsets are evaluated have a look at the <a href="#pattern-navigation">event stream navigation</a> section.</p>
+
+<p>The task of the following example is to find the longest period of time for which the average price of a ticker did not go below certain threshold. It shows how expressible <code class="highlighter-rouge">MATCH_RECOGNIZE</code> can become with aggregations.
+This task can be performed with the following query:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">Ticker</span>
+    <span class="n">MATCH_RECOGNIZE</span> <span class="p">(</span>
+        <span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">symbol</span>
+        <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">rowtime</span>
+        <span class="n">MEASURES</span>
+            <span class="k">FIRST</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">rowtime</span><span class="p">)</span> <span class="k">AS</span> <span class="n">start_tstamp</span><span class="p">,</span>
+            <span class="k">LAST</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">rowtime</span><span class="p">)</span> <span class="k">AS</span> <span class="n">end_tstamp</span><span class="p">,</span>
+            <span class="k">AVG</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">price</span><span class="p">)</span> <span class="k">AS</span> <span class="n">avgPrice</span>
+        <span class="n">ONE</span> <span class="k">ROW</span> <span class="n">PER</span> <span class="k">MATCH</span>
+        <span class="k">AFTER</span> <span class="k">MATCH</span> <span class="n">SKIP</span> <span class="k">TO</span> <span class="k">FIRST</span> <span class="n">B</span>
+        <span class="n">PATTERN</span> <span class="p">(</span><span class="n">A</span><span class="o">+</span> <span class="n">B</span><span class="p">)</span>
+        <span class="n">DEFINE</span>
+            <span class="n">A</span> <span class="k">AS</span> <span class="k">AVG</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">price</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">15</span>
+    <span class="p">)</span> <span class="n">MR</span><span class="p">;</span></code></pre></figure>
+
+<p>Given this query and following input values:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">symbol         rowtime         price    tax
+======  ====================  ======= =======
+'ACME'  '01-Apr-11 10:00:00'   12      1
+'ACME'  '01-Apr-11 10:00:01'   17      2
+'ACME'  '01-Apr-11 10:00:02'   13      1
+'ACME'  '01-Apr-11 10:00:03'   16      3
+'ACME'  '01-Apr-11 10:00:04'   25      2
+'ACME'  '01-Apr-11 10:00:05'   2       1
+'ACME'  '01-Apr-11 10:00:06'   4       1
+'ACME'  '01-Apr-11 10:00:07'   10      2
+'ACME'  '01-Apr-11 10:00:08'   15      2
+'ACME'  '01-Apr-11 10:00:09'   25      2
+'ACME'  '01-Apr-11 10:00:10'   30      1</code></pre></figure>
+
+<p>The query will accumulate events as part of the pattern variable <code class="highlighter-rouge">A</code> as long as the average price of them does not exceed <code class="highlighter-rouge">15</code>. For example, such a limit exceeding happens at <code class="highlighter-rouge">01-Apr-11 10:00:04</code>.
+The following period exceeds the average price of <code class="highlighter-rouge">15</code> again at <code class="highlighter-rouge">01-Apr-11 10:00:10</code>. Thus the results for said query will be:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> symbol       start_tstamp       end_tstamp          avgPrice
+=========  ==================  ==================  ============
+ACME       01-APR-11 10:00:00  01-APR-11 10:00:03     14.5
+ACME       01-APR-11 10:00:04  01-APR-11 10:00:09     13.5</code></pre></figure>
+
+<p><span class="label label-info">Note</span> Aggregations can be applied to expressions, but only if they reference a single pattern variable. Thus <code class="highlighter-rouge">SUM(A.price * A.tax)</code> is a valid one, but <code class="highlighter-rouge">AVG(A.price * B.tax)</code> is not.</p>
+
+<p><span class="label label-danger">Attention</span> <code class="highlighter-rouge">DISTINCT</code> aggregations are not supported.</p>
+
+<h2 id="defining-a-pattern">Defining a Pattern</h2>
+
+<p>The <code class="highlighter-rouge">MATCH_RECOGNIZE</code> clause allows users to search for patterns in event streams using a powerful and expressive syntax
+that is somewhat similar to the widespread regular expression syntax.</p>
+
+<p>Every pattern is constructed from basic building blocks, called <em>pattern variables</em>, to which operators (quantifiers and other modifiers) can be applied. The whole pattern must be enclosed in
+brackets.</p>
+
+<p>An example pattern could look like:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="n">PATTERN</span> <span class="p">(</span><span class="n">A</span> <span class="n">B</span><span class="o">+</span> <span class="k">C</span><span class="o">*</span> <span class="n">D</span><span class="p">)</span></code></pre></figure>
+
+<p>One may use the following operators:</p>
+
+<ul>
+  <li><em>Concatenation</em> - a pattern like <code class="highlighter-rouge">(A B)</code> means that the contiguity is strict between <code class="highlighter-rouge">A</code> and <code class="highlighter-rouge">B</code>. Therefore, there can be no rows that were not mapped to <code class="highlighter-rouge">A</code> or <code class="highlighter-rouge">B</code> in between.</li>
+  <li><em>Follow by</em> - a pattern like <code class="highlighter-rouge">(A -&gt; B)</code> means that the contiguity is not strict between <code class="highlighter-rouge">A</code> and <code class="highlighter-rouge">B</code>. Therefore, there can be rows that were not mapped to <code class="highlighter-rouge">A</code> or <code class="highlighter-rouge">B</code> in between.
+However, this is not part of the SQL standard. The recommended way of dealing with not strict contiguity might change in the future.</li>
+  <li><em>Quantifiers</em> - modify the number of rows that can be mapped to the pattern variable.
+    <ul>
+      <li><code class="highlighter-rouge">*</code> — <em>0</em> or more rows</li>
+      <li><code class="highlighter-rouge">+</code> — <em>1</em> or more rows</li>
+      <li><code class="highlighter-rouge">?</code> — <em>0</em> or <em>1</em> rows</li>
+      <li><code class="highlighter-rouge">{ n }</code> — exactly <em>n</em> rows (<em>n &gt; 0</em>)</li>
+      <li><code class="highlighter-rouge">{ n, }</code> — <em>n</em> or more rows (<em>n ≥ 0</em>)</li>
+      <li><code class="highlighter-rouge">{ n, m }</code> — between <em>n</em> and <em>m</em> (inclusive) rows (<em>0 ≤ n ≤ m, 0 &lt; m</em>)</li>
+      <li><code class="highlighter-rouge">{ , m }</code> — between <em>0</em> and <em>m</em> (inclusive) rows (<em>m &gt; 0</em>)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><span class="label label-danger">Attention</span> Patterns that can potentially produce an empty match are not supported.
+Examples of such patterns are <code class="highlighter-rouge">PATTERN (A*)</code>, <code class="highlighter-rouge">PATTERN  (A? B*)</code>, <code class="highlighter-rouge">PATTERN (A{0,} B{0,} C*)</code>, etc.</p>
+
+<h3 id="greedy--reluctant-quantifiers">Greedy &amp; Reluctant Quantifiers</h3>
+
+<p>Each quantifier can be either <em>greedy</em> (default behavior) or <em>reluctant</em>. Greedy quantifiers try to match
+as many rows as possible while reluctant quantifiers try to match as few as possible.</p>
+
+<p>In order to illustrate the difference, one can view the following example with a query where a greedy quantifier is applied to the <code class="highlighter-rouge">B</code> variable:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">Ticker</span>
+    <span class="n">MATCH_RECOGNIZE</span><span class="p">(</span>
+        <span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">symbol</span>
+        <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">rowtime</span>
+        <span class="n">MEASURES</span>
+            <span class="k">C</span><span class="p">.</span><span class="n">price</span> <span class="k">AS</span> <span class="n">lastPrice</span>
+        <span class="n">ONE</span> <span class="k">ROW</span> <span class="n">PER</span> <span class="k">MATCH</span>
+        <span class="k">AFTER</span> <span class="k">MATCH</span> <span class="n">SKIP</span> <span class="n">PAST</span> <span class="k">LAST</span> <span class="k">ROW</span>
+        <span class="n">PATTERN</span> <span class="p">(</span><span class="n">A</span> <span class="n">B</span><span class="o">*</span> <span class="k">C</span><span class="p">)</span>
+        <span class="n">DEFINE</span>
+            <span class="n">A</span> <span class="k">AS</span> <span class="n">A</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="n">B</span> <span class="k">AS</span> <span class="n">B</span><span class="p">.</span><span class="n">price</span> <span class="o">&lt;</span> <span class="mi">15</span><span class="p">,</span>
+            <span class="k">C</span> <span class="k">AS</span> <span class="k">C</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="mi">12</span>
+    <span class="p">)</span></code></pre></figure>
+
+<p>Given we have the following input:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> symbol  tax   price          rowtime
+======= ===== ======== =====================
+ XYZ     1     10       2018-09-17 10:00:02
+ XYZ     2     11       2018-09-17 10:00:03
+ XYZ     1     12       2018-09-17 10:00:04
+ XYZ     2     13       2018-09-17 10:00:05
+ XYZ     1     14       2018-09-17 10:00:06
+ XYZ     2     16       2018-09-17 10:00:07</code></pre></figure>
+
+<p>The pattern above will produce the following output:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> symbol   lastPrice
+======== ===========
+ XYZ      16</code></pre></figure>
+
+<p>The same query where <code class="highlighter-rouge">B*</code> is modified to <code class="highlighter-rouge">B*?</code>, which means that <code class="highlighter-rouge">B*</code> should be reluctant, will produce:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> symbol   lastPrice
+======== ===========
+ XYZ      13
+ XYZ      16</code></pre></figure>
+
+<p>The pattern variable <code class="highlighter-rouge">B</code> matches only to the row with price <code class="highlighter-rouge">12</code> instead of swallowing the rows with prices <code class="highlighter-rouge">12</code>, <code class="highlighter-rouge">13</code>, and <code class="highlighter-rouge">14</code>.</p>
+
+<p><span class="label label-danger">Attention</span> It is not possible to use a greedy quantifier for the last
+variable of a pattern. Thus, a pattern like <code class="highlighter-rouge">(A B*)</code> is not allowed. This can be easily worked around by introducing an artificial state
+(e.g. <code class="highlighter-rouge">C</code>) that has a negated condition of <code class="highlighter-rouge">B</code>. So you could use a query like:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="n">PATTERN</span> <span class="p">(</span><span class="n">A</span> <span class="n">B</span><span class="o">*</span> <span class="k">C</span><span class="p">)</span>
+<span class="n">DEFINE</span>
+    <span class="n">A</span> <span class="k">AS</span> <span class="n">condA</span><span class="p">(),</span>
+    <span class="n">B</span> <span class="k">AS</span> <span class="n">condB</span><span class="p">(),</span>
+    <span class="k">C</span> <span class="k">AS</span> <span class="k">NOT</span> <span class="n">condB</span><span class="p">()</span></code></pre></figure>
+
+<p><span class="label label-danger">Attention</span> The optional reluctant quantifier (<code class="highlighter-rouge">A??</code> or <code class="highlighter-rouge">A{0,1}?</code>) is not supported right now.</p>
+
+<h3 id="time-constraint">Time constraint</h3>
+
+<p>Especially for streaming use cases, it is often required that a pattern finishes within a given period of time.
+This allows for limiting the overall state size that Flink has to maintain internally, even in case of greedy quantifiers.</p>
+
+<p>Therefore, Flink SQL supports the additional (non-standard SQL) <code class="highlighter-rouge">WITHIN</code> clause for defining a time constraint for a pattern. The clause can be defined after the <code class="highlighter-rouge">PATTERN</code> clause and takes an interval of millisecond resolution.</p>
+
+<p>If the time between the first and last event of a potential match is longer than the given value, such a match will not be appended to the result table.</p>
+
+<p><span class="label label-info">Note</span> It is generally encouraged to use the <code class="highlighter-rouge">WITHIN</code> clause as it helps Flink with efficient memory management. Underlying state can be pruned once the threshold is reached.</p>
+
+<p><span class="label label-danger">Attention</span> However, the <code class="highlighter-rouge">WITHIN</code> clause is not part of the SQL standard. The recommended way of dealing with time constraints might change in the future.</p>
+
+<p>The use of the <code class="highlighter-rouge">WITHIN</code> clause is illustrated in the following example query:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">Ticker</span>
+    <span class="n">MATCH_RECOGNIZE</span><span class="p">(</span>
+        <span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">symbol</span>
+        <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">rowtime</span>
+        <span class="n">MEASURES</span>
+            <span class="k">C</span><span class="p">.</span><span class="n">rowtime</span> <span class="k">AS</span> <span class="n">dropTime</span><span class="p">,</span>
+            <span class="n">A</span><span class="p">.</span><span class="n">price</span> <span class="o">-</span> <span class="k">C</span><span class="p">.</span><span class="n">price</span> <span class="k">AS</span> <span class="n">dropDiff</span>
+        <span class="n">ONE</span> <span class="k">ROW</span> <span class="n">PER</span> <span class="k">MATCH</span>
+        <span class="k">AFTER</span> <span class="k">MATCH</span> <span class="n">SKIP</span> <span class="n">PAST</span> <span class="k">LAST</span> <span class="k">ROW</span>
+        <span class="n">PATTERN</span> <span class="p">(</span><span class="n">A</span> <span class="n">B</span><span class="o">*</span> <span class="k">C</span><span class="p">)</span> <span class="n">WITHIN</span> <span class="n">INTERVAL</span> <span class="s1">'1'</span> <span class="n">HOUR</span>
+        <span class="n">DEFINE</span>
+            <span class="n">B</span> <span class="k">AS</span> <span class="n">B</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="n">A</span><span class="p">.</span><span class="n">price</span> <span class="o">-</span> <span class="mi">10</span>
+            <span class="k">C</span> <span class="k">AS</span> <span class="k">C</span><span class="p">.</span><span class="n">price</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">.</span><span class="n">price</span> <span class="o">-</span> <span class="mi">10</span>
+    <span class="p">)</span></code></pre></figure>
+
+<p>The query detects a price drop of <code class="highlighter-rouge">10</code> that happens within an interval of 1 hour.</p>
+
+<p>Let’s assume the query is used to analyze the following ticker data:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">symbol         rowtime         price    tax
+======  ====================  ======= =======
+'ACME'  '01-Apr-11 10:00:00'   20      1
+'ACME'  '01-Apr-11 10:20:00'   17      2
+'ACME'  '01-Apr-11 10:40:00'   18      1
+'ACME'  '01-Apr-11 11:00:00'   11      3
+'ACME'  '01-Apr-11 11:20:00'   14      2
+'ACME'  '01-Apr-11 11:40:00'   9       1
+'ACME'  '01-Apr-11 12:00:00'   15      1
+'ACME'  '01-Apr-11 12:20:00'   14      2
+'ACME'  '01-Apr-11 12:40:00'   24      2
+'ACME'  '01-Apr-11 13:00:00'   1       2
+'ACME'  '01-Apr-11 13:20:00'   19      1</code></pre></figure>
+
+<p>The query will produce the following results:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">symbol         dropTime         dropDiff
+======  ====================  =============
+'ACME'  '01-Apr-11 13:00:00'      14</code></pre></figure>
+
+<p>The resulting row represents a price drop from <code class="highlighter-rouge">15</code> (at <code class="highlighter-rouge">01-Apr-11 12:00:00</code>) to <code class="highlighter-rouge">1</code> (at <code class="highlighter-rouge">01-Apr-11 13:00:00</code>). The <code class="highlighter-rouge">dropDiff</code> column contains the price difference.</p>
+
+<p>Notice that even though prices also drop by higher values, for example, by <code class="highlighter-rouge">11</code> (between <code class="highlighter-rouge">01-Apr-11 10:00:00</code> and <code class="highlighter-rouge">01-Apr-11 11:40:00</code>), the time difference between those two events is larger than 1 hour. Thus, they don’t produce a match.</p>
+
+<h2 id="output-mode">Output Mode</h2>
+
+<p>The <em>output mode</em> describes how many rows should be emitted for every found match. The SQL standard describes two modes:</p>
+<ul>
+  <li><code class="highlighter-rouge">ALL ROWS PER MATCH</code> - produces an output row for every row that participated in the creation of a found match.</li>
+  <li><code class="highlighter-rouge">ONE ROW PER MATCH</code> - produces one output summary row for each found match.</li>
+</ul>
+
+<p>Besides, Flink SQL also supports the following two modes (non-standard SQL, used together with the <a href="#time-constraint">WITHIN</a> clause) which describe how to handle the timed out partial match events:</p>
+<ul>
+  <li><code class="highlighter-rouge">ALL ROWS PER MATCH WITH TIMEOUT ROWS</code> - produces an output row for every row that participated in the creation of a found match or timed out partial match events.</li>
+  <li><code class="highlighter-rouge">ONE ROW PER MATCH WITH TIMEOUT ROWS</code> - produces one output summary row for each found match or timed out partial match.</li>
+</ul>
+
+<p><span class="label label-danger">Attention</span> However, the <code class="highlighter-rouge">ALL ROWS PER MATCH WITH TIMEOUT ROWS</code> and <code class="highlighter-rouge">ONE ROW PER MATCH WITH TIMEOUT ROWS</code> clauses are not part of the SQL standard. The recommended way of dealing with timed out partial match events might change in the future.</p>
+
+<p>For <code class="highlighter-rouge">ALL ROWS PER MATCH</code> and <code class="highlighter-rouge">ALL ROWS PER MATCH WITH TIMEOUT ROWS</code>, the schema of the output row will be a concatenation of <code class="highlighter-rouge">[partitioning columns] + [ordering columns] + [remaining columns of the input row] + [measures columns]</code> in that particular order.</p>
+
+<p>For <code class="highlighter-rouge">ONE ROW PER MATCH</code> and <code class="highlighter-rouge">ONE ROW PER MATCH WITH TIMEOUT ROWS</code>, the schema of the output row will be a concatenation of <code class="highlighter-rouge">[partitioning columns] + [measures columns]</code> in that particular order.</p>
+
+<h4 id="example">Example</h4>
+
+<p>In order to better understand the differences between those output modes one can take a look at the following example.</p>
+
+<p>For the following input rows:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> symbol   tax   price          rowtime
+======== ===== ======== =====================
+ XYZ      1     10       2018-09-17 10:00:02
+ XYZ      2     12       2018-09-17 10:00:03
+ XYZ      1     13       2018-09-17 10:00:04
+ XYZ      2     11       2018-09-17 10:00:05</code></pre></figure>
+
+<p>We evaluate the following query with different output modes:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">Ticker</span>
+    <span class="n">MATCH_RECOGNIZE</span><span class="p">(</span>
+        <span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">symbol</span>
+        <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">rowtime</span>
+        <span class="n">MEASURES</span>
+            <span class="k">FIRST</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">price</span><span class="p">)</span> <span class="k">AS</span> <span class="n">startPrice</span><span class="p">,</span>
+            <span class="k">LAST</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">price</span><span class="p">)</span> <span class="k">AS</span> <span class="n">topPrice</span><span class="p">,</span>
+            <span class="n">B</span><span class="p">.</span><span class="n">price</span> <span class="k">AS</span> <span class="n">lastPrice</span>
+        <span class="p">[</span><span class="k">OUTPUT</span> <span class="k">MODE</span><span class="p">]</span>
+        <span class="n">PATTERN</span> <span class="p">(</span><span class="n">A</span><span class="o">+</span> <span class="n">B</span><span class="p">)</span>
+        <span class="n">DEFINE</span>
+            <span class="n">A</span> <span class="k">AS</span> <span class="k">LAST</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">price</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">IS</span> <span class="k">NULL</span> <span class="k">OR</span> <span class="n">A</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="k">LAST</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">price</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">B</span> <span class="k">AS</span> <span class="n">B</span><span class="p">.</span><span class="n">price</span> <span class="o">&lt;</span> <span class="k">LAST</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">price</span><span class="p">)</span>
+    <span class="p">)</span></code></pre></figure>
+
+<p>The query will produce different results based on which output modes was used:</p>
+
+<h5 id="all-rows-per-match"><code class="highlighter-rouge">ALL ROWS PER MATCH</code></h5>
+
+<p>The query will produce the following output:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> symbol         rowtime         tax   price   startPrice   topPrice   lastPrice
+======== ===================== ===== ======= ============ ========== ===========
+ XYZ      2018-09-17 10:00:02    1     10         10          10         null
+ XYZ      2018-09-17 10:00:03    2     12         10          12         null
+ XYZ      2018-09-17 10:00:04    1     13         10          13         null
+ XYZ      2018-09-17 10:00:05    2     11         10          13         11</code></pre></figure>
+
+<p>The pattern recognition is partitioned by the <code class="highlighter-rouge">symbol</code> column and ordered by <code class="highlighter-rouge">rowtime</code> column. Even though not explicitly mentioned in the <code class="highlighter-rouge">MEASURES</code> clause, the partitioned column and the ordered column are added at the beginning of the result and the columns tax and price are added at the end of the result.</p>
+
+<h5 id="one-row-per-match"><code class="highlighter-rouge">ONE ROW PER MATCH</code></h5>
+
+<p>The query will produce the following output:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> symbol   startPrice   topPrice   lastPrice
+======== ============ ========== ===========
+ XYZ      10           13         11</code></pre></figure>
+
+<p>The pattern recognition is partitioned by the <code class="highlighter-rouge">symbol</code> column. Even though not explicitly mentioned in the <code class="highlighter-rouge">MEASURES</code> clause, the partitioned column is added at the beginning of the result.</p>
+
+<h5 id="all-rows-per-match-with-timeout-rows"><code class="highlighter-rouge">ALL ROWS PER MATCH WITH TIMEOUT ROWS</code></h5>
+
+<p>If we set the time constraints to 3 SECOND, the query will produce the following output:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> symbol         rowtime         tax   price   startPrice   topPrice   lastPrice
+======== ===================== ===== ======= ============ ========== ===========
+ XYZ      2018-09-17 10:00:02    1      10        10          10        null
+ XYZ      2018-09-17 10:00:03    2      12        10          12        null
+ XYZ      2018-09-17 10:00:04    1      13        10          13        null</code></pre></figure>
+
+<h5 id="one-row-per-match-with-timeout-rows"><code class="highlighter-rouge">ONE ROW PER MATCH WITH TIMEOUT ROWS</code></h5>
+
+<p>If we set the time constraints to 3 SECOND, the query will produce the following output:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> symbol   startPrice   topPrice   lastPrice
+======== ============ ========== ===========
+ XYZ      10           13         null</code></pre></figure>
+
+<h2 id="pattern-navigation">Pattern Navigation</h2>
+
+<p>The <code class="highlighter-rouge">DEFINE</code> and <code class="highlighter-rouge">MEASURES</code> clauses allow for navigating within the list of rows that (potentially) match a pattern.</p>
+
+<p>This section discusses this navigation for declaring conditions or producing output results.</p>
+
+<h3 id="pattern-variable-referencing">Pattern Variable Referencing</h3>
+
+<p>A <em>pattern variable reference</em> allows a set of rows mapped to a particular pattern variable in the <code class="highlighter-rouge">DEFINE</code> or <code class="highlighter-rouge">MEASURES</code> clauses to be referenced.</p>
+
+<p>For example, the expression <code class="highlighter-rouge">A.price</code> describes a set of rows mapped so far to <code class="highlighter-rouge">A</code> plus the current row
+if we try to match the current row to <code class="highlighter-rouge">A</code>. If an expression in the <code class="highlighter-rouge">DEFINE</code>/<code class="highlighter-rouge">MEASURES</code> clause requires a single row (e.g. <code class="highlighter-rouge">A.price</code> or <code class="highlighter-rouge">A.price &gt; 10</code>),
+it selects the last value belonging to the corresponding set.</p>
+
+<p>If no pattern variable is specified (e.g. <code class="highlighter-rouge">SUM(price)</code>), an expression references the default pattern variable <code class="highlighter-rouge">*</code> which references all variables in the pattern.
+In other words, it creates a list of all the rows mapped so far to any variable plus the current row.</p>
+
+<h4 id="example-1">Example</h4>
+
+<p>For a more thorough example, one can take a look at the following pattern and corresponding conditions:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="n">PATTERN</span> <span class="p">(</span><span class="n">A</span> <span class="n">B</span><span class="o">+</span><span class="p">)</span>
+<span class="n">DEFINE</span>
+  <span class="n">A</span> <span class="k">AS</span> <span class="n">A</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="n">B</span> <span class="k">AS</span> <span class="n">B</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="n">A</span><span class="p">.</span><span class="n">price</span> <span class="k">AND</span> <span class="k">SUM</span><span class="p">(</span><span class="n">price</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">100</span> <span class="k">AND</span> <span class="k">SUM</span><span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">price</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">80</span></code></pre></figure>
+
+<p>The following table describes how those conditions are evaluated for each incoming event.</p>
+
+<p>The table consists of the following columns:</p>
+<ul>
+  <li><code class="highlighter-rouge">#</code> - the row identifier that uniquely identifies an incoming row in the lists <code class="highlighter-rouge">[A.price]</code>/<code class="highlighter-rouge">[B.price]</code>/<code class="highlighter-rouge">[price]</code>.</li>
+  <li><code class="highlighter-rouge">price</code> - the price of the incoming row.</li>
+  <li><code class="highlighter-rouge">[A.price]</code>/<code class="highlighter-rouge">[B.price]</code>/<code class="highlighter-rouge">[price]</code> - describe lists of rows which are used in the <code class="highlighter-rouge">DEFINE</code> clause to evaluate conditions.</li>
+  <li><code class="highlighter-rouge">Classifier</code> - the classifier of the current row which indicates the pattern variable the row is mapped to.</li>
+  <li><code class="highlighter-rouge">A.price</code>/<code class="highlighter-rouge">B.price</code>/<code class="highlighter-rouge">SUM(price)</code>/<code class="highlighter-rouge">SUM(B.price)</code> - describes the result after those expressions have been evaluated.</li>
+</ul>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>price</th>
+      <th>Classifier</th>
+      <th>[A.price]</th>
+      <th>[B.price]</th>
+      <th>[price]</th>
+      <th>A.price</th>
+      <th>B.price</th>
+      <th>SUM(price)</th>
+      <th>SUM(B.price)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>#1</td>
+      <td>10</td>
+      <td>-&gt; A</td>
+      <td>#1</td>
+      <td>-</td>
+      <td>-</td>
+      <td>10</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>#2</td>
+      <td>15</td>
+      <td>-&gt; B</td>
+      <td>#1</td>
+      <td>#2</td>
+      <td>#1, #2</td>
+      <td>10</td>
+      <td>15</td>
+      <td>25</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <td>#3</td>
+      <td>20</td>
+      <td>-&gt; B</td>
+      <td>#1</td>
+      <td>#2, #3</td>
+      <td>#1, #2, #3</td>
+      <td>10</td>
+      <td>20</td>
+      <td>45</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <td>#4</td>
+      <td>31</td>
+      <td>-&gt; B</td>
+      <td>#1</td>
+      <td>#2, #3, #4</td>
+      <td>#1, #2, #3, #4</td>
+      <td>10</td>
+      <td>31</td>
+      <td>76</td>
+      <td>66</td>
+    </tr>
+    <tr>
+      <td>#5</td>
+      <td>35</td>
+      <td></td>
+      <td>#1</td>
+      <td>#2, #3, #4, #5</td>
+      <td>#1, #2, #3, #4, #5</td>
+      <td>10</td>
+      <td>35</td>
+      <td>111</td>
+      <td>101</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>As can be seen in the table, the first row is mapped to pattern variable <code class="highlighter-rouge">A</code> and subsequent rows are mapped to pattern variable <code class="highlighter-rouge">B</code>. However, the last row does not fulfill the <code class="highlighter-rouge">B</code> condition because the sum over all mapped rows <code class="highlighter-rouge">SUM(price)</code> and the sum over all rows in <code class="highlighter-rouge">B</code> exceed the specified thresholds.</p>
+
+<h3 id="logical-offsets">Logical Offsets</h3>
+
+<p><em>Logical offsets</em> enable navigation within the events that were mapped to a particular pattern variable. This can be expressed
+with two corresponding functions:</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th class="text-left" style="width: 40%">Offset functions</th>
+      <th class="text-center">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>
+      
+<figure class="highlight"><pre><code class="language-text" data-lang="text">LAST(variable.field, n)</code></pre></figure>
+
+    </td>
+    <td>
+      <p>Returns the value of the field from the event that was mapped to the <i>n</i>-th <i>last</i> element of the variable. The counting starts at the last element mapped.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      
+<figure class="highlight"><pre><code class="language-text" data-lang="text">FIRST(variable.field, n)</code></pre></figure>
+
+    </td>
+    <td>
+      <p>Returns the value of the field from the event that was mapped to the <i>n</i>-th element of the variable. The counting starts at the first element mapped.</p>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<h4 id="examples-1">Examples</h4>
+
+<p>For a more thorough example, one can take a look at the following pattern and corresponding conditions:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="n">PATTERN</span> <span class="p">(</span><span class="n">A</span> <span class="n">B</span><span class="o">+</span><span class="p">)</span>
+<span class="n">DEFINE</span>
+  <span class="n">A</span> <span class="k">AS</span> <span class="n">A</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="n">B</span> <span class="k">AS</span> <span class="p">(</span><span class="k">LAST</span><span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">price</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">IS</span> <span class="k">NULL</span> <span class="k">OR</span> <span class="n">B</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="k">LAST</span><span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">price</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="k">AND</span>
+       <span class="p">(</span><span class="k">LAST</span><span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">price</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">IS</span> <span class="k">NULL</span> <span class="k">OR</span> <span class="n">B</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="k">LAST</span><span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">price</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span></code></pre></figure>
+
+<p>The following table describes how those conditions are evaluated for each incoming event.</p>
+
+<p>The table consists of the following columns:</p>
+<ul>
+  <li><code class="highlighter-rouge">price</code> - the price of the incoming row.</li>
+  <li><code class="highlighter-rouge">Classifier</code> - the classifier of the current row which indicates the pattern variable the row is mapped to.</li>
+  <li><code class="highlighter-rouge">LAST(B.price, 1)</code>/<code class="highlighter-rouge">LAST(B.price, 2)</code> - describes the result after those expressions have been evaluated.</li>
+</ul>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+        <th style="white-space:nowrap">price</th>
+        <th style="white-space:nowrap">Classifier</th>
+        <th style="white-space:nowrap">LAST(B.price, 1)</th>
+        <th style="white-space:nowrap">LAST(B.price, 2)</th>
+        <th>Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>10</td>
+      <td>-&gt; A</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>-&gt; B</td>
+      <td>null</td>
+      <td>null</td>
+      <td>Notice that <code>LAST(A.price, 1)</code> is null because there is still nothing mapped to <code>B</code>.</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>-&gt; B</td>
+      <td>15</td>
+      <td>null</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>31</td>
+      <td>-&gt; B</td>
+      <td>20</td>
+      <td>15</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>35</td>
+      <td></td>
+      <td>31</td>
+      <td>20</td>
+      <td>Not mapped because <code>35 &lt; 2 * 20</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>It might also make sense to use the default pattern variable with logical offsets.</p>
+
+<p>In this case, an offset considers all the rows mapped so far:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="n">PATTERN</span> <span class="p">(</span><span class="n">A</span> <span class="n">B</span><span class="o">?</span> <span class="k">C</span><span class="p">)</span>
+<span class="n">DEFINE</span>
+  <span class="n">B</span> <span class="k">AS</span> <span class="n">B</span><span class="p">.</span><span class="n">price</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">,</span>
+  <span class="k">C</span> <span class="k">AS</span> <span class="k">LAST</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="k">C</span><span class="p">.</span><span class="n">price</span></code></pre></figure>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+        <th style="white-space:nowrap">price</th>
+        <th style="white-space:nowrap">Classifier</th>
+        <th style="white-space:nowrap">LAST(price, 1)</th>
+        <th>Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>10</td>
+      <td>-&gt; A</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>-&gt; B</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>-&gt; C</td>
+      <td>15</td>
+      <td><code>LAST(price, 1)</code> is evaluated as the price of the row mapped to the <code>B</code> variable.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If the second row did not map to the <code class="highlighter-rouge">B</code> variable, we would have the following results:</p>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+        <th style="white-space:nowrap">price</th>
+        <th style="white-space:nowrap">Classifier</th>
+        <th style="white-space:nowrap">LAST(price, 1)</th>
+        <th>Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>10</td>
+      <td>-&gt; A</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>-&gt; C</td>
+      <td>10</td>
+      <td><code>LAST(price, 1)</code> is evaluated as the price of the row mapped to the <code>A</code> variable.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>It is also possible to use multiple pattern variable references in the first argument of the <code class="highlighter-rouge">FIRST/LAST</code> functions. This way, one can write an expression that accesses multiple columns.
+However, all of them must use the same pattern variable. In other words, the value of the <code class="highlighter-rouge">LAST</code>/<code class="highlighter-rouge">FIRST</code> function must be computed in a single row.</p>
+
+<p>Thus, it is possible to use <code class="highlighter-rouge">LAST(A.price * A.tax)</code>, but an expression like <code class="highlighter-rouge">LAST(A.price * B.tax)</code> is not allowed.</p>
+
+<h2 id="running-vs-final-semantics">RUNNING VS FINAL semantics</h2>
+
+<p>Pattern matching in a sequence of rows is usually envisioned as an incremental process, with one row after another examined to see if it fits the pattern.</p>
+
+<p>With this incremental processing model, at any step until the complete pattern has been recognized, there is only a partial match and it is not known what rows might be added in the future, nor what variables those future rows might be mapped to.
+Therefore, a row pattern column reference in the DEFINE clause always has the RUNNING semantics. This means that a row pattern variable represents the set of rows that have already been mapped to the row pattern variable, up to and including the current row, but not any future rows.</p>
+
+<p>After the complete match has been established, it is possible to talk about the FINAL semantics. Final semantics is the same as RUNNING semantics on the last row of a successful match. FINAL semantics is only available in MEASURES.
+For <code class="highlighter-rouge">ONE ROW PER MATCH</code> or <code class="highlighter-rouge">ONE ROW PER MATCH WITH TIMEOUT ROWS</code>, the RUNNING keyword is equal to the FINAL keyword. For <code class="highlighter-rouge">ALL ROWS PER MATCH</code> and <code class="highlighter-rouge">ALL ROWS PER MATCH WITH TIMEOUT ROWS</code>, the default semantics is RUNNING.</p>
+
+<p>For a more thorough example, one can take a look at the following query:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">Ticker</span>
+    <span class="n">MATCH_RECOGNIZE</span><span class="p">(</span>
+        <span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">symbol</span>
+        <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">rowtime</span>
+        <span class="n">MEASURES</span>
+            <span class="k">SUM</span><span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">price</span><span class="p">)</span> <span class="k">AS</span> <span class="n">running_sum_b</span><span class="p">,</span>
+            <span class="k">FINAL</span> <span class="k">SUM</span><span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">price</span><span class="p">)</span> <span class="k">AS</span> <span class="n">final_sum_b</span><span class="p">,</span>
+            <span class="k">LAST</span><span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">price</span><span class="p">)</span> <span class="k">AS</span> <span class="n">running_last_b</span><span class="p">,</span>
+            <span class="k">FINAL</span> <span class="k">LAST</span><span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">price</span><span class="p">)</span> <span class="k">AS</span> <span class="n">final_last_b</span><span class="p">,</span>
+            <span class="n">CLASSIFIER</span><span class="p">()</span> <span class="k">AS</span> <span class="n">running_classifier</span><span class="p">,</span>
+            <span class="k">FINAL</span> <span class="k">LAST</span><span class="p">(</span><span class="n">CLASSIFIER</span><span class="p">())</span> <span class="k">AS</span> <span class="n">final_classifier</span>
+        <span class="k">ALL</span> <span class="k">ROWS</span> <span class="n">PER</span> <span class="k">MATCH</span>
+        <span class="n">PATTERN</span> <span class="p">(</span><span class="n">A</span> <span class="n">B</span><span class="o">+</span> <span class="k">C</span><span class="p">)</span>
+        <span class="n">DEFINE</span>
+            <span class="n">B</span> <span class="k">AS</span> <span class="n">B</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="n">A</span><span class="p">.</span><span class="n">price</span><span class="p">,</span>
+            <span class="k">C</span> <span class="k">AS</span> <span class="k">C</span><span class="p">.</span><span class="n">price</span> <span class="o">&lt;</span> <span class="k">LAST</span><span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">price</span><span class="p">)</span></code></pre></figure>
+
+<p>For the following input rows:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> symbol   price          rowtime
+======== ======== =====================
+ XYZ      10       2018-09-17 10:00:02
+ XYZ      11       2018-09-17 10:00:03
+ XYZ      12       2018-09-17 10:00:04
+ XYZ      13       2018-09-17 10:00:05
+ XYZ      10       2018-09-17 10:00:06</code></pre></figure>
+
+<p>The query will produce the following output:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> symbol         rowtime         price   running_sum_b   final_sum_b   running_last_b   final_last_b   running_classifier   final_classifier
+======== ===================== ======= =============== ============= ================ ============== ==================== ==================
+ XYZ      2018-09-17 10:00:02     10        null             36             null            13                A                    C
+ XYZ      2018-09-17 10:00:03     11        11               36              11             13                B                    C
+ XYZ      2018-09-17 10:00:04     12        23               36              12             13                B                    C
+ XYZ      2018-09-17 10:00:05     13        36               36              13             13                B                    C
+ XYZ      2018-09-17 10:00:06     10        36               36              13             13                C                    C</code></pre></figure>
+
+<h2 id="classifier">Classifier</h2>
+
+<p>The CLASSIFIER function returns a character string whose value is the classifier of a row.</p>
+
+<h4 id="example-2">Example</h4>
+
+<p>The use of the Classifier function is illustrated in the following example query:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">Ticker</span>
+    <span class="n">MATCH_RECOGNIZE</span><span class="p">(</span>
+        <span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">symbol</span>
+        <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">rowtime</span>
+        <span class="n">MEASURES</span>
+            <span class="n">A</span><span class="p">.</span><span class="n">tax</span> <span class="k">AS</span> <span class="n">a_tax</span><span class="p">,</span>
+            <span class="k">FINAL</span> <span class="k">LAST</span><span class="p">(</span><span class="k">C</span><span class="p">.</span><span class="n">tax</span><span class="p">)</span> <span class="k">AS</span> <span class="n">c_tax</span><span class="p">,</span>
+            <span class="n">CLASSIFIER</span><span class="p">()</span> <span class="k">AS</span> <span class="n">cur_classifier</span><span class="p">,</span>
+            <span class="k">LAST</span><span class="p">(</span><span class="n">CLASSIFIER</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span> <span class="k">AS</span> <span class="n">prev_classifier</span>
+        <span class="k">ALL</span> <span class="k">ROWS</span> <span class="n">PER</span> <span class="k">MATCH</span>
+        <span class="n">PATTERN</span> <span class="p">(</span><span class="n">A</span> <span class="n">B</span><span class="o">?</span> <span class="k">C</span><span class="p">)</span>
+        <span class="n">DEFINE</span>
+            <span class="n">B</span> <span class="k">AS</span> <span class="n">B</span><span class="p">.</span><span class="n">price</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">.</span><span class="n">price</span><span class="p">,</span>
+            <span class="k">C</span> <span class="k">AS</span> <span class="k">CASE</span>
+                   <span class="k">WHEN</span> <span class="k">LAST</span><span class="p">(</span><span class="n">CLASSIFIER</span><span class="p">(),</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="s1">'A'</span>
+                     <span class="k">THEN</span> <span class="k">C</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="k">LAST</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">AND</span> <span class="k">C</span><span class="p">.</span><span class="n">tax</span> <span class="o">&gt;</span> <span class="k">LAST</span><span class="p">(</span><span class="n">tax</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                   <span class="k">ELSE</span>
+                     <span class="k">C</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="k">LAST</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span>
+                 <span class="k">END</span>
+    <span class="p">)</span></code></pre></figure>
+
+<p>For the following input rows:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> symbol   tax   price          rowtime
+======== ===== ======== =====================
+ XYZ      1     10       2018-09-17 10:00:02
+ XYZ      2     9        2018-09-17 10:00:03
+ XYZ      3     13       2018-09-17 10:00:04
+ XYZ      4     10       2018-09-17 10:00:05
+ XYZ      4     21       2018-09-17 10:00:06</code></pre></figure>
+
+<p>The query will produce the following output:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> symbol         rowtime         tax   price   a_tax   c_tax   cur_classifier   prev_classifier
+======== ===================== ===== ======= ======= ======= ================ =================
+ XYZ      2018-09-17 10:00:03    2     9        2       3            A               null
+ XYZ      2018-09-17 10:00:04    3     13       2       3            C               A
+ XYZ      2018-09-17 10:00:04    3     13       3       4            A               null
+ XYZ      2018-09-17 10:00:05    4     10       3       4            B               A
+ XYZ      2018-09-17 10:00:06    4     21       3       4            C               B</code></pre></figure>
+
+<h2 id="after-match-strategy">After Match Strategy</h2>
+
+<p>The <code class="highlighter-rouge">AFTER MATCH SKIP</code> clause specifies where to start a new matching procedure after a complete match was found.</p>
+
+<p>There are four different strategies:</p>
+<ul>
+  <li><code class="highlighter-rouge">SKIP PAST LAST ROW</code> - resumes the pattern matching at the next row after the last row of the current match.</li>
+  <li><code class="highlighter-rouge">SKIP TO NEXT ROW</code> - continues searching for a new match starting at the next row after the starting row of the match.</li>
+  <li><code class="highlighter-rouge">SKIP TO LAST variable</code> - resumes the pattern matching at the last row that is mapped to the specified pattern variable.</li>
+  <li><code class="highlighter-rouge">SKIP TO FIRST variable</code> - resumes the pattern matching at the first row that is mapped to the specified pattern variable.</li>
+</ul>
+
+<p>This is also a way to specify how many matches a single event can belong to. For example, with the <code class="highlighter-rouge">SKIP PAST LAST ROW</code> strategy every event can belong to at most one match.</p>
+
+<h4 id="examples-2">Examples</h4>
+
+<p>In order to better understand the differences between those strategies one can take a look at the following example.</p>
+
+<p>For the following input rows:</p>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> symbol   tax   price         rowtime
+======== ===== ======= =====================
+ XYZ      1     7       2018-09-17 10:00:01
+ XYZ      2     9       2018-09-17 10:00:02
+ XYZ      1     10      2018-09-17 10:00:03
+ XYZ      2     5       2018-09-17 10:00:04
+ XYZ      2     17      2018-09-17 10:00:05
+ XYZ      2     14      2018-09-17 10:00:06</code></pre></figure>
+
+<p>We evaluate the following query with different strategies:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">Ticker</span>
+    <span class="n">MATCH_RECOGNIZE</span><span class="p">(</span>
+        <span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">symbol</span>
+        <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">rowtime</span>
+        <span class="n">MEASURES</span>
+            <span class="k">SUM</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">price</span><span class="p">)</span> <span class="k">AS</span> <span class="n">sumPrice</span><span class="p">,</span>
+            <span class="k">FIRST</span><span class="p">(</span><span class="n">rowtime</span><span class="p">)</span> <span class="k">AS</span> <span class="n">startTime</span><span class="p">,</span>
+            <span class="k">LAST</span><span class="p">(</span><span class="n">rowtime</span><span class="p">)</span> <span class="k">AS</span> <span class="n">endTime</span>
+        <span class="n">ONE</span> <span class="k">ROW</span> <span class="n">PER</span> <span class="k">MATCH</span>
+        <span class="p">[</span><span class="k">AFTER</span> <span class="k">MATCH</span> <span class="n">STRATEGY</span><span class="p">]</span>
+        <span class="n">PATTERN</span> <span class="p">(</span><span class="n">A</span><span class="o">+</span> <span class="k">C</span><span class="p">)</span>
+        <span class="n">DEFINE</span>
+            <span class="n">A</span> <span class="k">AS</span> <span class="k">SUM</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">price</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">30</span>
+    <span class="p">)</span></code></pre></figure>
+
+<p>The query returns the sum of the prices of all rows mapped to <code class="highlighter-rouge">A</code> and the first and last timestamp of the overall match.</p>
+
+<p>The query will produce different results based on which <code class="highlighter-rouge">AFTER MATCH</code> strategy was used:</p>
+
+<h5 id="after-match-skip-past-last-row"><code class="highlighter-rouge">AFTER MATCH SKIP PAST LAST ROW</code></h5>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> symbol   sumPrice        startTime              endTime
+======== ========== ===================== =====================
+ XYZ      26         2018-09-17 10:00:01   2018-09-17 10:00:04
+ XYZ      17         2018-09-17 10:00:05   2018-09-17 10:00:06</code></pre></figure>
+
+<p>The first result matched against the rows #1, #2, #3, #4.</p>
+
+<p>The second result matched against the rows #5, #6.</p>
+
+<h5 id="after-match-skip-to-next-row"><code class="highlighter-rouge">AFTER MATCH SKIP TO NEXT ROW</code></h5>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> symbol   sumPrice        startTime              endTime
+======== ========== ===================== =====================
+ XYZ      26         2018-09-17 10:00:01   2018-09-17 10:00:04
+ XYZ      24         2018-09-17 10:00:02   2018-09-17 10:00:05
+ XYZ      15         2018-09-17 10:00:03   2018-09-17 10:00:05
+ XYZ      22         2018-09-17 10:00:04   2018-09-17 10:00:06
+ XYZ      17         2018-09-17 10:00:05   2018-09-17 10:00:06</code></pre></figure>
+
+<p>Again, the first result matched against the rows #1, #2, #3, #4.</p>
+
+<p>Compared to the previous strategy, the next match includes row #2 again for the next matching. Therefore, the second result matched against the rows #2, #3, #4, #5.</p>
+
+<p>The third result matched against the rows #3, #4, #5.</p>
+
+<p>The forth result matched against the rows #4, #5, #6.</p>
+
+<p>The last result matched against the rows #5, #6.</p>
+
+<h5 id="after-match-skip-to-last-a"><code class="highlighter-rouge">AFTER MATCH SKIP TO LAST A</code></h5>
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text"> symbol   sumPrice        startTime              endTime
+======== ========== ===================== =====================
+ XYZ      26         2018-09-17 10:00:01   2018-09-17 10:00:04
+ XYZ      15         2018-09-17 10:00:03   2018-09-17 10:00:05
+ XYZ      22         2018-09-17 10:00:04   2018-09-17 10:00:06
+ XYZ      17         2018-09-17 10:00:05   2018-09-17 10:00:06</code></pre></figure>
+
+<p>Again, the first result matched against the rows #1, #2, #3, #4.</p>
+
+<p>Compared to the previous strategy, the next match includes only row #3 (mapped to <code class="highlighter-rouge">A</code>) again for the next matching. Therefore, the second result matched against the rows #3, #4, #5.</p>
+
+<p>The third result matched against the rows #4, #5, #6.</p>
+
+<p>The last result matched against the rows #5, #6.</p>
+
+<h5 id="after-match-skip-to-first-a"><code class="highlighter-rouge">AFTER MATCH SKIP TO FIRST A</code></h5>
+
+<p>This combination will produce a runtime exception because one would always try to start a new match where the
+last one started. This would produce an infinite loop and, thus, is prohibited.</p>
+
+<p>One has to keep in mind that in case of the <code class="highlighter-rouge">SKIP TO FIRST/LAST variable</code> strategy it might be possible that there are no rows mapped to that
+variable (e.g. for pattern <code class="highlighter-rouge">A*</code>). In such cases, a runtime exception will be thrown as the standard requires a valid row to continue the
+matching.</p>
+
+<h2 id="controlling-memory-consumption">Controlling Memory Consumption</h2>
+
+<p>Memory consumption is an important consideration when writing <code class="highlighter-rouge">MATCH_RECOGNIZE</code> queries, as the space of potential matches is built in a breadth-first-like manner.
+Having that in mind, one must make sure that the pattern can finish. Preferably with a reasonable number of rows mapped to the match as they have to fit into memory.</p>
+
+<p>For example, the pattern must not have a quantifier without an upper limit that accepts every single row. Such a pattern could look like this:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="n">PATTERN</span> <span class="p">(</span><span class="n">A</span> <span class="n">B</span><span class="o">+</span> <span class="k">C</span><span class="p">)</span>
+<span class="n">DEFINE</span>
+  <span class="n">A</span> <span class="k">as</span> <span class="n">A</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="k">C</span> <span class="k">as</span> <span class="k">C</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="mi">20</span></code></pre></figure>
+
+<p>The query will map every incoming row to the <code class="highlighter-rouge">B</code> variable and thus will never finish. This query could be fixed, e.g., by negating the condition for <code class="highlighter-rouge">C</code>:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="n">PATTERN</span> <span class="p">(</span><span class="n">A</span> <span class="n">B</span><span class="o">+</span> <span class="k">C</span><span class="p">)</span>
+<span class="n">DEFINE</span>
+  <span class="n">A</span> <span class="k">as</span> <span class="n">A</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="n">B</span> <span class="k">as</span> <span class="n">B</span><span class="p">.</span><span class="n">price</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="p">,</span>
+  <span class="k">C</span> <span class="k">as</span> <span class="k">C</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="mi">20</span></code></pre></figure>
+
+<p>Or by using the <a href="#greedy--reluctant-quantifiers">reluctant quantifier</a>:</p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="n">PATTERN</span> <span class="p">(</span><span class="n">A</span> <span class="n">B</span><span class="o">+?</span> <span class="k">C</span><span class="p">)</span>
+<span class="n">DEFINE</span>
+  <span class="n">A</span> <span class="k">as</span> <span class="n">A</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="k">C</span> <span class="k">as</span> <span class="k">C</span><span class="p">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="mi">20</span></code></pre></figure>
+
+<p><span class="label label-danger">Attention</span> Please note that the <code class="highlighter-rouge">MATCH_RECOGNIZE</code> clause does not use a configured <a href="query_configuration.html#idle-state-retention-time">state retention time</a>. One may want to use the <code class="highlighter-rouge">WITHIN</code> <a href="#time-constraint">clause</a> for this purpose.</p>
+
+<h2 id="known-limitations">Known Limitations</h2>
+
+<p>Flink’s implementation of the <code class="highlighter-rouge">MATCH_RECOGNIZE</code> clause is an ongoing effort, and some features of the SQL standard are not yet supported.</p>
+
+<p>Unsupported features include:</p>
+<ul>
+  <li>Pattern expressions:
+    <ul>
+      <li>Pattern groups - this means that e.g. quantifiers can not be applied to a subsequence of the pattern. Thus, <code class="highlighter-rouge">(A (B C)+)</code> is not a valid pattern.</li>
+      <li>Alterations - patterns like <code class="highlighter-rouge">PATTERN((A B | C D) E)</code>, which means that either a subsequence <code class="highlighter-rouge">A B</code> or <code class="highlighter-rouge">C D</code> has to be found before looking for the <code class="highlighter-rouge">E</code> row.</li>
+      <li><code class="highlighter-rouge">PERMUTE</code> operator - which is equivalent to all permutations of variables that it was applied to e.g. <code class="highlighter-rouge">PATTERN (PERMUTE (A, B, C))</code> = <code class="highlighter-rouge">PATTERN (A B C | A C B | B A C | B C A | C A B | C B A)</code>.</li>
+      <li>Anchors - <code class="highlighter-rouge">^, $</code>, which denote beginning/end of a partition, those do not make sense in the streaming context and will not be supported.</li>
+      <li>Exclusion - <code class="highlighter-rouge">PATTERN ({- A -} B)</code> meaning that <code class="highlighter-rouge">A</code> will be looked for but will not participate in the output. This works only for the <code class="highlighter-rouge">ALL ROWS PER MATCH</code> mode.</li>
+      <li>Reluctant optional quantifier - <code class="highlighter-rouge">PATTERN A??</code> only the greedy optional quantifier is supported.</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">SUBSET</code> - which allows creating logical groups of pattern variables and using those groups in the <code class="highlighter-rouge">DEFINE</code> and <code class="highlighter-rouge">MEASURES</code> clauses.</li>
+  <li>Physical offsets - <code class="highlighter-rouge">PREV/NEXT</code>, which indexes all events seen rather than only those that were mapped to a pattern variable(as in <a href="#logical-offsets">logical offsets</a> case).</li>
+  <li>Extracting time attributes - there is currently no possibility to get a time attribute for subsequent time-based operations.</li>
+  <li><code class="highlighter-rouge">MATCH_RECOGNIZE</code> is supported only for SQL. There is no equivalent in the Table API.</li>
+  <li>Aggregations:
+    <ul>
+      <li>distinct aggregations are not supported.</li>
+    </ul>
+  </li>
+</ul>
+
+
+        </div>
+      </div>
+    </div><!-- /.container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//flink-china.org/doc/blink/page/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.0/anchor.min.js"></script>
+    <script src="//flink-china.org/doc/blink/page/js/flink.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-52545728-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- Disqus -->
+    
+  </body>
+</html>
