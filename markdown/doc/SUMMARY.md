@@ -2,7 +2,6 @@
 * [快速开始](kuai-su-kai-shi.md)
   * [本地执行](dev/local_execution.md)
   * [运行Java程序](quickstart/setup_quickstart.md)
-  * [运行SQL代码](quickstart/yun-xing-sql-dai-ma.md)
   * [Java API快速开始](quickstart/java_api_quickstart.md)
   * [Scala API快速开始](quickstart/scala_api_quickstart.md)
   * [使用源码构建Flink](start/building.md)
